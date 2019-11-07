@@ -1,4 +1,5 @@
-# Buying Catalogue Components
+# buying-catalogue-components
+A library of components specifically for Buying Catalogue
 
-Component Library is cool
-
+# Run
+npm run start

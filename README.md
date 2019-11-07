@@ -1,4 +1,4 @@
 # Buying Catalogue Components
 
-Component Library
+Component Library is cool
 

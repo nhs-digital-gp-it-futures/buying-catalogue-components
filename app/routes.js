@@ -1,73 +1,28 @@
 import express from 'express';
-import {
-  getMarketingPageDashboardContext,
-  getSubDashboardPageContext,
-  getSectionPageContext,
-  getSectionPageErrorContext,
-  postSection,
-  getPreviewPageContext,
-  postSubmitForModeration,
-} from './controller';
+import nunjucks from 'nunjucks';
 
 const router = express.Router();
 
-router.get('/:solutionId', async (req, res) => {
-  const { solutionId } = req.params;
-  const context = await getMarketingPageDashboardContext(solutionId);
+router.get('/', async (req, res) => {
+  const macroWrapper = `
+    {% extends 'includes/layout.njk' %}
+    {% from './error-summary.njk' import errorSummary %}
+    {% block body %}
+    {{ errorSummary(errors) }}
+    {% endblock %}`;
 
-  res.render('dashboard-page', context);
-});
+  const context = {
+    errors: [
+      {
+        text: 'This is the first error',
+        href: '#link-to-first-error',
+      },
+    ],
+  };
 
-router.get('/:solutionId/dashboard/:sectionId', async (req, res) => {
-  const { solutionId, sectionId } = req.params;
-  const context = await getSubDashboardPageContext(solutionId, sectionId);
+  const viewToTest = nunjucks.renderString(macroWrapper, context);
 
-  res.render('sub-dashboard-page', context);
-});
-
-
-router.get('/:solutionId/section/:sectionId', async (req, res) => {
-  const { solutionId, sectionId } = req.params;
-  const context = await getSectionPageContext(solutionId, sectionId);
-
-  res.render('section-page', context);
-});
-
-router.post('/:solutionId/section/:sectionId', async (req, res) => {
-  const { solutionId, sectionId } = req.params;
-  const sectionPostData = req.body;
-
-  const response = await postSection(solutionId, sectionId, sectionPostData);
-
-  if (response.success) {
-    res.redirect(response.redirectUrl);
-  } else {
-    const context = await getSectionPageErrorContext(
-      solutionId, sectionId, sectionPostData, response,
-    );
-
-    res.render('section-page', context);
-  }
-});
-
-router.get('/:solutionId/preview', async (req, res) => {
-  const { solutionId } = req.params;
-  const context = await getPreviewPageContext(solutionId);
-
-  res.render('preview-page', context);
-});
-
-router.get('/:solutionId/submitForModeration', async (req, res) => {
-  const { solutionId } = req.params;
-  const response = await postSubmitForModeration(solutionId);
-
-  if (response.success) {
-    res.redirect(`/${solutionId}`);
-  } else {
-    const context = await getMarketingPageDashboardContext(solutionId, response);
-
-    res.render('dashboard-page', context);
-  }
+  res.send(viewToTest);
 });
 
 module.exports = router;

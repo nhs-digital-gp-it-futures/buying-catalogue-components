@@ -1,28 +1,14 @@
 import express from 'express';
-import nunjucks from 'nunjucks';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const macroWrapper = `
-    {% extends 'includes/layout.njk' %}
-    {% from './error-summary.njk' import errorSummary %}
-    {% block body %}
-    {{ errorSummary(errors) }}
-    {% endblock %}`;
+  res.render('index', {});
+});
 
-  const context = {
-    errors: [
-      {
-        text: 'This is the first error',
-        href: '#link-to-first-error',
-      },
-    ],
-  };
-
-  const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-  res.send(viewToTest);
+router.get('/component/:componentName', async (req, res) => {
+  const { componentName } = req.params;
+  res.render(`./components/${componentName}/template`, {});
 });
 
 module.exports = router;

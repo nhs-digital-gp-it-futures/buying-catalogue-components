@@ -34,7 +34,7 @@
   <body>
     <a class="nhsuk-skip-link" href="#maincontent">Skip to main content</a>
 
-    {% include 'includes/header.njk' %}
+    {% include 'views/includes/header.njk' %}
 
     {% block outerBody %}{% endblock %}
 
@@ -43,8 +43,6 @@
         {% block body %}{% endblock %}
       </main>
     </div>
-
-    {% include 'includes/footer.njk' %}
 
   </body>
 </html>

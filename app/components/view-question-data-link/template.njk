@@ -1,0 +1,7 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
+
+{% block body %}
+  View question data link component
+  {{ viewQuestionDataLink('www.somelink.com') }}
+{% endblock %}

@@ -1,7 +1,7 @@
 {
-  "name": "marketing-pages",
+  "name": "buying-catalogue-components",
   "version": "1.0.0",
-  "description": "Nodejs express app for Buying Catalogue - Marketing Pages",
+  "description": "Nodejs express app for Buying Catalogue components",
   "main": "server.js",
   "scripts": {
     "babel": "babel --presets es2015 app/scripts/main.js -o public/js/main.bundle.js",
@@ -27,7 +27,7 @@
   "author": "Fawad Ali",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nhs-digital-gp-it-futures/marketing-pages"
+    "url": "https://github.com/nhs-digital-gp-it-futures/buying-catalogue-components"
   },
   "license": "MIT",
   "dependencies": {

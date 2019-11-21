@@ -1,0 +1,35 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'components/tag/macro.njk' import tag %}
+
+{% block body %}
+  <h1>View question data bulletlist component</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'components/tag/macro.njk' import tag %}
+
+      {{ tag({
+        dataTestIdIdentifier: 'example',
+        text: 'Example Tag',
+        classes: 'example-class'
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- "
+      <div class='bc-c-tag extra-class' data-test-id='example-tag'>
+        Example Tag
+      </div>
+    " }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ tag({
+    dataTestIdIdentifier: 'example',
+    text: 'Example Tag',
+    classes: 'example-class'
+  }) }}
+{% endblock %}

@@ -11,7 +11,9 @@
     {% verbatim %}
       {% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
 
-      {{ viewQuestionDataLink('http://www.somelink.com') }}
+      {{ viewQuestionDataLink({
+        questionData: 'www.somelink.com'
+      }) }}
     {% endverbatim %}
   </code></pre>
 
@@ -29,5 +31,7 @@
   </code></pre>
 
   <h3>Rendered component</h3>
-  {{ viewQuestionDataLink('www.somelink.com') }}
+  {{ viewQuestionDataLink({
+    questionData: 'www.somelink.com'
+  }) }}
 {% endblock %}

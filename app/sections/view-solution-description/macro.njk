@@ -1,0 +1,48 @@
+{% from 'components/view-question-title/macro.njk' import viewQuestionTitle %}
+{% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
+{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
+
+{% macro viewSolutionDescription(params) %}
+  {% if params.section %}
+    <div data-test-id="view-solution-description">
+      <div class="bc-c-title-block">
+        <h3 class="nhsuk-u-margin-bottom-2">Solution description</h3>
+      </div>
+      <div class="nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
+        {% if params.section.answers.summary %}
+          <div data-test-id="view-section-question-summary">
+              {{ viewQuestionTitle({
+                questionId: 'summary', 
+                questionTitle: 'Summary'
+              }) }}
+              {{ viewQuestionDataText({
+                questionId: 'summary', 
+                questionData: params.section.answers.summary
+              }) }}
+          </div>
+        {% endif %}
+
+        {% if params.section.answers.description %}
+          <div data-test-id="view-section-question-description" class="nhsuk-u-margin-top-4">
+              {{ viewQuestionTitle({
+                questionId: 'description', 
+                questionTitle: 'About the solution'
+              }) }}
+              {{ viewQuestionDataText({
+                questionId: 'description', 
+                questionData: params.section.answers.description
+              }) }}
+          </div>
+        {% endif %}
+
+        {% if params.section.answers.link %}
+          <div data-test-id="view-section-question-link" class="nhsuk-u-margin-top-4">
+            {{ viewQuestionDataLink({
+              questionData: params.section.answers.link
+            }) }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

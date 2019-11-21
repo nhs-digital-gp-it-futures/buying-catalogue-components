@@ -10,7 +10,7 @@ const createDummyApp = (context) => {
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
-                            {{ viewQuestionDataLink(questionData) }}`;
+                            {{ viewQuestionDataLink(params) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -25,7 +25,9 @@ const createDummyApp = (context) => {
 describe('view-question-link', () => {
   it('should render the link when provided', (done) => {
     const context = {
-      questionData: 'www.somelink.com',
+      params: {
+        questionData: 'www.somelink.com',
+      },
     };
 
     const dummyApp = createDummyApp(context);

@@ -1,7 +1,33 @@
 {% extends 'views/includes/layout.njk' %}
 {% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
 
+
+
 {% block body %}
-  View question data link component
+  <h1>View question data link component</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
+
+      {{ viewQuestionDataLink('http://www.somelink.com') }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+  {{- "
+    <div data-test-id='view-question-data-link'>
+      <a href='www.somelink.com' target='_blank'>
+        <label class='nhsuk-label'>
+          http://www.somelink.com
+        </label>
+      </a>
+    </div>
+  " }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
   {{ viewQuestionDataLink('www.somelink.com') }}
 {% endblock %}

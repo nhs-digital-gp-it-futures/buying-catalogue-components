@@ -1,11 +1,11 @@
 {
   "name": "buying-catalogue-components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Nodejs express app for Buying Catalogue components",
   "main": "server.js",
   "scripts": {
     "babel": "babel --presets es2015 app/scripts/main.js -o public/js/main.bundle.js",
-    "build": "npm run build:js && npm run build:assets",
+    "build": "npm run build:js && npm run build:css && npm run build:assets",
     "build:css": "node-sass --output-style compressed app/styles/main.scss public/css/main.min.css",
     "build:js": "npm run webpack",
     "build:assets": "cpx 'app/assets/**/*.*' public/assets/",

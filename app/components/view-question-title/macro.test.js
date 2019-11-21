@@ -27,7 +27,7 @@ describe('view-question-title', () => {
   it('should render the title of the question', (done) => {
     const context = {
       params: {
-        questionTitle: 'Some question title'
+        questionTitle: 'Some question title',
       },
     };
 

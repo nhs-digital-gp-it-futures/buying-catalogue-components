@@ -1,0 +1,80 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+
+{% block body %}
+  <h1>View Solution Contact Details</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+
+      {{ viewSolutionDescription({
+        section: {
+          answers: {
+            summary: 'Some summary data',
+            description: 'Some description data',
+            link: 'www.somelink.com'
+          }
+        }
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- "
+      <div data-test-id='view-solution-description'>
+        <div class='bc-c-title-block'>
+          <h3 class='nhsuk-u-margin-bottom-2'>Solution description</h3>
+        </div>
+        <div class='nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3'>
+          <div data-test-id='view-section-question-summary'>
+            <div data-test-id='view-question-title'>
+              <label class='nhsuk-label nhsuk-label--s nhsuk-u-margin-bottom-3'>
+                Summary
+              </label>
+            </div>
+            <div data-test-id='view-question-data-text-summary'>
+              <label class='nhsuk-label'>
+                Some summary data
+              </label>
+            </div>
+          </div>
+          <div data-test-id='view-section-question-description' class='nhsuk-u-margin-top-4'>
+            <div data-test-id='view-question-title'>
+              <label class='nhsuk-label nhsuk-label--s nhsuk-u-margin-bottom-3'>
+                About the solution
+              </label>
+            </div>
+            <div data-test-id='view-question-data-text-description'>
+              <label class='nhsuk-label'>
+                Some description data
+              </label>
+            </div>
+          </div>
+          <div data-test-id='view-section-question-link' class='nhsuk-u-margin-top-4'>
+            <div data-test-id='view-question-data-link'>
+              <a href='www.somelink.com' target='_blank'>
+                <label class='nhsuk-label'>
+                  www.somelink.com
+                </label>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    " }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewSolutionDescription({
+    section: {
+      answers: {
+        summary: 'Some summary data',
+        description: 'Some description data',
+        link: 'www.somelink.com'
+      }
+    }
+  }) }}
+{% endblock %}

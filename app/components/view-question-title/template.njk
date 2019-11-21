@@ -1,0 +1,34 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'components/view-question-title/macro.njk' import viewQuestionTitle %}
+
+{% block body %}
+  <h1>View question data text component</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'components/view-question-title/macro.njk' import viewQuestionTitle %}
+
+      {{ viewQuestionTitle({
+          questionTitle: 'Title'
+      }) 
+      }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- "
+      <div data-test-id='view-question-title'>
+        <label class='nhsuk-label nhsuk-label--s nhsuk-u-margin-bottom-3'>
+          Title
+        </label>
+      </div>
+    " }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewQuestionTitle({
+    questionTitle: 'Title'
+  }) }}
+{% endblock %}

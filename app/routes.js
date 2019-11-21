@@ -11,4 +11,9 @@ router.get('/component/:componentName', async (req, res) => {
   res.render(`./components/${componentName}/template`, {});
 });
 
+router.get('/section/:sectionName', async (req, res) => {
+  const { sectionName } = req.params;
+  res.render(`./sections/${sectionName}/template`, {});
+});
+
 module.exports = router;

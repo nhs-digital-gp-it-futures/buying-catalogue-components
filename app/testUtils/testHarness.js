@@ -2,7 +2,7 @@ import express from 'express';
 import nunjucks from 'nunjucks';
 import { App } from '../../app';
 
-export const TetsContext = (macroWrapper, componentContext) => {
+export const createTestHarness = (macroWrapper, componentContext) => {
 
   const app = new App().createApp();
   const router = express.Router();

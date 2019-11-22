@@ -1,6 +1,6 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
-import { TetsContext } from '../../testContext/testContext'
+import { createTestHarness } from '../../testUtils/testHarness'
 
 const macroWrapper = `{% from './components/view-question-title/macro.njk' import viewQuestionTitle %}
                           {{ viewQuestionTitle(params) }}`;
@@ -14,7 +14,7 @@ describe('view-question-title', () => {
       },
     };
 
-    const dummyApp = TetsContext(macroWrapper, context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {

@@ -1,0 +1,62 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-solution-capabilities/macro.njk' import viewSolutionCapabilities %}
+
+{% block body %}
+  <h1>View Solution Capabilities</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'components/view-solution-capabilities/macro.njk' import viewSolutionContactDetails %}
+
+      {{ viewSolutionCapabilities({
+        section: {
+          answers: {
+            'capabilities-met': ['capability 1', 'capability 2', 'capability 3']
+          }
+        }
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- '
+    <div data-test-id="view-solution-capabilities">
+      <div class="bc-c-title-block">
+        <h3 class="nhsuk-u-margin-bottom-2">Capabilities met</h3>
+      </div>
+      <div class="nhsuk-u-padding-left-3">
+        <div data-test-id="view-question-data-bulletlist">
+          <ul>
+              <li>
+                <label class="nhsuk-label">
+                  capability 1
+                </label>
+              </li>
+              <li>
+                <label class="nhsuk-label">
+                  capability 2
+                </label>
+              </li>
+              <li>
+                <label class="nhsuk-label">
+                  capability 3
+                </label>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    ' }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewSolutionCapabilities({
+    section: {
+      answers: {
+       'capabilities-met': ['capability 1', 'capability 2', 'capability 3']
+      }
+    }
+  }) }}
+{% endblock %}

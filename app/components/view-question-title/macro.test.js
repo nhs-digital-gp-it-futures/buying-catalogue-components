@@ -1,26 +1,9 @@
 import request from 'supertest';
-import express from 'express';
-import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
+import { createTestHarness } from '../../testUtils/testHarness'
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './components/view-question-title/macro.njk' import viewQuestionTitle %}
-                            {{ viewQuestionTitle(params) }}`;
-
-    const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-    res.send(viewToTest);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const macroWrapper = `{% from './components/view-question-title/macro.njk' import viewQuestionTitle %}
+                          {{ viewQuestionTitle(params) }}`;
 
 describe('view-question-title', () => {
 
@@ -31,7 +14,7 @@ describe('view-question-title', () => {
       },
     };
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {

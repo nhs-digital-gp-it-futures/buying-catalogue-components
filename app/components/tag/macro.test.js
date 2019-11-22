@@ -10,7 +10,7 @@ const createDummyApp = (context) => {
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './components/tag/macro.njk' import tag %}
-                            {{ tag({ qaIdentifier, text, classes }) }}`;
+                            {{ tag(params) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -25,7 +25,9 @@ const createDummyApp = (context) => {
 describe('tag', () => {
   it('should render the tag with the correct data-test-id', (done) => {
     const context = {
-      qaIdentifier: 'qa-identifier',
+      params: {
+        dataTestIdIdentifier: 'qa-identifier',
+      },
     };
     const dummyApp = createDummyApp(context);
     request(dummyApp)
@@ -39,8 +41,10 @@ describe('tag', () => {
 
   it('should render the tag with the correct text', (done) => {
     const context = {
-      qaIdentifier: 'qa-identifier',
-      text: 'some tag text',
+      params: {
+        dataTestIdIdentifier: 'qa-identifier',
+        text: 'some tag text',
+      },
     };
     const dummyApp = createDummyApp(context);
     request(dummyApp)
@@ -54,9 +58,11 @@ describe('tag', () => {
 
   it('should render the tag with the correct classes', (done) => {
     const context = {
-      qaIdentifier: 'qa-identifier',
-      text: 'some tag text',
-      classes: 'extra-class',
+      params: {
+        dataTestIdIdentifier: 'qa-identifier',
+        text: 'some tag text',
+        classes: 'extra-class',
+      },
     };
     const dummyApp = createDummyApp(context);
     request(dummyApp)

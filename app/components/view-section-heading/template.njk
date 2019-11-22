@@ -1,0 +1,27 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+
+{% block body %}
+  <h1>View Section Heading component</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+
+      {{ viewSectionHeading({text: 'Example section heading'}) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- "
+      <div class='bc-c-title-block'>
+        <h3 class='nhsuk-u-margin-bottom-2'>Example section heading</h3>
+      </div>
+    " }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewSectionHeading({text: 'Example section heading'}) }}
+{% endblock %}

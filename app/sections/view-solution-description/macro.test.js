@@ -1,26 +1,9 @@
 import request from 'supertest';
-import express from 'express';
-import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
+import { createTestHarness } from '../../testUtils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './sections/view-solution-description/macro.njk' import viewSolutionDescription %}
-                            {{ viewSolutionDescription(params) }}`;
-
-    const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-    res.send(viewToTest);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const macroWrapper = `{% from './sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+                        {{ viewSolutionDescription(params) }}`;
 
 describe('view-solution-description', () => {
   it('should render the title of the section', (done) => {
@@ -30,7 +13,7 @@ describe('view-solution-description', () => {
       },
     };
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -46,7 +29,7 @@ describe('view-solution-description', () => {
     const context = {
     };
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -70,7 +53,7 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createDummyApp(context);
+      const dummyApp = createTestHarness(macroWrapper, context);
       request(dummyApp)
         .get('/')
         .then((res) => {
@@ -96,7 +79,7 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createDummyApp(context);
+      const dummyApp = createTestHarness(macroWrapper, context);
       request(dummyApp)
         .get('/')
         .then((res) => {
@@ -122,7 +105,7 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createDummyApp(context);
+      const dummyApp = createTestHarness(macroWrapper, context);
       request(dummyApp)
         .get('/')
         .then((res) => {
@@ -150,7 +133,7 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createDummyApp(context);
+      const dummyApp = createTestHarness(macroWrapper, context);
       request(dummyApp)
         .get('/')
         .then((res) => {
@@ -175,7 +158,7 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createDummyApp(context);
+      const dummyApp = createTestHarness(macroWrapper, context);
       request(dummyApp)
         .get('/')
         .then((res) => {
@@ -200,7 +183,7 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createDummyApp(context);
+      const dummyApp = createTestHarness(macroWrapper, context);
       request(dummyApp)
         .get('/')
         .then((res) => {

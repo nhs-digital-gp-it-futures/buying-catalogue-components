@@ -1,26 +1,9 @@
 import request from 'supertest';
-import express from 'express';
-import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
+import { createTestHarness } from '../../testUtils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './components/tag/macro.njk' import tag %}
-                            {{ tag(params) }}`;
-
-    const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-    res.send(viewToTest);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const macroWrapper = `{% from './components/tag/macro.njk' import tag %}
+                        {{ tag(params) }}`;
 
 describe('tag', () => {
   it('should render the tag with the correct data-test-id', (done) => {
@@ -29,7 +12,7 @@ describe('tag', () => {
         dataTestIdIdentifier: 'qa-identifier',
       },
     };
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -46,7 +29,7 @@ describe('tag', () => {
         text: 'some tag text',
       },
     };
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -64,7 +47,7 @@ describe('tag', () => {
         classes: 'extra-class',
       },
     };
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {

@@ -1,26 +1,10 @@
 import request from 'supertest';
-import express from 'express';
-import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
+import { createTestHarness } from '../../testUtils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
+const macroWrapper = `{% from './sections/view-solution-contact-details/macro.njk' import viewSolutionContactDetails %}
+                        {{ viewSolutionContactDetails(params) }}`;
 
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './sections/view-solution-contact-details/macro.njk' import viewSolutionContactDetails %}
-                            {{ viewSolutionContactDetails(params) }}`;
-
-    const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-    res.send(viewToTest);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
 
 describe('view-solution-contact-details', () => {
   it('should render the title of the section', (done) => {
@@ -30,7 +14,7 @@ describe('view-solution-contact-details', () => {
       },
     };
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -45,7 +29,7 @@ describe('view-solution-contact-details', () => {
     const context = {
     };
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -73,7 +57,7 @@ describe('view-solution-contact-details', () => {
       },
     };
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -105,7 +89,7 @@ describe('view-solution-contact-details', () => {
       },
     };
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {

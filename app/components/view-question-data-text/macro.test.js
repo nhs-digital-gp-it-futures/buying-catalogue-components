@@ -1,26 +1,9 @@
 import request from 'supertest';
-import express from 'express';
-import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
+import { createTestHarness } from '../../testUtils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './components/view-question-data-text/macro.njk' import viewQuestionDataText %}
-                            {{ viewQuestionDataText(params) }}`;
-
-    const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-    res.send(viewToTest);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const macroWrapper = `{% from './components/view-question-data-text/macro.njk' import viewQuestionDataText %}
+                        {{ viewQuestionDataText(params) }}`;
 
 describe('view-question-data-text', () => {
   it('should render the data when provided', (done) => {
@@ -31,7 +14,7 @@ describe('view-question-data-text', () => {
       },
     };
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -46,7 +29,7 @@ describe('view-question-data-text', () => {
   it('should not render the data when not provided', (done) => {
     const context = {};
 
-    const dummyApp = createDummyApp(context);
+    const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)
       .get('/')
       .then((res) => {

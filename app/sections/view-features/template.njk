@@ -1,0 +1,62 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-features/macro.njk' import viewFeatures %}
+
+{% block body %}
+  <h1>View Features</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'sections/view-features/macro.njk' import viewFeatures %}
+
+      {{ viewFeatures({
+        section: {
+          answers: {
+          'listing': ['Feature 1', 'Feature 2', 'Feature 3']
+          }
+        }
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- '
+      <div data-test-id="view-features">
+        <div class="bc-c-title-block">
+          <h3 class="nhsuk-u-margin-bottom-2">Features</h3>
+        </div>
+        <div class="nhsuk-u-padding-left-3">
+          <div data-test-id="view-question-data-bulletlist">
+            <ul>
+              <li>
+                <label class="nhsuk-label">
+                  Feature 1
+                </label>
+              </li>
+              <li>
+                <label class="nhsuk-label">
+                  Feature 2
+                </label>
+              </li>
+              <li>
+                <label class="nhsuk-label">
+                  Feature 3
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    ' }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewFeatures({
+    section: {
+      answers: {
+      'listing': ['Feature 1', 'Feature 2', 'Feature 3']
+      }
+    }
+  }) }}
+{% endblock %}

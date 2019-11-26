@@ -1,0 +1,17 @@
+{% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+
+{% macro viewFeatures(params) %}
+  {% if params.section %}
+    <div data-test-id="view-features">
+      {{ viewSectionHeading({text: 'Features'}) }}
+      {% if params.section.answers.listing and params.section.answers.listing.length > 0 %}
+        <div class="nhsuk-u-padding-left-3">
+            {{ viewQuestionDataBulletlist({
+              questionData: params.section.answers.listing
+            }) }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}

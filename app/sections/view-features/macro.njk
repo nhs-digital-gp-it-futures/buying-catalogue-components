@@ -6,7 +6,7 @@
     <div data-test-id="view-features">
       {{ viewSectionHeading({text: 'Features'}) }}
       {% if params.section.answers.listing and params.section.answers.listing.length > 0 %}
-        <div data-test-id="view-section-question-listing" class="nhsuk-table__row">
+        <div class="nhsuk-u-padding-left-3">
             {{ viewQuestionDataBulletlist({
               questionData: params.section.answers.listing
             }) }}

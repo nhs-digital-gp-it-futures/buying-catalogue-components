@@ -63,9 +63,9 @@ describe('view-features', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
+          const featuresList = $('[data-test-id="view-question-data-bulletlist"] li');
 
-          const listingsQuestion = $('[data-test-id="view-section-question-listing"]');
-          expect(listingsQuestion.find('[data-test-id="view-question-data-bulletlist"]').length).toEqual(1);
+          expect(featuresList.length).toEqual(3);
 
           done();
         });
@@ -89,9 +89,9 @@ describe('view-features', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
+          const featuresList = $('[data-test-id="view-question-data-bulletlist"] li');
 
-          const listingsQuestion = $('[data-test-id="view-section-question-listing"]');
-          expect(listingsQuestion.length).toEqual(0);
+          expect(featuresList.length).toEqual(0);
 
           done();
         });

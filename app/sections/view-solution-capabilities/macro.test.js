@@ -1,6 +1,7 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
+
 const macroWrapper = `{% from './sections/view-solution-capabilities/macro.njk' import viewSolutionCapabilities %}
                         {{ viewSolutionCapabilities(params) }}`;
 
@@ -9,7 +10,7 @@ describe('view-solution-capabilities', () => {
     const context = {
       params: {
         section: {},
-      }
+      },
     };
 
     const dummyApp = createTestHarness(macroWrapper, context);
@@ -46,7 +47,7 @@ describe('view-solution-capabilities', () => {
             'capabilities-met': capabilitiesMet,
           },
         },
-      }
+      },
     };
 
     const dummyApp = createTestHarness(macroWrapper, context);

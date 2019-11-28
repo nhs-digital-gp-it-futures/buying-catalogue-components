@@ -1,24 +1,39 @@
-{% from '../components/preview-section-table-row.njk' import previewSectionTableRow %}
+{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
 {% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
 {% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
 
-{% macro previewBrowserBased(section) %}
-  <dl data-test-id="preview-section-table-browser-based" class="nhsuk-summary-list">
-    {{ previewSectionTableRow(
-      'supported-browsers', 
-      'Browsers Supported', 
-      previewQuestionDataBulletlist(section.sections['browsers-supported'].answers['supported-browsers'])) }}
-    {{ previewSectionTableRow(
-      'mobile-responsive', 
-      'Mobile responsive', 
-      previewQuestionDataText(section.sections['browsers-supported'].answers['mobile-responsive'])) }}
-    {{ previewSectionTableRow(
-      'plugins-required', 
-      'Plug-ins or extensions required', 
-      previewQuestionDataText(section.sections['plug-ins-or-extensions'].answers['plugins-required'])) }}
-    {{ previewSectionTableRow(
-      'plugins-detail', 
-      'Plug-ins or extensions information', 
-      previewQuestionDataText(section.sections['plug-ins-or-extensions'].answers['plugins-detail'])) }}
-  <dl>
+{% macro viewBrowserBased(params) %}
+  <dl data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
+    {{ viewSectionTableRow({
+      questionId: 'supported-browsers', 
+      questionTitle: 'Browsers Supported', 
+      innerComponent: viewQuestionDataBulletlist({
+        questionData: params.section.sections['browsers-supported'].answers['supported-browsers']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'mobile-responsive', 
+      questionTitle: 'Mobile responsive', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'mobile-responsive',
+        questionData: params.section.sections['browsers-supported'].answers['mobile-responsive']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'plugins-required', 
+      questionTitle: 'Plug-ins or extensions required', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'plugins-required',
+        questionData: params.section.sections['plug-ins-or-extensions'].answers['plugins-required']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'plugins-detail', 
+      questionTitle: 'Plug-ins or extensions information', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'plugins-detail', 
+        questionData: params.section.sections['plug-ins-or-extensions'].answers['plugins-detail']
+      })
+    }) }}
+  </dl>
 {% endmacro %}

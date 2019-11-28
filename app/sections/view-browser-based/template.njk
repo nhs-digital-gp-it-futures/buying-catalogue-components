@@ -1,0 +1,117 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-browser-based/macro.njk' import viewBrowserBased %}
+
+{% block body %}
+  <h1>View Browser Based</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from './sections/view-browser-based/macro.njk' import viewBrowserBased %}
+
+      {{ viewBrowserBased({
+        section: {
+          sections: {
+            'browsers-supported': {
+              answers: {
+                'supported-browsers': ['Chrome', 'Firefox'],
+                'mobile-responsive': 'Yes'
+              }
+            },
+            'plug-ins-or-extensions': {
+              answers: {
+                'plugins-required': 'Yes',
+                'plugins-detail': 'Some plugin detail'
+              }
+            }
+          }
+        }
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- '
+      <dl data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
+        <div data-test-id="view-section-table-row-supported-browsers" class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Browsers Supported
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            <div data-test-id="view-question-data-bulletlist">
+              <ul>
+                <li>
+                  <label class="nhsuk-label">
+                    Chrome
+                  </label>
+                </li>
+                <li>
+                  <label class="nhsuk-label">
+                    Firefox
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </dd>
+        </div>
+        <div data-test-id="view-section-table-row-mobile-responsive" class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Mobile responsive
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            <div data-test-id="view-question-data-text-mobile-responsive">
+              <label class="nhsuk-label">
+                Yes
+              </label>
+            </div>
+          </dd>
+        </div>
+        <div data-test-id="view-section-table-row-plugins-required" class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Plug-ins or extensions required
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            <div data-test-id="view-question-data-text-plugins-required">
+              <label class="nhsuk-label">
+                Yes
+              </label>
+            </div>
+          </dd>
+        </div>
+        <div data-test-id="view-section-table-row-plugins-detail" class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Plug-ins or extensions information
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            <div data-test-id="view-question-data-text-plugins-detail">
+              <label class="nhsuk-label">
+                Some plugin detail
+              </label>
+            </div>
+          </dd>
+        </div>
+      </dl>
+    ' }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewBrowserBased({
+    section: {
+      sections: {
+        'browsers-supported': {
+          answers: {
+            'supported-browsers': ['Chrome', 'Firefox'],
+            'mobile-responsive': 'Yes'
+          }
+        },
+        'plug-ins-or-extensions': {
+          answers: {
+            'plugins-required': 'Yes',
+            'plugins-detail': 'Some plugin detail'
+          }
+        }
+      }
+    }
+  }) }}
+{% endblock %}

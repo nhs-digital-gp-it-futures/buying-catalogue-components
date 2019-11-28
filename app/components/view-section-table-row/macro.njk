@@ -1,0 +1,12 @@
+{% macro viewSectionTableRow(params) %}
+  {% if params.innerComponent | trim | length > 0 %}
+    <div data-test-id="view-section-table-row-{{ params.questionId }}" class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">
+        {{ params.questionTitle }}
+      </dt>
+      <dd class="nhsuk-summary-list__value">
+        {{- params.innerComponent | safe | trim }}
+      </dd>
+    </div>
+  {% endif %}
+{% endmacro %}

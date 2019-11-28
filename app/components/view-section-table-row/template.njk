@@ -1,0 +1,39 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
+
+{% block body %}
+  <h1>View Section Table Row component</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
+
+      {{ viewSectionTableRow({
+          questionId: 'some-question-id',
+          questionTitle: 'Some question title',
+          innerComponent: '&ltdiv&gt;Some inner component&lt/div&gt;'
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- '
+      <div data-test-id="view-section-table-row-some-question-id" class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Some question title
+        </dt>
+        <dd class="nhsuk-summary-list__value"><p>Some inner component</p>
+        </dd>
+      </div>
+    ' }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewSectionTableRow({
+      questionId: 'some-question-id',
+      questionTitle: 'Some question title',
+      innerComponent: '<div>Some inner component</div>'
+  }) }}
+{% endblock %}

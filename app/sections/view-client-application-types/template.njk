@@ -1,0 +1,146 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-client-application-types/macro.njk' import viewClientApplicationTypes %}
+
+{% block body %}
+  <h1>View Client Application Types</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'sections/view-client-application-types/macro.njk' import viewClientApplicationTypes %}
+
+      {{ viewClientApplicationTypes({
+        section: {
+          sections: {
+            'browser-based': {
+              sections: {
+                'browsers-supported': {
+                  answers: {
+                    'supported-browsers': ['Chrome', 'Firefox'],
+                    'mobile-responsive': 'Yes'
+                  }
+                },
+                'plug-ins-or-extensions': {
+                  answers: {
+                    'plugins-required': 'Yes',
+                    'plugins-detail': 'Some plugin detail'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- '
+      <div data-test-id="view-client-application-types">
+        <div class="bc-c-title">
+          <h3>Client application type</h3>
+        </div>
+        <p>
+          Minimum recommended technical specifications needed for the Solution to function efficiently on an application or
+          device.
+        </p>
+        <div data-test-id="view-section-browser-based">
+          <details class="nhsuk-details" open="">
+            <summary class="nhsuk-details__summary">
+              <span class="nhsuk-details__summary-text">
+                Browser based application
+              </span>
+            </summary>
+            <div class="nhsuk-details__text">
+              <dl data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
+                <div data-test-id="view-section-table-row-supported-browsers" class="nhsuk-summary-list__row">
+                  <dt class="nhsuk-summary-list__key">
+                    Browsers Supported
+                  </dt>
+                  <dd class="nhsuk-summary-list__value">
+                    <div data-test-id="view-question-data-bulletlist">
+                      <ul>
+                        <li>
+                          <label class="nhsuk-label">
+                            Chrome
+                          </label>
+                        </li>
+                        <li>
+                          <label class="nhsuk-label">
+                            Firefox
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </dd>
+                </div>
+                <div data-test-id="view-section-table-row-mobile-responsive" class="nhsuk-summary-list__row">
+                  <dt class="nhsuk-summary-list__key">
+                    Mobile responsive
+                  </dt>
+                  <dd class="nhsuk-summary-list__value">
+                    <div data-test-id="view-question-data-text-mobile-responsive">
+
+                      <label class="nhsuk-label">
+                        Yes
+                      </label>
+                    </div>
+                  </dd>
+                </div>
+                <div data-test-id="view-section-table-row-plugins-required" class="nhsuk-summary-list__row">
+                  <dt class="nhsuk-summary-list__key">
+                    Plug-ins or extensions required
+                  </dt>
+                  <dd class="nhsuk-summary-list__value">
+                    <div data-test-id="view-question-data-text-plugins-required">
+                      <label class="nhsuk-label">
+                        Yes
+                      </label>
+                    </div>
+                  </dd>
+                </div>
+                <div data-test-id="view-section-table-row-plugins-detail" class="nhsuk-summary-list__row">
+                  <dt class="nhsuk-summary-list__key">
+                    Plug-ins or extensions information
+                  </dt>
+                  <dd class="nhsuk-summary-list__value">
+                    <div data-test-id="view-question-data-text-plugins-detail">
+                      <label class="nhsuk-label">
+                        Some plugin detail
+                      </label>
+                    </div>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+        </div>
+      </div>
+    ' }}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewClientApplicationTypes({
+    section: {
+      sections: {
+        'browser-based': {
+          sections: {
+            'browsers-supported': {
+              answers: {
+                'supported-browsers': ['Chrome', 'Firefox'],
+                'mobile-responsive': 'Yes'
+              }
+            },
+            'plug-ins-or-extensions': {
+              answers: {
+                'plugins-required': 'Yes',
+                'plugins-detail': 'Some plugin detail'
+              }
+            }
+          }
+        }
+      }
+    }
+  }) }}
+{% endblock %}

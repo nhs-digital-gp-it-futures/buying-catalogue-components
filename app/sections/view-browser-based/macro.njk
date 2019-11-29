@@ -1,0 +1,39 @@
+{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
+{% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
+{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
+
+{% macro viewBrowserBased(params) %}
+  <dl data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
+    {{ viewSectionTableRow({
+      questionId: 'supported-browsers', 
+      questionTitle: 'Browsers Supported', 
+      innerComponent: viewQuestionDataBulletlist({
+        questionData: params.section.sections['browsers-supported'].answers['supported-browsers']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'mobile-responsive', 
+      questionTitle: 'Mobile responsive', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'mobile-responsive',
+        questionData: params.section.sections['browsers-supported'].answers['mobile-responsive']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'plugins-required', 
+      questionTitle: 'Plug-ins or extensions required', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'plugins-required',
+        questionData: params.section.sections['plug-ins-or-extensions'].answers['plugins-required']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'plugins-detail', 
+      questionTitle: 'Plug-ins or extensions information', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'plugins-detail', 
+        questionData: params.section.sections['plug-ins-or-extensions'].answers['plugins-detail']
+      })
+    }) }}
+  </dl>
+{% endmacro %}

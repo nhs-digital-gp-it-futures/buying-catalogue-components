@@ -187,4 +187,44 @@ describe('view-browser-based', () => {
         done();
       });
   });
+
+  it('should render the hardware requirements description answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'browser-hardware-requirements': {
+              answers: {
+                'hardware-requirements-description': 'Some hardware requirement description',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        console.log($.html());
+
+        const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
+        const hardwareRequirementsDescriptionQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements-description"]');
+
+        expect(browserBasedSectionTable.length).toEqual(1);
+        expect(hardwareRequirementsDescriptionQuestionRow.length).toEqual(1);
+        expect(hardwareRequirementsDescriptionQuestionRow
+          .find('.nhsuk-summary-list__key').text().trim()).toEqual('Hardware requirements');
+        expect(hardwareRequirementsDescriptionQuestionRow
+          .find('.nhsuk-summary-list__value')
+          .find('[data-test-id="view-question-data-text-hardware-requirements-description"]').length).toEqual(1);
+        expect(hardwareRequirementsDescriptionQuestionRow
+          .find('label').text().trim()).toEqual('Some hardware requirement description');
+
+        done();
+      });
+  });
 });

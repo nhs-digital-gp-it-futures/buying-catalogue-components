@@ -3,12 +3,21 @@
 
 {% macro viewSolutionCapabilities(params) %}
   {% if params.section %}
-    <div data-test-id="view-solution-capabilities">
-      {{ viewSectionHeading({text: 'Capabilities met'}) }}
-      <div class="nhsuk-u-padding-left-3">
-        {{ viewQuestionDataBulletlist({
-          questionData: params.section.answers['capabilities-met']
-        }) }}
+    <div class="nhsuk-width-container" data-test-id="view-solution-capabilities">
+      <div class="nhsuk-grid-row">
+        {{ viewSectionHeading({text: 'Capabilities met'}) }}
+        <div class="nhsuk-grid-column-two-thirds">
+          {% if params.section.description %}
+            <p>
+              {{ params.section.description }}
+            </p>
+          {% endif %}
+          <div>
+            {{ viewQuestionDataBulletlist({
+            questionData: params.section.answers['capabilities-met']
+            }) }}
+          </div>
+        </div>
       </div>
     </div>
   {% endif %}

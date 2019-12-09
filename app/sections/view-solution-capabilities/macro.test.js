@@ -61,4 +61,38 @@ describe('view-solution-capabilities', () => {
         done();
       });
   });
+
+  it('should render capabilities description if provided', (done) => {
+    const context = {
+      params: {
+        section: {
+          description: "description"
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('[data-test-id="view-solution-capabilities"] p').text().trim()).toEqual("description");
+        done();
+      });
+  });
+
+  it('should not render capabilities description if not provided', (done) => {
+    const context = {};
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('[data-test-id="view-solution-capabilities"] p').length).toEqual(0);
+        done();
+      });
+  });
 });

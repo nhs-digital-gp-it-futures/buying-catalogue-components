@@ -35,5 +35,13 @@
         questionData: params.section.sections['plug-ins-or-extensions'].answers['plugins-detail']
       })
     }) }}
+    {{ viewSectionTableRow({
+      questionId: 'hardware-requirements-description', 
+      questionTitle: 'Hardware requirements', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'hardware-requirements-description', 
+        questionData: params.section.sections['browser-hardware-requirements'].answers['hardware-requirements-description']
+      })
+    }) }}
   </dl>
 {% endmacro %}

@@ -65,9 +65,8 @@ describe('view-solution-capabilities', () => {
   it('should render capabilities description if provided', (done) => {
     const context = {
       params: {
-        section: {
-          description: "description"
-        },
+        description: "description",
+        section: {},
       },
     };
 

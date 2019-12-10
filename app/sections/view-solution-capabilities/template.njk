@@ -10,8 +10,8 @@
       {% from 'components/view-solution-capabilities/macro.njk' import viewSolutionContactDetails %}
 
       {{ viewSolutionCapabilities({
+        description: "description",
         section: {
-          description: "description",
           answers: {
             'capabilities-met': ['capability 1', 'capability 2', 'capability 3']
           }
@@ -61,8 +61,8 @@
 
   <h3>Rendered component</h3>
   {{ viewSolutionCapabilities({
+    description: "description",
     section: {
-      description: "description",
       answers: {
        'capabilities-met': ['capability 1', 'capability 2', 'capability 3']
       }

@@ -5,43 +5,46 @@
 
 {% macro viewSolutionDescription(params) %}
   {% if params.section %}
-    <div data-test-id="view-solution-description">
+    <div class="nhsuk-width-container" data-test-id="view-solution-description">
       {{ viewSectionHeading({text: 'Solution description'}) }}
-      <div class="nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
-        {% if params.section.answers.summary %}
-          <div data-test-id="view-section-question-summary">
-              {{ viewQuestionTitle({
-                questionId: 'summary', 
-                questionTitle: 'Summary'
-              }) }}
-              {{ viewQuestionDataText({
-                questionId: 'summary', 
-                questionData: params.section.answers.summary
-              }) }}
-          </div>
-        {% endif %}
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
+        <div class="nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds">
+          {% if params.section.answers.summary %}
+            <div data-test-id="view-section-question-summary">
+                {{ viewQuestionTitle({
+                  questionId: 'summary', 
+                  questionTitle: 'Summary'
+                }) }}
+                {{ viewQuestionDataText({
+                  questionId: 'summary', 
+                  questionData: params.section.answers.summary
+                }) }}
+            </div>
+          {% endif %}
 
-        {% if params.section.answers.description %}
-          <div data-test-id="view-section-question-description" class="nhsuk-u-margin-top-4">
-              {{ viewQuestionTitle({
-                questionId: 'description', 
-                questionTitle: 'About the solution'
-              }) }}
-              {{ viewQuestionDataText({
-                questionId: 'description', 
-                questionData: params.section.answers.description
-              }) }}
-          </div>
-        {% endif %}
+          {% if params.section.answers.description %}
+            <div data-test-id="view-section-question-description" class="nhsuk-u-margin-top-4">
+                {{ viewQuestionTitle({
+                  questionId: 'description', 
+                  questionTitle: 'About the solution'
+                }) }}
+                {{ viewQuestionDataText({
+                  questionId: 'description', 
+                  questionData: params.section.answers.description
+                }) }}
+            </div>
+          {% endif %}
 
-        {% if params.section.answers.link %}
-          <div data-test-id="view-section-question-link" class="nhsuk-u-margin-top-4">
-            {{ viewQuestionDataLink({
-              questionData: params.section.answers.link
-            }) }}
-          </div>
-        {% endif %}
+          {% if params.section.answers.link %}
+            <div data-test-id="view-section-question-link" class="nhsuk-u-margin-top-4">
+              {{ viewQuestionDataLink({
+                questionData: params.section.answers.link
+              }) }}
+            </div>
+          {% endif %}
+        </div>
       </div>
+
     </div>
   {% endif %}
 {% endmacro %}

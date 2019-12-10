@@ -3,15 +3,17 @@
 
 {% macro viewFeatures(params) %}
   {% if params.section %}
-    <div data-test-id="view-features">
+    <div class="nhsuk-width-container" data-test-id="view-features">
       {{ viewSectionHeading({text: 'Features'}) }}
-      {% if params.section.answers.listing and params.section.answers.listing.length > 0 %}
-        <div class="nhsuk-u-padding-left-3">
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
+        {% if params.section.answers.listing and params.section.answers.listing.length > 0 %}
+          <div class="nhsuk-grid-column-two-thirds">
             {{ viewQuestionDataBulletlist({
               questionData: params.section.answers.listing
             }) }}
-        </div>
-      {% endif %}
+          </div>
+        {% endif %}
+      </div>
     </div>
   {% endif %}
 {% endmacro %}

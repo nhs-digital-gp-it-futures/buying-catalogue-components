@@ -209,8 +209,6 @@ describe('view-browser-based', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        console.log($.html());
-
         const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
         const hardwareRequirementsDescriptionQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements-description"]');
 

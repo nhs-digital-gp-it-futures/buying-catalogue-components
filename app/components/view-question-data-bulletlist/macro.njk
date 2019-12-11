@@ -3,7 +3,7 @@
 {% macro viewQuestionDataBulletlist(params) %}
   {% if params.questionData %}
     <div data-test-id="view-question-data-bulletlist">
-        <ul>
+        <ul class="nhsuk-u-margin-bottom-0">
           {% for data in params.questionData %}
             <li>
               {{ label({

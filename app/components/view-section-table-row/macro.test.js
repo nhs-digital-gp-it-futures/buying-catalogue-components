@@ -89,7 +89,7 @@ describe('view-section-table-row', () => {
       });
   });
 
-  it('should render a vertical row if layout is set to "horizontal"', (done) => {
+  it('should render a horizontal row if layout is set to "horizontal"', (done) => {
     const context = {
       params: {
         questionId: 'some-question-id',

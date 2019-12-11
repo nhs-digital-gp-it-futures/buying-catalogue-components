@@ -33,9 +33,9 @@ describe('view-browser-based', () => {
         expect(browserBasedSectionTable.length).toEqual(1);
         expect(supportedBrowserQuestionRow.length).toEqual(1);
         expect(supportedBrowserQuestionRow
-          .find('.nhsuk-summary-list__key').text().trim()).toEqual('Browsers Supported');
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Browsers Supported');
         expect(supportedBrowserQuestionRow
-          .find('.nhsuk-summary-list__value')
+          .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-bulletlist"]').length).toEqual(1);
 
         done();
@@ -69,9 +69,9 @@ describe('view-browser-based', () => {
         expect(browserBasedSectionTable.length).toEqual(1);
         expect(mobileResponsiveQuestionRow.length).toEqual(1);
         expect(mobileResponsiveQuestionRow
-          .find('.nhsuk-summary-list__key').text().trim()).toEqual('Mobile responsive');
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile responsive');
         expect(mobileResponsiveQuestionRow
-          .find('.nhsuk-summary-list__value')
+          .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-text-mobile-responsive"]').length).toEqual(1);
 
         done();
@@ -105,9 +105,9 @@ describe('view-browser-based', () => {
         expect(browserBasedSectionTable.length).toEqual(1);
         expect(pluginsRequiredQuestionRow.length).toEqual(1);
         expect(pluginsRequiredQuestionRow
-          .find('.nhsuk-summary-list__key').text().trim()).toEqual('Plug-ins or extensions required');
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Plug-ins or extensions required');
         expect(pluginsRequiredQuestionRow
-          .find('.nhsuk-summary-list__value')
+          .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-text-plugins-required"]').length).toEqual(1);
 
         done();
@@ -141,9 +141,9 @@ describe('view-browser-based', () => {
         expect(browserBasedSectionTable.length).toEqual(1);
         expect(pluginsDetailQuestionRow.length).toEqual(1);
         expect(pluginsDetailQuestionRow
-          .find('.nhsuk-summary-list__key').text().trim()).toEqual('Plug-ins or extensions information');
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Plug-ins or extensions information');
         expect(pluginsDetailQuestionRow
-          .find('.nhsuk-summary-list__value')
+          .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-text-plugins-detail"]').length).toEqual(1);
 
         done();
@@ -215,9 +215,9 @@ describe('view-browser-based', () => {
         expect(browserBasedSectionTable.length).toEqual(1);
         expect(hardwareRequirementsDescriptionQuestionRow.length).toEqual(1);
         expect(hardwareRequirementsDescriptionQuestionRow
-          .find('.nhsuk-summary-list__key').text().trim()).toEqual('Hardware requirements');
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
         expect(hardwareRequirementsDescriptionQuestionRow
-          .find('.nhsuk-summary-list__value')
+          .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-text-hardware-requirements-description"]').length).toEqual(1);
         expect(hardwareRequirementsDescriptionQuestionRow
           .find('label').text().trim()).toEqual('Some hardware requirement description');

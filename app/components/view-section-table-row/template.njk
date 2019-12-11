@@ -8,32 +8,35 @@
   <pre><code>
     {% verbatim %}
       {% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
-
+      <h5>Horizontal</h5>
       {{ viewSectionTableRow({
           questionId: 'some-question-id',
           questionTitle: 'Some question title',
           innerComponent: '&ltdiv&gt;Some inner component&lt/div&gt;'
       }) }}
+      <h5>Vertical</h5>
+      {{ viewSectionTableRow({
+          questionId: 'some-question-id',
+          questionTitle: 'Some question title',
+          layout: 'vertical', 
+          innerComponent: '&ltdiv&gt;Lorem ipsum dolor sit amet consectetur adipiscing elit, viverra ad torquent et lectus malesuada, natoque fermentum scelerisque urna mauris auctor. Sociis class lacinia ante per non cras aenean, morbi sem blandit praesent mus imperdiet hac, egestas diam congue donec phasellus sapien. Tempor ultricies porttitor fames potenti vestibulum maecenas montes orci elementum ligula, in id magna nascetur laoreet suspendisse ullamcorper porta justo, vivamus habitasse ridiculus eleifend taciti primis quisque consequat penatibus.&lt/div&gt;'
+      }) }}
     {% endverbatim %}
   </code></pre>
 
-  <h3>Generated HTML</h3>
-  <pre><code>
-    {{- '
-      <div data-test-id="view-section-table-row-some-question-id" class="nhsuk-summary-list__row">
-        <dt class="nhsuk-summary-list__key">
-          Some question title
-        </dt>
-        <dd class="nhsuk-summary-list__value"><p>Some inner component</p>
-        </dd>
-      </div>
-    ' }}
-  </code></pre>
-
-  <h3>Rendered component</h3>
+  <h3>Rendered component - horizontal</h3>
   {{ viewSectionTableRow({
       questionId: 'some-question-id',
       questionTitle: 'Some question title',
       innerComponent: '<div>Some inner component</div>'
+  }) }}
+  <br/>
+  <br/>
+  <h3>Rendered component - vertical</h3>
+  {{ viewSectionTableRow({
+      questionId: 'some-question-id',
+      questionTitle: 'Some question title',
+      layout: 'vertical', 
+      innerComponent: '<div>Lorem ipsum dolor sit amet consectetur adipiscing elit, viverra ad torquent et lectus malesuada, natoque fermentum scelerisque urna mauris auctor. Sociis class lacinia ante per non cras aenean, morbi sem blandit praesent mus imperdiet hac, egestas diam congue donec phasellus sapien. Tempor ultricies porttitor fames potenti vestibulum maecenas montes orci elementum ligula, in id magna nascetur laoreet suspendisse ullamcorper porta justo, vivamus habitasse ridiculus eleifend taciti primis quisque consequat penatibus.</div>'
   }) }}
 {% endblock %}

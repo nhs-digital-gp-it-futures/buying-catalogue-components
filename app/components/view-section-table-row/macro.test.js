@@ -21,8 +21,9 @@ describe('view-section-table-row', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
+        const sectionTableRow = $('div[data-test-id="view-section-table-row-some-question-id"]');
 
-        expect($('dt').text().trim()).toEqual('Some question title');
+        expect(sectionTableRow.find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Some question title');
 
         done();
       });
@@ -41,8 +42,9 @@ describe('view-section-table-row', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
+        const sectionTableRow = $('div[data-test-id="view-section-table-row-some-question-id"]');
 
-        expect($('dd p').text().trim()).toEqual('Some inner component');
+        expect(sectionTableRow.find('div[data-test-id="view-section-table-row-component"] p').text().trim()).toEqual('Some inner component');
 
         done();
       });
@@ -62,6 +64,110 @@ describe('view-section-table-row', () => {
         const $ = cheerio.load(res.text);
 
         expect($('[data-test-id="view-section-table-row-some-question-id"]').length).toEqual(0);
+
+        done();
+      });
+  });
+
+  it('should render a horizontal row if layout is not provided', (done) => {
+    const context = {
+      params: {
+        questionId: 'some-question-id',
+        innerComponent: '<p>Some inner component</p>',
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('[data-test-id="view-section-table-row-horizontal"]').length).toEqual(1);
+
+        done();
+      });
+  });
+
+  it('should render a vertical row if layout is set to "horizontal"', (done) => {
+    const context = {
+      params: {
+        questionId: 'some-question-id',
+        layout: 'horizontal',
+        innerComponent: '<p>Some inner component</p>',
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('[data-test-id="view-section-table-row-horizontal"]').length).toEqual(1);
+
+        done();
+      });
+  });
+
+  it('should render a vertical row if layout is set to "vertical"', (done) => {
+    const context = {
+      params: {
+        questionId: 'some-question-id',
+        layout: 'vertical',
+        innerComponent: '<p>Some inner component</p>',
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('[data-test-id="view-section-table-row-vertical"]').length).toEqual(1);
+
+        done();
+      });
+  });
+
+  it('should render a vertical row if layout is set to "VERTICAL"', (done) => {
+    const context = {
+      params: {
+        questionId: 'some-question-id',
+        layout: 'VERTICAL',
+        innerComponent: '<p>Some inner component</p>',
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('[data-test-id="view-section-table-row-vertical"]').length).toEqual(1);
+
+        done();
+      });
+  });
+
+  it('should not render component if layout is set to "unknown"', (done) => {
+    const context = {
+      params: {
+        questionId: 'some-question-id',
+        layout: 'unknown',
+        innerComponent: '<p>Some inner component</p>',
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('[data-test-id^="view-section-table-row"]').length).toEqual(0);
 
         done();
       });

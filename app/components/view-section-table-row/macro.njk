@@ -1,12 +1,40 @@
+{% from 'components/label/macro.njk' import label %}
+
 {% macro viewSectionTableRow(params) %}
+
+  {% if params.layout %}
+    {% set layout = params.layout | lower %}
+  {% else %}
+    {% set layout = 'horizontal' %}
+  {% endif %}
+
+  {% set commonAttributes %} data-test-id="view-section-table-row-{{ params.questionId }}" class="nhsuk-width-container bc-c-section-table-row"{%- endset -%}
+
   {% if params.innerComponent | trim | length > 0 %}
-    <div data-test-id="view-section-table-row-{{ params.questionId }}" class="nhsuk-summary-list__row">
-      <dt class="nhsuk-summary-list__key">
-        {{ params.questionTitle }}
-      </dt>
-      <dd class="nhsuk-summary-list__value">
-        {{- params.innerComponent | safe | trim }}
-      </dd>
-    </div>
+    {% if layout == 'horizontal' %}
+      <div {{ commonAttributes | safe }}>
+        <div data-test-id="view-section-table-row-horizontal" class="nhsuk-grid-row">
+          <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-grid-column-one-half">
+            {{ params.questionTitle }}
+          </div>
+          <div data-test-id="view-section-table-row-component" class="nhsuk-grid-column-one-half">
+            {{- params.innerComponent | safe | trim }}
+          </div>
+        </div>
+      </div>
+    {% elif layout == 'vertical' %}
+      <div {{ commonAttributes | safe }}>
+        <div data-test-id="view-section-table-row-vertical">
+          <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-u-padding-bottom-2">
+            {{ params.questionTitle }}
+          </div>
+          <div class="nhsuk-grid-row">
+            <div data-test-id="view-section-table-row-component" class="nhsuk-grid-column-two-thirds">
+              {{- params.innerComponent | safe | trim }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
   {% endif %}
 {% endmacro %}

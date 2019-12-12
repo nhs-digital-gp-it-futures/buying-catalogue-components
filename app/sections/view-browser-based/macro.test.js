@@ -224,6 +224,44 @@ describe('view-browser-based', () => {
       });
   });
 
+  it('should only render the minimum connection speed and minimum resolution answers', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'connectivity-and-resolution': {
+              answers: {
+                'minimum-connection-speed': '1Mbps',
+                'minimum-desktop-resolution': '4:3 800 x 600',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
+        const supportedBrowserQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-supported-browsers"]');
+        const mobileResponsiveQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-mobile-responsive"]');
+        const minimumConnectionQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-minimum-connection-speed"]');
+        const minimumResolutionQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-minimum-desktop-resolution"]');
+
+        expect(browserBasedSectionTable.length).toEqual(1);
+        expect(supportedBrowserQuestionRow.length).toEqual(0);
+        expect(mobileResponsiveQuestionRow.length).toEqual(0);
+        expect(minimumConnectionQuestionRow.length).toEqual(1);
+        expect(minimumResolutionQuestionRow.length).toEqual(1);
+
+        done();
+      });
+  });
+
   it('should render the hardware requirements description answer', (done) => {
     const context = {
       params: {

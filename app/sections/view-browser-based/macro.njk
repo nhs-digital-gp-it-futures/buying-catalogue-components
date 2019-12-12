@@ -20,6 +20,14 @@
       })
     }) }}
     {{ viewSectionTableRow({
+      questionId: 'mobile-first-design', 
+      questionTitle: 'Designed with a mobile first approach', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'mobile-first-design',
+        questionData: params.section.sections['browser-mobile-first'].answers['mobile-first-design']
+      })
+    }) }}
+    {{ viewSectionTableRow({
       questionId: 'plugins-required', 
       questionTitle: 'Plug-ins or extensions required', 
       innerComponent: viewQuestionDataText({

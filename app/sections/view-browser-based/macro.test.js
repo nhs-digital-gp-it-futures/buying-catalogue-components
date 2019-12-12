@@ -78,6 +78,42 @@ describe('view-browser-based', () => {
       });
   });
 
+  it('should render the mobile first design answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'browser-mobile-first': {
+              answers: {
+                'mobile-first-design': 'yes',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
+        const mobileFirstDesignQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-mobile-first-design"]');
+
+        expect(browserBasedSectionTable.length).toEqual(1);
+        expect(mobileFirstDesignQuestionRow.length).toEqual(1);
+        expect(mobileFirstDesignQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Designed with a mobile first approach');
+        expect(mobileFirstDesignQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-mobile-first-design"]').length).toEqual(1);
+
+        done();
+      });
+  });
+
   it('should render the plugins required answer', (done) => {
     const context = {
       params: {

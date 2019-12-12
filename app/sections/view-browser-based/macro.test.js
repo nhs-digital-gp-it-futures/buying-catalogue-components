@@ -224,7 +224,45 @@ describe('view-browser-based', () => {
       });
   });
 
-  it('should render the hardware requirements description answer', (done) => {
+  it('should render the additional information answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'browser-additional-information': {
+              answers: {
+                'additional-information': 'Some additional information',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
+        const hardwareRequirementsDescriptionQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
+
+        expect(browserBasedSectionTable.length).toEqual(1);
+        expect(hardwareRequirementsDescriptionQuestionRow.length).toEqual(1);
+        expect(hardwareRequirementsDescriptionQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
+        expect(hardwareRequirementsDescriptionQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-additional-information"]').length).toEqual(1);
+        expect(hardwareRequirementsDescriptionQuestionRow
+          .find('label').text().trim()).toEqual('Some additional information');
+
+        done();
+      });
+  });
+
+  it('should render the additional information subsection', (done) => {
     const context = {
       params: {
         section: {

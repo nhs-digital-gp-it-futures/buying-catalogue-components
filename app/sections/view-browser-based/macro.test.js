@@ -246,16 +246,16 @@ describe('view-browser-based', () => {
         const $ = cheerio.load(res.text);
 
         const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-        const hardwareRequirementsDescriptionQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
+        const additionalInformationQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
 
         expect(browserBasedSectionTable.length).toEqual(1);
-        expect(hardwareRequirementsDescriptionQuestionRow.length).toEqual(1);
-        expect(hardwareRequirementsDescriptionQuestionRow
+        expect(additionalInformationQuestionRow.length).toEqual(1);
+        expect(additionalInformationQuestionRow
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
-        expect(hardwareRequirementsDescriptionQuestionRow
+        expect(additionalInformationQuestionRow
           .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-text-additional-information"]').length).toEqual(1);
-        expect(hardwareRequirementsDescriptionQuestionRow
+        expect(additionalInformationQuestionRow
           .find('label').text().trim()).toEqual('Some additional information');
 
         done();

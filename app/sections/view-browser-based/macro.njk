@@ -44,6 +44,22 @@
       })
     }) }}
     {{ viewSectionTableRow({
+      questionId: 'minimum-connection-speed', 
+      questionTitle: 'Minimum connection speed required', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-connection-speed', 
+        questionData: params.section.sections['connectivity-and-resolution'].answers['minimum-connection-speed']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'minimum-desktop-resolution', 
+      questionTitle: 'Recommended desktop aspect ratio and screen resolution', 
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-desktop-resolution', 
+        questionData: params.section.sections['connectivity-and-resolution'].answers['minimum-desktop-resolution']
+      })
+    }) }}
+    {{ viewSectionTableRow({
       questionId: 'hardware-requirements-description', 
       questionTitle: 'Hardware requirements', 
       layout: 'vertical',

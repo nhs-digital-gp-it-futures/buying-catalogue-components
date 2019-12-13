@@ -272,45 +272,7 @@ describe('view-browser-based', () => {
       });
   });
 
-  it('should render the additional information answer', (done) => {
-    const context = {
-      params: {
-        section: {
-          sections: {
-            'browser-additional-information': {
-              answers: {
-                'additional-information': 'Some additional information',
-              },
-            },
-          },
-        },
-      },
-    };
-
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-        const additionalInformationQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
-
-        expect(browserBasedSectionTable.length).toEqual(1);
-        expect(additionalInformationQuestionRow.length).toEqual(1);
-        expect(additionalInformationQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
-        expect(additionalInformationQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-additional-information"]').length).toEqual(1);
-        expect(additionalInformationQuestionRow
-          .find('label').text().trim()).toEqual('Some additional information');
-
-        done();
-      });
-  });
-
-  it('should render the additional information subsection', (done) => {
+  it('should render the hardware requirement answer', (done) => {
     const context = {
       params: {
         section: {
@@ -343,6 +305,44 @@ describe('view-browser-based', () => {
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
         expect(hardwareRequirementsInnerComponent.length).toEqual(1);
         expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('Some hardware requirement description');
+
+        done();
+      });
+  });
+
+  it('should render the additional information answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'browser-additional-information': {
+              answers: {
+                'additional-information': 'Some additional information',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
+        const additionalInformationQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
+        const additionalInformationInnerComponent = additionalInformationQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-additional-information"]');
+
+        expect(browserBasedSectionTable.length).toEqual(1);
+        expect(additionalInformationQuestionRow.length).toEqual(1);
+        expect(additionalInformationQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
+        expect(additionalInformationInnerComponent.length).toEqual(1);
+        expect(additionalInformationInnerComponent.text().trim()).toEqual('Some additional information');
 
         done();
       });

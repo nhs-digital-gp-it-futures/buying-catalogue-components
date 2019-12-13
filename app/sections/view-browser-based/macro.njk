@@ -68,5 +68,14 @@
         questionData: params.section.sections['browser-hardware-requirements'].answers['hardware-requirements-description']
       })
     }) }}
+    {{ viewSectionTableRow({
+      questionId: 'additional-information', 
+      questionTitle: 'Additional information', 
+      layout: 'vertical',
+      innerComponent: viewQuestionDataText({
+        questionId: 'additional-information', 
+        questionData: params.section.sections['browser-additional-information'].answers['additional-information']
+      })
+    }) }}
   </dl>
 {% endmacro %}

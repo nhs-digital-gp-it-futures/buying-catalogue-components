@@ -1,27 +1,28 @@
 {% from 'components/view-expandable-section/macro.njk' import viewExpandableSection %}
 {% from 'sections/view-browser-based/macro.njk' import viewBrowserBased %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 
 {% macro viewClientApplicationTypes(params) %}
   {% if params.section %}
-    <div data-test-id="view-client-application-types">
-      <div class="bc-c-title">
-        <h3>Client application type</h3>
+    <div class="nhsuk-width-container" data-test-id="view-client-application-types">
+      {{ viewSectionHeading({text: 'Client application type'}) }}
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
+        <div class="nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds">
+          <p>
+            Minimum recommended technical specifications needed for the Solution to function efficiently on an application or device.
+          </p>
+
+          {% if params.section.sections['browser-based'] %}
+            {{ viewExpandableSection({
+              sectionId: 'browser-based',
+              sectionTitle: 'Browser based application', 
+              innerComponent: viewBrowserBased({
+                section: params.section.sections['browser-based']
+              })
+            }) }}
+          {% endif %}
+        </div>
       </div>
-
-      <p>
-        Minimum recommended technical specifications needed for the Solution to function efficiently on an application or device.
-      </p>
-
-      {% if params.section.sections['browser-based'] %}
-        {{ viewExpandableSection({
-          sectionId: 'browser-based',
-          sectionTitle: 'Browser based application', 
-          innerComponent: viewBrowserBased({
-            section: params.section.sections['browser-based']
-          })
-        }) }}
-      {% endif %}
-
     </div>
   {% endif %}
 {% endmacro %}

@@ -28,5 +28,29 @@
         questionData: params.section.sections['mobile-first'].answers['mobile-first-design']
       })
     }) }}
+    {{ viewSectionTableRow({
+      questionId: 'minimum-connection-speed',
+      questionTitle: 'Minimum connection speed required',
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-connection-speed',
+        questionData: params.section.sections['mobile-connection-details'].answers['minimum-connection-speed']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'connection-types',
+      questionTitle: 'Connection types supported',
+      innerComponent: viewQuestionDataBulletlist({
+        questionId: 'connection-types',
+        questionData: params.section.sections['mobile-connection-details'].answers['connection-types']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'connection-requirements-description',
+      questionTitle: 'Additional information about connection types',
+      innerComponent: viewQuestionDataText({
+        questionId: 'connection-requirements-description',
+        questionData: params.section.sections['mobile-connection-details'].answers['connection-requirements-description']
+      })
+    }) }}
   </dl>
 {% endmacro %}

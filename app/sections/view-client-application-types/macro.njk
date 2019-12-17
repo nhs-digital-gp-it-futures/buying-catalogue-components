@@ -1,6 +1,7 @@
 {% from 'components/view-expandable-section/macro.njk' import viewExpandableSection %}
-{% from 'sections/view-browser-based/macro.njk' import viewBrowserBased %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+{% from 'sections/view-browser-based/macro.njk' import viewBrowserBased %}
+{% from 'sections/view-native-mobile/macro.njk' import viewNativeMobile %}
 
 {% macro viewClientApplicationTypes(params) %}
   {% if params.section %}
@@ -15,12 +16,23 @@
           {% if params.section.sections['browser-based'] %}
             {{ viewExpandableSection({
               sectionId: 'browser-based',
-              sectionTitle: 'Browser based application', 
+              sectionTitle: 'Browser based application',
               innerComponent: viewBrowserBased({
                 section: params.section.sections['browser-based']
               })
             }) }}
           {% endif %}
+
+          {% if params.section.sections['native-mobile'] %}
+            {{ viewExpandableSection({
+              sectionId: 'native-mobile',
+              sectionTitle: 'Native mobile or tablet application',
+              innerComponent: viewNativeMobile({
+                section: params.section.sections['native-mobile']
+              })
+            }) }}
+          {% endif %}
+
         </div>
       </div>
     </div>

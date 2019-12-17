@@ -10,22 +10,29 @@
       {% from './sections/view-native-mobile/macro.njk' import viewNativeMobile %}
 
        {{ viewNativeMobile({
-          section: {
-            sections: {
-              'mobile-operating-systems': {
-                answers: {
-                  'operating-systems': ['Apple IOS', 'Android', 'Other'],
-                  'operating-systems-description': 'Android 4.1 and above, IOS 10.6 and above.'
-                }
-              },
-              'mobile-first': {
-                answers: {
-                  'mobile-first-design': 'Yes'
-                }
+        section: {
+          sections: {
+            'mobile-operating-systems': {
+              answers: {
+                'operating-systems': ['Apple IOS', 'Android', 'Other'],
+                'operating-systems-description': 'Android 4.1 and above, IOS 10.6 and above.'
+              }
+            },
+            'mobile-first': {
+              answers: {
+                'mobile-first-design': 'Yes'
+              }
+            },
+            'mobile-connection-details': {
+              answers: {
+                'minimum-connection-speed': '1Mbps',
+                'connection-types': ['GPRS','3G','4G','Wifi'],
+                'connection-requirements-description': 'Average data usage will vary depending on application activity.'
               }
             }
           }
-        }) }}
+        }
+      }) }}
     {% endverbatim %}
   </code></pre>
 
@@ -42,6 +49,13 @@
         'mobile-first': {
           answers: {
             'mobile-first-design': 'Yes'
+          }
+        },
+        'mobile-connection-details': {
+          answers: {
+            'minimum-connection-speed': '1Mbps',
+            'connection-types': ['GPRS','3G','4G','Wifi'],
+            'connection-requirements-description': 'Average data usage will vary depending on application activity.'
           }
         }
       }

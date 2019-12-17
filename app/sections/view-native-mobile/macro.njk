@@ -5,6 +5,22 @@
 {% macro viewNativeMobile(params) %}
   <dl data-test-id="view-section-table-native-mobile" class="nhsuk-summary-list">
     {{ viewSectionTableRow({
+      questionId: 'operating-systems',
+      questionTitle: 'Supported operating systems',
+      innerComponent: viewQuestionDataBulletlist({
+        questionId: 'operating-systems',
+        questionData: params.section.sections['mobile-operating-systems'].answers['operating-systems']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'operating-systems-description',
+      questionTitle: 'Additional operating system information',
+      innerComponent: viewQuestionDataText({
+        questionId: 'operating-systems-description',
+        questionData: params.section.sections['mobile-operating-systems'].answers['operating-systems-description']
+      })
+    }) }}
+    {{ viewSectionTableRow({
       questionId: 'mobile-first-design',
       questionTitle: 'Designed with a mobile first approach',
       innerComponent: viewQuestionDataText({

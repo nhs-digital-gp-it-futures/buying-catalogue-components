@@ -1,0 +1,38 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-native-mobile/macro.njk' import viewNativeMobile %}
+
+{% block body %}
+  <h1>View Native Mobile</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from './sections/view-native-mobile/macro.njk' import viewNativeMobile %}
+
+       {{ viewNativeMobile({
+          section: {
+            sections: {
+              'mobile-first': {
+                answers: {
+                  'mobile-first-design': 'Yes'
+                }
+              }
+            }
+          }
+        }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewNativeMobile({
+    section: {
+      sections: {
+        'mobile-first': {
+          answers: {
+            'mobile-first-design': 'Yes'
+          }
+        }
+      }
+    }
+  }) }}
+{% endblock %}

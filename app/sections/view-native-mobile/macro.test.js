@@ -67,13 +67,16 @@ describe('view-native-mobile', () => {
 
         const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
         const operatingSystemsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-operating-systems-description"]');
+        const operatingSystemsDescriptionInnerComponent = operatingSystemsDescriptionQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-operating-systems-description"]');
 
         expect(nativeMobileSectionTable.length).toEqual(1);
         expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
         expect(operatingSystemsDescriptionQuestionRow
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional operating system information');
-        expect(operatingSystemsDescriptionQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]').length).toEqual(1);
+        expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
+        expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Android 4.1 and above, IOS 10.6 and above.');
 
         done();
       });
@@ -102,13 +105,16 @@ describe('view-native-mobile', () => {
 
         const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
         const mobileFirstDesignQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-mobile-first-design"]');
+        const mobileFirstDesignInnerComponent = mobileFirstDesignQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-mobile-first-design"]');
 
         expect(nativeMobileSectionTable.length).toEqual(1);
         expect(mobileFirstDesignQuestionRow.length).toEqual(1);
         expect(mobileFirstDesignQuestionRow
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Designed with a mobile first approach');
-        expect(mobileFirstDesignQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]').length).toEqual(1);
+        expect(mobileFirstDesignInnerComponent.length).toEqual(1);
+        expect(mobileFirstDesignInnerComponent.text().trim()).toEqual('Yes');
 
         done();
       });

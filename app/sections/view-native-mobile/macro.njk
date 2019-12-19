@@ -29,6 +29,22 @@
       })
     }) }}
     {{ viewSectionTableRow({
+      questionId: 'minimum-memory-requirement',
+      questionTitle: 'Minimum memory requirement',
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-memory-requirement',
+        questionData: params.section.sections['mobile-memory-and-storage'].answers['minimum-memory-requirement']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'storage-requirements-description',
+      questionTitle: 'Additional storage requirements',
+      innerComponent: viewQuestionDataText({
+        questionId: 'storage-requirements-description',
+        questionData: params.section.sections['mobile-memory-and-storage'].answers['storage-requirements-description']
+      })
+    }) }}
+    {{ viewSectionTableRow({
       questionId: 'minimum-connection-speed',
       questionTitle: 'Minimum connection speed required',
       innerComponent: viewQuestionDataText({

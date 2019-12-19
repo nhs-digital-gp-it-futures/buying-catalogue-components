@@ -120,6 +120,82 @@ describe('view-native-mobile', () => {
       });
   });
 
+  it('should render the minimum memory requirement answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'mobile-memory-and-storage': {
+              answers: {
+                'minimum-memory-requirement': '4GB',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
+        const minimumMemoryRequirementQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-minimum-memory-requirement"]');
+        const minimumMemoryRequirementInnerComponent = minimumMemoryRequirementQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-minimum-memory-requirement"]');
+
+        expect(nativeMobileSectionTable.length).toEqual(1);
+        expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
+        expect(minimumMemoryRequirementQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum memory requirement');
+        expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
+        expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
+
+        done();
+      });
+  });
+
+  it('should render the additional storage requirements answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'mobile-memory-and-storage': {
+              answers: {
+                'storage-requirements-description': 'You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.'
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
+        const storageRequirementsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
+        const storageRequirementsDescriptionInnerComponent = storageRequirementsDescriptionQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
+
+        expect(nativeMobileSectionTable.length).toEqual(1);
+        expect(storageRequirementsDescriptionQuestionRow.length).toEqual(1);
+        expect(storageRequirementsDescriptionQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional storage requirements');
+        expect(storageRequirementsDescriptionInnerComponent.length).toEqual(1);
+        expect(storageRequirementsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.');
+
+        done();
+      });
+  });
+
   it('should render the minimum connection speed required answer', (done) => {
     const context = {
       params: {
@@ -203,7 +279,7 @@ describe('view-native-mobile', () => {
           sections: {
             'mobile-connection-details': {
               answers: {
-                'connection-requirements-description': 'Average data usage will vary depending on application activity.'
+                'connection-requirements-description': 'Average data usage will vary depending on application activity.',
               },
             },
           },
@@ -233,4 +309,5 @@ describe('view-native-mobile', () => {
         done();
       });
   });
+
 });

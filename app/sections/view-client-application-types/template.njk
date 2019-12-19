@@ -9,71 +9,77 @@
     {% verbatim %}
       {% from 'sections/view-client-application-types/macro.njk' import viewClientApplicationTypes %}
 
-      {{ viewClientApplicationTypes({
-        section: {
-          sections: {
-            'browser-based': {
-              sections: {
-                'browsers-supported': {
-                  answers: {
-                    'supported-browsers': ['Chrome', 'Firefox'],
-                    'mobile-responsive': 'Yes'
-                  }
-                },
-                'browser-mobile-first': {
-                  answers: {
-                    'mobile-first-design': 'Yes'
-                  }
-                },
-                'plug-ins-or-extensions': {
-                  answers: {
-                    'plugins-required': 'Yes',
-                    'plugins-detail': 'Some plugin detail'
-                  }
-                },
-                'connectivity-and-resolution': {
-                  answers: {
-                    'minimum-connection-speed': '1Mbps',
-                    'minimum-desktop-resolution': '4:3 800 x 600'
-                  }
-                },
-                'browser-hardware-requirements': {
-                  answers: {
-                    'hardware-requirements-description': 'Lorem ipsum dolor sit amet consectetur adipiscing elit, viverra ad torquent et lectus malesuada, natoque fermentum scelerisque urna mauris auctor. Sociis class lacinia ante per non cras aenean, morbi sem blandit praesent mus imperdiet hac, egestas diam congue donec phasellus sapien. Tempor ultricies porttitor fames potenti vestibulum maecenas montes orci elementum ligula, in id magna nascetur laoreet suspendisse ullamcorper porta justo, vivamus habitasse ridiculus eleifend taciti primis quisque consequat penatibus.'
-                  }
-                },
-                'browser-additional-information': {
-                  answers: {
-                    'additional-information': 'Lorem ipsum dolor sit amet consectetur adipiscing elit'
+        {{ viewClientApplicationTypes({
+          section: {
+            sections: {
+              'browser-based': {
+                sections: {
+                  'browsers-supported': {
+                    answers: {
+                      'supported-browsers': ['Chrome', 'Firefox'],
+                      'mobile-responsive': 'Yes'
+                    }
+                  },
+                  'browser-mobile-first': {
+                    answers: {
+                      'mobile-first-design': 'Yes'
+                    }
+                  },
+                  'plug-ins-or-extensions': {
+                    answers: {
+                      'plugins-required': 'Yes',
+                      'plugins-detail': 'Some plugin detail'
+                    }
+                  },
+                  'connectivity-and-resolution': {
+                    answers: {
+                      'minimum-connection-speed': '1Mbps',
+                      'minimum-desktop-resolution': '4:3 800 x 600'
+                    }
+                  },
+                  'browser-hardware-requirements': {
+                    answers: {
+                      'hardware-requirements-description': 'Lorem ipsum dolor sit amet consectetur adipiscing elit, viverra ad torquent et lectus malesuada, natoque fermentum scelerisque urna mauris auctor. Sociis class lacinia ante per non cras aenean, morbi sem blandit praesent mus imperdiet hac, egestas diam congue donec phasellus sapien. Tempor ultricies porttitor fames potenti vestibulum maecenas montes orci elementum ligula, in id magna nascetur laoreet suspendisse ullamcorper porta justo, vivamus habitasse ridiculus eleifend taciti primis quisque consequat penatibus.'
+                    }
+                  },
+                  'browser-additional-information': {
+                    answers: {
+                      'additional-information': 'Lorem ipsum dolor sit amet consectetur adipiscing elit'
+                    }
                   }
                 }
-              }
-            },
-            'native-mobile': {
-              sections: {
-                'mobile-operating-systems': {
-                  answers: {
-                    'operating-systems': ['Apple IOS', 'Android', 'Other'],
-                    'operating-systems-description': 'Android 4.1 and above, IOS 10.6 and above.'
-                  }
-                },
-                'mobile-first': {
-                  answers: {
-                    'mobile-first-design': 'Yes'
-                  }
-                },
-                'mobile-connection-details': {
-                  answers: {
-                    'minimum-connection-speed': '1Mbps',
-                    'connection-types': ['GPRS','3G','4G','Wifi'],
-                    'connection-requirements-description': 'Average data usage will vary depending on application activity.'
+              },
+              'native-mobile': {
+                sections: {
+                  'mobile-operating-systems': {
+                    answers: {
+                      'operating-systems': ['Apple IOS', 'Android', 'Other'],
+                      'operating-systems-description': 'Android 4.1 and above, IOS 10.6 and above.'
+                    }
+                  },
+                  'mobile-first': {
+                    answers: {
+                      'mobile-first-design': 'Yes'
+                    }
+                  },
+                  'mobile-memory-and-storage': {
+                    answers: {
+                      'minimum-memory-requirement': '4GB',
+                      'storage-requirements-description': 'You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.'
+                    }
+                  },
+                  'mobile-connection-details': {
+                    answers: {
+                      'minimum-connection-speed': '1Mbps',
+                      'connection-types': ['GPRS','3G','4G','Wifi'],
+                      'connection-requirements-description': 'Average data usage will vary depending on application activity.'
+                    }
                   }
                 }
               }
             }
           }
-        }
-      }) }}
+        }) }}
     {% endverbatim %}
   </code></pre>
 
@@ -129,6 +135,12 @@
             'mobile-first': {
               answers: {
                 'mobile-first-design': 'Yes'
+              }
+            },
+            'mobile-memory-and-storage': {
+              answers: {
+                'minimum-memory-requirement': '4GB',
+                'storage-requirements-description': 'You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.'
               }
             },
             'mobile-connection-details': {

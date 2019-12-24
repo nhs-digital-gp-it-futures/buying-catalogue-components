@@ -11,7 +11,7 @@ describe('view-native-mobile', () => {
       params: {
         section: {
           sections: {
-            'mobile-operating-systems': {
+            'native-mobile-operating-systems': {
               answers: {
                 'operating-systems': ['Apple IOS'],
               },
@@ -49,7 +49,7 @@ describe('view-native-mobile', () => {
       params: {
         section: {
           sections: {
-            'mobile-operating-systems': {
+            'native-mobile-operating-systems': {
               answers: {
                 'operating-systems-description': 'Android 4.1 and above, IOS 10.6 and above.',
               },
@@ -87,7 +87,7 @@ describe('view-native-mobile', () => {
       params: {
         section: {
           sections: {
-            'mobile-first': {
+            'native-mobile-first': {
               answers: {
                 'mobile-first-design': 'Yes',
               },
@@ -125,7 +125,7 @@ describe('view-native-mobile', () => {
       params: {
         section: {
           sections: {
-            'mobile-memory-and-storage': {
+            'native-mobile-memory-and-storage': {
               answers: {
                 'minimum-memory-requirement': '4GB',
               },
@@ -163,7 +163,7 @@ describe('view-native-mobile', () => {
       params: {
         section: {
           sections: {
-            'mobile-memory-and-storage': {
+            'native-mobile-memory-and-storage': {
               answers: {
                 'storage-requirements-description': 'You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.'
               },
@@ -201,7 +201,7 @@ describe('view-native-mobile', () => {
       params: {
         section: {
           sections: {
-            'mobile-connection-details': {
+            'native-mobile-connection-details': {
               answers: {
                 'minimum-connection-speed': '1Mbps',
               },
@@ -239,7 +239,7 @@ describe('view-native-mobile', () => {
       params: {
         section: {
           sections: {
-            'mobile-connection-details': {
+            'native-mobile-connection-details': {
               answers: {
                 'connection-types': ['GPRS'],
               },
@@ -277,7 +277,7 @@ describe('view-native-mobile', () => {
       params: {
         section: {
           sections: {
-            'mobile-connection-details': {
+            'native-mobile-connection-details': {
               answers: {
                 'connection-requirements-description': 'Average data usage will vary depending on application activity.',
               },
@@ -309,5 +309,4 @@ describe('view-native-mobile', () => {
         done();
       });
   });
-
 });

@@ -11,7 +11,7 @@ describe('view-browser-based', () => {
       params: {
         section: {
           sections: {
-            'browsers-supported': {
+            'browser-browsers-supported': {
               answers: {
                 'supported-browsers': ['chrome'],
               },
@@ -49,7 +49,7 @@ describe('view-browser-based', () => {
       params: {
         section: {
           sections: {
-            'browsers-supported': {
+            'browser-browsers-supported': {
               answers: {
                 'mobile-responsive': 'yes',
               },
@@ -125,7 +125,7 @@ describe('view-browser-based', () => {
       params: {
         section: {
           sections: {
-            'plug-ins-or-extensions': {
+            'browser-plug-ins-or-extensions': {
               answers: {
                 'plugins-required': 'yes',
               },
@@ -163,7 +163,7 @@ describe('view-browser-based', () => {
       params: {
         section: {
           sections: {
-            'plug-ins-or-extensions': {
+            'browser-plug-ins-or-extensions': {
               answers: {
                 'plugins-detail': 'Some plugin detail',
               },
@@ -201,7 +201,7 @@ describe('view-browser-based', () => {
       params: {
         section: {
           sections: {
-            'connectivity-and-resolution': {
+            'browser-connectivity-and-resolution': {
               answers: {
                 'minimum-connection-speed': '1Mbps',
               },
@@ -239,7 +239,7 @@ describe('view-browser-based', () => {
       params: {
         section: {
           sections: {
-            'connectivity-and-resolution': {
+            'browser-connectivity-and-resolution': {
               answers: {
                 'minimum-desktop-resolution': '4:3 800 x 600',
               },
@@ -353,7 +353,7 @@ describe('view-browser-based', () => {
       params: {
         section: {
           sections: {
-            'plug-ins-or-extensions': {
+            'browser-plug-ins-or-extensions': {
               answers: {
                 'plugins-required': 'yes',
                 'plugins-detail': 'Some plugin detail',

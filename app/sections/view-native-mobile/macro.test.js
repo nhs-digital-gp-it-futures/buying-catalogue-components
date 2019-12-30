@@ -310,6 +310,82 @@ describe('view-native-mobile', () => {
       });
   });
 
+  it('should render the third party components answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'native-mobile-third-party': {
+              answers: {
+                'third-party-components': 'The application supports and requires an authenticator on each device the application is installed. You will need a software-based authenticator that implements a two-step verification service.',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
+        const thirdPartyComponentsQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-third-party-components"]');
+        const thirdPartyComponentsInnerComponent = thirdPartyComponentsQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-third-party-components"]');
+
+        expect(nativeMobileSectionTable.length).toEqual(1);
+        expect(thirdPartyComponentsQuestionRow.length).toEqual(1);
+        expect(thirdPartyComponentsQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third party components required');
+        expect(thirdPartyComponentsInnerComponent.length).toEqual(1);
+        expect(thirdPartyComponentsInnerComponent.text().trim()).toEqual('The application supports and requires an authenticator on each device the application is installed. You will need a software-based authenticator that implements a two-step verification service.');
+
+        done();
+      });
+  });
+
+  it('should render the device capabilities answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'native-mobile-third-party': {
+              answers: {
+                'device-capabilities': 'In order to use our file hosting services, the application will require permission to access device storage.',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
+        const deviceCapabilitiesQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-device-capabilities"]');
+        const deviceCapabilitiesInnerComponent = deviceCapabilitiesQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-device-capabilities"]');
+
+        expect(nativeMobileSectionTable.length).toEqual(1);
+        expect(deviceCapabilitiesQuestionRow.length).toEqual(1);
+        expect(deviceCapabilitiesQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities required');
+        expect(deviceCapabilitiesInnerComponent.length).toEqual(1);
+        expect(deviceCapabilitiesInnerComponent.text().trim()).toEqual('In order to use our file hosting services, the application will require permission to access device storage.');
+
+        done();
+      });
+  });
+
   it('should render the additional information answer', (done) => {
     const context = {
       params: {

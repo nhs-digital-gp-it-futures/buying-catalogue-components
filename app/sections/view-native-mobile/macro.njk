@@ -68,5 +68,13 @@
         questionData: params.section.sections['native-mobile-connection-details'].answers['connection-requirements-description']
       })
     }) }}
+    {{ viewSectionTableRow({
+      questionId: 'additional-information',
+      questionTitle: 'Additional information',
+      innerComponent: viewQuestionDataText({
+        questionId: 'additional-information',
+        questionData: params.section.sections['native-mobile-additional-information'].answers['additional-information']
+      })
+    }) }}
   </dl>
 {% endmacro %}

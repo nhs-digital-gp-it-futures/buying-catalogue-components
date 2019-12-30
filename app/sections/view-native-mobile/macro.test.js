@@ -309,4 +309,42 @@ describe('view-native-mobile', () => {
         done();
       });
   });
+
+  it('should render the additional information answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'native-mobile-additional-information': {
+              answers: {
+                'additional-information': 'It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
+        const additionalInformationQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
+        const additionalInformationInnerComponent = additionalInformationQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-additional-information"]');
+
+        expect(nativeMobileSectionTable.length).toEqual(1);
+        expect(additionalInformationQuestionRow.length).toEqual(1);
+        expect(additionalInformationQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
+        expect(additionalInformationInnerComponent.length).toEqual(1);
+        expect(additionalInformationInnerComponent.text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
+
+        done();
+      });
+  });
 });

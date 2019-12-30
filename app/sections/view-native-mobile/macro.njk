@@ -85,6 +85,14 @@
       })
     }) }}
     {{ viewSectionTableRow({
+      questionId: 'hardware-requirements',
+      questionTitle: 'Hardware requirements',
+      innerComponent: viewQuestionDataText({
+        questionId: 'hardware-requirements',
+        questionData: params.section.sections['native-mobile-hardware-requirements'].answers['hardware-requirements']
+      })
+    }) }}
+    {{ viewSectionTableRow({
       questionId: 'additional-information',
       questionTitle: 'Additional information',
       innerComponent: viewQuestionDataText({

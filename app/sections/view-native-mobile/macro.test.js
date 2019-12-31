@@ -386,6 +386,44 @@ describe('view-native-mobile', () => {
       });
   });
 
+  it('should render the hardware requirements answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'native-mobile-hardware-requirements': {
+              answers: {
+                'hardware-requirements': 'To fully utilise our print functionality within the application, you will need a WiFi or Bluetooth connected printer to connect and print documents straight from the device.',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
+        const hardwareRequirementsQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements"]');
+        const hardwareRequirementsInnerComponent = hardwareRequirementsQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-hardware-requirements"]');
+
+        expect(nativeMobileSectionTable.length).toEqual(1);
+        expect(hardwareRequirementsQuestionRow.length).toEqual(1);
+        expect(hardwareRequirementsQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
+        expect(hardwareRequirementsInnerComponent.length).toEqual(1);
+        expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('To fully utilise our print functionality within the application, you will need a WiFi or Bluetooth connected printer to connect and print documents straight from the device.');
+
+        done();
+      });
+  });
+
   it('should render the additional information answer', (done) => {
     const context = {
       params: {

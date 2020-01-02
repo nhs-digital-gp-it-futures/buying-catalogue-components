@@ -2,6 +2,7 @@
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 {% from 'sections/view-browser-based/macro.njk' import viewBrowserBased %}
 {% from 'sections/view-native-mobile/macro.njk' import viewNativeMobile %}
+{% from 'sections/view-native-desktop/macro.njk' import viewNativeDesktop %}
 
 {% macro viewClientApplicationTypes(params) %}
   {% if params.section %}
@@ -34,6 +35,16 @@
                 sectionTitle: 'Native mobile or tablet application',
                 innerComponent: viewNativeMobile({
                   section: params.section.sections['native-mobile']
+                })
+              }) }}
+            {% endif %}
+
+            {% if params.section.sections['native-desktop'] %}
+              {{ viewExpandableSection({
+                sectionId: 'native-desktop',
+                sectionTitle: 'Native desktop application',
+                innerComponent: viewNativeDesktop({
+                  section: params.section.sections['native-desktop']
                 })
               }) }}
             {% endif %}

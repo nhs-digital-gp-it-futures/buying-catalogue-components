@@ -1,0 +1,38 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-native-desktop/macro.njk' import viewNativeDesktop %}
+
+{% block body %}
+  <h1>View Native Desktop</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from './sections/view-native-desktop/macro.njk' import viewNativeDesktop %}
+
+       {{ viewNativeMobile({
+          section: {
+            sections: {
+              'native-desktop-operating-systems': {
+                answers: {
+                  'operating-systems-description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                }
+              }
+            }
+          }
+        }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewNativeDesktop({
+    section: {
+      sections: {
+        'native-desktop-operating-systems': {
+          answers: {
+            'operating-systems-description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          }
+        }
+      }
+    }
+  }) }}
+{% endblock %}

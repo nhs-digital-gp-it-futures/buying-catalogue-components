@@ -19,34 +19,6 @@
     {% endverbatim %}
   </code></pre>
 
-  <h3>Generated HTML</h3>
-  <pre><code>
-    {{- '
-      <div class="nhsuk-width-container" data-test-id="view-features">
-        <div class="bc-c-title-block">
-          <h3 class="nhsuk-u-margin-bottom-2">Features</h3>
-        </div>
-        <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
-          <div class="nhsuk-grid-column-two-thirds">
-            <div data-test-id="view-question-data-bulletlist">
-            <ul>
-              <li class="bc-c-data-bulletlist__text">
-                Feature 1
-              </li>
-              <li class="bc-c-data-bulletlist__text">
-                  Feature 2
-              </li>
-              <li class="bc-c-data-bulletlist__text">
-                Feature 3
-              </li>
-            </ul>
-          </div>
-          </div>
-        </div>
-      </div>
-    ' }}
-  </code></pre>
-
   <h3>Rendered component</h3>
   {{ viewFeatures({
     section: {

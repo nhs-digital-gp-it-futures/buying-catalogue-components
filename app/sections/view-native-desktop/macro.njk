@@ -68,5 +68,13 @@
         questionData: params.section.sections['native-desktop-third-party'].answers['device-capabilities']
       })
     }) }}
+    {{ viewSectionTableRow({
+      questionId: 'hardware-requirements',
+      questionTitle: 'Hardware requirements',
+      innerComponent: viewQuestionDataText({
+        questionId: 'hardware-requirements',
+        questionData: params.section.sections['native-desktop-hardware-requirements'].answers['hardware-requirements']
+      })
+    }) }}
   </dl>
 {% endmacro %}

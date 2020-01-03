@@ -309,4 +309,43 @@ describe('view-native-desktop', () => {
         done();
       });
   });
+
+  it('should render the hardware requirements answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'native-desktop-hardware-requirements': {
+              answers: {
+                'hardware-requirements': 'To fully utilise the transcribing functionality within the application, you will need to purchase our branded wireless Dictaphone.',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+        const hardwareRequirementsQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements"]');
+        const hardwareRequirementsInnerComponent = hardwareRequirementsQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-hardware-requirements"]');
+
+        expect(nativeDesktopSectionTable.length).toEqual(1);
+        expect(hardwareRequirementsQuestionRow.length).toEqual(1);
+        expect(hardwareRequirementsQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
+        expect(hardwareRequirementsInnerComponent.length).toEqual(1);
+        expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('To fully utilise the transcribing functionality within the application, you will need to purchase our branded wireless Dictaphone.');
+
+        done();
+      });
+  });
+
 });

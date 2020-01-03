@@ -1,6 +1,6 @@
 {
   "name": "buying-catalogue-components",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "description": "Nodejs express app for Buying Catalogue components",
   "main": "server.js",
   "scripts": {

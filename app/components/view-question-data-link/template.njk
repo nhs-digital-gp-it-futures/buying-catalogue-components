@@ -12,7 +12,7 @@
       {% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
 
       {{ viewQuestionDataLink({
-        questionData: 'www.somelink.com',
+        questionData: 'http://www.somelink.com',
         classes: 'another-class'
       }) }}
     {% endverbatim %}
@@ -31,7 +31,7 @@
 
   <h3>Rendered component</h3>
   {{ viewQuestionDataLink({
-    questionData: 'www.somelink.com',
+    questionData: 'http://www.somelink.com',
     classes: 'another-class'
   }) }}
 {% endblock %}

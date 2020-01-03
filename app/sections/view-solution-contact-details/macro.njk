@@ -4,7 +4,7 @@
 {% macro viewSolutionContactDetails(params) %}
   {% if params.section %}
     <div class="nhsuk-width-container" data-test-id="view-solution-contact-details">
-      {{ viewSectionHeading({text: 'Contact details'}) }}
+      {{ viewSectionHeading({ text: 'Contact details' }) }}
       <div class="nhsuk-grid-row nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
       {% if params.section.answers['contact-1'] %}
         <div data-test-id="view-section-question-contact-1" class="nhsuk-grid-column-one-half">

@@ -15,6 +15,29 @@
     {% endverbatim %}
   </code></pre>
 
+  {% set commonAttributes %} data-test-id="view-section-table-row-{{ params.questionId }}" class="nhsuk-width-container bc-c-section-table-row"{%- endset -%}
+
+  <h3>Generated HTML</h3>
+  <pre><code>
+    {{- "
+      <div class='bc-c-title-block'>
+        <h3 class='nhsuk-u-margin-bottom-2'>Example section heading</h3>
+      </div>
+        <div data-test-id='view-section-table-row-some-question-id' class='nhsuk-width-container bc-c-section-table-row'>
+        <div data-test-id='view-section-table-row-horizontal' class='nhsuk-grid-row'>
+          <div data-test-id='view-section-table-row-title' class='nhsuk-u-font-weight-bold nhsuk-grid-column-one-half'>
+            Some question title
+          </div>
+          <div data-test-id='view-section-table-row-component' class='nhsuk-grid-column-one-half'>
+            <div>
+              Some inner component
+            </div>
+          </div>
+        </div>
+      </div>
+    " }}
+  </code></pre>
+
   <h3>Rendered component</h3>
   {{ viewSectionTableRow({
       questionId: 'some-question-id',
@@ -34,6 +57,26 @@
           innerComponent: '&ltdiv&gt;Lorem ipsum dolor sit amet consectetur adipiscing elit, viverra ad torquent et lectus malesuada, natoque fermentum scelerisque urna mauris auctor. Sociis class lacinia ante per non cras aenean, morbi sem blandit praesent mus imperdiet hac, egestas diam congue donec phasellus sapien. Tempor ultricies porttitor fames potenti vestibulum maecenas montes orci elementum ligula, in id magna nascetur laoreet suspendisse ullamcorper porta justo, vivamus habitasse ridiculus eleifend taciti primis quisque consequat penatibus.&lt/div&gt;'
       }) }}
     {% endverbatim %}
+  </code></pre>
+
+    <h3>Generated HTML</h3>
+  <pre><code>
+    {{- "
+      <div data-test-id='view-section-table-row-some-question-id' class='nhsuk-width-container bc-c-section-table-row'>
+        <div data-test-id='view-section-table-row-vertical'>
+          <div data-test-id='view-section-table-row-title' class='nhsuk-u-font-weight-bold nhsuk-u-padding-bottom-2'>
+            Some question title
+          </div>
+          <div class='nhsuk-grid-row'>
+            <div data-test-id='view-section-table-row-component' class='nhsuk-grid-column-two-thirds'>
+              <div>
+                Lorem ipsum dolor sit amet consectetur adipiscing elit, viverra ad torquent et lectus malesuada, natoque fermentum scelerisque urna mauris auctor. Sociis class lacinia ante per non cras aenean, morbi sem blandit praesent mus imperdiet hac, egestas diam congue donec phasellus sapien. Tempor ultricies porttitor fames potenti vestibulum maecenas montes orci elementum ligula, in id magna nascetur laoreet suspendisse ullamcorper porta justo, vivamus habitasse ridiculus eleifend taciti primis quisque consequat penatibus.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    " }}
   </code></pre>
 
   <h3>Rendered component</h3>

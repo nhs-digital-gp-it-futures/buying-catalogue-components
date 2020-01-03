@@ -20,5 +20,37 @@
         questionData: params.section.sections['native-desktop-connection-details'].answers['minimum-connection-speed']
       })
     }) }}
+    {{ viewSectionTableRow({
+      questionId: 'minimum-memory-requirement',
+      questionTitle: 'Minimum memory requirement',
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-memory-requirement',
+        questionData: params.section.sections['native-desktop-memory-and-storage'].answers['minimum-memory-requirement']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'storage-requirements-description',
+      questionTitle: 'Additional storage requirements',
+      innerComponent: viewQuestionDataText({
+        questionId: 'storage-requirements-description',
+        questionData: params.section.sections['native-desktop-memory-and-storage'].answers['storage-requirements-description']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'minimum-cpu',
+      questionTitle: 'Minimum necessary CPU power',
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-cpu',
+        questionData: params.section.sections['native-desktop-memory-and-storage'].answers['minimum-cpu']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'recommended-resolution',
+      questionTitle: 'Recommended desktop aspect ratio and screen resolution',
+      innerComponent: viewQuestionDataText({
+        questionId: 'recommended-resolution',
+        questionData: params.section.sections['native-desktop-memory-and-storage'].answers['recommended-resolution']
+      })
+    }) }}
   </dl>
 {% endmacro %}

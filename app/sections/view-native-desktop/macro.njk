@@ -12,5 +12,13 @@
         questionData: params.section.sections['native-desktop-operating-systems'].answers['operating-systems-description']
       })
     }) }}
+    {{ viewSectionTableRow({
+      questionId: 'minimum-connection-speed',
+      questionTitle: 'Minimum connection speed required',
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-connection-speed',
+        questionData: params.section.sections['native-desktop-connection-details'].answers['minimum-connection-speed']
+      })
+    }) }}
   </dl>
 {% endmacro %}

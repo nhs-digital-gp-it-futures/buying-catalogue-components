@@ -1,15 +1,9 @@
-{% from 'components/label/macro.njk' import label %}
-
 {% macro viewQuestionDataBulletlist(params) %}
   {% if params.questionData %}
     <div data-test-id="view-question-data-bulletlist">
         <ul class="nhsuk-u-margin-bottom-0">
           {% for data in params.questionData %}
-            <li>
-              {{ label({
-                "text": data
-              }) }}
-            </li>
+            <li class="bc-c-data-bulletlist__text {{ params.classes }}">{{ data }}</li>
           {% endfor %}
         </ul>
     </div>

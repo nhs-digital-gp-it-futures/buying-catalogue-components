@@ -10,7 +10,8 @@
       {% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
 
       {{ viewQuestionDataBulletlist({
-        questionData: ["first data", "second data", "third data"]
+        questionData: ["first data", "second data", "third data"],
+        classes: "another-class"
       }) }}
     {% endverbatim %}
   </code></pre>
@@ -20,20 +21,14 @@
     {{- "
       <div data-test-id='view-question-data-bulletlist'>
         <ul>
-          <li>
-            <label class='nhsuk-label'>
-              first data
-            </label>
+          <li class='bc-c-data-bulletlist__text another-class'>
+            first data
           </li>
-          <li>
-            <label class='nhsuk-label'>
+          <li class='bc-c-data-bulletlist__text another-class'>
               second data
-            </label>
           </li>
-          <li>
-            <label class='nhsuk-label'>
-              third data
-            </label>
+          <li class='bc-c-data-bulletlist__text another-class'>
+            third data
           </li>
         </ul>
       </div>
@@ -42,6 +37,7 @@
 
   <h3>Rendered component</h3>
   {{ viewQuestionDataBulletlist({
-    questionData: ["first data", "second data", "third data"]
+    questionData: ["first data", "second data", "third data"],
+    classes: "another-class"
   }) }}
 {% endblock %}

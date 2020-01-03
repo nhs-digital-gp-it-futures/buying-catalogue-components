@@ -52,5 +52,21 @@
         questionData: params.section.sections['native-desktop-memory-and-storage'].answers['recommended-resolution']
       })
     }) }}
+    {{ viewSectionTableRow({
+      questionId: 'third-party-components',
+      questionTitle: 'Third party components required',
+      innerComponent: viewQuestionDataText({
+        questionId: 'third-party-components',
+        questionData: params.section.sections['native-desktop-third-party'].answers['third-party-components']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'device-capabilities',
+      questionTitle: 'Device capabilities required',
+      innerComponent: viewQuestionDataText({
+        questionId: 'device-capabilities',
+        questionData: params.section.sections['native-desktop-third-party'].answers['device-capabilities']
+      })
+    }) }}
   </dl>
 {% endmacro %}

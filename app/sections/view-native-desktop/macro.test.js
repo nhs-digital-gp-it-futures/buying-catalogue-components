@@ -44,4 +44,42 @@ describe('view-native-desktop', () => {
       });
   });
 
+  it('should render the minimum connection speed required answer', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'native-desktop-connection-details': {
+              answers: {
+                'minimum-connection-speed': '2Mbps',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+        const minimumConnectionSpeedQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-connection-speed"]');
+        const minimumConnectionSpeedInnerComponent = minimumConnectionSpeedQuestionRow
+          .find('div[data-test-id="view-section-table-row-component"]')
+          .find('[data-test-id="view-question-data-text-minimum-connection-speed"]');
+
+        expect(nativeDesktopSectionTable.length).toEqual(1);
+        expect(minimumConnectionSpeedQuestionRow.length).toEqual(1);
+        expect(minimumConnectionSpeedQuestionRow
+          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed required');
+        expect(minimumConnectionSpeedInnerComponent.length).toEqual(1);
+        expect(minimumConnectionSpeedInnerComponent.text().trim()).toEqual('2Mbps');
+
+        done();
+      });
+  });
+
 });

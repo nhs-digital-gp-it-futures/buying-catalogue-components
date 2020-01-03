@@ -11,7 +11,8 @@
 
       {{ viewQuestionDataText({
           questionId: 'some-id',
-          questionData: 'Some data'
+          questionData: 'Some data',
+          classes: 'another-class'
         }) 
       }}
     {% endverbatim %}
@@ -20,10 +21,8 @@
   <h3>Generated HTML</h3>
   <pre><code>
     {{- "
-      <div data-test-id='view-question-data-text-some-id'>
-        <label class='nhsuk-label'>
-          Some data
-        </label>
+      <div data-test-id='view-question-data-text-some-id' class='bc-c-data-text another-class'>
+        Some data
       </div>
     " }}
   </code></pre>
@@ -31,6 +30,7 @@
   <h3>Rendered component</h3>
   {{ viewQuestionDataText({
     questionId: 'some-id',
-    questionData: 'Some data'
+    questionData: 'Some data',
+    classes: 'another-class'
   }) }}
 {% endblock %}

@@ -16,25 +16,6 @@
     {% endverbatim %}
   </code></pre>
 
-  <h3>Generated HTML</h3>
-  <pre><code>
-    {{- "
-      <div data-test-id='view-question-data-bulletlist'>
-        <ul>
-          <li class='bc-c-data-bulletlist__text another-class'>
-            first data
-          </li>
-          <li class='bc-c-data-bulletlist__text another-class'>
-              second data
-          </li>
-          <li class='bc-c-data-bulletlist__text another-class'>
-            third data
-          </li>
-        </ul>
-      </div>
-    " }}
-  </code></pre>
-
   <h3>Rendered component</h3>
   {{ viewQuestionDataBulletlist({
     questionData: ["first data", "second data", "third data"],

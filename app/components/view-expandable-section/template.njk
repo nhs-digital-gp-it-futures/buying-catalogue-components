@@ -17,24 +17,6 @@
     {% endverbatim %}
   </code></pre>
 
-  <h3>Generated HTML</h3>
-  <pre><code>
-    {{- '
-      <div data-test-id="view-section-some-section-id">
-        <details class="nhsuk-details" open="">
-          <summary class="nhsuk-details__summary">
-            <span class="nhsuk-details__summary-text">
-              Some section title
-            </span>
-          </summary>
-          <div class="nhsuk-details__text">
-            <div>Some inner component</div>
-          </div>
-        </details>
-      </div>
-    ' }}
-  </code></pre>
-
   <h3>Rendered component</h3>
   {{ viewExpandableSection({
       sectionId: 'some-section-id',

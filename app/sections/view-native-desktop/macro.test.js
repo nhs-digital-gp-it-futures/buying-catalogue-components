@@ -13,7 +13,7 @@ describe('view-native-desktop', () => {
           sections: {
             'native-desktop-operating-systems': {
               answers: {
-                'operating-systems-description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'operating-systems-description': 'Windows 7 and above.',
               },
             },
           },
@@ -38,7 +38,7 @@ describe('view-native-desktop', () => {
         expect(operatingSystemsDescriptionQuestionRow
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
         expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
-        expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+        expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Windows 7 and above.');
 
         done();
       });

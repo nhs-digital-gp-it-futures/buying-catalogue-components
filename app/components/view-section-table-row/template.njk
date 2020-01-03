@@ -15,8 +15,6 @@
     {% endverbatim %}
   </code></pre>
 
-  {% set commonAttributes %} data-test-id="view-section-table-row-{{ params.questionId }}" class="nhsuk-width-container bc-c-section-table-row"{%- endset -%}
-
   <h3>Rendered component</h3>
   {{ viewSectionTableRow({
       questionId: 'some-question-id',
@@ -25,6 +23,7 @@
   }) }}
   <br/>
   <br/>
+
   <h2>Vertical layout</h2>
   <pre><code>
     {% verbatim %}

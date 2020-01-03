@@ -3,6 +3,6 @@
   display: block;
   font-weight: $nhsuk-font-bold;
   margin-top: 0;
-  margin-bottom: nhsuk-spacing(3);
-  @include nhsuk-responsive-margin(4, 'bottom');
+  margin-bottom: nhsuk-spacing(1);
+  @include nhsuk-responsive-margin(1, 'bottom');
 }

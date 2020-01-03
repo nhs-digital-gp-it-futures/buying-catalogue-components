@@ -1,7 +1,5 @@
 {% macro viewQuestionDataText(params) %}
   {% if params.questionData %}
-    <div data-test-id="view-question-data-text-{{ params.questionId }}" class="bc-c-data-text {{ params.classes }}">
-      {{ params.questionData }}
-    </div>
+    <div data-test-id="view-question-data-text-{{ params.questionId }}" class="bc-c-data-text {{ params.classes }}">{{ params.questionData }}</div>
   {% endif %}
 {% endmacro %}

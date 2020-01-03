@@ -3,9 +3,8 @@
 
 {% macro viewQuestionTitle(params) %}
   <div data-test-id="view-question-title">
-    {{ label({
-      "classes": "nhsuk-label--s nhsuk-u-margin-bottom-3",
-      "text": params.questionTitle
-    }) }}
+    <h4 class="bc-c-data-title__text">
+      {{ params.questionTitle }}
+    </h4>
   </div>
 {% endmacro %}

@@ -1,11 +1,5 @@
-{% from 'components/label/macro.njk' import label %}
-{% from 'components/error-message/macro.njk' import errorMessage %}
-
 {% macro viewQuestionTitle(params) %}
-  <div data-test-id="view-question-title">
-    {{ label({
-      "classes": "nhsuk-label--s nhsuk-u-margin-bottom-3",
-      "text": params.questionTitle
-    }) }}
-  </div>
+  <h4 data-test-id="view-question-title" class="bc-c-data-title__text {{ params.classes }}">
+    {{ params.questionTitle }}
+  </h4>
 {% endmacro %}

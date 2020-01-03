@@ -1,13 +1,9 @@
-{% from 'components/label/macro.njk' import label %}
-
 {% macro viewQuestionDataLink(params) %}
   {% if params.questionData %}
-    <div data-test-id="view-question-data-link">
-        <a href="{{ params.questionData }}" target="_blank">
-          {{ label({
-            "text": params.questionData
-          }) }}
-        </a>
+    <div data-test-id="view-question-data-link" class="bc-c-data-link {{ params.classes }}">
+      <a href="{{ params.questionData }}" target="_blank">
+        {{ params.questionData }}
+      </a>
     </div>
   {% endif %}
 {% endmacro %}

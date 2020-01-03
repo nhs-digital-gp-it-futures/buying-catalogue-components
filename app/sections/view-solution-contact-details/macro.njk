@@ -4,25 +4,29 @@
 {% macro viewSolutionContactDetails(params) %}
   {% if params.section %}
     <div class="nhsuk-width-container" data-test-id="view-solution-contact-details">
-      {{ viewSectionHeading({text: 'Contact details'}) }}
+      {{ viewSectionHeading({ text: 'Contact details' }) }}
       <div class="nhsuk-grid-row nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
       {% if params.section.answers['contact-1'] %}
         <div data-test-id="view-section-question-contact-1" class="nhsuk-grid-column-one-half">
             {{ viewQuestionDataText({
               questionId: 'department-name', 
-              questionData: params.section.answers['contact-1']['department-name']
+              questionData: params.section.answers['contact-1']['department-name'],
+              classes: 'bc-c-data-text--close'
             }) }}
             {{ viewQuestionDataText({
               questionId: 'contact-name', 
-              questionData: params.section.answers['contact-1']['contact-name']
+              questionData: params.section.answers['contact-1']['contact-name'],
+              classes: 'bc-c-data-text--close'
             }) }}
             {{ viewQuestionDataText({
               questionId: 'phone-number', 
-              questionData: params.section.answers['contact-1']['phone-number']
+              questionData: params.section.answers['contact-1']['phone-number'],
+              classes: 'bc-c-data-text--close'
             }) }}
             {{ viewQuestionDataText({
               questionId: 'email-address', 
-              questionData: params.section.answers['contact-1']['email-address']
+              questionData: params.section.answers['contact-1']['email-address'],
+              classes: 'bc-c-data-text--close'
             }) }}
         </div>
       {% endif %}
@@ -31,19 +35,23 @@
         <div data-test-id="view-section-question-contact-2" class="nhsuk-grid-column-one-half">
             {{ viewQuestionDataText({
               questionId: 'department-name', 
-              questionData: params.section.answers['contact-2']['department-name']
+              questionData: params.section.answers['contact-2']['department-name'],
+              classes: 'bc-c-data-text--close'
             }) }}
             {{ viewQuestionDataText({
               questionId: 'contact-name', 
-              questionData: params.section.answers['contact-2']['contact-name']
+              questionData: params.section.answers['contact-2']['contact-name'],
+              classes: 'bc-c-data-text--close'
             }) }}
             {{ viewQuestionDataText({
               questionId: 'phone-number', 
-              questionData: params.section.answers['contact-2']['phone-number']
+              questionData: params.section.answers['contact-2']['phone-number'],
+              classes: 'bc-c-data-text--close'
             }) }}
             {{ viewQuestionDataText({
               questionId: 'email-address', 
-              questionData: params.section.answers['contact-2']['email-address']
+              questionData: params.section.answers['contact-2']['email-address'],
+              classes: 'bc-c-data-text--close'
             }) }}
         </div>
       {% endif %}

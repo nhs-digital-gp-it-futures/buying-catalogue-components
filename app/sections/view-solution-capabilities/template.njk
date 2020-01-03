@@ -20,51 +20,12 @@
     {% endverbatim %}
   </code></pre>
 
-  <h3>Generated HTML</h3>
-  <pre><code>
-    {{- '
-    <div class="nhsuk-width-container" data-test-id="view-solution-capabilities">
-      <div class="bc-c-title-block">
-        <h3 class="nhsuk-u-margin-bottom-2">Capabilities met</h3>
-      </div>
-      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
-        <div class="nhsuk-grid-column-two-thirds">
-          <p>
-            description
-          </p>
-          <div>
-            <div data-test-id="view-question-data-bulletlist">
-              <ul>
-                <li>
-                  <label class="nhsuk-label">
-                  capability 1
-                  </label>
-                </li>
-                <li>
-                  <label class="nhsuk-label">
-                  capability 2
-                  </label>
-                </li>
-                <li>
-                  <label class="nhsuk-label">
-                  capability 3
-                  </label>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    ' }}
-  </code></pre>
-
   <h3>Rendered component</h3>
   {{ viewSolutionCapabilities({
     description: "description",
     section: {
       answers: {
-       'capabilities-met': ['capability 1', 'capability 2', 'capability 3']
+        'capabilities-met': ['capability 1', 'capability 2', 'capability 3']
       }
     }
   }) }}

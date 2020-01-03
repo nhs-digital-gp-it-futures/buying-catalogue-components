@@ -12,26 +12,15 @@
       {% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
 
       {{ viewQuestionDataLink({
-        questionData: 'www.somelink.com'
+        questionData: 'http://www.somelink.com',
+        classes: 'another-class'
       }) }}
     {% endverbatim %}
   </code></pre>
 
-  <h3>Generated HTML</h3>
-  <pre><code>
-  {{- "
-    <div data-test-id='view-question-data-link'>
-      <a href='www.somelink.com' target='_blank'>
-        <label class='nhsuk-label'>
-          http://www.somelink.com
-        </label>
-      </a>
-    </div>
-  " }}
-  </code></pre>
-
   <h3>Rendered component</h3>
   {{ viewQuestionDataLink({
-    questionData: 'www.somelink.com'
+    questionData: 'http://www.somelink.com',
+    classes: 'another-class'
   }) }}
 {% endblock %}

@@ -3,7 +3,7 @@
 {% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
 
 {% macro viewBrowserBased(params) %}
-  <dl data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
+  <div data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
     {{ viewSectionTableRow({
       questionId: 'supported-browsers', 
       questionTitle: 'Browsers Supported', 
@@ -77,5 +77,5 @@
         questionData: params.section.sections['browser-additional-information'].answers['additional-information']
       })
     }) }}
-  </dl>
+  </div>
 {% endmacro %}

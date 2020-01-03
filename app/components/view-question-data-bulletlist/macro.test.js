@@ -43,4 +43,57 @@ describe('view-question-data-bulletlist', () => {
         done();
       });
   });
+
+  it('should not render empty strings when provided', (done) => {
+    const context = {
+      params: {
+        questionData: [
+          'Some first data',
+          '',
+          'Some second data',
+          '',
+          'Some third data',
+          '',
+        ],
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('[data-test-id="view-question-data-bulletlist"] ul').length).toEqual(1);
+        expect($('[data-test-id="view-question-data-bulletlist"] li').length).toEqual(3);
+
+        done();
+      });
+  });
+
+  it('should not render strings that contain only spaces when provided', (done) => {
+    const context = {
+      params: {
+        questionData: [
+          'Some first data',
+          '   ',
+          'Some second data',
+          ' ',
+          'Some third data',
+          '       ',
+        ],
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('[data-test-id="view-question-data-bulletlist"] ul').length).toEqual(1);
+        expect($('[data-test-id="view-question-data-bulletlist"] li').length).toEqual(3);
+
+        done();
+      });
+  });
+
 });

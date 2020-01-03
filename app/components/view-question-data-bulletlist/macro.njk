@@ -3,7 +3,9 @@
     <div data-test-id="view-question-data-bulletlist">
         <ul class="nhsuk-u-margin-bottom-0">
           {% for data in params.questionData %}
-            <li class="bc-c-data-bulletlist__text {{ params.classes }}">{{ data }}</li>
+            {% if data.trim() %}
+              <li class="bc-c-data-bulletlist__text {{ params.classes }}">{{ data }}</li>
+            {% endif %}
           {% endfor %}
         </ul>
     </div>

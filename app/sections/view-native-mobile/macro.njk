@@ -1,0 +1,104 @@
+{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
+{% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
+{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
+
+{% macro viewNativeMobile(params) %}
+  <dl data-test-id="view-section-table-native-mobile" class="nhsuk-summary-list">
+    {{ viewSectionTableRow({
+      questionId: 'operating-systems',
+      questionTitle: 'Supported operating systems',
+      innerComponent: viewQuestionDataBulletlist({
+        questionId: 'operating-systems',
+        questionData: params.section.sections['native-mobile-operating-systems'].answers['operating-systems']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'operating-systems-description',
+      questionTitle: 'Additional operating system information',
+      innerComponent: viewQuestionDataText({
+        questionId: 'operating-systems-description',
+        questionData: params.section.sections['native-mobile-operating-systems'].answers['operating-systems-description']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'mobile-first-design',
+      questionTitle: 'Designed with a mobile first approach',
+      innerComponent: viewQuestionDataText({
+        questionId: 'mobile-first-design',
+        questionData: params.section.sections['native-mobile-first'].answers['mobile-first-design']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'minimum-memory-requirement',
+      questionTitle: 'Minimum memory requirement',
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-memory-requirement',
+        questionData: params.section.sections['native-mobile-memory-and-storage'].answers['minimum-memory-requirement']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'storage-requirements-description',
+      questionTitle: 'Additional storage requirements',
+      innerComponent: viewQuestionDataText({
+        questionId: 'storage-requirements-description',
+        questionData: params.section.sections['native-mobile-memory-and-storage'].answers['storage-requirements-description']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'minimum-connection-speed',
+      questionTitle: 'Minimum connection speed required',
+      innerComponent: viewQuestionDataText({
+        questionId: 'minimum-connection-speed',
+        questionData: params.section.sections['native-mobile-connection-details'].answers['minimum-connection-speed']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'connection-types',
+      questionTitle: 'Connection types supported',
+      innerComponent: viewQuestionDataBulletlist({
+        questionId: 'connection-types',
+        questionData: params.section.sections['native-mobile-connection-details'].answers['connection-types']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'connection-requirements-description',
+      questionTitle: 'Additional information about connection types',
+      innerComponent: viewQuestionDataText({
+        questionId: 'connection-requirements-description',
+        questionData: params.section.sections['native-mobile-connection-details'].answers['connection-requirements-description']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'third-party-components',
+      questionTitle: 'Third party components required',
+      innerComponent: viewQuestionDataText({
+        questionId: 'third-party-components',
+        questionData: params.section.sections['native-mobile-third-party'].answers['third-party-components']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'device-capabilities',
+      questionTitle: 'Device capabilities required',
+      innerComponent: viewQuestionDataText({
+        questionId: 'device-capabilities',
+        questionData: params.section.sections['native-mobile-third-party'].answers['device-capabilities']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'hardware-requirements',
+      questionTitle: 'Hardware requirements',
+      innerComponent: viewQuestionDataText({
+        questionId: 'hardware-requirements',
+        questionData: params.section.sections['native-mobile-hardware-requirements'].answers['hardware-requirements']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'additional-information',
+      questionTitle: 'Additional information',
+      innerComponent: viewQuestionDataText({
+        questionId: 'additional-information',
+        questionData: params.section.sections['native-mobile-additional-information'].answers['additional-information']
+      })
+    }) }}
+  </dl>
+{% endmacro %}

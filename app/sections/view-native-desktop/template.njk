@@ -1,0 +1,38 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-native-desktop/macro.njk' import viewNativeDesktop %}
+
+{% block body %}
+  <h1>View Native Desktop</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from './sections/view-native-desktop/macro.njk' import viewNativeDesktop %}
+
+       {{ viewNativeMobile({
+          section: {
+            sections: {
+              'native-desktop-operating-systems': {
+                answers: {
+                  'operating-systems-description': 'Windows 7 and above.'
+                }
+              }
+            }
+          }
+        }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewNativeDesktop({
+    section: {
+      sections: {
+        'native-desktop-operating-systems': {
+          answers: {
+            'operating-systems-description': 'Windows 7 and above.'
+          }
+        }
+      }
+    }
+  }) }}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
+{% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
+{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
+
+{% macro viewNativeDesktop(params) %}
+  <dl data-test-id="view-section-table-native-desktop" class="nhsuk-summary-list">
+    {{ viewSectionTableRow({
+      questionId: 'operating-systems-description',
+      questionTitle: 'Supported operating systems',
+      innerComponent: viewQuestionDataText({
+        questionId: 'operating-systems-description',
+        questionData: params.section.sections['native-desktop-operating-systems'].answers['operating-systems-description']
+      })
+    }) }}
+  </dl>
+{% endmacro %}

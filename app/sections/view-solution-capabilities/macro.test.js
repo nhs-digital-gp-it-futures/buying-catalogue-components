@@ -65,7 +65,7 @@ describe('view-solution-capabilities', () => {
   it('should render capabilities description if provided', (done) => {
     const context = {
       params: {
-        description: "description",
+        description: 'description',
         section: {},
       },
     };
@@ -76,7 +76,7 @@ describe('view-solution-capabilities', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('[data-test-id="view-solution-capabilities"] p').text().trim()).toEqual("description");
+        expect($('[data-test-id="view-solution-capabilities"] p').text().trim()).toEqual('description');
         done();
       });
   });

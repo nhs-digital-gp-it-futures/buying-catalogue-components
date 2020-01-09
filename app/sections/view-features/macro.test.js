@@ -76,6 +76,7 @@ describe('view-features', () => {
     it('should not render the listings', (done) => {
       const context = {
         params: {
+          dataTestIdIdentifier: 'some-data-identifier',
           section: {
             answers: {
               listing: [],
@@ -89,7 +90,7 @@ describe('view-features', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-          const featuresList = $('[data-test-id="view-question-data-bulletlist"] li');
+          const featuresList = $('[data-test-id="some-data-identifier"] li');
 
           expect(featuresList.length).toEqual(0);
 

@@ -1,0 +1,13 @@
+{% macro viewDataBulletlist(params) %}
+  {% if params.data %}
+    <div data-test-id="{{ params.dataTestIdIdentifier }}" class="{{ params.classes }}">
+        <ul class="nhsuk-u-margin-bottom-0">
+          {% for dataItem in params.data %}
+            {% if dataItem.trim() %}
+              <li class="bc-c-data-bulletlist__text">{{ dataItem }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+    </div>
+  {% endif %}
+{% endmacro %}

@@ -1,79 +1,80 @@
 {% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
-{% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
+{% from 'components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
 {% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
 
 {% macro viewBrowserBased(params) %}
   <div data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
     {{ viewSectionTableRow({
-      questionId: 'supported-browsers', 
-      questionTitle: 'Browsers Supported', 
-      innerComponent: viewQuestionDataBulletlist({
-        questionData: params.section.sections['browser-browsers-supported'].answers['supported-browsers']
+      questionId: 'supported-browsers',
+      questionTitle: 'Browsers Supported',
+      innerComponent: viewDataBulletlist({
+        dataTestIdIdentifier: 'view-question-data-bulletlist',
+        data: params.section.sections['browser-browsers-supported'].answers['supported-browsers']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'mobile-responsive', 
-      questionTitle: 'Mobile responsive', 
+      questionId: 'mobile-responsive',
+      questionTitle: 'Mobile responsive',
       innerComponent: viewQuestionDataText({
         questionId: 'mobile-responsive',
         questionData: params.section.sections['browser-browsers-supported'].answers['mobile-responsive']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'mobile-first-design', 
-      questionTitle: 'Designed with a mobile first approach', 
+      questionId: 'mobile-first-design',
+      questionTitle: 'Designed with a mobile first approach',
       innerComponent: viewQuestionDataText({
         questionId: 'mobile-first-design',
         questionData: params.section.sections['browser-mobile-first'].answers['mobile-first-design']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'plugins-required', 
-      questionTitle: 'Plug-ins or extensions required', 
+      questionId: 'plugins-required',
+      questionTitle: 'Plug-ins or extensions required',
       innerComponent: viewQuestionDataText({
         questionId: 'plugins-required',
         questionData: params.section.sections['browser-plug-ins-or-extensions'].answers['plugins-required']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'plugins-detail', 
-      questionTitle: 'Plug-ins or extensions information', 
+      questionId: 'plugins-detail',
+      questionTitle: 'Plug-ins or extensions information',
       innerComponent: viewQuestionDataText({
-        questionId: 'plugins-detail', 
+        questionId: 'plugins-detail',
         questionData: params.section.sections['browser-plug-ins-or-extensions'].answers['plugins-detail']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'minimum-connection-speed', 
-      questionTitle: 'Minimum connection speed required', 
+      questionId: 'minimum-connection-speed',
+      questionTitle: 'Minimum connection speed required',
       innerComponent: viewQuestionDataText({
-        questionId: 'minimum-connection-speed', 
+        questionId: 'minimum-connection-speed',
         questionData: params.section.sections['browser-connectivity-and-resolution'].answers['minimum-connection-speed']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'minimum-desktop-resolution', 
-      questionTitle: 'Recommended desktop aspect ratio and screen resolution', 
+      questionId: 'minimum-desktop-resolution',
+      questionTitle: 'Recommended desktop aspect ratio and screen resolution',
       innerComponent: viewQuestionDataText({
-        questionId: 'minimum-desktop-resolution', 
+        questionId: 'minimum-desktop-resolution',
         questionData: params.section.sections['browser-connectivity-and-resolution'].answers['minimum-desktop-resolution']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'hardware-requirements-description', 
-      questionTitle: 'Hardware requirements', 
+      questionId: 'hardware-requirements-description',
+      questionTitle: 'Hardware requirements',
       layout: 'vertical',
       innerComponent: viewQuestionDataText({
-        questionId: 'hardware-requirements-description', 
+        questionId: 'hardware-requirements-description',
         questionData: params.section.sections['browser-hardware-requirements'].answers['hardware-requirements-description']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'additional-information', 
-      questionTitle: 'Additional information', 
+      questionId: 'additional-information',
+      questionTitle: 'Additional information',
       layout: 'vertical',
       innerComponent: viewQuestionDataText({
-        questionId: 'additional-information', 
+        questionId: 'additional-information',
         questionData: params.section.sections['browser-additional-information'].answers['additional-information']
       })
     }) }}

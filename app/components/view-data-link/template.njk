@@ -1,0 +1,28 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'components/view-data-link/macro.njk' import viewDataLink %}
+
+
+
+{% block body %}
+  <h1>View data link component</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'components/view-data-link/macro.njk' import viewDataLink %}
+
+      {{ viewDataLink({
+        dataTestIdIdentifier: 'some-test-identifier',
+        data: 'http://www.somelink.com',
+        classes: 'another-class'
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewDataLink({
+    dataTestIdIdentifier: 'some-test-identifier',
+    data: 'http://www.somelink.com',
+    classes: 'another-class'
+  }) }}
+{% endblock %}

@@ -1,6 +1,6 @@
 {% from 'components/view-question-title/macro.njk' import viewQuestionTitle %}
 {% from 'components/view-data-link/macro.njk' import viewDataLink %}
-{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 
 {% macro viewSolutionDescription(params) %}
@@ -15,9 +15,9 @@
                   questionId: 'summary',
                   questionTitle: 'Summary'
                 }) }}
-                {{ viewQuestionDataText({
-                  questionId: 'summary',
-                  questionData: params.section.answers.summary
+                {{ viewDataText({
+                  dataTestIdIdentifier: 'view-question-data-text-summary',
+                  data: params.section.answers.summary
                 }) }}
             </div>
           {% endif %}
@@ -28,9 +28,9 @@
                   questionId: 'description',
                   questionTitle: 'About the solution'
                 }) }}
-                {{ viewQuestionDataText({
-                  questionId: 'description',
-                  questionData: params.section.answers.description
+                {{ viewDataText({
+                  dataTestIdIdentifier: 'view-question-data-text-description',
+                  data: params.section.answers.description
                 }) }}
             </div>
           {% endif %}

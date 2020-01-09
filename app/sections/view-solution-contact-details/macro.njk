@@ -1,4 +1,4 @@
-{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 
 {% macro viewSolutionContactDetails(params) %}
@@ -8,24 +8,24 @@
       <div class="nhsuk-grid-row nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
       {% if params.section.answers['contact-1'] %}
         <div data-test-id="view-section-question-contact-1" class="nhsuk-grid-column-one-half">
-            {{ viewQuestionDataText({
-              questionId: 'department-name', 
-              questionData: params.section.answers['contact-1']['department-name'],
+            {{ viewDataText({
+              dataTestIdIdentifier: 'view-question-data-text-department-name',
+              data: params.section.answers['contact-1']['department-name'],
               classes: 'nhsuk-u-margin-bottom-3'
             }) }}
-            {{ viewQuestionDataText({
-              questionId: 'contact-name', 
-              questionData: params.section.answers['contact-1']['contact-name'],
+            {{ viewDataText({
+              dataTestIdIdentifier: 'view-question-data-text-contact-name',
+              data: params.section.answers['contact-1']['contact-name'],
               classes: 'nhsuk-u-margin-bottom-3'
             }) }}
-            {{ viewQuestionDataText({
-              questionId: 'phone-number', 
-              questionData: params.section.answers['contact-1']['phone-number'],
+            {{ viewDataText({
+              dataTestIdIdentifier: 'view-question-data-text-phone-number',
+              data: params.section.answers['contact-1']['phone-number'],
               classes: 'nhsuk-u-margin-bottom-3'
             }) }}
-            {{ viewQuestionDataText({
-              questionId: 'email-address', 
-              questionData: params.section.answers['contact-1']['email-address'],
+            {{ viewDataText({
+              dataTestIdIdentifier: 'view-question-data-text-email-address',
+              data: params.section.answers['contact-1']['email-address'],
               classes: 'nhsuk-u-margin-bottom-3'
             }) }}
         </div>
@@ -33,24 +33,24 @@
 
       {% if params.section.answers['contact-2'] %}
         <div data-test-id="view-section-question-contact-2" class="nhsuk-grid-column-one-half">
-            {{ viewQuestionDataText({
-              questionId: 'department-name', 
-              questionData: params.section.answers['contact-2']['department-name'],
+            {{ viewDataText({
+              dataTestIdIdentifier: 'view-question-data-text-department-name',
+              data: params.section.answers['contact-2']['department-name'],
               classes: 'nhsuk-u-margin-bottom-3'
             }) }}
-            {{ viewQuestionDataText({
-              questionId: 'contact-name', 
-              questionData: params.section.answers['contact-2']['contact-name'],
+            {{ viewDataText({
+              dataTestIdIdentifier: 'view-question-data-text-contact-name',
+              data: params.section.answers['contact-2']['contact-name'],
               classes: 'nhsuk-u-margin-bottom-3'
             }) }}
-            {{ viewQuestionDataText({
-              questionId: 'phone-number', 
-              questionData: params.section.answers['contact-2']['phone-number'],
+            {{ viewDataText({
+              dataTestIdIdentifier: 'view-question-data-text-phone-number',
+              data: params.section.answers['contact-2']['phone-number'],
               classes: 'nhsuk-u-margin-bottom-3'
             }) }}
-            {{ viewQuestionDataText({
-              questionId: 'email-address', 
-              questionData: params.section.answers['contact-2']['email-address'],
+            {{ viewDataText({
+              dataTestIdIdentifier: 'view-question-data-text-email-address',
+              data: params.section.answers['contact-2']['email-address'],
               classes: 'nhsuk-u-margin-bottom-3'
             }) }}
         </div>

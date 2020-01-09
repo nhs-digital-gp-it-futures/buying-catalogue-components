@@ -1,0 +1,27 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
+
+{% block body %}
+  <h1>View data text component</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'components/view-data-text/macro.njk' import viewDataText %}
+
+      {{ viewDataText({
+          dataTestIdIdentifier: 'some-test-identifier',
+          data: 'Some data',
+          classes: 'another-class'
+        })
+      }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewDataText({
+    dataTestIdIdentifier: 'some-test-identifier',
+    data: 'Some data',
+    classes: 'another-class'
+  }) }}
+{% endblock %}

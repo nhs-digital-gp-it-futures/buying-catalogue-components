@@ -113,6 +113,7 @@ describe('view-data-bulletlist', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
+        expect($('div[data-test-id="some-data-identifier"]').hasClass('bc-c-data-bulletlist')).toEqual(true);
         expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
         expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
 

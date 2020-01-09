@@ -76,7 +76,7 @@ describe('view-features', () => {
     it('should not render the listings', (done) => {
       const context = {
         params: {
-          dataTestIdIdentifier: 'some-data-identifier',
+          dataTestIdIdentifier: 'view-question-data-bulletlist',
           section: {
             answers: {
               listing: [],

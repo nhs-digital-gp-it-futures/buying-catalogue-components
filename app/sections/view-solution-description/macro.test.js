@@ -61,7 +61,7 @@ describe('view-solution-description', () => {
 
           const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
 
-          expect(summaryQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Summary');
+          expect(summaryQuestion.find('[data-test-id="view-question-data-title"]').text().trim()).toEqual('Summary');
           expect(summaryQuestion.find('[data-test-id="view-question-data-text-summary"]').text().trim()).toEqual('Some summary data');
 
           done();
@@ -87,7 +87,7 @@ describe('view-solution-description', () => {
 
           const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
 
-          expect(descriptionQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('About the solution');
+          expect(descriptionQuestion.find('[data-test-id="view-question-data-title"]').text().trim()).toEqual('About the solution');
           expect(descriptionQuestion.find('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual('Some description data');
 
           done();
@@ -113,7 +113,7 @@ describe('view-solution-description', () => {
 
           const linkQuestion = $('[data-test-id="view-section-question-link"]');
 
-          expect(linkQuestion.find('[data-test-id="view-question-title"]').length).toEqual(0);
+          expect(linkQuestion.find('[data-test-id="view-question-data-title"]').length).toEqual(0);
           expect(linkQuestion.find('[data-test-id="view-question-data-link"]').text().trim()).toEqual('www.somelink.com');
 
           done();

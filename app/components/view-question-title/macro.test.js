@@ -6,7 +6,6 @@ const macroWrapper = `{% from './components/view-question-title/macro.njk' impor
                           {{ viewQuestionTitle(params) }}`;
 
 describe('view-question-title', () => {
-
   it('should render the title of the question', (done) => {
     const context = {
       params: {

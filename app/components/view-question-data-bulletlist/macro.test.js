@@ -95,5 +95,4 @@ describe('view-question-data-bulletlist', () => {
         done();
       });
   });
-
 });

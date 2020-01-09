@@ -142,17 +142,17 @@ describe('view-native-desktop', () => {
         const $ = cheerio.load(res.text);
 
         const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const storageRequirementsDescriptionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
-        const storageRequirementsDescriptionInnerComponent = storageRequirementsDescriptionQuestionRow
+        const storageReqsDescriptionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
+        const storageReqsDescriptionInnerComponent = storageReqsDescriptionQuestionRow
           .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
 
         expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(storageRequirementsDescriptionQuestionRow.length).toEqual(1);
-        expect(storageRequirementsDescriptionQuestionRow
+        expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
+        expect(storageReqsDescriptionQuestionRow
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional storage requirements');
-        expect(storageRequirementsDescriptionInnerComponent.length).toEqual(1);
-        expect(storageRequirementsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 2.5GB of free space on each device the application is installed.');
+        expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
+        expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 2.5GB of free space on each device the application is installed.');
 
         done();
       });

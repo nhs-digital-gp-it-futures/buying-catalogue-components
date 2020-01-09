@@ -1,4 +1,4 @@
-{% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
+{% from 'components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 
 {% macro viewFeatures(params) %}
@@ -8,8 +8,9 @@
       <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
         {% if params.section.answers.listing and params.section.answers.listing.length > 0 %}
           <div class="nhsuk-grid-column-two-thirds">
-            {{ viewQuestionDataBulletlist({
-              questionData: params.section.answers.listing
+            {{ viewDataBulletlist({
+              dataTestIdIdentifier: 'view-question-data-bulletlist',
+              data: params.section.answers.listing
             }) }}
           </div>
         {% endif %}

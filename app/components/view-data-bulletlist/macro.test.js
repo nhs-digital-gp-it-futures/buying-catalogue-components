@@ -2,14 +2,15 @@ import request from 'supertest';
 import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
-                        {{ viewQuestionDataBulletlist(params) }}`;
+const macroWrapper = `{% from './components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
+                        {{ viewDataBulletlist(params) }}`;
 
-describe('view-question-data-bulletlist', () => {
-  it('should render the data of the question as a list when provided', (done) => {
+describe('view-data-bulletlist', () => {
+  it('should render the data as a list when provided', (done) => {
     const context = {
       params: {
-        questionData: [
+        dataTestIdIdentifier: 'some-data-identifier',
+        data: [
           'Some first data',
           'Some second data',
           'Some third data',
@@ -22,8 +23,8 @@ describe('view-question-data-bulletlist', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="view-question-data-bulletlist"] ul').length).toEqual(1);
-        expect($('[data-test-id="view-question-data-bulletlist"] li').length).toEqual(3);
+        expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
+        expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
 
         done();
       });
@@ -38,7 +39,7 @@ describe('view-question-data-bulletlist', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('[data-test-id="view-question-data-bulletlist"]').length).toEqual(0);
+        expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
 
         done();
       });
@@ -47,7 +48,8 @@ describe('view-question-data-bulletlist', () => {
   it('should not render empty strings when provided', (done) => {
     const context = {
       params: {
-        questionData: [
+        dataTestIdIdentifier: 'some-data-identifier',
+        data: [
           'Some first data',
           '',
           'Some second data',
@@ -63,8 +65,8 @@ describe('view-question-data-bulletlist', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="view-question-data-bulletlist"] ul').length).toEqual(1);
-        expect($('[data-test-id="view-question-data-bulletlist"] li').length).toEqual(3);
+        expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
+        expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
 
         done();
       });
@@ -73,7 +75,8 @@ describe('view-question-data-bulletlist', () => {
   it('should not render strings that contain only spaces when provided', (done) => {
     const context = {
       params: {
-        questionData: [
+        dataTestIdIdentifier: 'some-data-identifier',
+        data: [
           'Some first data',
           '   ',
           'Some second data',
@@ -89,11 +92,31 @@ describe('view-question-data-bulletlist', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="view-question-data-bulletlist"] ul').length).toEqual(1);
-        expect($('[data-test-id="view-question-data-bulletlist"] li').length).toEqual(3);
+        expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
+        expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
 
         done();
       });
   });
 
+  it('should add classes provided within the params', (done) => {
+    const context = {
+      params: {
+        dataTestIdIdentifier: 'some-data-identifier',
+        data: [],
+        classes: 'new-class another-class',
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
+        expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
+
+        done();
+      });
+  });
 });

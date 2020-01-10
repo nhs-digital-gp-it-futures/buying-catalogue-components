@@ -1,6 +1,6 @@
-{% from 'components/view-question-title/macro.njk' import viewQuestionTitle %}
-{% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
-{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
+{% from 'components/view-data-title/macro.njk' import viewDataTitle %}
+{% from 'components/view-data-link/macro.njk' import viewDataLink %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 
 {% macro viewSolutionDescription(params) %}
@@ -11,34 +11,35 @@
         <div class="nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds">
           {% if params.section.answers.summary %}
             <div data-test-id="view-section-question-summary">
-                {{ viewQuestionTitle({
-                  questionId: 'summary', 
-                  questionTitle: 'Summary'
+                {{ viewDataTitle({
+                  dataTestIdIdentifier: 'view-question-data-title',
+                  title: 'Summary'
                 }) }}
-                {{ viewQuestionDataText({
-                  questionId: 'summary', 
-                  questionData: params.section.answers.summary
+                {{ viewDataText({
+                  dataTestIdIdentifier: 'view-question-data-text-summary',
+                  data: params.section.answers.summary
                 }) }}
             </div>
           {% endif %}
 
           {% if params.section.answers.description %}
             <div data-test-id="view-section-question-description" class="nhsuk-u-margin-top-4">
-                {{ viewQuestionTitle({
-                  questionId: 'description', 
-                  questionTitle: 'About the solution'
+                {{ viewDataTitle({
+                  dataTestIdIdentifier: 'view-question-data-title',
+                  title: 'About the solution'
                 }) }}
-                {{ viewQuestionDataText({
-                  questionId: 'description', 
-                  questionData: params.section.answers.description
+                {{ viewDataText({
+                  dataTestIdIdentifier: 'view-question-data-text-description',
+                  data: params.section.answers.description
                 }) }}
             </div>
           {% endif %}
 
           {% if params.section.answers.link %}
             <div data-test-id="view-section-question-link" class="nhsuk-u-margin-top-4">
-              {{ viewQuestionDataLink({
-                questionData: params.section.answers.link
+              {{ viewDataLink({
+                dataTestIdIdentifier: 'view-question-data-link',
+                data: params.section.answers.link
               }) }}
             </div>
           {% endif %}

@@ -1,9 +1,0 @@
-{% macro viewQuestionDataLink(params) %}
-  {% if params.questionData %}
-    <div data-test-id="view-question-data-link" class="bc-c-data-link {{ params.classes }}">
-      <a href="{{ params.questionData }}" target="_blank">
-        {{ params.questionData }}
-      </a>
-    </div>
-  {% endif %}
-{% endmacro %}

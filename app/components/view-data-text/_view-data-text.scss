@@ -1,7 +1,7 @@
 .bc-c-data-text {
   @include nhsuk-font(19);
-  white-space: pre-line;
-  margin-top: -(nhsuk-spacing(2));
   display: block;
   margin-bottom: nhsuk-spacing(1);
+  margin-top: -(nhsuk-spacing(2));
+  white-space: pre-line;
 }

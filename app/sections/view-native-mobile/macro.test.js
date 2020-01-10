@@ -165,7 +165,7 @@ describe('view-native-mobile', () => {
           sections: {
             'native-mobile-memory-and-storage': {
               answers: {
-                'storage-requirements-description': 'You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.'
+                'storage-requirements-description': 'You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.',
               },
             },
           },
@@ -180,17 +180,17 @@ describe('view-native-mobile', () => {
         const $ = cheerio.load(res.text);
 
         const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-        const storageRequirementsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
-        const storageRequirementsDescriptionInnerComponent = storageRequirementsDescriptionQuestionRow
+        const storageReqsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
+        const storageReqsDescriptionInnerComponent = storageReqsDescriptionQuestionRow
           .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
 
         expect(nativeMobileSectionTable.length).toEqual(1);
-        expect(storageRequirementsDescriptionQuestionRow.length).toEqual(1);
-        expect(storageRequirementsDescriptionQuestionRow
+        expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
+        expect(storageReqsDescriptionQuestionRow
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional storage requirements');
-        expect(storageRequirementsDescriptionInnerComponent.length).toEqual(1);
-        expect(storageRequirementsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.');
+        expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
+        expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.');
 
         done();
       });
@@ -294,17 +294,17 @@ describe('view-native-mobile', () => {
         const $ = cheerio.load(res.text);
 
         const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-        const connectionRequirementsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-connection-requirements-description"]');
-        const connectionRequirementsDescriptionInnerComponent = connectionRequirementsDescriptionQuestionRow
+        const connectionReqsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-connection-requirements-description"]');
+        const connectionReqsDescriptionInnerComponent = connectionReqsDescriptionQuestionRow
           .find('div[data-test-id="view-section-table-row-component"]')
           .find('[data-test-id="view-question-data-text-connection-requirements-description"]');
 
         expect(nativeMobileSectionTable.length).toEqual(1);
-        expect(connectionRequirementsDescriptionQuestionRow.length).toEqual(1);
-        expect(connectionRequirementsDescriptionQuestionRow
+        expect(connectionReqsDescriptionQuestionRow.length).toEqual(1);
+        expect(connectionReqsDescriptionQuestionRow
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information about connection types');
-        expect(connectionRequirementsDescriptionInnerComponent.length).toEqual(1);
-        expect(connectionRequirementsDescriptionInnerComponent.text().trim()).toEqual('Average data usage will vary depending on application activity.');
+        expect(connectionReqsDescriptionInnerComponent.length).toEqual(1);
+        expect(connectionReqsDescriptionInnerComponent.text().trim()).toEqual('Average data usage will vary depending on application activity.');
 
         done();
       });

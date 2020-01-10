@@ -10,8 +10,8 @@
       {% from 'components/view-expandable-section/macro.njk' import viewExpandableSection %}
 
       {{ viewExpandableSection({
-          sectionId: 'some-section-id',
-          sectionTitle: 'Some section title',
+          dataTestIdIdentifier: 'view-section-some-section-id',
+          title: 'Some section title',
           innerComponent: '&ltdiv&gt;Some inner component&lt/div&gt;'
       }) }}
     {% endverbatim %}
@@ -19,8 +19,8 @@
 
   <h3>Rendered component</h3>
   {{ viewExpandableSection({
-      sectionId: 'some-section-id',
-      sectionTitle: 'Some section title',
+      dataTestIdIdentifier: 'view-section-some-section-id',
+      title: 'Some section title',
       innerComponent: '<div>Some inner component</div>'
   }) }}
 {% endblock %}

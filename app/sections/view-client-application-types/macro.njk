@@ -21,7 +21,7 @@
           <div class="nhsuk-u-padding-left-3">
             {% if params.section.sections['browser-based'] %}
               {{ viewExpandableSection({
-                dataTestIdIdentifier: 'view-section-browser-based',
+                dataTestId: 'view-section-browser-based',
                 title: 'Browser based application',
                 innerComponent: viewBrowserBased({
                   section: params.section.sections['browser-based']
@@ -31,7 +31,7 @@
 
             {% if params.section.sections['native-mobile'] %}
               {{ viewExpandableSection({
-                dataTestIdIdentifier: 'view-section-native-mobile',
+                dataTestId: 'view-section-native-mobile',
                 title: 'Native mobile or tablet application',
                 innerComponent: viewNativeMobile({
                   section: params.section.sections['native-mobile']
@@ -41,7 +41,7 @@
 
             {% if params.section.sections['native-desktop'] %}
               {{ viewExpandableSection({
-                dataTestIdIdentifier: 'view-section-native-desktop',
+                dataTestId: 'view-section-native-desktop',
                 title: 'Native desktop application',
                 innerComponent: viewNativeDesktop({
                   section: params.section.sections['native-desktop']

@@ -10,7 +10,7 @@
       {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 
       {{ viewSectionHeading({
-        dataTestIdIdentifier: 'some-test-identifier',
+        dataTestId: 'some-test-identifier',
         text: 'Example section heading'
       }) }}
     {% endverbatim %}
@@ -18,7 +18,7 @@
 
   <h3>Rendered component</h3>
   {{ viewSectionHeading({
-    dataTestIdIdentifier: 'some-test-identifier',
+    dataTestId: 'some-test-identifier',
     text: 'Example section heading'
   }) }}
 {% endblock %}

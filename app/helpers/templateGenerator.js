@@ -17,26 +17,29 @@ const generateTemplate = ({
   type,
 }) => {
   const paramsStringCode = Object.entries(params).reduce((acc, [key, value], i) => {
+    let modifiedValue;
     if (value.includes('<') || value.includes('>')) {
-      value = value.replace(/</g, '&lt').replace(/>/g, '&gt;');
-    }
+      modifiedValue = value.replace(/</g, '&lt').replace(/>/g, '&gt;');
+    } else modifiedValue = value;
     const keyValueString = (i !== 0)
-      ? (`,\n        ${key}: ${JSON.stringify(value)}`)
-      : (`        ${key}: ${JSON.stringify(value)}`);
+      ? (`,\n        ${key}: ${JSON.stringify(modifiedValue)}`)
+      : (`        ${key}: ${JSON.stringify(modifiedValue)}`);
     acc[0] += keyValueString;
     return acc;
   }, ['{\n', '\n      }']).join('');
 
   const paramsString = Object.entries(params).reduce((acc, [key, value], i) => {
+    let modifiedValue;
     if (value.includes('&lt') || value.includes('&gt')) {
-      value = value.replace(/&lt/g, '<').replace(/&gt;/g, '>');
-    }
+      modifiedValue = value.replace(/&lt/g, '<').replace(/&gt;/g, '>');
+    } else modifiedValue = value;
     const keyValueString = (i !== 0)
-      ? `, ${key}: ${JSON.stringify(value)}`
-      : `${key}: ${JSON.stringify(value)}`;
+      ? `, ${key}: ${JSON.stringify(modifiedValue)}`
+      : `${key}: ${JSON.stringify(modifiedValue)}`;
     acc[0] += keyValueString;
     return acc;
   }, ['{', '}']).join('');
+
   const renderedComponentCode = `{{ ${componentName}(${paramsStringCode}) }}`;
   const renderedComponent = `{{ ${componentName}(${paramsString}) }}`;
 

@@ -9,7 +9,7 @@ describe('tag', () => {
   it('should render the tag with the correct data-test-id', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'qa-identifier',
+        dataTestId: 'qa-identifier',
       },
     };
     const dummyApp = createTestHarness(macroWrapper, context);
@@ -25,7 +25,7 @@ describe('tag', () => {
   it('should render the tag with the correct text', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'qa-identifier',
+        dataTestId: 'qa-identifier',
         text: 'some tag text',
       },
     };
@@ -42,7 +42,7 @@ describe('tag', () => {
   it('should render the tag with the correct classes', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'qa-identifier',
+        dataTestId: 'qa-identifier',
         text: 'some tag text',
         classes: 'extra-class',
       },

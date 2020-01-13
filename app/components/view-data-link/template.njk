@@ -12,7 +12,7 @@
       {% from 'components/view-data-link/macro.njk' import viewDataLink %}
 
       {{ viewDataLink({
-        dataTestIdIdentifier: 'some-test-identifier',
+        dataTestId: 'some-test-identifier',
         data: 'http://www.somelink.com',
         classes: 'another-class'
       }) }}
@@ -21,7 +21,7 @@
 
   <h3>Rendered component</h3>
   {{ viewDataLink({
-    dataTestIdIdentifier: 'some-test-identifier',
+    dataTestId: 'some-test-identifier',
     data: 'http://www.somelink.com',
     classes: 'another-class'
   }) }}

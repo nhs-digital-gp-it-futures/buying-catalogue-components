@@ -10,7 +10,7 @@
       {% from 'components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
 
       {{ viewDataBulletlist({
-        dataTestIdIdentifier: 'some-test-identifier',
+        dataTestId: 'some-test-identifier',
         data: ["first data", "second data", "third data"],
         classes: "another-class"
       }) }}
@@ -19,7 +19,7 @@
 
   <h3>Rendered component</h3>
   {{ viewDataBulletlist({
-    dataTestIdIdentifier: 'some-test-identifier',
+    dataTestId: 'some-test-identifier',
     data: ["first data", "second data", "third data"],
     classes: "another-class"
   }) }}

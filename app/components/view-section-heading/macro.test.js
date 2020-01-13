@@ -24,7 +24,7 @@ describe('view-section-heading', () => {
   it('should render the view-section-heading with the correct text', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         text: 'Some section heading text',
       },
     };
@@ -43,7 +43,7 @@ describe('view-section-heading', () => {
   it('should add classes provided within the params', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         text: 'Some section heading text',
         classes: 'new-class another-class',
       },

@@ -9,7 +9,7 @@ describe('view-data-text', () => {
   it('should render the data when provided', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-test-identifier',
+        dataTestId: 'some-test-identifier',
         data: 'Some question data',
       },
     };
@@ -29,7 +29,7 @@ describe('view-data-text', () => {
   it('should not render the data when not provided', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-test-identifier',
+        dataTestId: 'some-test-identifier',
       },
     };
 

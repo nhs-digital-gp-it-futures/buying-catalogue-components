@@ -9,7 +9,7 @@ describe('view-expandable-section', () => {
   it('should render title of the expandable section', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         title: 'Some section title',
       },
     };
@@ -29,7 +29,7 @@ describe('view-expandable-section', () => {
   it('should render innerComponent of the expandable section', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         title: 'Some section title',
         innerComponent: '<p>Some inner component</p>',
       },
@@ -50,7 +50,7 @@ describe('view-expandable-section', () => {
   it('should add classes provided within the params', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         title: 'Some title',
         classes: 'new-class another-class',
       },

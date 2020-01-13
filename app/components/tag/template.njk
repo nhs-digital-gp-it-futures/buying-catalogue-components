@@ -10,7 +10,7 @@
       {% from 'components/tag/macro.njk' import tag %}
 
       {{ tag({
-        dataTestIdIdentifier: 'example',
+        dataTestId: 'example',
         text: 'Example Tag',
         classes: 'example-class'
       }) }}
@@ -19,7 +19,7 @@
 
   <h3>Rendered component</h3>
   {{ tag({
-    dataTestIdIdentifier: 'example',
+    dataTestId: 'example',
     text: 'Example Tag',
     classes: 'example-class'
   }) }}

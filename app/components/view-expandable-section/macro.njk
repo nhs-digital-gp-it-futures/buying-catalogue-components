@@ -1,7 +1,7 @@
 {% from 'components/details/macro.njk' import details %}
 
 {% macro viewExpandableSection(params) %}
-  <div data-test-id="{{ params.dataTestIdIdentifier }}" class="{{ params.classes }}">
+  <div data-test-id="{{ params.dataTestId }}" class="{{ params.classes }}">
     {{ details({
       "text": params.title,
       "HTML": params.innerComponent

@@ -10,7 +10,7 @@
       {% from 'components/view-data-text/macro.njk' import viewDataText %}
 
       {{ viewDataText({
-          dataTestIdIdentifier: 'some-test-identifier',
+          dataTestId: 'some-test-identifier',
           data: 'Some data',
           classes: 'another-class'
         })
@@ -20,7 +20,7 @@
 
   <h3>Rendered component</h3>
   {{ viewDataText({
-    dataTestIdIdentifier: 'some-test-identifier',
+    dataTestId: 'some-test-identifier',
     data: 'Some data',
     classes: 'another-class'
   }) }}

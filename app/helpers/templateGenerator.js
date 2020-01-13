@@ -1,13 +1,19 @@
 const fs = require('fs');
 
 const getInputFields = (params) => {
-  const paramsInputString = Object.keys(params).map(param => `
-    <div class="nhsuk-u-inline-block nhsuk-u-padding-4 nhsuk-u-padding-bottom-0">
-      <label for="param" class="nhsuk-grid-column-one-quarter">${param}:</label>
-      <input type="text" name="${param}" id="${param}" value="${params[param]}" class="nhsuk-grid-column-three-quarters nhsuk-u-font-size-16" style="line-height: 2em;"/>
-    </div>
-  `).join('');
-  return `${paramsInputString}`;
+  const paramsInputString = Object.entries(params).map(([key, value]) => {
+    let modifiedValue;
+    if (value.includes('&lt') || value.includes('&gt')) {
+      modifiedValue = value.replace(/&lt/g, '<').replace(/&gt;/g, '>');
+    } else modifiedValue = value;
+    return `
+      <div class="nhsuk-u-inline-block nhsuk-u-padding-4 nhsuk-u-padding-bottom-0">
+        <label for="param" class="nhsuk-grid-column-one-quarter">${key}:</label>
+        <input type="text" name="${key}" id="${key}" value="${modifiedValue}" class="nhsuk-grid-column-three-quarters nhsuk-u-font-size-16" style="line-height: 2em;"/>
+      </div>
+    `;
+  }).join('');
+  return paramsInputString;
 };
 
 const generateTemplate = ({

@@ -29,6 +29,26 @@ describe('view-section-table-row', () => {
       });
   });
 
+  it('should not render title of the row when not provided', (done) => {
+    const context = {
+      params: {
+        questionId: 'some-question-id',
+        innerComponent: '<p>Some inner component</p>',
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        const sectionTableRow = $('div[data-test-id="view-section-table-row-some-question-id"]');
+
+        expect(sectionTableRow.find('div[data-test-id="view-section-table-row-title"]').length).toEqual(0);
+        done();
+      });
+  });
+
   it('should render innerComponent of the value of the row as an inner component', (done) => {
     const context = {
       params: {

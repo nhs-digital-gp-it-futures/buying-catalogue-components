@@ -12,9 +12,11 @@
     {% if layout == 'horizontal' %}
       <div {{ commonAttributes | safe }}>
         <div data-test-id="view-section-table-row-horizontal" class="nhsuk-grid-row">
-          <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-grid-column-one-half">
-            {{ params.questionTitle }}
-          </div>
+          {% if params.questionTitle %}
+            <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-grid-column-one-half">
+              {{ params.questionTitle }}
+            </div>
+          {% endif %}
           <div data-test-id="view-section-table-row-component" class="nhsuk-grid-column-one-half">
             {{- params.innerComponent | safe | trim }}
           </div>
@@ -23,9 +25,11 @@
     {% elif layout == 'vertical' %}
       <div {{ commonAttributes | safe }}>
         <div data-test-id="view-section-table-row-vertical">
-          <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-u-padding-bottom-2">
-            {{ params.questionTitle }}
-          </div>
+          {% if params.questionTitle %}
+            <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-u-padding-bottom-2">
+              {{ params.questionTitle }}
+            </div>
+          {% endif %}
           <div class="nhsuk-grid-row">
             <div data-test-id="view-section-table-row-component" class="nhsuk-grid-column-two-thirds">
               {{- params.innerComponent | safe | trim }}

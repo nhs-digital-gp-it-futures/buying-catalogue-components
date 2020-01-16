@@ -1,15 +1,15 @@
 {% extends 'views/includes/layout.njk' %}
-{% from 'sections/view-hosting-type-private-cloud/macro.njk' import viewHostingTypePrivateCloud %}
+{% from 'sections/view-hosting-type-hybrid/macro.njk' import viewHostingTypeHybrid %}
 
 {% block body %}
-  <h1>View Hosting Type Private Cloud</h1>
+  <h1>View Hosting Type Hybrid</h1>
 
   <h3>To use the component</h3>
   <pre><code>
     {% verbatim %}
-      {% from './sections/view-hosting-type-private-cloud/macro.njk' import viewHostingTypePrivateCloud %}
+      {% from './sections/view-hosting-type-hybrid/macro.njk' import viewHostingTypeHybrid %}
 
-        {{ viewHostingTypePrivateCloud({
+        {{ viewHostingTypeHybrid({
           section: {
             answers: {
               'summary': 'Our solution uses a combination of private and public cloud suppliers. We store all of our patient confidential data in a data center that we own and manage. We leverage the power of [Public cloud provider] to run our analytical suite and only transfer anonymised or pseudonymised to that provider to support this.',
@@ -23,7 +23,7 @@
   </code></pre>
 
   <h3>Rendered component</h3>
-  {{ viewHostingTypePrivateCloud({
+  {{ viewHostingTypeHybrid({
     section: {
       answers: {
         'summary': 'Our solution uses a combination of private and public cloud suppliers. We store all of our patient confidential data in a data center that we own and manage. We leverage the power of [Public cloud provider] to run our analytical suite and only transfer anonymised or pseudonymised to that provider to support this.',

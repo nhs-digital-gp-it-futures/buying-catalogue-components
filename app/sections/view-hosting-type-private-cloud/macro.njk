@@ -2,8 +2,8 @@
 {% from 'components/view-data-text/macro.njk' import viewDataText %}
 {% from 'components/view-data-link/macro.njk' import viewDataLink %}
 
-{% macro viewPrivateCloud(params) %}
-  <dl data-test-id="view-section-table-private-cloud" class="nhsuk-summary-list">
+{% macro viewHostingTypePrivateCloud(params) %}
+  <dl data-test-id="view-section-table-hosting-type-private-cloud" class="nhsuk-summary-list">
     {{ viewSectionTableRow({
         questionId: 'summary',
         questionTitle: 'Summary',

@@ -67,6 +67,29 @@ describe('view-public-cloud', () => {
       });
   });
 
+  it('should not render the summary row if summary and link not provided', (done) => {
+    const context = {
+      params: {
+        section: {
+          answers: {},
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const summaryQuestionRow = $('[data-test-id="view-section-table-row-summary"]');
+
+        expect(summaryQuestionRow.length).toEqual(0);
+
+        done();
+      });
+  });
+
   it('should render the requires HSCN answer', (done) => {
     const context = {
       params: {
@@ -96,7 +119,7 @@ describe('view-public-cloud', () => {
       });
   });
 
-  it('should not render the requires HSCN answer if not given', (done) => {
+  it('should not render the requires HSCN answer if not provided', (done) => {
     const context = {
       params: {
         section: {

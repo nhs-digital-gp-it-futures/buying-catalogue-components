@@ -67,6 +67,29 @@ describe('view-private-cloud', () => {
       });
   });
 
+  it('should not render the summary row if summary and link not provided', (done) => {
+    const context = {
+      params: {
+        section: {
+          answers: {},
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const summaryQuestionRow = $('[data-test-id="view-section-table-row-summary"]');
+
+        expect(summaryQuestionRow.length).toEqual(0);
+
+        done();
+      });
+  });
+
   it('should render the hosting model answer', (done) => {
     const context = {
       params: {
@@ -94,6 +117,29 @@ describe('view-private-cloud', () => {
           .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Data center hosting model');
         expect(hostingModelInnerComponent.length).toEqual(1);
         expect(hostingModelInnerComponent.text().trim()).toEqual('Our managed data center is hosted in two separate geographical locations, they both comply to the highest standards to ensure that even if one of our data centers suffers an outage, we can ensure that your daily activities are not interrupted. We also create a back up of all of our data every evening and store it separately, so in the result of any catastrophic failure, we can ensure that patient confidential information is kept secure.');
+
+        done();
+      });
+  });
+
+  it('should not render the hosting model answer if not provided', (done) => {
+    const context = {
+      params: {
+        section: {
+          answers: {},
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const hostingModelQuestionRow = $('[data-test-id="view-section-table-row-hosting-model"]');
+
+        expect(hostingModelQuestionRow.length).toEqual(0);
 
         done();
       });
@@ -128,7 +174,7 @@ describe('view-private-cloud', () => {
       });
   });
 
-  it('should not render the requires HSCN answer if not given', (done) => {
+  it('should not render the requires HSCN answer if not provided', (done) => {
     const context = {
       params: {
         section: {

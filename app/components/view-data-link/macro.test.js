@@ -10,7 +10,7 @@ describe('view-data-link', () => {
   it('should render the link when provided', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-test-identifier',
+        dataTestId: 'some-test-identifier',
         data: 'www.somelink.com',
       },
     };
@@ -31,7 +31,7 @@ describe('view-data-link', () => {
   it('should not render the data when not provided', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-test-identifier',
+        dataTestId: 'some-test-identifier',
       },
     };
 
@@ -50,7 +50,7 @@ describe('view-data-link', () => {
   it('should add classes provided within the params', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         data: 'Some data',
         classes: 'new-class another-class',
       },

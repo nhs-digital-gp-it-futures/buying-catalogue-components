@@ -1,0 +1,34 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-public-cloud/macro.njk' import viewPublicCloud %}
+
+{% block body %}
+  <h1>View Public cloud</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from './sections/view-public-cloud/macro.njk' import viewPublicCloud %}
+
+      {{ viewPublicCloud({
+        section: {
+          answers: {
+            'summary': 'Our solution uses a combination of private and public cloud suppliers. We store all of our patient confidential data in a data center that we own and manage. We leverage the power of [Public cloud provider] to run our analytical suite and only transfer anonymised or pseudonymised to that provider to support this.',
+            'link': 'www.healthcare-pro.co.uk/healthcare-system-1/hybrid-hosting',
+            'requires-hscn': 'This Solution requires a HSCN/N3 connection'
+          }
+        }
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewPublicCloud({
+    section: {
+      answers: {
+        'summary': 'Our solution uses a combination of private and public cloud suppliers. We store all of our patient confidential data in a data center that we own and manage. We leverage the power of [Public cloud provider] to run our analytical suite and only transfer anonymised or pseudonymised to that provider to support this.',
+        'link': 'www.healthcare-pro.co.uk/healthcare-system-1/hybrid-hosting',
+        'requires-hscn': 'This Solution requires a HSCN/N3 connection'
+      }
+    }
+  }) }}
+{% endblock %}

@@ -1,6 +1,6 @@
 {
   "name": "buying-catalogue-components",
-  "version": "1.0.58",
+  "version": "1.0.63",
   "description": "Nodejs express app for Buying Catalogue components",
   "main": "server.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "build:js": "npm run webpack",
     "clean": "touch public/tmp.txt && rm -rf public/*",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint '**/*.js' --ignore-pattern node_modules/",
+    "lint:js": "eslint \"**/*.js\" --ignore-pattern node_modules/",
     "lint:css": "sass-lint 'app/**/*.scss' -v -q",
     "nuke": "npm run clean && rm -rf node_modules/",
     "start": "babel-node server",

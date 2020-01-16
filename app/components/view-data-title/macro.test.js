@@ -9,7 +9,7 @@ describe('view-data-title', () => {
   it('should render the title', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-test-identifier',
+        dataTestId: 'some-test-identifier',
         title: 'Some question title',
       },
     };

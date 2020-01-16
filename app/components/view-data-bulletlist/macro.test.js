@@ -9,7 +9,7 @@ describe('view-data-bulletlist', () => {
   it('should render the data as a list when provided', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         data: [
           'Some first data',
           'Some second data',
@@ -48,7 +48,7 @@ describe('view-data-bulletlist', () => {
   it('should not render empty strings when provided', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         data: [
           'Some first data',
           '',
@@ -75,7 +75,7 @@ describe('view-data-bulletlist', () => {
   it('should not render strings that contain only spaces when provided', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         data: [
           'Some first data',
           '   ',
@@ -102,7 +102,7 @@ describe('view-data-bulletlist', () => {
   it('should add classes provided within the params', (done) => {
     const context = {
       params: {
-        dataTestIdIdentifier: 'some-data-identifier',
+        dataTestId: 'some-data-identifier',
         data: [],
         classes: 'new-class another-class',
       },

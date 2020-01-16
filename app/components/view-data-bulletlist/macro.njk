@@ -1,6 +1,6 @@
 {% macro viewDataBulletlist(params) %}
   {% if params.data %}
-    <div data-test-id="{{ params.dataTestIdIdentifier }}" class="bc-c-data-bulletlist {{ params.classes }}">
+    <div data-test-id="{{ params.dataTestId }}" class="bc-c-data-bulletlist {{ params.classes }}">
         <ul class="nhsuk-u-margin-bottom-0">
           {% for dataItem in params.data %}
             {% if dataItem.trim() %}

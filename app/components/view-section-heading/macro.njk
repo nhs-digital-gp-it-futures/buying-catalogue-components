@@ -1,5 +1,5 @@
 {% macro viewSectionHeading(params) %}
-  <div class="bc-c-title-block">
+  <div data-test-id="{{ params.dataTestId }}" class="bc-c-title-block {{ params.classes }}">
     <h3 class="nhsuk-u-margin-bottom-2">{{ params.text }}</h3>
   </div>
 {% endmacro %}

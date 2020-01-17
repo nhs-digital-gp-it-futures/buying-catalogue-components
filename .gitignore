@@ -64,4 +64,5 @@ jspm_packages/
 .DS_Store
 Thumbs.db
 
-app/template.njk
+# generated templates
+app/templates/

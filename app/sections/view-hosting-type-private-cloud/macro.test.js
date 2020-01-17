@@ -2,10 +2,10 @@ import request from 'supertest';
 import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './sections/view-private-cloud/macro.njk' import viewPrivateCloud %}
-                        {{ viewPrivateCloud(params) }}`;
+const macroWrapper = `{% from './sections/view-hosting-type-private-cloud/macro.njk' import viewHostingTypePrivateCloud %}
+                        {{ viewHostingTypePrivateCloud(params) }}`;
 
-describe('view-private-cloud', () => {
+describe('view-hosting-type-private-cloud', () => {
   it('should render the summary answer', (done) => {
     const context = {
       params: {

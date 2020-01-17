@@ -1,0 +1,31 @@
+{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view-data-link/macro.njk' import viewDataLink %}
+
+{% macro viewHostingTypePublicCloud(params) %}
+  <dl data-test-id="view-section-table-hosting-type-public-cloud" class="nhsuk-summary-list">
+    {{ viewSectionTableRow({
+        questionId: 'summary',
+        questionTitle: 'Summary',
+        layout: 'vertical',
+        innerComponent: viewDataText({
+          dataTestId: 'view-question-data-text-summary',
+          data: params.section.answers['summary']
+        }) + viewDataLink({
+          dataTestId: 'view-question-data-text-link',
+          data: params.section.answers['link']
+        })
+      })
+    }}
+    {{ viewSectionTableRow({
+        questionId: 'requires-hscn',
+        layout: 'vertical',
+        innerComponent: viewDataText({
+          dataTestId: 'view-question-data-text-requires-hscn',
+          data: params.section.answers['requires-hscn'],
+          classes: 'nhsuk-u-font-weight-bold'
+        })
+      })
+    }}
+  </dl>
+{% endmacro %}

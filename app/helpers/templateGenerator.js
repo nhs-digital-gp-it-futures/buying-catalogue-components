@@ -75,7 +75,7 @@ const generateTemplate = ({
 
   const renderedComponentCode = `{{ ${componentName}(${paramsStringCode}) }}`;
   const renderedComponentDisplay = `{{ ${componentName}(${paramsString}) }}`;
-  console.log(renderedComponentDisplay)
+
   const template = `
 {% extends 'views/includes/layout.njk' %}
 {% from 'components/back-link/macro.njk' import backLink %}

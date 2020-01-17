@@ -6,7 +6,7 @@
   "scripts": {
     "babel": "babel --presets es2015 app/scripts/main.js -o public/js/main.bundle.js",
     "build": "npm run build:js && npm run build:css",
-    "build:css": "node-sass --output-style compressed app/styles/main.scss public/css/main.min.css",
+    "build:css": "node-sass --output-style compressed app/styles/all.scss public/css/main.min.css",
     "build:js": "npm run webpack",
     "clean": "touch public/tmp.txt && rm -rf public/*",
     "lint": "npm run lint:js && npm run lint:css",

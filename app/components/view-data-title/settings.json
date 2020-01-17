@@ -1,0 +1,7 @@
+{
+  "componentName": "viewDataTitle",
+  "params": {
+    "title": "Title",
+    "classes": "another-class"
+  }
+}

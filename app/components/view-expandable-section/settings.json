@@ -1,0 +1,8 @@
+{
+  "componentName": "viewExpandableSection",
+  "params": {
+    "dataTestId": "view-section-some-section-id",
+    "title": "Some section title",
+    "innerComponent": "<div>Some inner component</div>"
+  }
+}

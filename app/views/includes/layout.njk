@@ -31,7 +31,7 @@
     <meta name="msapplication-square310x310logo" content="/nhsuk-frontend/assets/favicons/largetile-310x310.png">
   </head>
 
-  <body>
+  <body class="bcc-body">
     <a class="nhsuk-skip-link" href="#maincontent">Skip to main content</a>
 
     {% include 'views/includes/header.njk' %}
@@ -39,7 +39,7 @@
     {% block outerBody %}{% endblock %}
 
     <div class="nhsuk-width-container">
-      <main class="nhsuk-main-wrapper" id="maincontent">
+      <main class="nhsuk-main-wrapper nhsuk-u-clear" id="maincontent">
         {% block body %}{% endblock %}
       </main>
     </div>

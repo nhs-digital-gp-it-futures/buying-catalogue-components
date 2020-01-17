@@ -1,0 +1,8 @@
+{
+  "componentName": "viewDataBulletlist",
+  "params": {
+    "dataTestId": "some-test-identifier",
+    "data": ["first data", "second data", "third data"],
+    "classes": "another-class"
+  }
+}

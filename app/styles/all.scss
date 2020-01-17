@@ -1,4 +1,4 @@
-@import 'main.scss';
+@import 'main';
 
 // these classes are just used for displaying the templates in this app and are not bundled with the npm release
 
@@ -11,17 +11,17 @@
 }
 
 .bcc-c-try-button {
-  float:right;
   background-color:$color_nhsuk-green;
-  color:$color_nhsuk-white;
-  box-shadow:0 4px 0 #00401e;
-  padding:6px 8px;
-  box-sizing:border-box;
   border: 2px solid transparent;
   border-radius: 4px;
+  box-shadow: 0 4px 0 #00401e;
+  box-sizing: border-box;
+  color: $color_nhsuk-white;
+  float: right;
   font-weight: 600;
+  padding: 6px 8px;
 }
 
 .bcc-body {
-  height:100% !important;
+  height: 100% !important;
 }

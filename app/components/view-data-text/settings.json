@@ -1,0 +1,7 @@
+{
+  "componentName": "viewDataText",
+  "params": {
+    "data": "Some data",
+    "classes": "another-class"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "componentName": "viewSectionTableRow",
+  "params": {
+    "questionId": "some-question-id",
+    "questionTitle": "Some question title",
+    "layout": "vertical",
+    "innerComponent": "<div>Some inner component<div>"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "componentName": "viewDataLink",
+  "params": {
+    "data": "http://www.somelink.com",
+    "classes": "another-class"
+  }
+}

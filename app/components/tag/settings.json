@@ -1,0 +1,8 @@
+{
+  "componentName": "tag",
+  "params": {
+    "dataTestId": "example",
+    "text": "Example Tag",
+    "classes": "example-class"
+  }
+}

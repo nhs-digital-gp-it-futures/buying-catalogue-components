@@ -1,6 +1,7 @@
 @import 'main';
 
 // these classes are just used for displaying the templates in this app and are not bundled with the npm release
+$color_nhsuk-green--shadow: #00401e;
 
 .bcc-t-bg-white {
   background: $color_nhsuk-white;
@@ -11,10 +12,10 @@
 }
 
 .bcc-c-try-button {
-  background-color:$color_nhsuk-green;
+  background-color: $color_nhsuk-green;
   border: 2px solid transparent;
   border-radius: 4px;
-  box-shadow: 0 4px 0 #00401e;
+  box-shadow: 0 4px 0 $color_nhsuk-green--shadow;
   box-sizing: border-box;
   color: $color_nhsuk-white;
   float: right;

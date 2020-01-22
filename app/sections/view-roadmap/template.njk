@@ -1,0 +1,30 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-roadmap/macro.njk' import viewRoadmap %}
+
+{% block body %}
+  <h1>View Roadmap</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'sections/view-roadmap/macro.njk' import viewRoadmap %}
+
+      {{ viewRoadmap({
+        section: {
+          answers: {
+            summary: 'Some roadmap description data',
+          }
+        }
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewRoadmap({
+    section: {
+      answers: {
+        summary: 'Some roadmap description data'
+      }
+    }
+  }) }}
+{% endblock %}

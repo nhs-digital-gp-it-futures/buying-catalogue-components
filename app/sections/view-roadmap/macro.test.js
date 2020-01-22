@@ -55,7 +55,7 @@ describe('view-roadmap', () => {
 
         const roadmapGuidance = $('[data-test-id="view-roadmap-guidance"]');
         expect(roadmapGuidance.text().trim()).toEqual('We plan to deliver a task management function by Autumn 2019. We are also going to achieve the updated Document Management Standard ahead of schedule in August 2019.');
-
+        expect(roadmapGuidance.hasClass('nhsuk-u-font-weight-bold')).toEqual(true);
         done();
       });
   });

@@ -1,20 +1,18 @@
 {% extends 'views/includes/layout.njk' %}
-{% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+{% from 'sections/view-roadmap/macro.njk' import viewRoadmap %}
 
 {% block body %}
-  <h1>View Solution Description</h1>
+  <h1>View Roadmap</h1>
 
   <h3>To use the component</h3>
   <pre><code>
     {% verbatim %}
-      {% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+      {% from 'sections/view-roadmap/macro.njk' import viewRoadmap %}
 
-      {{ viewSolutionDescription({
+      {{ viewRoadmap({
         section: {
           answers: {
-            summary: 'Some summary data',
-            description: 'Some description data',
-            link: 'www.somelink.com'
+            description: 'Some roadmap description data',
           }
         }
       }) }}
@@ -22,12 +20,10 @@
   </code></pre>
 
   <h3>Rendered component</h3>
-  {{ viewSolutionDescription({
+  {{ viewRoadmap({
     section: {
       answers: {
-        summary: 'Some summary data',
-        description: 'Some description data',
-        link: 'www.somelink.com'
+        description: 'Some roadmap description data'
       }
     }
   }) }}

@@ -61,12 +61,12 @@ describe('view-roadmap', () => {
   });
 
   describe('when there are answers provided for the questions', () => {
-    it('should render the description data', (done) => {
+    it('should render the summary data', (done) => {
       const context = {
         params: {
           section: {
             answers: {
-              description: 'Some roadmap description data',
+              summary: 'Some roadmap summary data',
             },
           },
         },
@@ -78,10 +78,10 @@ describe('view-roadmap', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
+          const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
 
-          expect(descriptionQuestion.find('[data-test-id="view-question-title"]').length).toEqual(0);
-          expect(descriptionQuestion.find('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual('Some roadmap description data');
+          expect(summaryQuestion.find('[data-test-id="view-question-title"]').length).toEqual(0);
+          expect(summaryQuestion.find('[data-test-id="view-question-data-text-summary"]').text().trim()).toEqual('Some roadmap summary data');
 
           done();
         });
@@ -89,12 +89,12 @@ describe('view-roadmap', () => {
   });
 
   describe('when there are no answers provided for the questions', () => {
-    it('should not render the description data', (done) => {
+    it('should not render the summary data', (done) => {
       const context = {
         params: {
           section: {
             answers: {
-              description: '',
+              summary: '',
             },
           },
         },
@@ -106,9 +106,9 @@ describe('view-roadmap', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
+          const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
 
-          expect(descriptionQuestion.length).toEqual(0);
+          expect(summaryQuestion.length).toEqual(0);
 
           done();
         });

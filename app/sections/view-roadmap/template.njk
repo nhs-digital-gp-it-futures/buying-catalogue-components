@@ -1,0 +1,34 @@
+{% extends 'views/includes/layout.njk' %}
+{% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+
+{% block body %}
+  <h1>View Solution Description</h1>
+
+  <h3>To use the component</h3>
+  <pre><code>
+    {% verbatim %}
+      {% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+
+      {{ viewSolutionDescription({
+        section: {
+          answers: {
+            summary: 'Some summary data',
+            description: 'Some description data',
+            link: 'www.somelink.com'
+          }
+        }
+      }) }}
+    {% endverbatim %}
+  </code></pre>
+
+  <h3>Rendered component</h3>
+  {{ viewSolutionDescription({
+    section: {
+      answers: {
+        summary: 'Some summary data',
+        description: 'Some description data',
+        link: 'www.somelink.com'
+      }
+    }
+  }) }}
+{% endblock %}

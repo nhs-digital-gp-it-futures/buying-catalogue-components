@@ -1,0 +1,29 @@
+{% from 'components/view-data-title/macro.njk' import viewDataTitle %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+
+{% macro viewRoadmap(params) %}
+  {% if params.section %}
+    <div class="nhsuk-width-container" data-test-id="view-roadmap">
+      {{ viewSectionHeading({ text: 'Roadmap' }) }}
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
+        <div class="nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds">
+          {% if params.section.answers.description %}
+            <div data-test-id="view-section-question-description">
+                {{ viewDataText({
+                  dataTestId: 'view-question-data-text-description',
+                  data: params.section.answers.description
+                }) }}
+            </div>
+          {% endif %}
+
+          {{ viewDataText({
+              dataTestId: 'view-roadmap-guidance',
+              data: 'We plan to deliver a task management function by Autumn 2019. We are also going to achieve the updated Document Management Standard ahead of schedule in August 2019.'
+          }) }}
+        </div>
+      </div>
+
+    </div>
+  {% endif %}
+{% endmacro %}

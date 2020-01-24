@@ -9,7 +9,11 @@ describe('view-hosting-types', () => {
   it('should render the title of the section', (done) => {
     const context = {
       params: {
-        section: {},
+        section: {
+          sections: {
+            'hosting-type-public-cloud': {},
+          },
+        },
       },
     };
 
@@ -25,9 +29,15 @@ describe('view-hosting-types', () => {
       });
   });
 
-  it('should not render the hosting-types section when not provided', (done) => {
+  it('should not render the hosting-types section when none of the hosting sections are provided', (done) => {
     const context = {
-      params: {},
+      params: {
+        section: {
+          sections: {
+            'some-other-section': {},
+          },
+        },
+      },
     };
 
     const dummyApp = createTestHarness(macroWrapper, context);

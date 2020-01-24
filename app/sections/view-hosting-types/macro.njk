@@ -6,7 +6,8 @@
 {% from 'sections/view-hosting-type-on-premise/macro.njk' import viewHostingTypeOnPremise %}
 
 {% macro viewHostingTypes(params) %}
-  {% if params.section %}
+  {% if params.section.sections['hosting-type-public-cloud'] or params.section.sections['hosting-type-private-cloud'] 
+    or params.section.sections['hosting-type-hybrid'] or params.section.sections['hosting-type-on-premise'] %}
     <div class="nhsuk-width-container" data-test-id="view-hosting-types">
       {{ viewSectionHeading({ text: 'Hosting type' }) }}
       <div class="nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">

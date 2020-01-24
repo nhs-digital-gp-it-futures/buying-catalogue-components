@@ -5,8 +5,13 @@
 {% from 'sections/view-hosting-type-hybrid/macro.njk' import viewHostingTypeHybrid %}
 {% from 'sections/view-hosting-type-on-premise/macro.njk' import viewHostingTypeOnPremise %}
 
-{% macro viewHostingTypes(params) %}
-  {% if params.section %}
+{% macro viewHostingTypes(params) %} 
+  {% if params.section.sections['hosting-type-public-cloud'] or params.section.sections['hosting-type-private-cloud'] 
+    or params.section.sections['hosting-type-hybrid'] or params.section.sections['hosting-type-on-premise'] %}
+    {% set hasHostingTypeSections = true %}
+  {% endif %}
+
+  {% if hasHostingTypeSections %}
     <div class="nhsuk-width-container" data-test-id="view-hosting-types">
       {{ viewSectionHeading({ text: 'Hosting type' }) }}
       <div class="nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">

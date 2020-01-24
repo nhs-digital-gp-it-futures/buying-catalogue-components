@@ -6,10 +6,14 @@ const macroWrapper = `{% from './sections/view-hosting-types/macro.njk' import v
                         {{ viewHostingTypes(params) }}`;
 
 describe('view-hosting-types', () => {
-  it('should render the title of the section', (done) => {
+  it('should render the title of the section if the public cloud section is provided', (done) => {
     const context = {
       params: {
-        section: {},
+        section: {
+          sections: {
+            'hosting-type-public-cloud': {},
+          },
+        },
       },
     };
 
@@ -25,9 +29,84 @@ describe('view-hosting-types', () => {
       });
   });
 
-  it('should not render the hosting-types section when not provided', (done) => {
+  it('should render the title of the section if the private section is provided', (done) => {
     const context = {
-      params: {},
+      params: {
+        section: {
+          sections: {
+            'hosting-type-private-cloud': {},
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('h3').text().trim()).toEqual('Hosting type');
+
+        done();
+      });
+  });
+
+  it('should render the title of the section if the hybrid section is provided', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'hosting-type-hybrid': {},
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('h3').text().trim()).toEqual('Hosting type');
+
+        done();
+      });
+  });
+
+  it('should render the title of the section if the on-premise section is provided', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'hosting-type-on-premise': {},
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('h3').text().trim()).toEqual('Hosting type');
+
+        done();
+      });
+  });
+
+  it('should not render the hosting-types section when none of the hosting sections are provided', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'some-other-section': {},
+          },
+        },
+      },
     };
 
     const dummyApp = createTestHarness(macroWrapper, context);

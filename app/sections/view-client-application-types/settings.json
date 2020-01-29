@@ -1,0 +1,129 @@
+{
+  "componentName": "viewClientApplicationTypes",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "sections": {
+        "browser-based": {
+          "sections": {
+            "browser-browsers-supported": {
+              "answers": {
+                "supported-browsers": ["Chrome", "Firefox"],
+                "mobile-responsive": "Yes"
+              }
+            },
+            "browser-mobile-first": {
+              "answers": {
+                "mobile-first-design": "Yes"
+              }
+            },
+            "browser-plug-ins-or-extensions": {
+              "answers": {
+                "plugins-required": "Yes",
+                "plugins-detail": "Some plugin detail"
+              }
+            },
+            "browser-connectivity-and-resolution": {
+              "answers": {
+                "minimum-connection-speed": "1Mbps",
+                "minimum-desktop-resolution": "4:3 800 x 600"
+              }
+            },
+            "browser-hardware-requirements": {
+              "answers": {
+                "hardware-requirements-description": "Some hardware requirement description."
+              }
+            },
+            "browser-additional-information": {
+              "answers": {
+                "additional-information": "Some additional information."
+              }
+            }
+          }
+        },
+        "native-mobile": {
+          "sections": {
+            "native-mobile-operating-systems": {
+              "answers": {
+                "operating-systems": ["Apple IOS", "Android", "Other"],
+                "operating-systems-description": "Android 4.1 and above, IOS 10.6 and above."
+              }
+            },
+            "native-mobile-first": {
+              "answers": {
+                "mobile-first-design": "Yes"
+              }
+            },
+            "native-mobile-memory-and-storage": {
+              "answers": {
+                "minimum-memory-requirement": "4GB",
+                "storage-requirements-description": "You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage."
+              }
+            },
+            "native-mobile-connection-details": {
+              "answers": {
+                "minimum-connection-speed": "1Mbps",
+                "connection-types": ["GPRS","3G","4G","Wifi"],
+                "connection-requirements-description": "Average data usage will vary depending on application activity."
+              }
+            },
+            "native-mobile-third-party": {
+              "answers": {
+                "third-party-components": "The application supports and requires an authenticator on each device the application is installed. You will need a software-based authenticator that implements a two-step verification service.",
+                "device-capabilities": "In order to use our file hosting services, the application will require permission to access device storage."
+              }
+            },
+            "native-mobile-hardware-requirements": {
+              "answers": {
+                "hardware-requirements": "To fully utilise our print functionality within the application, you will need a WiFi or Bluetooth connected printer to connect and print documents straight from the device."
+              }
+            },
+            "native-mobile-additional-information": {
+              "answers": {
+                "additional-information": "It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements."
+              }
+            }
+          }
+        },
+        "native-desktop": {
+          "sections": {
+            "native-desktop-operating-systems": {
+              "answers": {
+                "operating-systems-description": "Windows 7 and above."
+              }
+            },
+            "native-desktop-connection-details": {
+              "answers": {
+                "minimum-connection-speed": "2Mbps"
+              }
+            },
+            "native-desktop-memory-and-storage": {
+              "answers": {
+                "minimum-memory-requirement": "4GB",
+                "storage-requirements-description": "You will need at least 2.5GB of free space on each device the application is installed.",
+                "minimum-cpu": "Intel Core i5-4460 (3.4GHz) Quad-core or Better.",
+                "recommended-resolution": "16:9 - 1920 x 1080"
+              }
+            },
+            "native-desktop-third-party": {
+              "answers": {
+                "third-party-components": "To fully utilise the letter template functionality, you will need a fully licensed version of Microsoft Word 2013 or higher.",
+                "device-capabilities": "In order to use our branded wireless Dictaphone, the device will require Bluetooth."
+              }
+            },
+            "native-desktop-hardware-requirements": {
+              "answers": {
+                "hardware-requirements": "To fully utilise the transcribing functionality within the application, you will need to purchase our branded wireless Dictaphone."
+              }
+            },
+            "native-desktop-additional-information": {
+              "answers": {
+                "additional-information": "It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

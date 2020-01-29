@@ -1,0 +1,12 @@
+{
+  "componentName": "viewAboutSupplier",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "answers": {
+        "description": "Some supplier description data",
+        "link": "www.somelink.com"
+      }
+    }
+  }
+}

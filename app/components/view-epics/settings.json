@@ -1,0 +1,49 @@
+{
+  "componentName": "viewEpics",
+  "params": {
+    "dataTestId": "some-test-identifier",
+    "data": {
+      "must": {
+        "met": [
+          {
+            "id": "C14E1",
+            "name": "access prescribable items"
+          },
+          {
+            "id": "C14E2",
+            "name": "manage Formularies"
+          },
+          {
+            "id": "C14E3",
+            "name": "manage sharedFormularies"
+          }
+        ],
+        "not-met": [
+          {
+            "id": "C14E13",
+            "name": "access Patient Record"
+          }
+        ]
+      },
+      "may": {
+        "met": [
+          {
+            "id": "C14E14",
+            "name": "view EPS Nominated Pharmacy changes"
+          }
+        ],
+        "not-met": [
+          {
+            "id": "C14E15",
+            "name": "Configure warnings for prescribable items"
+          },
+          {
+            "id": "C14E16",
+            "name": "medications are linked to diagnoses"
+          }
+        ]
+      }
+    },
+    "classes": "another-class"
+  }
+}

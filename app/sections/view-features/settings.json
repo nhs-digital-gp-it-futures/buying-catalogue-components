@@ -1,0 +1,11 @@
+{
+  "componentName": "viewFeatures",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "answers": {
+        "listing": ["Feature 1", "Feature 2", "Feature 3"]
+      }
+    }
+  }
+}

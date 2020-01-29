@@ -6,112 +6,116 @@ const macroWrapper = `{% from './components/view-epic-list/macro.njk' import vie
                         {{ viewEpicList(params) }}`;
 
 describe('view-epic-list', () => {
-  it('should render the met data when provided', (done) => {
-    const context = {
-      params: {
-        dataTestId: 'some-data-identifier',
-        data: [
-          {
-            id: 'C14E1',
-            name: 'access prescribable items',
-          },
-          {
-            id: 'C14E2',
-            name: 'manage Formularies',
-          },
-          {
-            id: 'C14E13',
-            name: 'access Patient Record',
-          },
-        ],
-        type: 'met',
-      },
-    };
+  describe('when type is met', () => {
+    it('should render the data when provided', (done) => {
+      const context = {
+        params: {
+          dataTestId: 'some-data-identifier',
+          data: [
+            {
+              id: 'C14E1',
+              name: 'access prescribable items',
+            },
+            {
+              id: 'C14E2',
+              name: 'manage Formularies',
+            },
+            {
+              id: 'C14E13',
+              name: 'access Patient Record',
+            },
+          ],
+          type: 'met',
+        },
+      };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
-        expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+          expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
+          expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
 
-        done();
-      });
+          done();
+        });
+    });
+
+    it('should not render the data when not provided', (done) => {
+      const context = {
+        params: {
+          dataTestId: 'some-data-identifier',
+          data: [],
+          type: 'met',
+        },
+      };
+
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+          expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
+
+          done();
+        });
+    });
   });
 
-  it('should not render the met data when not provided', (done) => {
-    const context = {
-      params: {
-        dataTestId: 'some-data-identifier',
-        data: [],
-        type: 'met',
-      },
-    };
+  describe('when type is not- met', () => {
+    it('should render the data when provided', (done) => {
+      const context = {
+        params: {
+          dataTestId: 'some-data-identifier',
+          data: [
+            {
+              id: 'C14E1',
+              name: 'access prescribable items',
+            },
+            {
+              id: 'C14E2',
+              name: 'manage Formularies',
+            },
+            {
+              id: 'C14E13',
+              name: 'access Patient Record',
+            },
+          ],
+          type: 'not-met',
+        },
+      };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+          expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
+          expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
 
-        done();
-      });
-  });
+          done();
+        });
+    });
 
-  it('should render the not-met data when provided', (done) => {
-    const context = {
-      params: {
-        dataTestId: 'some-data-identifier',
-        data: [
-          {
-            id: 'C14E1',
-            name: 'access prescribable items',
-          },
-          {
-            id: 'C14E2',
-            name: 'manage Formularies',
-          },
-          {
-            id: 'C14E13',
-            name: 'access Patient Record',
-          },
-        ],
-        type: 'not-met',
-      },
-    };
+    it('should not render the data when not provided', (done) => {
+      const context = {
+        params: {
+          dataTestId: 'some-data-identifier',
+          data: [],
+          type: 'not-met',
+        },
+      };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
-        expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+          expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
 
-        done();
-      });
-  });
-
-  it('should not render the not-met data when not provided', (done) => {
-    const context = {
-      params: {
-        dataTestId: 'some-data-identifier',
-        data: [],
-        type: 'not-met',
-      },
-    };
-
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
-
-        done();
-      });
+          done();
+        });
+    });
   });
 
   it('should not render the data when no type provided', (done) => {
@@ -123,15 +127,32 @@ describe('view-epic-list', () => {
             id: 'C14E1',
             name: 'access prescribable items',
           },
+        ],
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
+
+        done();
+      });
+  });
+
+  it('should not render the data when invalid type provided', (done) => {
+    const context = {
+      params: {
+        dataTestId: 'some-data-identifier',
+        data: [
           {
-            id: 'C14E2',
-            name: 'manage Formularies',
-          },
-          {
-            id: 'C14E13',
-            name: 'access Patient Record',
+            id: 'C14E1',
+            name: 'access prescribable items',
           },
         ],
+        type: 'invalid',
       },
     };
 
@@ -161,7 +182,7 @@ describe('view-epic-list', () => {
       });
   });
 
-  it('should render the epic id', (done) => {
+  it('should render the epic name and id', (done) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -182,7 +203,7 @@ describe('view-epic-list', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('[data-test-id="some-data-identifier"] ul li span').text().trim()).toEqual('(C14E1)');
+        expect($('[data-test-id="some-data-identifier"] ul li span').text().trim()).toEqual('access prescribable items (C14E1)');
 
         done();
       });

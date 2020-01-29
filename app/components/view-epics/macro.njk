@@ -10,7 +10,7 @@
           <div class="must-epics nhsuk-grid-column-one-half">
             <div>
               {{ tag({
-                dataTestId: "example",
+                dataTestId: "must-tag",
                 text: "Must Epics",
                 classes: "bc-c-tag-outline"
               }) }}
@@ -24,7 +24,7 @@
                 </div>
                 <div>
                   {{ viewEpicList({
-                    dataTestId: "some-test-identifier",
+                    dataTestId: "must-met-epic-list",
                     data: params.data.must['met'],
                     type: "met"
                   }) }}
@@ -40,7 +40,7 @@
                 </div>
                 <div>
                   {{ viewEpicList({
-                    dataTestId: "some-test-identifier",
+                    dataTestId: "must-not-met-epic-list",
                     data: params.data.must['not-met'],
                     type: "not-met"
                   }) }}
@@ -67,7 +67,7 @@
                 </div>
                 <div>
                   {{ viewEpicList({
-                    dataTestId: "some-test-identifier",
+                    dataTestId: "may-met-epic-list",
                     data: params.data.may['met'],
                     type: "met"
                   }) }}
@@ -83,7 +83,7 @@
                 </div>
                 <div>
                   {{ viewEpicList({
-                    dataTestId: "some-test-identifier",
+                    dataTestId: "may-not-met-epic-list",
                     data: params.data.may['not-met'],
                     type: "not-met"
                   }) }}

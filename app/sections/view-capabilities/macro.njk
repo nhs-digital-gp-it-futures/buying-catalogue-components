@@ -8,22 +8,22 @@
   {% if params %}
     <div class="nhsuk-width-container" data-test-id="view-capabilities">
       {{ viewSectionHeading({ text: 'Capabilities met' }) }}
-        {% for param in params %}
-          {% set title = param.name + ', ' + param.version %}
+        {% for capability in params.capabilities %}
+          {% set title = capability.name + ', ' + capability.version %}
           {{ viewExpandableSection({
             dataTestId: 'view-section-capabilities',
             title: title,
             innerComponent: viewDataText({
               dataTestId: 'view-question-data-text-description',
-              data: param.description
+              data: capability.description
             }) + viewDataLink({
               dataTestId: 'view-question-data-text-link',
-              data: param.link,
+              data: capability.link,
               text: 'View more details including acceptance criteria for all epics',
               classes: 'nhsuk-u-margin-bottom-5'
             }) + viewEpics({
               dataTestId: 'view-question-epic',
-              data: param.epic
+              data: capability.epic
             })
           }) }}
         {% endfor %}

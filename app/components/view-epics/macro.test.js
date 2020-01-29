@@ -6,8 +6,8 @@ const macroWrapper = `{% from './components/view-epics/macro.njk' import viewEpi
                         {{ viewEpics(params) }}`;
 
 describe('view-epics', () => {
-  describe('must', () => {
-    it('should render the must epics tag if data provided', (done) => {
+  describe('for must epics', () => {
+    it('should render the tag if data provided', (done) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -41,7 +41,7 @@ describe('view-epics', () => {
         });
     });
 
-    it('should render the must data if provided', (done) => {
+    it('should render the data if provided', (done) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -83,7 +83,7 @@ describe('view-epics', () => {
         });
     });
 
-    it('should not render the must data if not provided', (done) => {
+    it('should not render the data if not provided', (done) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -102,8 +102,8 @@ describe('view-epics', () => {
         });
     });
 
-    describe('met', () => {
-      it('should render the must met data if provided', (done) => {
+    describe('with met type', () => {
+      it('should render the data if provided', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -135,7 +135,7 @@ describe('view-epics', () => {
           });
       });
 
-      it('should not render the must met data if not provided', (done) => {
+      it('should not render the data if not provided', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -157,8 +157,8 @@ describe('view-epics', () => {
       });
     });
 
-    describe('not-met', () => {
-      it('should render the must not-met data if provided', (done) => {
+    describe('with not-met type', () => {
+      it('should render the data if provided', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -190,7 +190,7 @@ describe('view-epics', () => {
           });
       });
 
-      it('should not render the must not-met data if not provided', (done) => {
+      it('should not render the data if not provided', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -213,8 +213,42 @@ describe('view-epics', () => {
     });
   });
 
-  describe('may', () => {
-    it('should render the may data if provided', (done) => {
+  describe('for may epics', () => {
+    it('should render the tag if data provided', (done) => {
+      const context = {
+        params: {
+          dataTestId: 'some-data-identifier',
+          data: {
+            may: {
+              met: [
+                {
+                  id: 'C14E1',
+                  name: 'access prescribable items',
+                },
+              ],
+              'not-met': [
+                {
+                  id: 'C14E13',
+                  name: 'access Patient Record',
+                },
+              ],
+            },
+          },
+        },
+      };
+
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+          expect($('[data-test-id="some-data-identifier"] .may-epics .bc-c-tag').text().trim()).toEqual('May Epics');
+
+          done();
+        });
+    });
+
+    it('should render the data if provided', (done) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -256,7 +290,7 @@ describe('view-epics', () => {
         });
     });
 
-    it('should not render the may data if not provided', (done) => {
+    it('should not render the data if not provided', (done) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -275,42 +309,8 @@ describe('view-epics', () => {
         });
     });
 
-    describe('met', () => {
-      it('should render the may epics tag if data provided', (done) => {
-        const context = {
-          params: {
-            dataTestId: 'some-data-identifier',
-            data: {
-              may: {
-                met: [
-                  {
-                    id: 'C14E1',
-                    name: 'access prescribable items',
-                  },
-                ],
-                'not-met': [
-                  {
-                    id: 'C14E13',
-                    name: 'access Patient Record',
-                  },
-                ],
-              },
-            },
-          },
-        };
-
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .may-epics .bc-c-tag').text().trim()).toEqual('May Epics');
-
-            done();
-          });
-      });
-
-      it('should render the may met data if provided', (done) => {
+    describe('with met type', () => {
+      it('should render the data if provided', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -342,7 +342,7 @@ describe('view-epics', () => {
           });
       });
 
-      it('should not render the may met data if not provided', (done) => {
+      it('should not render the data if not provided', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -363,8 +363,8 @@ describe('view-epics', () => {
           });
       });
     });
-    describe('not-met', () => {
-      it('should render the may not-met data if provided', (done) => {
+    describe('with not-met type', () => {
+      it('should render the data if provided', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -396,7 +396,7 @@ describe('view-epics', () => {
           });
       });
 
-      it('should not render the may not-met data if not provided', (done) => {
+      it('should not render the data if not provided', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',

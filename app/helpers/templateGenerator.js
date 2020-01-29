@@ -58,31 +58,13 @@ const generateEditableJSON = ({
   return html;
 };
 
-const generateEditableCode = (params, isCode = false) => {
+const generateEditableCode = (params, isCode = false) => Object.keys(params).map((key, index) => generateEditableJSON({ key, value: params[key], isLast: index + 1 === Object.keys(params).length, isCode })).join('');
 
-  if (Array.isArray(params)) {
-    return `[${params.map((val, index) => generateEditableJSON({ key: index, value: val, isLast: index + 1 === Object.keys(params).length, showKey: false, isCode })).join('')}]`;
-  }
-  return `{${Object.keys(params).map((key, index) => generateEditableJSON({ key, value: params[key], isLast: index + 1 === Object.keys(params).length, isCode })).join('')}}`;
-};
-
-/**
- * Get the settings.json from the component/section directory.
- * @param name
- * @param type
- * @returns {any}
- */
 const getSettings = (name, type) => {
   const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');
   return JSON.parse(settingsString);
 };
 
-/**
- * Write template to directory.
- * @param template
- * @param name
- * @param type
- */
 const writeTemplate = (template, name, type) => {
   const dir = `app/templates/${type}s`;
   if (!fs.existsSync(dir)) fs.mkdirSync(dir);
@@ -105,8 +87,8 @@ const generateTemplate = ({
 
   const importCode = `{% <span class="code-primary">from</span> <span class="code-secondary">'${type}s/${name}/macro.njk'</span> <span class="code-primary">import</span> ${componentName} %}`;
 
-  const renderedComponentCode = `${importCode}<br><br> {{ ${componentName}(<div id="json-params" class="json-block">${codeBlock}</div>) }}`;
-  const renderedComponentDisplay = `{{ ${componentName}(${displayBlock}) }}`;
+  const renderedComponentCode = `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="json-block">${codeBlock}</div>}) }}`;
+  const renderedComponentDisplay = `{{ ${componentName}({${displayBlock}}) }}`;
 
   writeTemplate(`
     {% extends 'views/includes/layout.njk' %}

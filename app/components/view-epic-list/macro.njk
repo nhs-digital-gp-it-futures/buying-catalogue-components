@@ -1,7 +1,7 @@
 {% macro viewEpicList(params) %}
   {% if params.data and params.data.length and (params.type === 'met' or params.type === 'not-met') %}
     {% if params.type === 'met' %}
-      {% set ulClassList =  'nhsuk-list--tick' %}
+      {% set ulClassList = 'nhsuk-list--tick' %}
       {% set svgIcon = '<svg class="nhsuk-icon nhsuk-icon__tick" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path stroke-width="4" stroke-linecap="round" d="M18.4 7.8l-8.5 8.4L5.6 12"></path></svg>' %}
     {% elseif params.type === 'not-met' %}
       {% set ulClassList = 'nhsuk-list--cross' %}

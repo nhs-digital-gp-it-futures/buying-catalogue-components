@@ -37,7 +37,13 @@ const generateEditableJSON = ({
   } else if (Array.isArray(newValue)) {
     html += '[';
     html += isCode ? '' : '<br><div class="json-array">';
-    html += newValue.map((val, index) => generateEditableJSON({ key: index, value: val, isLast: index + 1 === Object.keys(newValue).length, showKey: false, isCode })).join('');
+    html += newValue.map((val, index) => generateEditableJSON({
+      key: index,
+      value: val,
+      isLast: index + 1 === Object.keys(newValue).length,
+      showKey: false,
+      isCode,
+    })).join('');
     html += isCode ? '' : '</div>';
     html += ']';
     html += isLast ? ' ' : ',';
@@ -45,7 +51,12 @@ const generateEditableJSON = ({
   } else {
     html += '{';
     html += isCode ? '' : '<br><div class="json-object">';
-    html += Object.entries(newValue).map(([k, v], index) => generateEditableJSON({ key: k, value: v, isLast: index + 1 === Object.keys(newValue).length, isCode })).join('');
+    html += Object.entries(newValue).map(([k, v], index) => generateEditableJSON({
+      key: k,
+      value: v,
+      isLast: index + 1 === Object.keys(newValue).length,
+      isCode,
+    })).join('');
     html += isCode ? '' : '</div>';
     html += '}';
     html += isLast ? ' ' : ',';
@@ -58,7 +69,15 @@ const generateEditableJSON = ({
   return html;
 };
 
-const generateEditableCode = (params, isCode = false) => Object.keys(params).map((key, index) => generateEditableJSON({ key, value: params[key], isLast: index + 1 === Object.keys(params).length, isCode })).join('');
+const generateEditableCode = (params, isCode = false) => {
+  const keys = Object.keys(params);
+  return keys.map((key, index) => generateEditableJSON({
+    key,
+    value: params[key],
+    isLast: index + 1 === Object.keys(params).length,
+    isCode,
+  })).join('');
+};
 
 const getSettings = (name, type) => {
   const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');

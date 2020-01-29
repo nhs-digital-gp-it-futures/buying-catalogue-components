@@ -206,5 +206,4 @@ describe('view-capabilities', () => {
         done();
       });
   });
-
 });

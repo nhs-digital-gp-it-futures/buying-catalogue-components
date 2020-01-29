@@ -1,21 +1,43 @@
 const fs = require('fs');
 
-const getInputFields = (params) => {
-  const paramsInputString = Object.entries(params).map(([key, value]) => {
-    const modifiedValue = typeof value === 'string'
-      ? value.replace(/&lt/g, '<').replace(/&gt;/g, '>')
-      : value;
-    return `
-      <div class="nhsuk-u-inline-block nhsuk-u-padding-4 nhsuk-u-padding-bottom-0">
-        <label for="param" class="nhsuk-grid-column-one-quarter">${key}:</label>
-        <input type="text" name="${key}" id="${key}" value="${modifiedValue}" class="nhsuk-grid-column-three-quarters nhsuk-u-font-size-16"/>
-      </div>
-    `;
-  }).join('');
-  return paramsInputString;
+const stringConstructor = 'test'.constructor;
+const arrayConstructor = [].constructor;
+const objectConstructor = ({}).constructor;
+
+const objectSize = (object) => {
+  let size = 0;
+  Object.keys(object).forEach(() => {
+    size += 1;
+  });
+  return size;
 };
 
-const getParamStrings = (component, params, type) => {
+const whatIsIt = (object) => {
+  if (object === null) {
+    return 'null';
+  }
+  if (object === undefined) {
+    return 'undefined';
+  }
+  if (object.constructor === stringConstructor) {
+    return 'String';
+  }
+  if (object.constructor === arrayConstructor) {
+    return 'Array';
+  }
+  if (object.constructor === objectConstructor) {
+    return 'Object';
+  }
+  return 'unknown';
+};
+
+const generateEditableJSON = ([key, value, isLast = '', showKey = true], isCode = false) => {
+  const newValue = typeof value === 'string' ? value.replace(/&lt/g, '<').replace(/&gt;/g, '>') : value;
+
+  const isString = whatIsIt(newValue) === 'String';
+  const isObject = whatIsIt(newValue) === 'Object';
+  const isArray = whatIsIt(newValue) === 'Array';
+
   const options = {
     display: {
       regex1: /&lt/g,
@@ -36,84 +58,136 @@ const getParamStrings = (component, params, type) => {
       accArray: ['{\n', '\n      }'],
     },
   };
-  const opts = options[type];
 
-  return Object.entries(params).reduce((acc, [key, value], i) => {
-    let modifiedValue;
-    if (component === 'view-data-bulletlist' && key === 'data') {
-      modifiedValue = (typeof value === 'string') ? value.split(',') : value;
-    } else {
-      modifiedValue = value.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2);
-    }
-    const keyValueString = (i !== 0)
-      ? (`${opts.stringStart}${key}: ${JSON.stringify(modifiedValue)}`)
-      : (`${opts.stringStart0}${key}: ${JSON.stringify(modifiedValue)}`);
-    acc[0] += keyValueString;
-    return acc;
-  }, opts.accArray).join('');
+  const opts = options[isCode ? 'display' : 'code'];
+
+  let html = isCode ? '' : '<div class="nested-code">';
+
+  if (showKey) {
+    html += isCode ? '' : '<label for="param">';
+    html += '"';
+    html += key;
+    html += '": ';
+    html += isCode ? '' : '</label>';
+  }
+
+  if (isString) {
+    html += isCode ? '' : '<span  class="json-text-input">';
+    html += '"';
+    html += isCode ? '' : '<span contenteditable="true">';
+    html += newValue.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2);
+    html += isCode ? '' : '</span>';
+    html += '"';
+    html += isCode ? '' : '</span>';
+    html += isLast ? ' ' : ',';
+    html += isCode ? '' : '<br>';
+  }
+
+  if (isObject) {
+    html += '{';
+    html += isCode ? '' : '<br><div class="json-object">';
+    html += Object.entries(newValue).map(([k, v], index) => generateEditableJSON([k, v, index + 1 === objectSize(newValue)], isCode)).join('');
+    html += isCode ? '' : '</div>';
+    html += '}';
+    html += isLast ? ' ' : ',';
+    html += isCode ? '' : '<br>';
+  }
+
+  if (isArray) {
+    html += '[';
+    html += isCode ? '' : '<br><div class="json-array">';
+    html += newValue.map((val, index) => generateEditableJSON([index || '0', val, index + 1 === objectSize(newValue), false], isCode)).join('');
+    html += isCode ? '' : '</div>';
+    html += ']';
+    html += isLast ? ' ' : ',';
+    html += isCode ? '' : '<br>';
+  }
+
+  html += isCode ? '' : '</div>';
+
+  return html;
 };
 
-const getSettings = (component) => {
-  const settingsString = fs.readFileSync(`app/components/${component}/settings.json`, 'utf-8');
+const generateEditableCode = (params, isCode = false) => {
+  if (whatIsIt(params) === 'Array') {
+    return `[${params.map((val, index) => generateEditableJSON([index || '0', val, index + 1 === objectSize(params), false], isCode)).join('')}]`;
+  }
+  return `{${Object.entries(params).map((val, index) => generateEditableJSON([...val, index + 1 === objectSize(params)], isCode)).join('')}}`;
+};
+
+/**
+ * Get the settings.json from the component/section directory.
+ * @param name
+ * @param type
+ * @returns {any}
+ */
+const getSettings = (name, type) => {
+  const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');
   return JSON.parse(settingsString);
 };
 
+/**
+ * Write template to directory.
+ * @param template
+ * @param name
+ * @param type
+ */
+const writeTemplate = (template, name, type) => {
+  const dir = `app/templates/${type}s`;
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  fs.writeFileSync(`${dir}/${name}-template.njk`, template);
+};
+
 const generateTemplate = ({
-  component,
+  name,
   formParams = {},
-}) => {
-  const settings = getSettings(component);
+}, type) => {
+  const settings = getSettings(name, type);
   const { componentName } = settings;
-  const type = 'component';
   const formParamsExist = Object.keys(formParams).length > 0;
 
   const params = formParamsExist ? formParams : settings.params;
 
-  const paramsStringCode = getParamStrings(component, params, 'code');
+  const codeBlock = generateEditableCode(params);
+  const displayBlock = generateEditableCode(params, true);
 
-  const paramsString = getParamStrings(component, params, 'display');
+  const importCode = `{% <span class="code-primary">from</span> <span class="code-secondary">'${type}s/${name}/macro.njk'</span> <span class="code-primary">import</span> ${componentName} %}`;
 
-  const renderedComponentCode = `{{ ${componentName}(${paramsStringCode}) }}`;
-  const renderedComponentDisplay = `{{ ${componentName}(${paramsString}) }}`;
+  const renderedComponentCode = `${importCode}<br><br> {{ ${componentName}(<div id="json-params" class="json-block">${codeBlock}</div>) }}`;
+  const renderedComponentDisplay = `{{ ${componentName}(${displayBlock}) }}`;
 
-  const template = `
-{% extends 'views/includes/layout.njk' %}
-{% from 'components/back-link/macro.njk' import backLink %}
-{% from '${type}s/${component}/macro.njk' import ${componentName} %}
+  writeTemplate(`
+    {% extends 'views/includes/layout.njk' %}
+    {% from 'components/back-link/macro.njk' import backLink %}
+    {% from '${type}s/${name}/macro.njk' import ${componentName} %}
 
-{% block body %}
-  {{ backLink({
-    "href": "/",
-    "text": "Return to component list"
-  }) }}
-  <h1>${componentName} ${type}</h1>
+    {% block body %}
+      {{ backLink({
+        "href": "/",
+        "text": "Return to component list"
+      }) }}
 
-  <h3>To use the ${type}</h3>
-  <pre><code>
-    {% verbatim %}
-      {% from '${type}s/${component}/macro.njk' import ${componentName} %}
+    <h1>${componentName} ${type}</h1>
 
-      ${renderedComponentCode}
-    {% endverbatim %}
-  </code></pre>
+    <div class="code-wrapper">
+      <form method="post" action="/${type}/${name}" id="try-params" class="nhsuk-u-clear">
+        <h3 class="code-title">To use the ${type} <button type="submit" form="try-params" class="nhsuk-u-margin-top-4 nhsuk-u-margin-right-4 nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
+        <div class="code-block">
+          {% verbatim %}
+              ${renderedComponentCode}
+          {% endverbatim %}
+        </div>
+      </form>
+    </div>
 
-  <h3>Rendered ${type}</h3>
-  <div class="bcc-t-bg-white">
-  ${renderedComponentDisplay}
-  </div>
-
-  <div class="nhsuk-grid-row nhsuk-u-padding-4 nhsuk-u-margin-top-4 nhsuk-u-margin-left-0 bcc-t-bg-pale-yellow">
-    <form method="post" action="/${type}/${component}" id="try-params" class="nhsuk-u-clear">
-    ${getInputFields(params)}
-    <button type="submit" form="try-params" class="nhsuk-u-margin-top-4 nhsuk-u-margin-right-4 nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button>
-    </form>
-  </div>
-{% endblock %}
-`;
-  const dir = 'app/templates';
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-
-  fs.writeFileSync(`${dir}/${component}-template.njk`, template);
+    <div class="display-wrapper">
+      <h3 class="display-title">Rendered ${type}</h3>
+      <div class="display-block">
+        ${renderedComponentDisplay}
+      </div>
+    </div>
+    {% endblock %}
+  `, name, type);
 };
 
 module.exports = {

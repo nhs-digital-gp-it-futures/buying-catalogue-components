@@ -8,23 +8,32 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/component/:component', async (req, res) => {
-  const { component } = req.params;
-  generateTemplate({ component });
+  const name = req.params.component;
+  generateTemplate({ name }, 'component');
 
-  res.render(`templates/${component}-template`);
+  res.render(`templates/components/${name}-template`);
 });
 
 router.post('/component/:component', async (req, res) => {
-  const { component } = req.params;
-  const formParams = req.body;
-  generateTemplate({ component, formParams });
+  const name = req.params.component;
+  const formParams = JSON.parse(req.body.params);
+  generateTemplate({ name, formParams }, 'component');
 
-  res.render(`templates/${component}-template`);
+  res.render(`templates/components/${name}-template`);
 });
 
 router.get('/section/:sectionName', async (req, res) => {
-  const { sectionName } = req.params;
-  res.render(`./sections/${sectionName}/template`, {});
+  const name = req.params.sectionName;
+  generateTemplate({ name }, 'section');
+
+  res.render(`templates/sections/${name}-template`);
+});
+
+router.post('/section/:sectionName', async (req, res) => {
+  const name = req.params.sectionName;
+  const formParams = JSON.parse(req.body.params);
+  generateTemplate({ name, formParams }, 'section');
+  res.render(`templates/sections/${name}-template`, {});
 });
 
 module.exports = router;

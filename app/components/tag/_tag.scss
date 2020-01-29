@@ -4,3 +4,13 @@
   font-weight: 600 !important;
   padding: nhsuk-spacing(1) nhsuk-spacing(3);
 }
+
+.bc-c-tag-outline {
+  color: $color_nhsuk-blue;
+  border: 2px solid $color_nhsuk-blue;
+  background-color: transparent;
+  padding: nhsuk-spacing(1) nhsuk-spacing(3);
+  font-weight: 600 !important;
+  display: inline-block;
+  @include nhsuk-font(22);
+}

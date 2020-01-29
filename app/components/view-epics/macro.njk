@@ -1,0 +1,99 @@
+{% from 'components/tag/macro.njk' import tag %}
+{% from 'components/view-data-title/macro.njk' import viewDataTitle %}
+{% from 'components/view-epic-list/macro.njk' import viewEpicList %}
+
+{% macro viewEpics(params) %}
+  {% if params.data %}
+    <div data-test-id="{{ params.dataTestId }}" class="bc-c-epics {{ params.classes }}">
+      <div class="nhsuk-grid-row">
+        {% if params.data.must %}
+          <div class="must-epics nhsuk-grid-column-one-half">
+            <div>
+              {{ tag({
+                dataTestId: "example",
+                text: "Must Epics",
+                classes: "bc-c-tag-outline"
+              }) }}
+            </div>
+            {% if params.data.must['met'] %}
+              <div class="must-met-epics">
+                <div class="nhsuk-u-padding-top-5">
+                  {{ viewDataTitle({
+                    title: "Must Epics that have been met"
+                  }) }}
+                </div>
+                <div>
+                  {{ viewEpicList({
+                    dataTestId: "some-test-identifier",
+                    data: params.data.must['met'],
+                    type: "met"
+                  }) }}
+                </div>
+              </div>
+            {% endif %}
+            {% if params.data.must['not-met'] %}
+              <div class="must-not-met-epics">
+                <div class="nhsuk-u-padding-top-5">
+                  {{ viewDataTitle({
+                    title: "Must Epics that have NOT been met"
+                  }) }}
+                </div>
+                <div>
+                  {{ viewEpicList({
+                    dataTestId: "some-test-identifier",
+                    data: params.data.must['not-met'],
+                    type: "not-met"
+                  }) }}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if params.data.may %}
+          <div class="may-epics nhsuk-grid-column-one-half">
+            <div>
+              {{ tag({
+                dataTestId: "example",
+                text: "May Epics",
+                classes: "bc-c-tag-outline"
+              }) }}
+            </div>
+            {% if params.data.may['met'] %}
+              <div class="may-met-epics">
+                <div class="nhsuk-u-padding-top-5">
+                  {{ viewDataTitle({
+                    title: "May Epics that have been met"
+                  }) }}
+                </div>
+                <div>
+                  {{ viewEpicList({
+                    dataTestId: "some-test-identifier",
+                    data: params.data.may['met'],
+                    type: "met"
+                  }) }}
+                </div>
+              </div>
+            {% endif %}
+            {% if params.data.may['not-met'] %}
+              <div class="may-not-met-epics">
+                <div class="nhsuk-u-padding-top-5">
+                  {{ viewDataTitle({
+                    title: "May Epics that have NOT been met"
+                  }) }}
+                </div>
+                <div>
+                  {{ viewEpicList({
+                    dataTestId: "some-test-identifier",
+                    data: params.data.may['not-met'],
+                    type: "not-met"
+                  }) }}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  {% endif %}
+{% endmacro %}

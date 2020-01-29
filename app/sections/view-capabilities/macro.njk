@@ -1,0 +1,32 @@
+{% from 'components/view-epics/macro.njk' import viewEpics %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+{% from 'components/view-expandable-section/macro.njk' import viewExpandableSection %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view-data-link/macro.njk' import viewDataLink %}
+
+{% macro viewCapabilities(params) %}
+  {% if params %}
+    <div class="nhsuk-width-container" data-test-id="view-capabilities">
+      {{ viewSectionHeading({ text: 'Capabilities met' }) }}
+        {% for param in params %}
+          {% set title = param.name + ', ' + param.version %}
+          {{ viewExpandableSection({
+            dataTestId: 'view-section-capabilities',
+            title: title,
+            innerComponent: viewDataText({
+              dataTestId: 'view-question-data-text-description',
+              data: param.description
+            }) + viewDataLink({
+              dataTestId: 'view-question-data-text-link',
+              data: param.link,
+              text: 'View more details including acceptance criteria for all epics',
+              classes: 'nhsuk-u-margin-bottom-5'
+            }) + viewEpics({
+              dataTestId: 'view-question-epic',
+              data: param.epic
+            })
+          }) }}
+        {% endfor %}
+    </div>
+  {% endif %}
+{% endmacro %}

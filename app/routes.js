@@ -17,7 +17,7 @@ router.get('/component/:component', async (req, res) => {
 router.post('/component/:component', async (req, res) => {
   const name = req.params.component;
   const formParams = JSON.parse(req.body.params);
-  generateTemplate({ name, formParams }, 'component');
+  generateTemplate({ name, formParams, templateType: 'component' });
 
   res.render(`templates/components/${name}-template`);
 });
@@ -32,7 +32,7 @@ router.get('/section/:sectionName', async (req, res) => {
 router.post('/section/:sectionName', async (req, res) => {
   const name = req.params.sectionName;
   const formParams = JSON.parse(req.body.params);
-  generateTemplate({ name, formParams }, 'section');
+  generateTemplate({ name, formParams, templateType: 'section' });
   res.render(`templates/sections/${name}-template`, {});
 });
 

@@ -1,42 +1,13 @@
 const fs = require('fs');
 
-const stringConstructor = 'test'.constructor;
-const arrayConstructor = [].constructor;
-const objectConstructor = ({}).constructor;
-
-const objectSize = (object) => {
-  let size = 0;
-  Object.keys(object).forEach(() => {
-    size += 1;
-  });
-  return size;
-};
-
-const whatIsIt = (object) => {
-  if (object === null) {
-    return 'null';
-  }
-  if (object === undefined) {
-    return 'undefined';
-  }
-  if (object.constructor === stringConstructor) {
-    return 'String';
-  }
-  if (object.constructor === arrayConstructor) {
-    return 'Array';
-  }
-  if (object.constructor === objectConstructor) {
-    return 'Object';
-  }
-  return 'unknown';
-};
-
-const generateEditableJSON = ([key, value, isLast = '', showKey = true], isCode = false) => {
+const generateEditableJSON = ({
+  key,
+  value,
+  isLast,
+  showKey = true,
+  isCode,
+}) => {
   const newValue = typeof value === 'string' ? value.replace(/&lt/g, '<').replace(/&gt;/g, '>') : value;
-
-  const isString = whatIsIt(newValue) === 'String';
-  const isObject = whatIsIt(newValue) === 'Object';
-  const isArray = whatIsIt(newValue) === 'Array';
 
   const options = {
     display: {
@@ -44,18 +15,12 @@ const generateEditableJSON = ([key, value, isLast = '', showKey = true], isCode 
       string1: '<',
       regex2: /&gt;/g,
       string2: '>',
-      stringStart: ', ',
-      stringStart0: '',
-      accArray: ['{', '}'],
     },
     code: {
       regex1: /</g,
       string1: '&lt',
       regex2: />/g,
       string2: '&gt;',
-      stringStart: ',\n        ',
-      stringStart0: '        ',
-      accArray: ['{\n', '\n      }'],
     },
   };
 
@@ -63,45 +28,30 @@ const generateEditableJSON = ([key, value, isLast = '', showKey = true], isCode 
 
   let html = isCode ? '' : '<div class="nested-code">';
 
-  if (showKey) {
-    html += isCode ? '' : '<label for="param">';
-    html += '"';
-    html += key;
-    html += '": ';
-    html += isCode ? '' : '</label>';
-  }
+  html += showKey ? `${isCode ? '' : '<label for="param">'}"${key}": ${isCode ? '' : '</label>'}` : '';
 
-  if (isString) {
-    html += isCode ? '' : '<span  class="json-text-input">';
-    html += '"';
-    html += isCode ? '' : '<span contenteditable="true">';
-    html += newValue.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2);
-    html += isCode ? '' : '</span>';
-    html += '"';
-    html += isCode ? '' : '</span>';
+  if (typeof newValue === 'string') {
+    html += `${isCode ? '' : '<span class="json-text-input">'}"${isCode ? '' : '<span contenteditable="true">'}`;
+    html += `${newValue.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2)}`;
+    html += `${isCode ? '' : '</span>'}"${isCode ? '' : '</span>'}${isLast ? ' ' : ','}${isCode ? '' : '<br>'}`;
+  } else if (Array.isArray(newValue)) {
+    html += '[';
+    html += isCode ? '' : '<br><div class="json-array">';
+    html += newValue.map((val, index) => generateEditableJSON({ key: index, value: val, isLast: index + 1 === Object.keys(newValue).length, showKey: false, isCode })).join('');
+    html += isCode ? '' : '</div>';
+    html += ']';
     html += isLast ? ' ' : ',';
     html += isCode ? '' : '<br>';
-  }
-
-  if (isObject) {
+  } else {
     html += '{';
     html += isCode ? '' : '<br><div class="json-object">';
-    html += Object.entries(newValue).map(([k, v], index) => generateEditableJSON([k, v, index + 1 === objectSize(newValue)], isCode)).join('');
+    html += Object.entries(newValue).map(([k, v], index) => generateEditableJSON({ key: k, value: v, isLast: index + 1 === Object.keys(newValue).length, isCode })).join('');
     html += isCode ? '' : '</div>';
     html += '}';
     html += isLast ? ' ' : ',';
     html += isCode ? '' : '<br>';
   }
 
-  if (isArray) {
-    html += '[';
-    html += isCode ? '' : '<br><div class="json-array">';
-    html += newValue.map((val, index) => generateEditableJSON([index || '0', val, index + 1 === objectSize(newValue), false], isCode)).join('');
-    html += isCode ? '' : '</div>';
-    html += ']';
-    html += isLast ? ' ' : ',';
-    html += isCode ? '' : '<br>';
-  }
 
   html += isCode ? '' : '</div>';
 
@@ -109,10 +59,11 @@ const generateEditableJSON = ([key, value, isLast = '', showKey = true], isCode 
 };
 
 const generateEditableCode = (params, isCode = false) => {
-  if (whatIsIt(params) === 'Array') {
-    return `[${params.map((val, index) => generateEditableJSON([index || '0', val, index + 1 === objectSize(params), false], isCode)).join('')}]`;
+
+  if (Array.isArray(params)) {
+    return `[${params.map((val, index) => generateEditableJSON({ key: index, value: val, isLast: index + 1 === Object.keys(params).length, showKey: false, isCode })).join('')}]`;
   }
-  return `{${Object.entries(params).map((val, index) => generateEditableJSON([...val, index + 1 === objectSize(params)], isCode)).join('')}}`;
+  return `{${Object.keys(params).map((key, index) => generateEditableJSON({ key, value: params[key], isLast: index + 1 === Object.keys(params).length, isCode })).join('')}}`;
 };
 
 /**
@@ -141,7 +92,8 @@ const writeTemplate = (template, name, type) => {
 const generateTemplate = ({
   name,
   formParams = {},
-}, type) => {
+  templateType: type,
+}) => {
   const settings = getSettings(name, type);
   const { componentName } = settings;
   const formParamsExist = Object.keys(formParams).length > 0;

@@ -5,11 +5,11 @@ const generateJSON = ({
   value,
   isLast,
   showKey = true,
-  isDisplay,
+  blockType,
 }) => {
   const newValue = typeof value === 'string' ? value.replace(/&lt/g, '<').replace(/&gt;/g, '>') : value;
 
-  const options = {
+  const translationMap = {
     display: {
       regex1: /&lt/g,
       string1: '<',
@@ -24,7 +24,9 @@ const generateJSON = ({
     },
   };
 
-  const opts = options[isDisplay ? 'display' : 'code'];
+  const isDisplay = blockType === 'display';
+
+  const opts = translationMap[isDisplay ? 'display' : 'code'];
 
   let html = isDisplay ? '' : '<div class="bcc-c-code-nested">';
 
@@ -42,7 +44,7 @@ const generateJSON = ({
       value: val,
       isLast: index + 1 === Object.keys(newValue).length,
       showKey: false,
-      isDisplay,
+      blockType,
     })).join('');
     html += isDisplay ? '' : '</div>';
     html += ']';
@@ -55,7 +57,7 @@ const generateJSON = ({
       key: k,
       value: v,
       isLast: index + 1 === Object.keys(newValue).length,
-      isDisplay,
+      blockType,
     })).join('');
     html += isDisplay ? '' : '</div>';
     html += '}';
@@ -69,16 +71,26 @@ const generateJSON = ({
   return html;
 };
 
-const generateEditableCode = (params, isDisplay = false) => (
+const generateBlock = (params, blockType) => (
   Object.entries(params).map(([key, value], index) => generateJSON({
     key,
     value,
     isLast: index + 1 === Object.keys(params).length,
-    isDisplay,
+    blockType,
   })).join('')
 );
 
-const generateDisplayCode = params => generateEditableCode(params, true);
+
+// const generateEditableCode = (params, isDisplay = false) => (
+//   Object.entries(params).map(([key, value], index) => generateJSON({
+//     key,
+//     value,
+//     isLast: index + 1 === Object.keys(params).length,
+//     isDisplay,
+//   })).join('')
+// );
+
+// const generateDisplayCode = params => generateEditableCode(params, true);
 
 const getSettings = (name, type) => {
   const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');
@@ -101,8 +113,8 @@ const generateTemplate = ({
   const { componentName, params: paramsFromSettings } = getSettings(name, type);
   const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
-  const codeBlock = generateEditableCode(paramsToUse);
-  const displayBlock = generateDisplayCode(paramsToUse);
+  const codeBlock = generateBlock(paramsToUse, 'code');
+  const displayBlock = generateBlock(paramsToUse, 'display');
 
   const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${type}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
 

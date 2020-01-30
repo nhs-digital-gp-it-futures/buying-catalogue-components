@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const determineIsLast = ({ index, value }) => index + 1 === Object.keys(value).length;
+
 const translateKey = ({ key, blockType, showKey }) => {
   if (showKey) {
     const renderedKey = `"${key}": `;
@@ -41,19 +43,22 @@ const translateValueOfTypeString = ({ value, blockType }) => {
 
 const translateValueOfTypeArray = ({ value, blockType }) => {
   let translatedValue = '';
-  const isJson = blockType === 'json';
 
-  translatedValue += '[';
-  translatedValue += isJson ? '' : '<br><div class="bcc-c-code-json-array">';
   // eslint-disable-next-line no-use-before-define
-  translatedValue += value.map((val, index) => translateKeyValue({
+  const innerTranslatedValue = value.map((val, index) => translateKeyValue({
     key: index,
     value: val,
-    isLast: index + 1 === Object.keys(value).length,
+    isLast: determineIsLast({ index, value }),
     showKey: false,
     blockType,
   })).join('');
-  translatedValue += isJson ? '' : '</div>';
+
+  translatedValue += '[';
+  if (blockType === 'html') {
+    translatedValue += `<div class="bcc-c-code-json-array">${innerTranslatedValue}</div>`;
+  } else {
+    translatedValue += innerTranslatedValue;
+  }
   translatedValue += ']';
 
   return translatedValue;
@@ -62,13 +67,14 @@ const translateValueOfTypeArray = ({ value, blockType }) => {
 const translateValueOfTypeObject = ({ value, blockType }) => {
   let translatedValue = '';
 
-  // eslint-disable-next-line no-use-before-define
-  const innerTranslatedValue = Object.entries(value).map(([k, v], index) => translateKeyValue({
-    key: k,
-    value: v,
-    isLast: index + 1 === Object.keys(value).length,
-    blockType,
-  })).join('');
+  const innerTranslatedValue = Object.entries(value)
+    // eslint-disable-next-line no-use-before-define
+    .map(([innerKey, innerValue], index) => translateKeyValue({
+      key: innerKey,
+      value: innerValue,
+      isLast: determineIsLast({ index, value }),
+      blockType,
+    })).join('');
 
   translatedValue += '{';
   if (blockType === 'html') {
@@ -118,7 +124,7 @@ const generateBlock = (params, blockType) => (
   Object.entries(params).map(([key, value], index) => translateKeyValue({
     key,
     value,
-    isLast: index + 1 === Object.keys(params).length,
+    isLast: determineIsLast({ index, value: params }),
     blockType,
   })).join('')
 );

@@ -11,7 +11,7 @@ const translateKey = ({ key, blockType, showKey }) => {
   return '';
 };
 
-const translateValueOfTypeString = ({ value, blockType, isLast }) => {
+const translateValueOfTypeString = ({ value, blockType }) => {
   const translationMap = {
     html: {
       lessThanRegex: /</g,
@@ -34,12 +34,12 @@ const translateValueOfTypeString = ({ value, blockType, isLast }) => {
 
   translatedValue += `${isJson ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isJson ? '' : '<span contenteditable="true">'}`;
   translatedValue += `${value.replace(translator.lessThanRegex, translator.lessThanString).replace(translator.greaterThanRegex, translator.greaterThanString)}`;
-  translatedValue += `${isJson ? '' : '</span>'}"${isJson ? '' : '</span>'}${isLast ? ' ' : ','}${isJson ? '' : '<br>'}`;
+  translatedValue += `${isJson ? '' : '</span>'}"${isJson ? '' : '</span>'}`;
 
   return translatedValue;
 };
 
-const translateValueOfTypeArray = ({ value, blockType, isLast }) => {
+const translateValueOfTypeArray = ({ value, blockType }) => {
   let translatedValue = '';
   const isJson = blockType === 'json';
 
@@ -55,29 +55,28 @@ const translateValueOfTypeArray = ({ value, blockType, isLast }) => {
   })).join('');
   translatedValue += isJson ? '' : '</div>';
   translatedValue += ']';
-  translatedValue += isLast ? ' ' : ',';
-  translatedValue += isJson ? '' : '<br>';
 
   return translatedValue;
 };
 
-const translateValueOfTypeObject = ({ value, blockType, isLast }) => {
+const translateValueOfTypeObject = ({ value, blockType }) => {
   let translatedValue = '';
-  const isJson = blockType === 'json';
 
-  translatedValue += '{';
-  translatedValue += isJson ? '' : '<br><div class="bcc-c-code-json-object">';
   // eslint-disable-next-line no-use-before-define
-  translatedValue += Object.entries(value).map(([k, v], index) => translateKeyValue({
+  const innerTranslatedValue = Object.entries(value).map(([k, v], index) => translateKeyValue({
     key: k,
     value: v,
     isLast: index + 1 === Object.keys(value).length,
     blockType,
   })).join('');
-  translatedValue += isJson ? '' : '</div>';
+
+  translatedValue += '{';
+  if (blockType === 'html') {
+    translatedValue += `<div class="bcc-c-code-json-object">${innerTranslatedValue}</div>`;
+  } else {
+    translatedValue += innerTranslatedValue;
+  }
   translatedValue += '}';
-  translatedValue += isLast ? ' ' : ',';
-  translatedValue += isJson ? '' : '<br>';
 
   return translatedValue;
 };
@@ -92,6 +91,7 @@ const translateValue = ({ value, blockType, isLast }) => {
   } else {
     translatedValue += translateValueOfTypeObject({ value, blockType, isLast });
   }
+  translatedValue += isLast ? ' ' : ',';
 
   return translatedValue;
 };

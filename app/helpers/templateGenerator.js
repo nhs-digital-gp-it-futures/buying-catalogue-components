@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-const generateEditableJSON = ({
+const generateJSON = ({
   key,
   value,
   isLast,
   showKey = true,
-  isCode,
+  isDisplay,
 }) => {
   const newValue = typeof value === 'string' ? value.replace(/&lt/g, '<').replace(/&gt;/g, '>') : value;
 
@@ -24,59 +24,61 @@ const generateEditableJSON = ({
     },
   };
 
-  const opts = options[isCode ? 'display' : 'code'];
+  const opts = options[isDisplay ? 'display' : 'code'];
 
-  let html = isCode ? '' : '<div class="bcc-c-code-nested">';
+  let html = isDisplay ? '' : '<div class="bcc-c-code-nested">';
 
-  html += showKey ? `${isCode ? '' : '<label class="bcc-c-code-key-label bcc-u-code-secondary-color">'}"${key}": ${isCode ? '' : '</label>'}` : '';
+  html += showKey ? `${isDisplay ? '' : '<label class="bcc-c-code-key-label bcc-u-code-secondary-color">'}"${key}": ${isDisplay ? '' : '</label>'}` : '';
 
   if (typeof newValue === 'string') {
-    html += `${isCode ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isCode ? '' : '<span contenteditable="true">'}`;
+    html += `${isDisplay ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isDisplay ? '' : '<span contenteditable="true">'}`;
     html += `${newValue.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2)}`;
-    html += `${isCode ? '' : '</span>'}"${isCode ? '' : '</span>'}${isLast ? ' ' : ','}${isCode ? '' : '<br>'}`;
+    html += `${isDisplay ? '' : '</span>'}"${isDisplay ? '' : '</span>'}${isLast ? ' ' : ','}${isDisplay ? '' : '<br>'}`;
   } else if (Array.isArray(newValue)) {
     html += '[';
-    html += isCode ? '' : '<br><div class="bcc-c-code-json-array">';
-    html += newValue.map((val, index) => generateEditableJSON({
+    html += isDisplay ? '' : '<br><div class="bcc-c-code-json-array">';
+    html += newValue.map((val, index) => generateJSON({
       key: index,
       value: val,
       isLast: index + 1 === Object.keys(newValue).length,
       showKey: false,
-      isCode,
+      isDisplay,
     })).join('');
-    html += isCode ? '' : '</div>';
+    html += isDisplay ? '' : '</div>';
     html += ']';
     html += isLast ? ' ' : ',';
-    html += isCode ? '' : '<br>';
+    html += isDisplay ? '' : '<br>';
   } else {
     html += '{';
-    html += isCode ? '' : '<br><div class="bcc-c-code-json-object">';
-    html += Object.entries(newValue).map(([k, v], index) => generateEditableJSON({
+    html += isDisplay ? '' : '<br><div class="bcc-c-code-json-object">';
+    html += Object.entries(newValue).map(([k, v], index) => generateJSON({
       key: k,
       value: v,
       isLast: index + 1 === Object.keys(newValue).length,
-      isCode,
+      isDisplay,
     })).join('');
-    html += isCode ? '' : '</div>';
+    html += isDisplay ? '' : '</div>';
     html += '}';
     html += isLast ? ' ' : ',';
-    html += isCode ? '' : '<br>';
+    html += isDisplay ? '' : '<br>';
   }
 
 
-  html += isCode ? '' : '</div>';
+  html += isDisplay ? '' : '</div>';
 
   return html;
 };
 
-const generateEditableCode = (params, isCode = false) => (
-  Object.entries(params).map(([key, value], index) => generateEditableJSON({
+const generateEditableCode = (params, isDisplay = false) => (
+  Object.entries(params).map(([key, value], index) => generateJSON({
     key,
     value,
     isLast: index + 1 === Object.keys(params).length,
-    isCode,
+    isDisplay,
   })).join('')
 );
+
+const generateDisplayCode = params => generateEditableCode(params, true);
 
 const getSettings = (name, type) => {
   const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');
@@ -100,7 +102,7 @@ const generateTemplate = ({
   const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
   const codeBlock = generateEditableCode(paramsToUse);
-  const displayBlock = generateEditableCode(paramsToUse, true);
+  const displayBlock = generateDisplayCode(paramsToUse);
 
   const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${type}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
 

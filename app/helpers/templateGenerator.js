@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 const fs = require('fs');
 
 const determineIsLast = ({ index, value }) => index + 1 === Object.keys(value).length;
@@ -30,13 +31,14 @@ const translateValueOfTypeString = ({ value, blockType }) => {
   };
 
   const translator = translationMap[blockType];
-  const isJson = blockType === 'json';
+  const translation = `${value.replace(translator.lessThanRegex, translator.lessThanString).replace(translator.greaterThanRegex, translator.greaterThanString)}`;
 
   let translatedValue = '';
-
-  translatedValue += `${isJson ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isJson ? '' : '<span contenteditable="true">'}`;
-  translatedValue += `${value.replace(translator.lessThanRegex, translator.lessThanString).replace(translator.greaterThanRegex, translator.greaterThanString)}`;
-  translatedValue += `${isJson ? '' : '</span>'}"${isJson ? '' : '</span>'}`;
+  if (blockType === 'html') {
+    translatedValue += `<span class="bcc-c-code-editable-content bcc-u-code-primary-color">"<span contenteditable="true">${translation}</span>"</span>`;
+  } else {
+    translatedValue += `"${translation}"`;
+  }
 
   return translatedValue;
 };
@@ -44,7 +46,6 @@ const translateValueOfTypeString = ({ value, blockType }) => {
 const translateValueOfTypeArray = ({ value, blockType }) => {
   let translatedValue = '';
 
-  // eslint-disable-next-line no-use-before-define
   const innerTranslatedValue = value.map((val, index) => translateKeyValue({
     key: index,
     value: val,
@@ -68,7 +69,6 @@ const translateValueOfTypeObject = ({ value, blockType }) => {
   let translatedValue = '';
 
   const innerTranslatedValue = Object.entries(value)
-    // eslint-disable-next-line no-use-before-define
     .map(([innerKey, innerValue], index) => translateKeyValue({
       key: innerKey,
       value: innerValue,
@@ -142,26 +142,42 @@ const writeTemplate = (template, name, type) => {
   fs.writeFileSync(`${subDirectory}/${name}-template.njk`, template);
 };
 
+const generateEditorBlock = ({
+  name,
+  templateType,
+  componentName,
+  paramsToUse,
+}) => {
+  const editorBlock = generateBlock(paramsToUse, 'html');
+  const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${templateType}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
+  return `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="bcc-c-code-json-block">${editorBlock}</div>}) }}`;
+};
+
+const generateRenderedBlock = ({
+  componentName,
+  paramsToUse,
+}) => {
+  const renderedBlock = generateBlock(paramsToUse, 'json');
+  return `{{ ${componentName}({${renderedBlock}}) }}`;
+};
+
 const generateTemplate = ({
   name,
   formParams = {},
-  templateType: type,
+  templateType,
 }) => {
-  const { componentName, params: paramsFromSettings } = getSettings(name, type);
+  const { componentName, params: paramsFromSettings } = getSettings(name, templateType);
   const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
-  const editorBlock = generateBlock(paramsToUse, 'html');
-  const renderedBlock = generateBlock(paramsToUse, 'json');
-
-  const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${type}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
-
-  const renderedComponentCode = `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="bcc-c-code-json-block">${editorBlock}</div>}) }}`;
-  const renderedComponentDisplay = `{{ ${componentName}({${renderedBlock}}) }}`;
+  const editorBlock = generateEditorBlock({
+    name, templateType, componentName, paramsToUse,
+  });
+  const renderedSection = generateRenderedBlock({ componentName, paramsToUse });
 
   writeTemplate(`
     {% extends 'views/includes/layout.njk' %}
     {% from 'components/back-link/macro.njk' import backLink %}
-    {% from '${type}s/${name}/macro.njk' import ${componentName} %}
+    {% from '${templateType}s/${name}/macro.njk' import ${componentName} %}
 
     {% block body %}
       {{ backLink({
@@ -169,27 +185,27 @@ const generateTemplate = ({
         "text": "Return to component list"
       }) }}
 
-    <h1>${componentName} ${type}</h1>
+    <h1>${componentName} ${templateType}</h1>
 
     <div>
-      <form method="post" action="/${type}/${name}" id="try-params" class="nhsuk-u-clear">
-        <h3 class="bcc-c-code-title">To use the ${type} <button type="submit" form="try-params" class="nhsuk-u-margin-top-4 nhsuk-u-margin-right-4 nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
+      <form method="post" action="/${templateType}/${name}" id="try-params" class="nhsuk-u-clear">
+        <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-margin-top-4 nhsuk-u-margin-right-4 nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
         <div class="bcc-c-code-block">
           {% verbatim %}
-              ${renderedComponentCode}
+              ${editorBlock}
           {% endverbatim %}
         </div>
       </form>
     </div>
 
     <div id="display-block">
-      <h3 class="bcc-c-display-title">Rendered ${type}</h3>
+      <h3 class="bcc-c-display-title">Rendered ${templateType}</h3>
       <div class="bcc-c-display-block">
-        ${renderedComponentDisplay}
+        ${renderedSection}
       </div>
     </div>
     {% endblock %}
-  `, name, type);
+  `, name, templateType);
 };
 
 module.exports = {

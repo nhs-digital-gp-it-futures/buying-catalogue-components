@@ -7,8 +7,6 @@ const generateJSON = ({
   showKey = true,
   blockType,
 }) => {
-  const newValue = typeof value === 'string' ? value.replace(/&lt/g, '<').replace(/&gt;/g, '>') : value;
-
   const translationMap = {
     display: {
       regex1: /&lt/g,
@@ -32,17 +30,17 @@ const generateJSON = ({
 
   html += showKey ? `${isDisplay ? '' : '<label class="bcc-c-code-key-label bcc-u-code-secondary-color">'}"${key}": ${isDisplay ? '' : '</label>'}` : '';
 
-  if (typeof newValue === 'string') {
+  if (typeof value === 'string') {
     html += `${isDisplay ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isDisplay ? '' : '<span contenteditable="true">'}`;
-    html += `${newValue.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2)}`;
+    html += `${value.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2)}`;
     html += `${isDisplay ? '' : '</span>'}"${isDisplay ? '' : '</span>'}${isLast ? ' ' : ','}${isDisplay ? '' : '<br>'}`;
-  } else if (Array.isArray(newValue)) {
+  } else if (Array.isArray(value)) {
     html += '[';
     html += isDisplay ? '' : '<br><div class="bcc-c-code-json-array">';
-    html += newValue.map((val, index) => generateJSON({
+    html += value.map((val, index) => generateJSON({
       key: index,
       value: val,
-      isLast: index + 1 === Object.keys(newValue).length,
+      isLast: index + 1 === Object.keys(value).length,
       showKey: false,
       blockType,
     })).join('');
@@ -53,10 +51,10 @@ const generateJSON = ({
   } else {
     html += '{';
     html += isDisplay ? '' : '<br><div class="bcc-c-code-json-object">';
-    html += Object.entries(newValue).map(([k, v], index) => generateJSON({
+    html += Object.entries(value).map(([k, v], index) => generateJSON({
       key: k,
       value: v,
-      isLast: index + 1 === Object.keys(newValue).length,
+      isLast: index + 1 === Object.keys(value).length,
       blockType,
     })).join('');
     html += isDisplay ? '' : '</div>';

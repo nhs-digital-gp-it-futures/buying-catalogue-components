@@ -69,15 +69,14 @@ const generateEditableJSON = ({
   return html;
 };
 
-const generateEditableCode = (params, isCode = false) => {
-  const entries = Object.entries(params);
-  return entries.map(([key, value], index) => generateEditableJSON({
+const generateEditableCode = (params, isCode = false) => (
+  Object.entries(params).map(([key, value], index) => generateEditableJSON({
     key,
     value,
     isLast: index + 1 === Object.keys(params).length,
     isCode,
-  })).join('');
-};
+  })).join('')
+);
 
 const getSettings = (name, type) => {
   const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');
@@ -97,8 +96,8 @@ const generateTemplate = ({
   formParams = {},
   templateType: type,
 }) => {
-  const { componentName, params } = getSettings(name, type);
-  const paramsToUse = Object.keys(formParams).length > 0 ? formParams : params;
+  const { componentName, params: paramsFromSettings } = getSettings(name, type);
+  const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
   const codeBlock = generateEditableCode(paramsToUse);
   const displayBlock = generateEditableCode(paramsToUse, true);

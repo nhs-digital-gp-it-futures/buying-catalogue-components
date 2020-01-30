@@ -82,18 +82,8 @@ const translateValueOfTypeObject = ({ value, blockType, isLast }) => {
   return translatedValue;
 };
 
-const translateKeyValueToBlockType = ({
-  key,
-  value,
-  isLast,
-  showKey = true,
-  blockType,
-}) => {
-  const isJson = blockType === 'json';
-
-  let translatedValue = isJson ? '' : '<div class="bcc-c-code-nested">';
-
-  translatedValue += translateKey({ key, blockType, showKey });
+const translateValue = ({ value, blockType, isLast }) => {
+  let translatedValue = '';
 
   if (typeof value === 'string') {
     translatedValue += translateValueOfTypeString({ value, blockType, isLast });
@@ -103,8 +93,24 @@ const translateKeyValueToBlockType = ({
     translatedValue += translateValueOfTypeObject({ value, blockType, isLast });
   }
 
-  translatedValue += isJson ? '' : '</div>';
+  return translatedValue;
+};
 
+const translateKeyValueToBlockType = ({
+  key,
+  value,
+  isLast,
+  showKey = true,
+  blockType,
+}) => {
+  let translatedValue = '';
+
+  translatedValue += translateKey({ key, blockType, showKey });
+  translatedValue += translateValue({ value, blockType, isLast });
+
+  if (blockType === 'html') {
+    return `<div class="bcc-c-code-nested">${translatedValue}</div>`;
+  }
   return translatedValue;
 };
 

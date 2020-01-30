@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const generateJSON = ({
+const translateKeyValueToBlockType = ({
   key,
   value,
   isLast,
@@ -37,7 +37,7 @@ const generateJSON = ({
   } else if (Array.isArray(value)) {
     html += '[';
     html += isDisplay ? '' : '<br><div class="bcc-c-code-json-array">';
-    html += value.map((val, index) => generateJSON({
+    html += value.map((val, index) => translateKeyValueToBlockType({
       key: index,
       value: val,
       isLast: index + 1 === Object.keys(value).length,
@@ -51,7 +51,7 @@ const generateJSON = ({
   } else {
     html += '{';
     html += isDisplay ? '' : '<br><div class="bcc-c-code-json-object">';
-    html += Object.entries(value).map(([k, v], index) => generateJSON({
+    html += Object.entries(value).map(([k, v], index) => translateKeyValueToBlockType({
       key: k,
       value: v,
       isLast: index + 1 === Object.keys(value).length,
@@ -70,25 +70,13 @@ const generateJSON = ({
 };
 
 const generateBlock = (params, blockType) => (
-  Object.entries(params).map(([key, value], index) => generateJSON({
+  Object.entries(params).map(([key, value], index) => translateKeyValueToBlockType({
     key,
     value,
     isLast: index + 1 === Object.keys(params).length,
     blockType,
   })).join('')
 );
-
-
-// const generateEditableCode = (params, isDisplay = false) => (
-//   Object.entries(params).map(([key, value], index) => generateJSON({
-//     key,
-//     value,
-//     isLast: index + 1 === Object.keys(params).length,
-//     isDisplay,
-//   })).join('')
-// );
-
-// const generateDisplayCode = params => generateEditableCode(params, true);
 
 const getSettings = (name, type) => {
   const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');

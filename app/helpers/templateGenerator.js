@@ -46,7 +46,7 @@ const translateValueOfTypeArray = ({ value, blockType, isLast }) => {
   translatedValue += '[';
   translatedValue += isJson ? '' : '<br><div class="bcc-c-code-json-array">';
   // eslint-disable-next-line no-use-before-define
-  translatedValue += value.map((val, index) => translateKeyValueToBlockType({
+  translatedValue += value.map((val, index) => translateKeyValue({
     key: index,
     value: val,
     isLast: index + 1 === Object.keys(value).length,
@@ -68,7 +68,7 @@ const translateValueOfTypeObject = ({ value, blockType, isLast }) => {
   translatedValue += '{';
   translatedValue += isJson ? '' : '<br><div class="bcc-c-code-json-object">';
   // eslint-disable-next-line no-use-before-define
-  translatedValue += Object.entries(value).map(([k, v], index) => translateKeyValueToBlockType({
+  translatedValue += Object.entries(value).map(([k, v], index) => translateKeyValue({
     key: k,
     value: v,
     isLast: index + 1 === Object.keys(value).length,
@@ -96,7 +96,7 @@ const translateValue = ({ value, blockType, isLast }) => {
   return translatedValue;
 };
 
-const translateKeyValueToBlockType = ({
+const translateKeyValue = ({
   key,
   value,
   isLast,
@@ -115,7 +115,7 @@ const translateKeyValueToBlockType = ({
 };
 
 const generateBlock = (params, blockType) => (
-  Object.entries(params).map(([key, value], index) => translateKeyValueToBlockType({
+  Object.entries(params).map(([key, value], index) => translateKeyValue({
     key,
     value,
     isLast: index + 1 === Object.keys(params).length,

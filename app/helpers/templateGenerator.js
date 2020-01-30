@@ -1,5 +1,16 @@
 const fs = require('fs');
 
+const translateKey = ({ key, blockType, showKey }) => {
+  if (showKey) {
+    const renderedKey = `"${key}": `;
+    if (blockType === 'html') {
+      return `<label class="bcc-c-code-key-label bcc-u-code-secondary-color">${renderedKey}</label>`;
+    }
+    return renderedKey;
+  }
+  return '';
+};
+
 const translateKeyValueToBlockType = ({
   key,
   value,
@@ -8,65 +19,65 @@ const translateKeyValueToBlockType = ({
   blockType,
 }) => {
   const translationMap = {
-    display: {
-      lessThanRegex: /&lt/g,
-      lessThanString: '<',
-      greaterThanRegex: /&gt;/g,
-      greaterThanString: '>',
-    },
-    code: {
+    html: {
       lessThanRegex: /</g,
       lessThanString: '&lt',
       greaterThanRegex: />/g,
       greaterThanString: '&gt;',
     },
+    json: {
+      lessThanRegex: /&lt/g,
+      lessThanString: '<',
+      greaterThanRegex: /&gt;/g,
+      greaterThanString: '>',
+    },
   };
 
-  const isDisplay = blockType === 'display';
+  const isJson = blockType === 'json';
 
-  const opts = translationMap[isDisplay ? 'display' : 'code'];
+  const translator = translationMap[blockType];
 
-  let html = isDisplay ? '' : '<div class="bcc-c-code-nested">';
+  let translatedValue = isJson ? '' : '<div class="bcc-c-code-nested">';
 
-  html += showKey ? `${isDisplay ? '' : '<label class="bcc-c-code-key-label bcc-u-code-secondary-color">'}"${key}": ${isDisplay ? '' : '</label>'}` : '';
+  translatedValue += translateKey({ key, blockType, showKey });
 
   if (typeof value === 'string') {
-    html += `${isDisplay ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isDisplay ? '' : '<span contenteditable="true">'}`;
-    html += `${value.replace(opts.lessThanRegex, opts.lessThanString).replace(opts.greaterThanRegex, opts.greaterThanString)}`;
-    html += `${isDisplay ? '' : '</span>'}"${isDisplay ? '' : '</span>'}${isLast ? ' ' : ','}${isDisplay ? '' : '<br>'}`;
+    translatedValue += `${isJson ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isJson ? '' : '<span contenteditable="true">'}`;
+    translatedValue += `${value.replace(translator.lessThanRegex, translator.lessThanString).replace(translator.greaterThanRegex, translator.greaterThanString)}`;
+    translatedValue += `${isJson ? '' : '</span>'}"${isJson ? '' : '</span>'}${isLast ? ' ' : ','}${isJson ? '' : '<br>'}`;
   } else if (Array.isArray(value)) {
-    html += '[';
-    html += isDisplay ? '' : '<br><div class="bcc-c-code-json-array">';
-    html += value.map((val, index) => translateKeyValueToBlockType({
+    translatedValue += '[';
+    translatedValue += isJson ? '' : '<br><div class="bcc-c-code-json-array">';
+    translatedValue += value.map((val, index) => translateKeyValueToBlockType({
       key: index,
       value: val,
       isLast: index + 1 === Object.keys(value).length,
       showKey: false,
       blockType,
     })).join('');
-    html += isDisplay ? '' : '</div>';
-    html += ']';
-    html += isLast ? ' ' : ',';
-    html += isDisplay ? '' : '<br>';
+    translatedValue += isJson ? '' : '</div>';
+    translatedValue += ']';
+    translatedValue += isLast ? ' ' : ',';
+    translatedValue += isJson ? '' : '<br>';
   } else {
-    html += '{';
-    html += isDisplay ? '' : '<br><div class="bcc-c-code-json-object">';
-    html += Object.entries(value).map(([k, v], index) => translateKeyValueToBlockType({
+    translatedValue += '{';
+    translatedValue += isJson ? '' : '<br><div class="bcc-c-code-json-object">';
+    translatedValue += Object.entries(value).map(([k, v], index) => translateKeyValueToBlockType({
       key: k,
       value: v,
       isLast: index + 1 === Object.keys(value).length,
       blockType,
     })).join('');
-    html += isDisplay ? '' : '</div>';
-    html += '}';
-    html += isLast ? ' ' : ',';
-    html += isDisplay ? '' : '<br>';
+    translatedValue += isJson ? '' : '</div>';
+    translatedValue += '}';
+    translatedValue += isLast ? ' ' : ',';
+    translatedValue += isJson ? '' : '<br>';
   }
 
 
-  html += isDisplay ? '' : '</div>';
+  translatedValue += isJson ? '' : '</div>';
 
-  return html;
+  return translatedValue;
 };
 
 const generateBlock = (params, blockType) => (
@@ -99,13 +110,13 @@ const generateTemplate = ({
   const { componentName, params: paramsFromSettings } = getSettings(name, type);
   const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
-  const codeBlock = generateBlock(paramsToUse, 'code');
-  const displayBlock = generateBlock(paramsToUse, 'display');
+  const editorBlock = generateBlock(paramsToUse, 'html');
+  const renderedBlock = generateBlock(paramsToUse, 'json');
 
   const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${type}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
 
-  const renderedComponentCode = `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="bcc-c-code-json-block">${codeBlock}</div>}) }}`;
-  const renderedComponentDisplay = `{{ ${componentName}({${displayBlock}}) }}`;
+  const renderedComponentCode = `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="bcc-c-code-json-block">${editorBlock}</div>}) }}`;
+  const renderedComponentDisplay = `{{ ${componentName}({${renderedBlock}}) }}`;
 
   writeTemplate(`
     {% extends 'views/includes/layout.njk' %}

@@ -5,7 +5,7 @@
 {% from 'components/view-data-link/macro.njk' import viewDataLink %}
 
 {% macro viewCapabilities(params) %}
-  {% if params %}
+  {% if params and params.capabilities.length %}
     <div class="nhsuk-width-container" data-test-id="view-capabilities">
       {{ viewSectionHeading({ text: 'Capabilities met' }) }}
         {% for capability in params.capabilities %}

@@ -70,10 +70,10 @@ const generateEditableJSON = ({
 };
 
 const generateEditableCode = (params, isCode = false) => {
-  const keys = Object.keys(params);
-  return keys.map((key, index) => generateEditableJSON({
+  const entries = Object.entries(params);
+  return entries.map(([key, value], index) => generateEditableJSON({
     key,
-    value: params[key],
+    value,
     isLast: index + 1 === Object.keys(params).length,
     isCode,
   })).join('');
@@ -97,14 +97,11 @@ const generateTemplate = ({
   formParams = {},
   templateType: type,
 }) => {
-  const settings = getSettings(name, type);
-  const { componentName } = settings;
-  const formParamsExist = Object.keys(formParams).length > 0;
+  const { componentName, params } = getSettings(name, type);
+  const paramsToUse = Object.keys(formParams).length > 0 ? formParams : params;
 
-  const params = formParamsExist ? formParams : settings.params;
-
-  const codeBlock = generateEditableCode(params);
-  const displayBlock = generateEditableCode(params, true);
+  const codeBlock = generateEditableCode(paramsToUse);
+  const displayBlock = generateEditableCode(paramsToUse, true);
 
   const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${type}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
 

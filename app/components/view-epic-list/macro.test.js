@@ -6,7 +6,7 @@ const macroWrapper = `{% from './components/view-epic-list/macro.njk' import vie
                         {{ viewEpicList(params) }}`;
 
 describe('view-epic-list', () => {
-  describe('when type is met', () => {
+  describe('when type is "met"', () => {
     it('should render the data when provided', (done) => {
       const context = {
         params: {
@@ -57,12 +57,38 @@ describe('view-epic-list', () => {
           const $ = cheerio.load(res.text);
           expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
 
+          done();
+        });
+    });
+
+    it('should render the tick icon for met types', (done) => {
+      const context = {
+        params: {
+          dataTestId: 'some-data-identifier',
+          data: [
+            {
+              id: 'C14E1',
+              name: 'access prescribable items',
+            },
+          ],
+          type: 'met',
+        },
+      };
+
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          expect($('[data-test-id="some-data-identifier"] ul li svg').hasClass('nhsuk-icon')).toEqual(true);
+          expect($('[data-test-id="some-data-identifier"] ul li svg').hasClass('nhsuk-icon__tick')).toEqual(true);
           done();
         });
     });
   });
 
-  describe('when type is not- met', () => {
+  describe('when type is "not-met"', () => {
     it('should render the data when provided', (done) => {
       const context = {
         params: {
@@ -113,6 +139,32 @@ describe('view-epic-list', () => {
           const $ = cheerio.load(res.text);
           expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
 
+          done();
+        });
+    });
+    it('should render the cross icon for not-met types', (done) => {
+      const context = {
+        params: {
+          dataTestId: 'some-data-identifier',
+          data: [
+            {
+              id: 'C14E1',
+              name: 'access prescribable items',
+            },
+          ],
+          type: 'not-met',
+        },
+      };
+
+
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          expect($('[data-test-id="some-data-identifier"] ul li svg').hasClass('nhsuk-icon')).toEqual(true);
+          expect($('[data-test-id="some-data-identifier"] ul li svg').hasClass('nhsuk-icon__cross')).toEqual(true);
           done();
         });
     });
@@ -205,60 +257,6 @@ describe('view-epic-list', () => {
 
         expect($('[data-test-id="some-data-identifier"] ul li span').text().trim()).toEqual('access prescribable items (C14E1)');
 
-        done();
-      });
-  });
-
-  it('should render the tick icon for met types', (done) => {
-    const context = {
-      params: {
-        dataTestId: 'some-data-identifier',
-        data: [
-          {
-            id: 'C14E1',
-            name: 'access prescribable items',
-          },
-        ],
-        type: 'met',
-      },
-    };
-
-
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('[data-test-id="some-data-identifier"] ul li svg').hasClass('nhsuk-icon')).toEqual(true);
-        expect($('[data-test-id="some-data-identifier"] ul li svg').hasClass('nhsuk-icon__tick')).toEqual(true);
-        done();
-      });
-  });
-
-  it('should render the cross icon for not-met types', (done) => {
-    const context = {
-      params: {
-        dataTestId: 'some-data-identifier',
-        data: [
-          {
-            id: 'C14E1',
-            name: 'access prescribable items',
-          },
-        ],
-        type: 'not-met',
-      },
-    };
-
-
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('[data-test-id="some-data-identifier"] ul li svg').hasClass('nhsuk-icon')).toEqual(true);
-        expect($('[data-test-id="some-data-identifier"] ul li svg').hasClass('nhsuk-icon__cross')).toEqual(true);
         done();
       });
   });

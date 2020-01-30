@@ -103,7 +103,7 @@ describe('view-epics', () => {
     });
 
     describe('with met type', () => {
-      it('should render the data if provided', (done) => {
+      it('should render the viewEpicList component when provided with epics that are must and met', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -135,7 +135,7 @@ describe('view-epics', () => {
           });
       });
 
-      it('should not render the data if not provided', (done) => {
+      it('should not render the viewEpicList component when not provided with epics that are must and met', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -158,7 +158,7 @@ describe('view-epics', () => {
     });
 
     describe('with not-met type', () => {
-      it('should render the data if provided', (done) => {
+      it('should render the viewEpicList component when provided with epics that are must and not-met', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -190,7 +190,7 @@ describe('view-epics', () => {
           });
       });
 
-      it('should not render the data if not provided', (done) => {
+      it('should not render the viewEpicList component when not provided with epics that are must and not-met', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -310,7 +310,7 @@ describe('view-epics', () => {
     });
 
     describe('with met type', () => {
-      it('should render the data if provided', (done) => {
+      it('should render the viewEpicList component when provided with epics that are may and met', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -342,7 +342,7 @@ describe('view-epics', () => {
           });
       });
 
-      it('should not render the data if not provided', (done) => {
+      it('should not render the viewEpicList component when not provided with epics that are may and met', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -364,7 +364,7 @@ describe('view-epics', () => {
       });
     });
     describe('with not-met type', () => {
-      it('should render the data if provided', (done) => {
+      it('should render the viewEpicList component when provided with epics that are may and not-met', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -396,7 +396,7 @@ describe('view-epics', () => {
           });
       });
 
-      it('should not render the data if not provided', (done) => {
+      it('should not render the viewEpicList component when not provided with epics that are may and not-met', (done) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -420,7 +420,11 @@ describe('view-epics', () => {
   });
 
   it('should not render the data when not provided', (done) => {
-    const context = {};
+    const context = {
+      params: {
+        dataTestId: 'some-data-identifier',
+      },
+    };
 
     const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)

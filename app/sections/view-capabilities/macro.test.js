@@ -8,7 +8,16 @@ const macroWrapper = `{% from './sections/view-capabilities/macro.njk' import vi
 describe('view-capabilities', () => {
   it('should render the title of the section', (done) => {
     const context = {
-      params: {},
+      params: {
+        capabilities: [
+          {
+            name: 'Prescribing',
+            version: '1.0',
+            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+            link: 'http://www.some-prescribing-link.com',
+          },
+        ],
+      },
     };
 
     const dummyApp = createTestHarness(macroWrapper, context);
@@ -56,8 +65,12 @@ describe('view-capabilities', () => {
       });
   });
 
-  it('should not render the capability expandable sections if data not provided', (done) => {
-    const context = {};
+  it('should not render the capability expandable sections if capabilities data not provided', (done) => {
+    const context = {
+      params: {
+        capabilities: [],
+      },
+    };
 
     const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)

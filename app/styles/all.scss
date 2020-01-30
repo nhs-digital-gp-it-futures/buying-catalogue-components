@@ -21,7 +21,7 @@ $color_nhsuk-green--shadow: #00401e;
   float: right;
   font-weight: 600;
   padding: 6px 8px;
-  margin-right: -24px !important;
+  margin-right: -(nhsuk-spacing(4)) !important;
   margin-top: -4px !important;
 }
 
@@ -32,7 +32,7 @@ $color_nhsuk-green--shadow: #00401e;
 .bcc-c-code-title {
   background: #191919;
   color: #fff;
-  padding: 20px 35px;
+  padding: nhsuk-spacing(3) nhsuk-spacing(5);
   margin-bottom: 0;
   z-index: 12;
   border-radius: 5px 5px 0 0;
@@ -138,12 +138,12 @@ $color_nhsuk-green--shadow: #00401e;
 .bcc-c-display-title {
   background: #005eb8;
   color: #fff;
-  padding: 15px 35px;
+  padding: nhsuk-spacing(3) nhsuk-spacing(5);
   margin-bottom: 0px;
 }
 .bcc-c-display-block {
   background: #fff;
-  padding: 35px;
-  margin-bottom: -24px;
+  padding: nhsuk-spacing(5);
+  margin-bottom: -(nhsuk-spacing(4)) ;
   border-radius: 0 0 5px 5px;
 }

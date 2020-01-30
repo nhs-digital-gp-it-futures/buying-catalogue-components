@@ -4,7 +4,7 @@ window.onload = () => {
     const post = (path, params) => {
       const newForm = document.createElement('form');
       newForm.method = 'post';
-      newForm.action = path;
+      newForm.action = `${path}#display-block`;
       Object.keys(params).forEach((key) => {
         const hiddenField = document.createElement('input');
         hiddenField.type = 'hidden';

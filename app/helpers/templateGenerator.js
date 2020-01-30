@@ -131,7 +131,7 @@ const generateTemplate = ({
       </form>
     </div>
 
-    <div>
+    <div id="display-block">
       <h3 class="bcc-c-display-title">Rendered ${type}</h3>
       <div class="bcc-c-display-block">
         ${renderedComponentDisplay}

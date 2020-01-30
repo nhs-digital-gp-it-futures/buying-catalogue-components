@@ -29,117 +29,121 @@ $color_nhsuk-green--shadow: #00401e;
   height: 100% !important;
 }
 
-.code-wrapper {
-  .code-title {
+.bcc-c-code-title {
+  background: #191919;
+  color: #fff;
+  padding: 20px 35px;
+  margin-bottom: 0;
+  z-index: 12;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+}
+
+.bcc-c-code-block {
+  background: #222;
+  color: #fff;
+  font-size: 14px;
+  font-family: monospace;
+  overflow: scroll;
+  max-height: 500px;
+  padding: 26px;
+  width: 100%;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
     background: #191919;
-    color: #fff;
-    padding: 20px 35px;
-    margin-bottom: 0;
-    z-index: 12;
-    border-radius: 5px 5px 0 0;
-    position: relative;
   }
-  .code-block {
-    background: #222;
-    color: #fff;
-    font-size: 14px;
-    font-family: monospace;
-    overflow: scroll;
-    max-height: 500px;
-    padding: 26px;
-    width: 100%;
 
-    /* width */
-    &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background: #191919;
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-    }
-
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    /* Corner */
-    &::-webkit-scrollbar-corner {
-      background: rgba(0,0,0,0);
-    }
-
-    .json-text-input {
-      background: none;
-      border: none;
-      outline: none;
-      color: #ce9075;
-      font-size: 14px;
-      font-family: monospace;
-      white-space: pre;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
-      box-shadow: none;
-
-      &:hover, &:focus {
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      span {
-        outline: none;
-      }
-
-    }
-    label {
-      font-family: monospace;
-      white-space: pre;
-      color: #a3e9ff;
-      font-size: 14px;
-      display: inline-block;
-    }
-    .json-block {
-      padding-left: 2em;
-    }
-    .json-object {
-      padding-left: 1em;
-    }
-    .json-array {
-      padding-left: 1em;
-    }
-    .code-primary {
-      color: #ce9075;
-    }
-    .code-secondary {
-      color: #a3e9ff;
-    }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
   }
-  .nested-code {
-    white-space: nowrap;
-    &:hover {
-      border-left: 4px solid rgba(255, 255, 255, 0.02);
-      margin-left: -12px;
-      padding-left: 8px;
-    }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Corner */
+  &::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0);
+  }
+
+}
+
+.bcc-c-code-key-label {
+  font-family: monospace;
+  white-space: pre;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.bcc-c-code-editable-content {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: monospace;
+  white-space: pre;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+  box-shadow: none;
+
+  &:hover, &:focus {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  span {
+    outline: none;
+  }
+
+}
+
+.bcc-c-code-json-block {
+  padding-left: 2em;
+}
+
+.bcc-c-code-json-object {
+  padding-left: 1em;
+}
+
+.bcc-c-code-json-array {
+  padding-left: 1em;
+}
+
+.bcc-u-code-primary-color {
+  color: #ce9075;
+}
+
+.bcc-u-code-secondary-color {
+  color: #a3e9ff;
+}
+
+.bcc-c-code-nested {
+  white-space: nowrap;
+  &:hover {
+    border-left: 4px solid rgba(255, 255, 255, 0.02);
+    margin-left: -12px;
+    padding-left: 8px;
   }
 }
-.display-wrapper {
-  .display-title {
-    background: #005eb8;
-    color: #fff;
-    padding: 15px 35px;
-    margin-bottom: 0px;
-  }
-  .display-block {
-    background: #fff;
-    padding: 35px;
-    margin-bottom: -24px;
-    border-radius: 0 0 5px 5px;
-  }
+
+.bcc-c-display-title {
+  background: #005eb8;
+  color: #fff;
+  padding: 15px 35px;
+  margin-bottom: 0px;
+}
+.bcc-c-display-block {
+  background: #fff;
+  padding: 35px;
+  margin-bottom: -24px;
+  border-radius: 0 0 5px 5px;
 }

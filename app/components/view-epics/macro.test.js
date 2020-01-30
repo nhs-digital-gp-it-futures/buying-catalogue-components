@@ -35,7 +35,7 @@ describe('view-epics', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-          expect($('[data-test-id="some-data-identifier"] .must-epics .bc-c-tag').text().trim()).toEqual('Must Epics');
+          expect($('[data-test-id="must-tag"]').text().trim()).toEqual('Must Epics');
 
           done();
         });
@@ -77,7 +77,7 @@ describe('view-epics', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-          expect($('[data-test-id="some-data-identifier"] .must-epics').length).toEqual(1);
+          expect($('[data-test-id="must-epics"]').length).toEqual(1);
 
           done();
         });
@@ -96,7 +96,7 @@ describe('view-epics', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-          expect($('[data-test-id="some-data-identifier"] .must-epics').length).toEqual(0);
+          expect($('[data-test-id="must-epics"]').length).toEqual(0);
 
           done();
         });
@@ -129,7 +129,7 @@ describe('view-epics', () => {
           .get('/')
           .then((res) => {
             const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .must-met-epics').length).toEqual(1);
+            expect($('[data-test-id="must-met-epics"]').length).toEqual(1);
 
             done();
           });
@@ -184,7 +184,7 @@ describe('view-epics', () => {
           .get('/')
           .then((res) => {
             const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .must-not-met-epics').length).toEqual(1);
+            expect($('[data-test-id="must-not-met-epics"]').length).toEqual(1);
 
             done();
           });
@@ -242,7 +242,7 @@ describe('view-epics', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-          expect($('[data-test-id="some-data-identifier"] .may-epics .bc-c-tag').text().trim()).toEqual('May Epics');
+          expect($('[data-test-id="may-tag"]').text().trim()).toEqual('May Epics');
 
           done();
         });
@@ -284,7 +284,7 @@ describe('view-epics', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-          expect($('[data-test-id="some-data-identifier"] .may-epics').length).toEqual(1);
+          expect($('[data-test-id="may-epics"]').length).toEqual(1);
 
           done();
         });
@@ -303,7 +303,7 @@ describe('view-epics', () => {
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-          expect($('[data-test-id="some-data-identifier"] .may-epics').length).toEqual(0);
+          expect($('[data-test-id="may-epics"]').length).toEqual(0);
 
           done();
         });
@@ -336,7 +336,7 @@ describe('view-epics', () => {
           .get('/')
           .then((res) => {
             const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .may-met-epics').length).toEqual(1);
+            expect($('[data-test-id="may-met-epics"]').length).toEqual(1);
 
             done();
           });
@@ -390,7 +390,7 @@ describe('view-epics', () => {
           .get('/')
           .then((res) => {
             const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .may-not-met-epics').length).toEqual(1);
+            expect($('[data-test-id="may-not-met-epics"]').length).toEqual(1);
 
             done();
           });

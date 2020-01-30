@@ -7,7 +7,7 @@
     <div data-test-id="{{ params.dataTestId }}" class="bc-c-epics {{ params.classes }}">
       <div class="nhsuk-grid-row">
         {% if params.data.must %}
-          <div class="must-epics nhsuk-grid-column-one-half">
+          <div data-test-id="must-epics" class="nhsuk-grid-column-one-half">
             <div>
               {{ tag({
                 dataTestId: "must-tag",
@@ -16,7 +16,7 @@
               }) }}
             </div>
             {% if params.data.must['met'] %}
-              <div class="must-met-epics">
+              <div data-test-id="must-met-epics">
                 <div class="nhsuk-u-padding-top-5">
                   {{ viewDataTitle({
                     title: "Must Epics that have been met"
@@ -32,7 +32,7 @@
               </div>
             {% endif %}
             {% if params.data.must['not-met'] %}
-              <div class="must-not-met-epics">
+              <div data-test-id="must-not-met-epics">
                 <div class="nhsuk-u-padding-top-5">
                   {{ viewDataTitle({
                     title: "Must Epics that have NOT been met"
@@ -50,16 +50,16 @@
           </div>
         {% endif %}
         {% if params.data.may %}
-          <div class="may-epics nhsuk-grid-column-one-half">
+          <div data-test-id="may-epics" class="nhsuk-grid-column-one-half">
             <div>
               {{ tag({
-                dataTestId: "example",
+                dataTestId: "may-tag",
                 text: "May Epics",
                 classes: "bc-c-tag-outline"
               }) }}
             </div>
             {% if params.data.may['met'] %}
-              <div class="may-met-epics">
+              <div data-test-id="may-met-epics">
                 <div class="nhsuk-u-padding-top-5">
                   {{ viewDataTitle({
                     title: "May Epics that have been met"
@@ -75,7 +75,7 @@
               </div>
             {% endif %}
             {% if params.data.may['not-met'] %}
-              <div class="may-not-met-epics">
+              <div data-test-id="may-not-met-epics">
                 <div class="nhsuk-u-padding-top-5">
                   {{ viewDataTitle({
                     title: "May Epics that have NOT been met"

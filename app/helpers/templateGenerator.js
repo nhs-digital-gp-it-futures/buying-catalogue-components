@@ -26,17 +26,17 @@ const generateEditableJSON = ({
 
   const opts = options[isCode ? 'display' : 'code'];
 
-  let html = isCode ? '' : '<div class="nested-code">';
+  let html = isCode ? '' : '<div class="bcc-c-code-nested">';
 
-  html += showKey ? `${isCode ? '' : '<label for="param">'}"${key}": ${isCode ? '' : '</label>'}` : '';
+  html += showKey ? `${isCode ? '' : '<label class="bcc-c-code-key-label bcc-u-code-secondary-color">'}"${key}": ${isCode ? '' : '</label>'}` : '';
 
   if (typeof newValue === 'string') {
-    html += `${isCode ? '' : '<span class="json-text-input">'}"${isCode ? '' : '<span contenteditable="true">'}`;
+    html += `${isCode ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isCode ? '' : '<span contenteditable="true">'}`;
     html += `${newValue.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2)}`;
     html += `${isCode ? '' : '</span>'}"${isCode ? '' : '</span>'}${isLast ? ' ' : ','}${isCode ? '' : '<br>'}`;
   } else if (Array.isArray(newValue)) {
     html += '[';
-    html += isCode ? '' : '<br><div class="json-array">';
+    html += isCode ? '' : '<br><div class="bcc-c-code-json-array">';
     html += newValue.map((val, index) => generateEditableJSON({
       key: index,
       value: val,
@@ -50,7 +50,7 @@ const generateEditableJSON = ({
     html += isCode ? '' : '<br>';
   } else {
     html += '{';
-    html += isCode ? '' : '<br><div class="json-object">';
+    html += isCode ? '' : '<br><div class="bcc-c-code-json-object">';
     html += Object.entries(newValue).map(([k, v], index) => generateEditableJSON({
       key: k,
       value: v,
@@ -85,9 +85,11 @@ const getSettings = (name, type) => {
 };
 
 const writeTemplate = (template, name, type) => {
-  const dir = `app/templates/${type}s`;
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-  fs.writeFileSync(`${dir}/${name}-template.njk`, template);
+  const directory = 'app/templates';
+  const subDirectory = `${directory}/${type}s`;
+  if (!fs.existsSync(directory)) fs.mkdirSync(directory);
+  if (!fs.existsSync(subDirectory)) fs.mkdirSync(subDirectory);
+  fs.writeFileSync(`${subDirectory}/${name}-template.njk`, template);
 };
 
 const generateTemplate = ({
@@ -104,9 +106,9 @@ const generateTemplate = ({
   const codeBlock = generateEditableCode(params);
   const displayBlock = generateEditableCode(params, true);
 
-  const importCode = `{% <span class="code-primary">from</span> <span class="code-secondary">'${type}s/${name}/macro.njk'</span> <span class="code-primary">import</span> ${componentName} %}`;
+  const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${type}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
 
-  const renderedComponentCode = `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="json-block">${codeBlock}</div>}) }}`;
+  const renderedComponentCode = `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="bcc-c-code-json-block">${codeBlock}</div>}) }}`;
   const renderedComponentDisplay = `{{ ${componentName}({${displayBlock}}) }}`;
 
   writeTemplate(`
@@ -122,10 +124,10 @@ const generateTemplate = ({
 
     <h1>${componentName} ${type}</h1>
 
-    <div class="code-wrapper">
+    <div>
       <form method="post" action="/${type}/${name}" id="try-params" class="nhsuk-u-clear">
-        <h3 class="code-title">To use the ${type} <button type="submit" form="try-params" class="nhsuk-u-margin-top-4 nhsuk-u-margin-right-4 nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
-        <div class="code-block">
+        <h3 class="bcc-c-code-title">To use the ${type} <button type="submit" form="try-params" class="nhsuk-u-margin-top-4 nhsuk-u-margin-right-4 nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
+        <div class="bcc-c-code-block">
           {% verbatim %}
               ${renderedComponentCode}
           {% endverbatim %}
@@ -133,9 +135,9 @@ const generateTemplate = ({
       </form>
     </div>
 
-    <div class="display-wrapper">
-      <h3 class="display-title">Rendered ${type}</h3>
-      <div class="display-block">
+    <div>
+      <h3 class="bcc-c-display-title">Rendered ${type}</h3>
+      <div class="bcc-c-display-block">
         ${renderedComponentDisplay}
       </div>
     </div>

@@ -9,16 +9,16 @@ const generateJSON = ({
 }) => {
   const translationMap = {
     display: {
-      regex1: /&lt/g,
-      string1: '<',
-      regex2: /&gt;/g,
-      string2: '>',
+      lessThanRegex: /&lt/g,
+      lessThanString: '<',
+      greaterThanRegex: /&gt;/g,
+      greaterThanString: '>',
     },
     code: {
-      regex1: /</g,
-      string1: '&lt',
-      regex2: />/g,
-      string2: '&gt;',
+      lessThanRegex: /</g,
+      lessThanString: '&lt',
+      greaterThanRegex: />/g,
+      greaterThanString: '&gt;',
     },
   };
 
@@ -32,7 +32,7 @@ const generateJSON = ({
 
   if (typeof value === 'string') {
     html += `${isDisplay ? '' : '<span class="bcc-c-code-editable-content bcc-u-code-primary-color">'}"${isDisplay ? '' : '<span contenteditable="true">'}`;
-    html += `${value.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2)}`;
+    html += `${value.replace(opts.lessThanRegex, opts.lessThanString).replace(opts.greaterThanRegex, opts.greaterThanString)}`;
     html += `${isDisplay ? '' : '</span>'}"${isDisplay ? '' : '</span>'}${isLast ? ' ' : ','}${isDisplay ? '' : '<br>'}`;
   } else if (Array.isArray(value)) {
     html += '[';

@@ -6,11 +6,11 @@
 }
 
 .bc-c-tag-outline {
-  color: $color_nhsuk-blue;
-  border: 2px solid $color_nhsuk-blue;
   background-color: transparent;
-  padding: nhsuk-spacing(1) nhsuk-spacing(3);
-  font-weight: 600 !important;
+  border: 2px solid $color_nhsuk-blue;
+  color: $color_nhsuk-blue;
   display: inline-block;
+  font-weight: 600 !important;
+  padding: nhsuk-spacing(1) nhsuk-spacing(3);
   @include nhsuk-font(22);
 }

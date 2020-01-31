@@ -1,7 +1,6 @@
 @import 'main';
 
-// these classes are just used for displaying the templates in this app and are not bundled with the npm release
-$color_nhsuk-green--shadow: #00401e;
+$color_nhsuk-light-blue: #41B6E6;
 
 .bcc-t-bg-white {
   background: $color_nhsuk-white;
@@ -15,7 +14,7 @@ $color_nhsuk-green--shadow: #00401e;
   background-color: $color_nhsuk-green;
   border: 2px solid transparent;
   border-radius: 4px;
-  box-shadow: 0 4px 0 $color_nhsuk-green--shadow;
+  box-shadow: 0 4px 0 darken($color_nhsuk-green, 12%);
   box-sizing: border-box;
   color: $color_nhsuk-white;
   float: right;
@@ -30,9 +29,9 @@ $color_nhsuk-green--shadow: #00401e;
 }
 
 .bcc-c-code-title {
-  background: #191919;
+  background: darken($color_nhsuk-black, 2%);
   border-radius: 5px 5px 0 0;
-  color: #fff;
+  color: $color_nhsuk-white;
   margin-bottom: 0;
   padding: nhsuk-spacing(3) nhsuk-spacing(5);
   position: relative;
@@ -40,8 +39,8 @@ $color_nhsuk-green--shadow: #00401e;
 }
 
 .bcc-c-code-block {
-  background: #222;
-  color: #fff;
+  background: $color_nhsuk-black;
+  color: $color_nhsuk-white;
   font-family: monospace;
   font-size: 14px;
   max-height: 500px;
@@ -57,24 +56,24 @@ $color_nhsuk-green--shadow: #00401e;
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background: #191919;
+    background: darken($color_nhsuk-black, 2%);
     border-radius: 10px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, .2);
+    background: rgba($color_nhsuk-white, .2);
     border-radius: 10px;
   }
 
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, .4);
+    background: rgba($color_nhsuk-white, .4);
   }
 
   /* Corner */
   &::-webkit-scrollbar-corner {
-    background: rgba(0, 0, 0, 0);
+    background: darken($color_nhsuk-black, 2%);
   }
 
 }
@@ -89,15 +88,16 @@ $color_nhsuk-green--shadow: #00401e;
 .bcc-c-code-editable-content {
   background: none;
   border: none;
-  border-bottom: 1px dashed rgba(255, 255, 255, .3);
+  border-bottom: 1px dashed rgba($color_nhsuk-white, .3);
   box-shadow: none;
   font-family: monospace;
   font-size: 14px;
   outline: none;
   white-space: pre;
 
-  &:hover, &:focus {
-    background: rgba(255, 255, 255, .05);
+  &:hover,
+  &:focus {
+    background: rgba($color_nhsuk-white, .05);
   }
 
   span {
@@ -119,30 +119,30 @@ $color_nhsuk-green--shadow: #00401e;
 }
 
 .bcc-u-code-primary-color {
-  color: #ce9075;
+  color: $color_nhsuk-warm-yellow;
 }
 
 .bcc-u-code-secondary-color {
-  color: #a3e9ff;
+  color: $color_nhsuk-light-blue;
 }
 
 .bcc-c-code-nested {
   white-space: nowrap;
   &:hover {
-    border-left: 4px solid rgba(255, 255, 255, .02);
+    border-left: 4px solid rgba($color_nhsuk-white, .02);
     margin-left: -12px;
     padding-left: 8px;
   }
 }
 
 .bcc-c-display-title {
-  background: #005eb8;
-  color: #fff;
+  background: $color_nhsuk-blue;
+  color: $color_nhsuk-white;
   margin-bottom: 0;
   padding: nhsuk-spacing(3) nhsuk-spacing(5);
 }
 .bcc-c-display-block {
-  background: #fff;
+  background: $color_nhsuk-white;
   border-radius: 0 0 5px 5px;
   margin-bottom: -(nhsuk-spacing(4)) ;
   padding: nhsuk-spacing(5);

@@ -91,7 +91,7 @@ describe('view-integrations', () => {
         const $ = cheerio.load(res.text);
 
         const integrationsSection = $('[data-test-id="view-integrations"]');
-        const integrationsAdditionalInformation = integrationsSection.find('div[data-test-id="view-section-integrations-additional-information"]')
+        const integrationsAdditionalInformation = integrationsSection.find('div[data-test-id="view-section-integrations-additional-information"]');
 
         expect(integrationsAdditionalInformation.text().trim()).toEqual('View information about the systems this Catalogue Solution integrates with to exchange data:');
 

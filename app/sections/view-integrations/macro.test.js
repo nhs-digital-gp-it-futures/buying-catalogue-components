@@ -50,6 +50,31 @@ describe('view-integrations', () => {
       });
   });
 
+  it('should not render the integrations section if invalid section provided', (done) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'invalid-section': {},
+          },
+        },
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const integrations = $('[data-test-id="view-integrations"]');
+
+        expect(integrations.length).toEqual(0);
+
+        done();
+      });
+  });
+
   it('should render the title of the section if the integrations section is provided', (done) => {
     const context = {
       params: {

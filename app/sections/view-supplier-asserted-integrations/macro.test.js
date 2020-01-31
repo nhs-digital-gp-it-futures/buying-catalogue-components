@@ -81,7 +81,7 @@ describe('view-supplier-asserted-integrations', () => {
       });
   });
 
-  it('should render the link additional information if link provided', (done) => {
+  it('should render the link additional information if supplier asserted integrations data provided', (done) => {
     const context = {
       params: {
         section: {

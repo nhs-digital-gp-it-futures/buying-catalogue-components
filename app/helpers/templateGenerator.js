@@ -189,7 +189,7 @@ const generateTemplate = ({
 
     <div>
       <form method="post" action="/${templateType}/${name}" id="try-params" class="nhsuk-u-clear">
-        <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-margin-top-4 nhsuk-u-margin-right-4 nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
+        <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
         <div class="bcc-c-code-block">
           {% verbatim %}
               ${editorBlock}

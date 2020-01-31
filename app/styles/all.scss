@@ -24,13 +24,13 @@ $color_nhsuk-white--alpha40: rgba($color_nhsuk-white, .4);
   color: $color_nhsuk-white;
   float: right;
   font-weight: 600;
-  margin-right: -(nhsuk-spacing(4)) !important;
-  margin-top: -4px !important;
+  margin-right: -(nhsuk-spacing(4));
+  margin-top: -4px;
   padding: 6px 8px;
 }
 
 .bcc-body {
-  height: 100% !important;
+  height: 100%;
 }
 
 .bcc-c-code-title {

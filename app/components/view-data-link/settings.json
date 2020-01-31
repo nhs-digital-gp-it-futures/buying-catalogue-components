@@ -2,6 +2,7 @@
   "componentName": "viewDataLink",
   "params": {
     "data": "http://www.somelink.com",
+    "text": "Go to link",
     "classes": "another-class"
   }
 }

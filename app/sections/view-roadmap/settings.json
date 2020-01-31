@@ -1,0 +1,11 @@
+{
+  "componentName": "viewRoadmap",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "answers": {
+        "summary": "Some roadmap description data"
+      }
+    }
+  }
+}

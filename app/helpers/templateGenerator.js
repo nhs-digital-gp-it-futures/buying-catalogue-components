@@ -1,119 +1,211 @@
+/* eslint-disable no-use-before-define */
 const fs = require('fs');
 
-const getInputFields = (params) => {
-  const paramsInputString = Object.entries(params).map(([key, value]) => {
-    const modifiedValue = typeof value === 'string'
-      ? value.replace(/&lt/g, '<').replace(/&gt;/g, '>')
-      : value;
-    return `
-      <div class="nhsuk-u-inline-block nhsuk-u-padding-4 nhsuk-u-padding-bottom-0">
-        <label for="param" class="nhsuk-grid-column-one-quarter">${key}:</label>
-        <input type="text" name="${key}" id="${key}" value="${modifiedValue}" class="nhsuk-grid-column-three-quarters nhsuk-u-font-size-16"/>
-      </div>
-    `;
-  }).join('');
-  return paramsInputString;
+const determineIsLast = ({ index, value }) => index + 1 === Object.keys(value).length;
+
+const translateKey = ({ key, blockType, showKey }) => {
+  if (showKey) {
+    const renderedKey = `"${key}": `;
+    if (blockType === 'html') {
+      return `<label class="bcc-c-code-key-label bcc-u-code-secondary-color">${renderedKey}</label>`;
+    }
+    return renderedKey;
+  }
+  return '';
 };
 
-const getParamStrings = (component, params, type) => {
-  const options = {
-    display: {
-      regex1: /&lt/g,
-      string1: '<',
-      regex2: /&gt;/g,
-      string2: '>',
-      stringStart: ', ',
-      stringStart0: '',
-      accArray: ['{', '}'],
+const translateValueOfTypeString = ({ value, blockType }) => {
+  const translationMap = {
+    html: {
+      lessThanRegex: /</g,
+      lessThanString: '&lt',
+      greaterThanRegex: />/g,
+      greaterThanString: '&gt;',
     },
-    code: {
-      regex1: /</g,
-      string1: '&lt',
-      regex2: />/g,
-      string2: '&gt;',
-      stringStart: ',\n        ',
-      stringStart0: '        ',
-      accArray: ['{\n', '\n      }'],
+    json: {
+      lessThanRegex: /&lt/g,
+      lessThanString: '<',
+      greaterThanRegex: /&gt;/g,
+      greaterThanString: '>',
     },
   };
-  const opts = options[type];
 
-  return Object.entries(params).reduce((acc, [key, value], i) => {
-    let modifiedValue;
-    if (component === 'view-data-bulletlist' && key === 'data') {
-      modifiedValue = (typeof value === 'string') ? value.split(',') : value;
-    } else {
-      modifiedValue = value.replace(opts.regex1, opts.string1).replace(opts.regex2, opts.string2);
-    }
-    const keyValueString = (i !== 0)
-      ? (`${opts.stringStart}${key}: ${JSON.stringify(modifiedValue)}`)
-      : (`${opts.stringStart0}${key}: ${JSON.stringify(modifiedValue)}`);
-    acc[0] += keyValueString;
-    return acc;
-  }, opts.accArray).join('');
+  const translator = translationMap[blockType];
+  const translation = `${value.replace(translator.lessThanRegex, translator.lessThanString).replace(translator.greaterThanRegex, translator.greaterThanString)}`;
+
+  let translatedValue = '';
+  if (blockType === 'html') {
+    translatedValue += `<span class="bcc-c-code-editable-content bcc-u-code-primary-color">"<span contenteditable="true">${translation}</span>"</span>`;
+  } else {
+    translatedValue += `"${translation}"`;
+  }
+
+  return translatedValue;
 };
 
-const getSettings = (component) => {
-  const settingsString = fs.readFileSync(`app/components/${component}/settings.json`, 'utf-8');
+const translateValueOfTypeArray = ({ value, blockType }) => {
+  let translatedValue = '';
+
+  const innerTranslatedValue = value.map((val, index) => translateKeyValue({
+    key: index,
+    value: val,
+    isLast: determineIsLast({ index, value }),
+    showKey: false,
+    blockType,
+  })).join('');
+
+  translatedValue += '[';
+  if (blockType === 'html') {
+    translatedValue += `<div class="bcc-c-code-json-array">${innerTranslatedValue}</div>`;
+  } else {
+    translatedValue += innerTranslatedValue;
+  }
+  translatedValue += ']';
+
+  return translatedValue;
+};
+
+const translateValueOfTypeObject = ({ value, blockType }) => {
+  let translatedValue = '';
+
+  const innerTranslatedValue = Object.entries(value)
+    .map(([innerKey, innerValue], index) => translateKeyValue({
+      key: innerKey,
+      value: innerValue,
+      isLast: determineIsLast({ index, value }),
+      blockType,
+    })).join('');
+
+  translatedValue += '{';
+  if (blockType === 'html') {
+    translatedValue += `<div class="bcc-c-code-json-object">${innerTranslatedValue}</div>`;
+  } else {
+    translatedValue += innerTranslatedValue;
+  }
+  translatedValue += '}';
+
+  return translatedValue;
+};
+
+const translateValue = ({ value, blockType, isLast }) => {
+  let translatedValue = '';
+
+  if (typeof value === 'string') {
+    translatedValue += translateValueOfTypeString({ value, blockType, isLast });
+  } else if (Array.isArray(value)) {
+    translatedValue += translateValueOfTypeArray({ value, blockType, isLast });
+  } else {
+    translatedValue += translateValueOfTypeObject({ value, blockType, isLast });
+  }
+  translatedValue += isLast ? ' ' : ',';
+
+  return translatedValue;
+};
+
+const translateKeyValue = ({
+  key,
+  value,
+  isLast,
+  showKey = true,
+  blockType,
+}) => {
+  let translatedValue = '';
+
+  translatedValue += translateKey({ key, blockType, showKey });
+  translatedValue += translateValue({ value, blockType, isLast });
+
+  if (blockType === 'html') {
+    return `<div class="bcc-c-code-nested">${translatedValue}</div>`;
+  }
+  return translatedValue;
+};
+
+const generateBlock = (params, blockType) => (
+  Object.entries(params).map(([key, value], index) => translateKeyValue({
+    key,
+    value,
+    isLast: determineIsLast({ index, value: params }),
+    blockType,
+  })).join('')
+);
+
+const getSettings = (name, type) => {
+  const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');
   return JSON.parse(settingsString);
 };
 
-const generateTemplate = ({
-  component,
-  formParams = {},
+const writeTemplate = (template, name, type) => {
+  const directory = 'app/templates';
+  const subDirectory = `${directory}/${type}s`;
+  if (!fs.existsSync(directory)) fs.mkdirSync(directory);
+  if (!fs.existsSync(subDirectory)) fs.mkdirSync(subDirectory);
+  fs.writeFileSync(`${subDirectory}/${name}-template.njk`, template);
+};
+
+const generateEditorBlock = ({
+  name,
+  templateType,
+  componentName,
+  paramsToUse,
 }) => {
-  const settings = getSettings(component);
-  const { componentName } = settings;
-  const type = 'component';
-  const formParamsExist = Object.keys(formParams).length > 0;
+  const editorBlock = generateBlock(paramsToUse, 'html');
+  const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${templateType}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
+  return `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="bcc-c-code-json-block">${editorBlock}</div>}) }}`;
+};
 
-  const params = formParamsExist ? formParams : settings.params;
+const generateRenderedBlock = ({
+  componentName,
+  paramsToUse,
+}) => {
+  const renderedBlock = generateBlock(paramsToUse, 'json');
+  return `{{ ${componentName}({${renderedBlock}}) }}`;
+};
 
-  const paramsStringCode = getParamStrings(component, params, 'code');
+const generateTemplate = ({
+  name,
+  formParams = {},
+  templateType,
+}) => {
+  const { componentName, params: paramsFromSettings } = getSettings(name, templateType);
+  const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
-  const paramsString = getParamStrings(component, params, 'display');
+  const editorBlock = generateEditorBlock({
+    name, templateType, componentName, paramsToUse,
+  });
+  const renderedSection = generateRenderedBlock({ componentName, paramsToUse });
 
-  const renderedComponentCode = `{{ ${componentName}(${paramsStringCode}) }}`;
-  const renderedComponentDisplay = `{{ ${componentName}(${paramsString}) }}`;
+  writeTemplate(`
+    {% extends 'views/includes/layout.njk' %}
+    {% from 'components/back-link/macro.njk' import backLink %}
+    {% from '${templateType}s/${name}/macro.njk' import ${componentName} %}
 
-  const template = `
-{% extends 'views/includes/layout.njk' %}
-{% from 'components/back-link/macro.njk' import backLink %}
-{% from '${type}s/${component}/macro.njk' import ${componentName} %}
+    {% block body %}
+      {{ backLink({
+        "href": "/",
+        "text": "Return to component list"
+      }) }}
 
-{% block body %}
-  {{ backLink({
-    "href": "/",
-    "text": "Return to component list"
-  }) }}
-  <h1>${componentName} ${type}</h1>
+    <h1>${componentName} ${templateType}</h1>
 
-  <h3>To use the ${type}</h3>
-  <pre><code>
-    {% verbatim %}
-      {% from '${type}s/${component}/macro.njk' import ${componentName} %}
+    <div>
+      <form method="post" action="/${templateType}/${name}" id="try-params" class="nhsuk-u-clear">
+        <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
+        <div class="bcc-c-code-block">
+          {% verbatim %}
+              ${editorBlock}
+          {% endverbatim %}
+        </div>
+      </form>
+    </div>
 
-      ${renderedComponentCode}
-    {% endverbatim %}
-  </code></pre>
-
-  <h3>Rendered ${type}</h3>
-  <div class="bcc-t-bg-white">
-  ${renderedComponentDisplay}
-  </div>
-
-  <div class="nhsuk-grid-row nhsuk-u-padding-4 nhsuk-u-margin-top-4 nhsuk-u-margin-left-0 bcc-t-bg-pale-yellow">
-    <form method="post" action="/${type}/${component}" id="try-params" class="nhsuk-u-clear">
-    ${getInputFields(params)}
-    <button type="submit" form="try-params" class="nhsuk-u-margin-top-4 nhsuk-u-margin-right-4 nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button>
-    </form>
-  </div>
-{% endblock %}
-`;
-  const dir = 'app/templates';
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-
-  fs.writeFileSync(`${dir}/${component}-template.njk`, template);
+    <div id="display-block">
+      <h3 class="bcc-c-display-title">Rendered ${templateType}</h3>
+      <div class="bcc-c-display-block">
+        ${renderedSection}
+      </div>
+    </div>
+    {% endblock %}
+  `, name, templateType);
 };
 
 module.exports = {

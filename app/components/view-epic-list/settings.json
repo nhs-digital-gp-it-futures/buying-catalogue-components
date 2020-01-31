@@ -1,0 +1,22 @@
+{
+  "componentName": "viewEpicList",
+  "params": {
+    "dataTestId": "some-test-identifier",
+    "data": [
+      {
+        "id": "C14E1",
+        "name": "access prescribable items"
+      },
+      {
+        "id": "C14E2",
+        "name": "manage Formularies"
+      },
+      {
+        "id": "C14E3",
+        "name": "manage sharedFormularies"
+      }
+    ],
+    "type": "met",
+    "classes": "another-class"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "componentName": "viewBrowserBased",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "sections": {
+        "browser-browsers-supported": {
+          "answers": {
+            "supported-browsers": ["Chrome", "Firefox"],
+            "mobile-responsive": "Yes"
+          }
+        },
+        "browser-mobile-first": {
+          "answers": {
+            "mobile-first-design": "Yes"
+          }
+        },
+        "browser-plug-ins-or-extensions": {
+          "answers": {
+            "plugins-required": "Yes",
+            "plugins-detail": "Some plugin detail"
+          }
+        },
+        "browser-connectivity-and-resolution": {
+          "answers": {
+            "minimum-connection-speed": "1Mbps",
+            "minimum-desktop-resolution": "4:3 800 x 600"
+          }
+        },
+        "browser-hardware-requirements": {
+          "answers": {
+            "hardware-requirements-description": "Some hardware requirement description."
+          }
+        },
+        "browser-additional-information": {
+          "answers": {
+            "additional-information": "Some additional information."
+          }
+        }
+      }
+    }
+  }
+}

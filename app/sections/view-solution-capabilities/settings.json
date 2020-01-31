@@ -1,0 +1,12 @@
+{
+  "componentName": "viewSolutionCapabilities",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "description": "description",
+    "section": {
+      "answers": {
+        "capabilities-met": ["capability 1", "capability 2", "capability 3"]
+      }
+    }
+  }
+}

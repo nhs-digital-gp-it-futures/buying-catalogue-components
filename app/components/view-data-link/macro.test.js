@@ -28,6 +28,28 @@ describe('view-data-link', () => {
       });
   });
 
+  it('should render the link with custom text when provided', (done) => {
+    const context = {
+      params: {
+        dataTestId: 'some-test-identifier',
+        data: 'www.somelink.com',
+        text: 'custom text',
+      },
+    };
+
+    const dummyApp = createTestHarness(macroWrapper, context);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('[data-test-id="some-test-identifier"] a').text().trim()).toEqual('custom text');
+        expect($('[data-test-id="some-test-identifier"] a').attr('href')).toEqual('www.somelink.com');
+
+        done();
+      });
+  });
+
   it('should not render the data when not provided', (done) => {
     const context = {
       params: {

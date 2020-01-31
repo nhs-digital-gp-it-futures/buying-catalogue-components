@@ -1,8 +1,13 @@
 {% macro viewDataLink(params) %}
   {% if params.data %}
+    {% if params.text %}
+      {% set text = params.text %}
+    {% else %}
+      {% set text = params.data %}
+    {% endif %}
     <div data-test-id="{{ params.dataTestId }}" class="bc-c-data-link {{ params.classes }}">
       <a href="{{ params.data }}" target="_blank">
-        {{ params.data }}
+        {{ text }}
       </a>
     </div>
   {% endif %}

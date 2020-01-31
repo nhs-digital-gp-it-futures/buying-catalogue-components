@@ -1,0 +1,13 @@
+{
+  "componentName": "viewSolutionDescription",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "answers": {
+        "summary": "Some summary data",
+        "description": "Some description data",
+        "link": "www.somelink.com"
+      }
+    }
+  }
+}

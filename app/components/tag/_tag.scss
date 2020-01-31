@@ -1,6 +1,15 @@
 .bc-c-tag {
   background-color: $color_nhsuk-blue;
   color:  $color_nhsuk-white;
-  font-weight: 600 !important;
+  font-weight: 600;
   padding: nhsuk-spacing(1) nhsuk-spacing(3);
+}
+
+.bc-c-tag-outline {
+  background-color: transparent;
+  border: 2px solid $color_nhsuk-blue;
+  color: $color_nhsuk-blue;
+  display: inline-block;
+  padding: nhsuk-spacing(1) nhsuk-spacing(3);
+  @include nhsuk-font(22);
 }

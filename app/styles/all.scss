@@ -1,7 +1,13 @@
 @import 'main';
 
 // these classes are just used for displaying the templates in this app and are not bundled with the npm release
-$color_nhsuk-green--shadow: #00401e;
+
+$color_nhsuk-light-blue: #41B6E6;
+$color_nhsuk-white--alpha02: rgba($color_nhsuk-white, .02);
+$color_nhsuk-white--alpha05: rgba($color_nhsuk-white, .05);
+$color_nhsuk-white--alpha20: rgba($color_nhsuk-white, .2);
+$color_nhsuk-white--alpha30: rgba($color_nhsuk-white, .3);
+$color_nhsuk-white--alpha40: rgba($color_nhsuk-white, .4);
 
 .bcc-t-bg-white {
   background: $color_nhsuk-white;
@@ -15,14 +21,136 @@ $color_nhsuk-green--shadow: #00401e;
   background-color: $color_nhsuk-green;
   border: 2px solid transparent;
   border-radius: 4px;
-  box-shadow: 0 4px 0 $color_nhsuk-green--shadow;
+  box-shadow: 0 4px 0 darken($color_nhsuk-green, 12%);
   box-sizing: border-box;
   color: $color_nhsuk-white;
   float: right;
   font-weight: 600;
+  margin-right: -(nhsuk-spacing(4));
+  margin-top: -4px;
   padding: 6px 8px;
 }
 
 .bcc-body {
-  height: 100% !important;
+  height: 100%;
+}
+
+.bcc-c-code-title {
+  background: darken($color_nhsuk-black, 2%);
+  border-radius: 5px 5px 0 0;
+  color: $color_nhsuk-white;
+  margin-bottom: 0;
+  padding: nhsuk-spacing(3) nhsuk-spacing(5);
+  position: relative;
+  z-index: 12;
+}
+
+.bcc-c-code-block {
+  background: $color_nhsuk-black;
+  color: $color_nhsuk-white;
+  font-family: monospace;
+  font-size: 14px;
+  max-height: 500px;
+  overflow: scroll;
+  padding: 26px;
+  width: 100%;
+
+  /* width */
+  &::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: darken($color_nhsuk-black, 2%);
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $color_nhsuk-white--alpha20;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $color_nhsuk-white--alpha40;
+  }
+
+  /* Corner */
+  &::-webkit-scrollbar-corner {
+    background: darken($color_nhsuk-black, 2%);
+  }
+
+}
+
+.bcc-c-code-key-label {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 14px;
+  white-space: pre;
+}
+
+.bcc-c-code-editable-content {
+  background: none;
+  border: 0;
+  border-bottom: 1px dashed $color_nhsuk-white--alpha30;
+  box-shadow: none;
+  font-family: monospace;
+  font-size: 14px;
+  outline: none;
+  white-space: pre;
+
+  &:hover,
+  &:focus {
+    background: $color_nhsuk-white--alpha05;
+  }
+
+  span {
+    outline: none;
+  }
+
+}
+
+.bcc-c-code-json-block {
+  padding-left: 2em;
+}
+
+.bcc-c-code-json-object {
+  padding-left: 1em;
+}
+
+.bcc-c-code-json-array {
+  padding-left: 1em;
+}
+
+.bcc-u-code-primary-color {
+  color: $color_nhsuk-warm-yellow;
+}
+
+.bcc-u-code-secondary-color {
+  color: $color_nhsuk-light-blue;
+}
+
+.bcc-c-code-nested {
+  white-space: nowrap;
+  &:hover {
+    border-left: 4px solid $color_nhsuk-white--alpha02;
+    margin-left: -12px;
+    padding-left: 8px;
+  }
+}
+
+.bcc-c-display-title {
+  background: $color_nhsuk-blue;
+  color: $color_nhsuk-white;
+  margin-bottom: 0;
+  padding: nhsuk-spacing(3) nhsuk-spacing(5);
+}
+.bcc-c-display-block {
+  background: $color_nhsuk-white;
+  border-radius: 0 0 5px 5px;
+  margin-bottom: -(nhsuk-spacing(4)) ;
+  padding: nhsuk-spacing(5);
 }

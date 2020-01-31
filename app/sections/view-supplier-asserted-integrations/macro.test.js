@@ -24,12 +24,9 @@ describe('view-supplier-asserted-integrations', () => {
         const $ = cheerio.load(res.text);
 
         const supplierAssertedIntegrationsQuestionRow = $('[data-test-id="view-section-table-row-supplier-asserted-integrations"]');
-        const supplierAssertedIntegrationsComponent = supplierAssertedIntegrationsQuestionRow.find('[data-test-id="view-data-text-link-additional-information"]');
 
         expect(supplierAssertedIntegrationsQuestionRow.length).toEqual(1);
         expect(supplierAssertedIntegrationsQuestionRow.find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supplier asserted integrations');
-        expect(supplierAssertedIntegrationsComponent.length).toEqual(1);
-        expect(supplierAssertedIntegrationsComponent.text().trim()).toEqual('Supplier assured integrations are interoperability interfaces prepared by a supplier and are not specified or assured by the NHS.');
 
         done();
       });
@@ -81,7 +78,7 @@ describe('view-supplier-asserted-integrations', () => {
       });
   });
 
-  it('should render the link additional information if supplier asserted integrations data provided', (done) => {
+  it('should render the additional information if supplier asserted integrations data provided', (done) => {
     const context = {
       params: {
         section: {
@@ -101,7 +98,7 @@ describe('view-supplier-asserted-integrations', () => {
         const summaryQuestionRow = $('[data-test-id="view-section-table-row-supplier-asserted-integrations"]');
         const linkInnerComponent = summaryQuestionRow
           .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-data-text-link-additional-information"]');
+          .find('[data-test-id="view-data-text-additional-information"]');
 
         expect(linkInnerComponent.length).toEqual(1);
         expect(linkInnerComponent.text().trim()).toEqual('Supplier assured integrations are interoperability interfaces prepared by a supplier and are not specified or assured by the NHS.');

@@ -363,6 +363,7 @@ describe('view-epics', () => {
           });
       });
     });
+
     describe('with not-met type', () => {
       it('should render the viewEpicList component when provided with epics that are may and not-met', (done) => {
         const context = {

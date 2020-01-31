@@ -142,6 +142,7 @@ describe('view-epic-list', () => {
           done();
         });
     });
+
     it('should render the cross icon for not-met types', (done) => {
       const context = {
         params: {
@@ -247,7 +248,6 @@ describe('view-epic-list', () => {
         type: 'met',
       },
     };
-
 
     const dummyApp = createTestHarness(macroWrapper, context);
     request(dummyApp)

@@ -1,0 +1,11 @@
+{
+  "componentName": "viewSupplierAssertedIntegrations",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "answers": {
+        "link": "http://www.some-link.com"
+      }
+    }
+  }
+}

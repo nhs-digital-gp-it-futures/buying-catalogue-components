@@ -1,0 +1,15 @@
+{
+  "componentName": "viewIntegrations",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "sections": {
+        "supplier-asserted-integrations": {
+          "answers": {
+            "link": "http://www.some-link.com"
+          }
+        }
+      }
+    }
+  }
+}

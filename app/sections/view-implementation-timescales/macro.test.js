@@ -8,9 +8,7 @@ const macroWrapper = `{% from './sections/view-implementation-timescales/macro.n
 
 describe('view-implementation-timescales', () => {
   it('should render the title of the section', (done) => {
-    const context = settingsContext;
-
-    const dummyApp = createTestHarness(macroWrapper, context);
+    const dummyApp = createTestHarness(macroWrapper, settingsContext);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -21,15 +19,13 @@ describe('view-implementation-timescales', () => {
   });
 
   it('should render the description answer when provided', (done) => {
-    const context = settingsContext;
-
-    const dummyApp = createTestHarness(macroWrapper, context);
+    const dummyApp = createTestHarness(macroWrapper, settingsContext);
     request(dummyApp)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual(context.params.section.answers.description);
+        expect($('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual(settingsContext.params.section.answers.description);
 
         done();
       });

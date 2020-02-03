@@ -11,7 +11,7 @@ describe('view-integrations', () => {
       params: {
         section: {
           sections: {
-            'supplier-asserted-integrations': {},
+            integrations: {},
           },
         },
       },
@@ -80,7 +80,7 @@ describe('view-integrations', () => {
       params: {
         section: {
           sections: {
-            'supplier-asserted-integrations': {},
+            integrations: {},
           },
         },
       },
@@ -103,7 +103,7 @@ describe('view-integrations', () => {
       params: {
         section: {
           sections: {
-            'supplier-asserted-integrations': {},
+            integrations: {},
           },
         },
       },

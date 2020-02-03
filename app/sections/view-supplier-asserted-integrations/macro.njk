@@ -1,0 +1,23 @@
+{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view-data-link/macro.njk' import viewDataLink %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+
+{% macro viewSupplierAssertedIntegrations(params) %}
+  {% if params %}
+    <dl data-test-id="view-supplier-asserted-integrations" class="nhsuk-summary-list">
+      {{ viewSectionTableRow({
+        questionId: 'supplier-asserted-integrations',
+        questionTitle: 'Supplier asserted integrations',
+        layout: 'vertical',
+        innerComponent: viewDataText({
+          dataTestId: 'view-data-text-additional-information',
+          data: 'Supplier assured integrations are interoperability interfaces prepared by a supplier and are not specified or assured by the NHS.'
+        }) + viewDataLink({
+          dataTestId: 'view-question-data-text-link',
+          data: params.section.answers['link']
+        })
+      })}}
+    </dl>
+  {% endif %}
+{% endmacro %}

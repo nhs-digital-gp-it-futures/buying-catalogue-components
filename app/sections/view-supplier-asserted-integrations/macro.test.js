@@ -1,23 +1,14 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
+import * as settingsContext from './settings';
 
 const macroWrapper = `{% from './sections/view-supplier-asserted-integrations/macro.njk' import viewSupplierAssertedIntegrations %}
                         {{ viewSupplierAssertedIntegrations(params) }}`;
 
 describe('view-supplier-asserted-integrations', () => {
   it('should render the supplier asserted integrations answer if provided', (done) => {
-    const context = {
-      params: {
-        section: {
-          answers: {
-            link: 'http://www.some-link.com',
-          },
-        },
-      },
-    };
-
-    const dummyApp = createTestHarness(macroWrapper, context);
+    const dummyApp = createTestHarness(macroWrapper, settingsContext);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -50,17 +41,7 @@ describe('view-supplier-asserted-integrations', () => {
   });
 
   it('should render the link answer if provided', (done) => {
-    const context = {
-      params: {
-        section: {
-          answers: {
-            link: 'http://www.some-link.com',
-          },
-        },
-      },
-    };
-
-    const dummyApp = createTestHarness(macroWrapper, context);
+    const dummyApp = createTestHarness(macroWrapper, settingsContext);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -72,24 +53,15 @@ describe('view-supplier-asserted-integrations', () => {
           .find('[data-test-id="view-question-data-text-link"]');
 
         expect(linkInnerComponent.length).toEqual(1);
-        expect(linkInnerComponent.text().trim()).toEqual('http://www.some-link.com');
+        expect(linkInnerComponent.text().trim())
+          .toEqual(settingsContext.params.section.answers.link);
 
         done();
       });
   });
 
   it('should render the additional information if supplier asserted integrations data provided', (done) => {
-    const context = {
-      params: {
-        section: {
-          answers: {
-            link: 'http://www.some-link.com',
-          },
-        },
-      },
-    };
-
-    const dummyApp = createTestHarness(macroWrapper, context);
+    const dummyApp = createTestHarness(macroWrapper, settingsContext);
     request(dummyApp)
       .get('/')
       .then((res) => {

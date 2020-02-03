@@ -5,11 +5,7 @@
 {% from 'sections/view-supplier-asserted-integrations/macro.njk' import viewSupplierAssertedIntegrations %}
 
 {% macro viewIntegrations(params) %}
-  {% if params.section.sections['integrations'] %}
-    {% set hasIntegrationsSections = true %}
-  {% endif %}
-
-  {% if hasIntegrationsSections %}
+  {% if params and params.section.answers.link %}
     <div data-test-id="view-integrations" class="nhsuk-width-container nhsuk-summary-list">
       {{ viewSectionHeading({ text: 'Integrations' }) }}
       <div class="nhsuk-u-padding-left-3">
@@ -18,7 +14,7 @@
           data: 'View information about the systems this Catalogue Solution integrates with to exchange data:'
         }) }}
         {{ viewSupplierAssertedIntegrations({
-          section: params.section.sections['integrations']
+          section: params.section.answers
         })}}
       </div>
     </div>

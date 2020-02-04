@@ -86,6 +86,32 @@ describe('view-roadmap', () => {
           done();
         });
     });
+
+    it('should render the document link', (done) => {
+      const context = {
+        params: {
+          section: {
+            answers: {
+              documentLink: '/solution/10001/document/roadmap.pdf',
+            },
+          },
+        },
+      };
+
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          const documentLinkQuestion = $('[data-test-id="view-section-question-documentLink"]');
+
+          expect(documentLinkQuestion.find('[data-test-id="view-question-data-link-documentLink"]').text().trim()).toEqual('View roadmap');
+          expect(documentLinkQuestion.find('[data-test-id="view-question-data-link-documentLink"] a').attr('href')).toEqual('/solution/10001/document/roadmap.pdf');
+
+          done();
+        });
+    });
   });
 
   describe('when there are no answers provided for the questions', () => {
@@ -109,6 +135,31 @@ describe('view-roadmap', () => {
           const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
 
           expect(summaryQuestion.length).toEqual(0);
+
+          done();
+        });
+    });
+
+    it('should not render the document link', (done) => {
+      const context = {
+        params: {
+          section: {
+            answers: {
+              documentLink: '',
+            },
+          },
+        },
+      };
+
+      const dummyApp = createTestHarness(macroWrapper, context);
+      request(dummyApp)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          const documentLinkQuestion = $('[data-test-id="view-section-question-documentLink"]');
+
+          expect(documentLinkQuestion.length).toEqual(0);
 
           done();
         });

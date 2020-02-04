@@ -75,7 +75,7 @@ describe('view-roadmap', () => {
         expect(documentLinkQuestion.find('[data-test-id="view-question-data-link-document-link"]').text().trim()).toEqual('View roadmap');
         expect(documentLinkQuestion.find('[data-test-id="view-question-data-link-document-link"] a').attr('href')).toEqual('/solution/10001/document/roadmap.pdf');
       });
-    });
+    }));
   });
 
   describe('when there are no answers provided for the questions', () => {

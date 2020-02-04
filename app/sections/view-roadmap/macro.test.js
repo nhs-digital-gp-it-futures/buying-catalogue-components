@@ -104,10 +104,10 @@ describe('view-roadmap', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const documentLinkQuestion = $('[data-test-id="view-section-question-documentLink"]');
+          const documentLinkQuestion = $('[data-test-id="view-section-question-document-link"]');
 
-          expect(documentLinkQuestion.find('[data-test-id="view-question-data-link-documentLink"]').text().trim()).toEqual('View roadmap');
-          expect(documentLinkQuestion.find('[data-test-id="view-question-data-link-documentLink"] a').attr('href')).toEqual('/solution/10001/document/roadmap.pdf');
+          expect(documentLinkQuestion.find('[data-test-id="view-question-data-link-document-link"]').text().trim()).toEqual('View roadmap');
+          expect(documentLinkQuestion.find('[data-test-id="view-question-data-link-document-link"] a').attr('href')).toEqual('/solution/10001/document/roadmap.pdf');
 
           done();
         });
@@ -157,7 +157,7 @@ describe('view-roadmap', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const documentLinkQuestion = $('[data-test-id="view-section-question-documentLink"]');
+          const documentLinkQuestion = $('[data-test-id="view-section-question-document-link"]');
 
           expect(documentLinkQuestion.length).toEqual(0);
 

@@ -1,12 +1,12 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './sections/view-integrations/macro.njk' import viewIntegrations %}
-                        {{ viewIntegrations(params) }}`;
+const setup = {
+  templateName: 'viewIntegrations',
+  templateType: 'section',
+};
 
 describe('view-integrations', () => {
-  it('should render the integrations section if section data provided', (done) => {
+  it('should render the integrations section if section data provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -17,40 +17,24 @@ describe('view-integrations', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const integrations = $('[data-test-id="view-integrations"]');
+      expect(integrations.length).toEqual(1);
+    });
+  }));
 
-        const integrations = $('[data-test-id="view-integrations"]');
-
-        expect(integrations.length).toEqual(1);
-
-        done();
-      });
-  });
-
-  it('should not render the integrations section if no section data provided', (done) => {
+  it('should not render the integrations section if no section data provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {},
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const integrations = $('[data-test-id="view-integrations"]');
+      expect(integrations.length).toEqual(0);
+    });
+  }));
 
-        const integrations = $('[data-test-id="view-integrations"]');
-
-        expect(integrations.length).toEqual(0);
-
-        done();
-      });
-  });
-
-  it('should not render the integrations section if invalid section provided', (done) => {
+  it('should not render the integrations section if invalid section provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -61,21 +45,13 @@ describe('view-integrations', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const integrations = $('[data-test-id="view-integrations"]');
+      expect(integrations.length).toEqual(0);
+    });
+  }));
 
-        const integrations = $('[data-test-id="view-integrations"]');
-
-        expect(integrations.length).toEqual(0);
-
-        done();
-      });
-  });
-
-  it('should render the title of the section if the integrations section is provided', (done) => {
+  it('should render the title of the section if the integrations section is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -86,19 +62,12 @@ describe('view-integrations', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('h3').text().trim()).toEqual('Integrations');
+    });
+  }));
 
-        expect($('h3').text().trim()).toEqual('Integrations');
-
-        done();
-      });
-  });
-
-  it('should render the additional information of the section if the integrations section is provided', (done) => {
+  it('should render the additional information of the section if the integrations section is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -109,18 +78,11 @@ describe('view-integrations', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const integrationsSection = $('[data-test-id="view-integrations"]');
+      const integrationsAdditionalInformation = integrationsSection.find('div[data-test-id="view-section-integrations-additional-information"]');
 
-        const integrationsSection = $('[data-test-id="view-integrations"]');
-        const integrationsAdditionalInformation = integrationsSection.find('div[data-test-id="view-section-integrations-additional-information"]');
-
-        expect(integrationsAdditionalInformation.text().trim()).toEqual('View information about the systems this Catalogue Solution integrates with to exchange data:');
-
-        done();
-      });
-  });
+      expect(integrationsAdditionalInformation.text().trim()).toEqual('View information about the systems this Catalogue Solution integrates with to exchange data:');
+    });
+  }));
 });

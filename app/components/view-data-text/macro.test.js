@@ -1,12 +1,12 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './components/view-data-text/macro.njk' import viewDataText %}
-                        {{ viewDataText(params) }}`;
+const setup = {
+  templateName: 'viewDataText',
+  templateType: 'component',
+};
 
 describe('view-data-text', () => {
-  it('should render the data when provided', (done) => {
+  it('should render the data when provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
@@ -14,34 +14,20 @@ describe('view-data-text', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-test-identifier"]').text().trim()).toEqual('Some question data');
+    });
+  }));
 
-        expect($('[data-test-id="some-test-identifier"]').text().trim()).toEqual('Some question data');
-
-        done();
-      });
-  });
-
-  it('should not render the data when not provided', (done) => {
+  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('[data-test-id^="some-test-identifier"]').length).toEqual(0);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('[data-test-id^="some-test-identifier"]').length).toEqual(0);
+    });
+  }));
 });

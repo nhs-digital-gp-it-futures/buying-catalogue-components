@@ -1,13 +1,12 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './components/view-data-link/macro.njk' import viewDataLink %}
-                        {{ viewDataLink(params) }}`;
-
+const setup = {
+  templateName: 'viewDataLink',
+  templateType: 'component',
+};
 
 describe('view-data-link', () => {
-  it('should render the link when provided', (done) => {
+  it('should render the link when provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
@@ -15,20 +14,13 @@ describe('view-data-link', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-test-identifier"] a').text().trim()).toEqual('www.somelink.com');
+      expect($('[data-test-id="some-test-identifier"] a').attr('href')).toEqual('www.somelink.com');
+    });
+  }));
 
-        expect($('[data-test-id="some-test-identifier"] a').text().trim()).toEqual('www.somelink.com');
-        expect($('[data-test-id="some-test-identifier"] a').attr('href')).toEqual('www.somelink.com');
-
-        done();
-      });
-  });
-
-  it('should render the link with custom text when provided', (done) => {
+  it('should render the link with custom text when provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
@@ -37,39 +29,25 @@ describe('view-data-link', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-test-identifier"] a').text().trim()).toEqual('custom text');
+      expect($('[data-test-id="some-test-identifier"] a').attr('href')).toEqual('www.somelink.com');
+    });
+  }));
 
-        expect($('[data-test-id="some-test-identifier"] a').text().trim()).toEqual('custom text');
-        expect($('[data-test-id="some-test-identifier"] a').attr('href')).toEqual('www.somelink.com');
-
-        done();
-      });
-  });
-
-  it('should not render the data when not provided', (done) => {
+  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-test-identifier"]').length).toEqual(0);
+    });
+  }));
 
-        expect($('[data-test-id="some-test-identifier"]').length).toEqual(0);
-
-        done();
-      });
-  });
-
-  it('should add classes provided within the params', (done) => {
+  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -78,16 +56,10 @@ describe('view-data-link', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('bc-c-data-link')).toEqual(true);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('bc-c-data-link')).toEqual(true);
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
+    });
+  }));
 });

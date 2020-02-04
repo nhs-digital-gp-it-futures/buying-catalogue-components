@@ -1,12 +1,12 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './sections/view-native-desktop/macro.njk' import viewNativeDesktop %}
-                        {{ viewNativeDesktop(params) }}`;
+const setup = {
+  templateName: 'viewNativeDesktop',
+  templateType: 'section',
+};
 
 describe('view-native-desktop', () => {
-  it('should render the operating system information answer', (done) => {
+  it('should render the operating system information answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -21,30 +21,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-operating-systems-description"]');
+      const operatingSystemsDescriptionInnerComponent = operatingSystemsDescriptionQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-operating-systems-description"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-operating-systems-description"]');
-        const operatingSystemsDescriptionInnerComponent = operatingSystemsDescriptionQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-operating-systems-description"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
+      expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
+      expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Windows 7 and above.');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
-        expect(operatingSystemsDescriptionQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
-        expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
-        expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Windows 7 and above.');
-
-        done();
-      });
-  });
-
-  it('should render the minimum connection speed required answer', (done) => {
+  it('should render the minimum connection speed required answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -59,30 +52,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const minimumConnectionSpeedQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-connection-speed"]');
+      const minimumConnectionSpeedInnerComponent = minimumConnectionSpeedQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-minimum-connection-speed"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const minimumConnectionSpeedQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-connection-speed"]');
-        const minimumConnectionSpeedInnerComponent = minimumConnectionSpeedQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-minimum-connection-speed"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(minimumConnectionSpeedQuestionRow.length).toEqual(1);
+      expect(minimumConnectionSpeedQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed required');
+      expect(minimumConnectionSpeedInnerComponent.length).toEqual(1);
+      expect(minimumConnectionSpeedInnerComponent.text().trim()).toEqual('2Mbps');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(minimumConnectionSpeedQuestionRow.length).toEqual(1);
-        expect(minimumConnectionSpeedQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed required');
-        expect(minimumConnectionSpeedInnerComponent.length).toEqual(1);
-        expect(minimumConnectionSpeedInnerComponent.text().trim()).toEqual('2Mbps');
-
-        done();
-      });
-  });
-
-  it('should render the minimum memory requirement answer', (done) => {
+  it('should render the minimum memory requirement answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -97,30 +83,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const minimumMemoryRequirementQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-memory-requirement"]');
+      const minimumMemoryRequirementInnerComponent = minimumMemoryRequirementQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-minimum-memory-requirement"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const minimumMemoryRequirementQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-memory-requirement"]');
-        const minimumMemoryRequirementInnerComponent = minimumMemoryRequirementQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-minimum-memory-requirement"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
+      expect(minimumMemoryRequirementQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum memory requirement');
+      expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
+      expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
-        expect(minimumMemoryRequirementQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum memory requirement');
-        expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
-        expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
-
-        done();
-      });
-  });
-
-  it('should render the additional storage requirements answer', (done) => {
+  it('should render the additional storage requirements answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -135,30 +114,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const storageReqsDescriptionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
+      const storageReqsDescriptionInnerComponent = storageReqsDescriptionQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const storageReqsDescriptionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
-        const storageReqsDescriptionInnerComponent = storageReqsDescriptionQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
+      expect(storageReqsDescriptionQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional storage requirements');
+      expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
+      expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 2.5GB of free space on each device the application is installed.');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
-        expect(storageReqsDescriptionQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional storage requirements');
-        expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
-        expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 2.5GB of free space on each device the application is installed.');
-
-        done();
-      });
-  });
-
-  it('should render the minimum cpu answer', (done) => {
+  it('should render the minimum cpu answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -173,30 +145,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const minimumCPUQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-cpu"]');
+      const minimumCPUInnerComponent = minimumCPUQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-minimum-cpu"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const minimumCPUQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-cpu"]');
-        const minimumCPUInnerComponent = minimumCPUQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-minimum-cpu"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(minimumCPUQuestionRow.length).toEqual(1);
+      expect(minimumCPUQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum necessary CPU power');
+      expect(minimumCPUInnerComponent.length).toEqual(1);
+      expect(minimumCPUInnerComponent.text().trim()).toEqual('Intel Core i5-4460 (3.4GHz) Quad-core or Better.');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(minimumCPUQuestionRow.length).toEqual(1);
-        expect(minimumCPUQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum necessary CPU power');
-        expect(minimumCPUInnerComponent.length).toEqual(1);
-        expect(minimumCPUInnerComponent.text().trim()).toEqual('Intel Core i5-4460 (3.4GHz) Quad-core or Better.');
-
-        done();
-      });
-  });
-
-  it('should render the recommended resolution answer', (done) => {
+  it('should render the recommended resolution answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -211,30 +176,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const recommendedResolutionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-recommended-resolution"]');
+      const recommendedResolutionInnerComponent = recommendedResolutionQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-recommended-resolution"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const recommendedResolutionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-recommended-resolution"]');
-        const recommendedResolutionInnerComponent = recommendedResolutionQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-recommended-resolution"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(recommendedResolutionQuestionRow.length).toEqual(1);
+      expect(recommendedResolutionQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Recommended desktop aspect ratio and screen resolution');
+      expect(recommendedResolutionInnerComponent.length).toEqual(1);
+      expect(recommendedResolutionInnerComponent.text().trim()).toEqual('16:9 - 1920 x 1080');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(recommendedResolutionQuestionRow.length).toEqual(1);
-        expect(recommendedResolutionQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Recommended desktop aspect ratio and screen resolution');
-        expect(recommendedResolutionInnerComponent.length).toEqual(1);
-        expect(recommendedResolutionInnerComponent.text().trim()).toEqual('16:9 - 1920 x 1080');
-
-        done();
-      });
-  });
-
-  it('should render the third party components answer', (done) => {
+  it('should render the third party components answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -249,30 +207,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const thirdPartyComponentsQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-third-party-components"]');
+      const thirdPartyComponentsInnerComponent = thirdPartyComponentsQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-third-party-components"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const thirdPartyComponentsQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-third-party-components"]');
-        const thirdPartyComponentsInnerComponent = thirdPartyComponentsQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-third-party-components"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(thirdPartyComponentsQuestionRow.length).toEqual(1);
+      expect(thirdPartyComponentsQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third party components required');
+      expect(thirdPartyComponentsInnerComponent.length).toEqual(1);
+      expect(thirdPartyComponentsInnerComponent.text().trim()).toEqual('To fully utilise the letter template functionality, you will need a fully licensed version of Microsoft Word 2013 or higher.');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(thirdPartyComponentsQuestionRow.length).toEqual(1);
-        expect(thirdPartyComponentsQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third party components required');
-        expect(thirdPartyComponentsInnerComponent.length).toEqual(1);
-        expect(thirdPartyComponentsInnerComponent.text().trim()).toEqual('To fully utilise the letter template functionality, you will need a fully licensed version of Microsoft Word 2013 or higher.');
-
-        done();
-      });
-  });
-
-  it('should render the device capabilities answer', (done) => {
+  it('should render the device capabilities answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -287,30 +238,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const deviceCapabilitiesQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-device-capabilities"]');
+      const deviceCapabilitiesInnerComponent = deviceCapabilitiesQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-device-capabilities"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const deviceCapabilitiesQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-device-capabilities"]');
-        const deviceCapabilitiesInnerComponent = deviceCapabilitiesQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-device-capabilities"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(deviceCapabilitiesQuestionRow.length).toEqual(1);
+      expect(deviceCapabilitiesQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities required');
+      expect(deviceCapabilitiesInnerComponent.length).toEqual(1);
+      expect(deviceCapabilitiesInnerComponent.text().trim()).toEqual('In order to use our branded wireless Dictaphone, the device will require Bluetooth.');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(deviceCapabilitiesQuestionRow.length).toEqual(1);
-        expect(deviceCapabilitiesQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities required');
-        expect(deviceCapabilitiesInnerComponent.length).toEqual(1);
-        expect(deviceCapabilitiesInnerComponent.text().trim()).toEqual('In order to use our branded wireless Dictaphone, the device will require Bluetooth.');
-
-        done();
-      });
-  });
-
-  it('should render the hardware requirements answer', (done) => {
+  it('should render the hardware requirements answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -325,30 +269,23 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const hardwareRequirementsQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements"]');
+      const hardwareRequirementsInnerComponent = hardwareRequirementsQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-hardware-requirements"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const hardwareRequirementsQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements"]');
-        const hardwareRequirementsInnerComponent = hardwareRequirementsQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-hardware-requirements"]');
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(hardwareRequirementsQuestionRow.length).toEqual(1);
+      expect(hardwareRequirementsQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
+      expect(hardwareRequirementsInnerComponent.length).toEqual(1);
+      expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('To fully utilise the transcribing functionality within the application, you will need to purchase our branded wireless Dictaphone.');
+    });
+  }));
 
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(hardwareRequirementsQuestionRow.length).toEqual(1);
-        expect(hardwareRequirementsQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
-        expect(hardwareRequirementsInnerComponent.length).toEqual(1);
-        expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('To fully utilise the transcribing functionality within the application, you will need to purchase our branded wireless Dictaphone.');
-
-        done();
-      });
-  });
-
-  it('should render the additional information answer', (done) => {
+  it('should render the additional information answer', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -363,26 +300,19 @@ describe('view-native-desktop', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
+      const additionalInformationQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
+      const additionalInformationInnerComponent = additionalInformationQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-additional-information"]');
 
-        const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-        const additionalInformationQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
-        const additionalInformationInnerComponent = additionalInformationQuestionRow
-          .find('div[data-test-id="view-section-table-row-component"]')
-          .find('[data-test-id="view-question-data-text-additional-information"]');
-
-        expect(nativeDesktopSectionTable.length).toEqual(1);
-        expect(additionalInformationQuestionRow.length).toEqual(1);
-        expect(additionalInformationQuestionRow
-          .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
-        expect(additionalInformationInnerComponent.length).toEqual(1);
-        expect(additionalInformationInnerComponent.text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
-
-        done();
-      });
-  });
+      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(additionalInformationQuestionRow.length).toEqual(1);
+      expect(additionalInformationQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
+      expect(additionalInformationInnerComponent.length).toEqual(1);
+      expect(additionalInformationInnerComponent.text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
+    });
+  }));
 });

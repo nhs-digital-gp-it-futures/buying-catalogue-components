@@ -1,12 +1,12 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './components/view-expandable-section/macro.njk' import viewExpandableSection %}
-                        {{ viewExpandableSection(params) }}`;
+const setup = {
+  templateName: 'viewExpandableSection',
+  templateType: 'component',
+};
 
 describe('view-expandable-section', () => {
-  it('should render title of the expandable section', (done) => {
+  it('should render title of the expandable section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -14,19 +14,12 @@ describe('view-expandable-section', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-data-identifier"]').text().trim()).toEqual('Some section title');
+    });
+  }));
 
-        expect($('[data-test-id="some-data-identifier"]').text().trim()).toEqual('Some section title');
-
-        done();
-      });
-  });
-
-  it('should render innerComponent of the expandable section', (done) => {
+  it('should render innerComponent of the expandable section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -35,19 +28,12 @@ describe('view-expandable-section', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-data-identifier"] p').text().trim()).toEqual('Some inner component');
+    });
+  }));
 
-        expect($('[data-test-id="some-data-identifier"] p').text().trim()).toEqual('Some inner component');
-
-        done();
-      });
-  });
-
-  it('should add classes provided within the params', (done) => {
+  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -56,15 +42,9 @@ describe('view-expandable-section', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
+    });
+  }));
 });

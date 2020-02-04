@@ -1,12 +1,12 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
-                        {{ viewDataBulletlist(params) }}`;
+const setup = {
+  templateName: 'viewDataBulletlist',
+  templateType: 'component',
+};
 
 describe('view-data-bulletlist', () => {
-  it('should render the data as a list when provided', (done) => {
+  it('should render the data as a list when provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -18,34 +18,21 @@ describe('view-data-bulletlist', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
-        expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
+      expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
+    });
+  }));
 
-        done();
-      });
-  });
-
-  it('should not render the data when not provided', (done) => {
+  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
     const context = {};
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
+    });
+  }));
 
-        expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
-
-        done();
-      });
-  });
-
-  it('should not render empty strings when provided', (done) => {
+  it('should not render empty strings when provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -60,19 +47,13 @@ describe('view-data-bulletlist', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
-        expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
+      expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
+    });
+  }));
 
-        done();
-      });
-  });
-
-  it('should not render strings that contain only spaces when provided', (done) => {
+  it('should not render strings that contain only spaces when provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -87,19 +68,13 @@ describe('view-data-bulletlist', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
-        expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-data-identifier"] ul').length).toEqual(1);
+      expect($('[data-test-id="some-data-identifier"] li').length).toEqual(3);
+    });
+  }));
 
-        done();
-      });
-  });
-
-  it('should add classes provided within the params', (done) => {
+  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -108,16 +83,10 @@ describe('view-data-bulletlist', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('bc-c-data-bulletlist')).toEqual(true);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('bc-c-data-bulletlist')).toEqual(true);
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
+    });
+  }));
 });

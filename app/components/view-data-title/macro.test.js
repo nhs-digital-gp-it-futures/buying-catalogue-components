@@ -1,12 +1,12 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './components/view-data-title/macro.njk' import viewDataTitle %}
-                          {{ viewDataTitle(params) }}`;
+const setup = {
+  templateName: 'viewDataTitle',
+  templateType: 'component',
+};
 
 describe('view-data-title', () => {
-  it('should render the title', (done) => {
+  it('should render the title', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
@@ -14,15 +14,8 @@ describe('view-data-title', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('[data-test-id="some-test-identifier"]').text().trim()).toEqual('Some question title');
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-test-identifier"]').text().trim()).toEqual('Some question title');
+    });
+  }));
 });

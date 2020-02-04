@@ -1,37 +1,26 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
+
 import * as settingsContext from './settings';
 
-const macroWrapper = `{% from './sections/view-implementation-timescales/macro.njk' import viewImplementationTimescales %}
-                        {{ viewImplementationTimescales(params) }}`;
+const setup = {
+  templateName: 'viewImplementationTimescales',
+  templateType: 'section',
+};
 
 describe('view-implementation-timescales', () => {
-  it('should render the title of the section', (done) => {
-    const dummyApp = createTestHarness(macroWrapper, settingsContext);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('h3').text().trim()).toEqual('Implementation timescales');
-        done();
-      });
-  });
+  it('should render the title of the section', createTestHarness(setup, (harness) => {
+    harness.request(settingsContext, ($) => {
+      expect($('h3').text().trim()).toEqual('Implementation timescales');
+    });
+  }));
 
-  it('should render the description answer when provided', (done) => {
-    const dummyApp = createTestHarness(macroWrapper, settingsContext);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+  it('should render the description answer when provided', createTestHarness(setup, (harness) => {
+    harness.request(settingsContext, ($) => {
+      expect($('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual(settingsContext.params.section.answers.description);
+    });
+  }));
 
-        expect($('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual(settingsContext.params.section.answers.description);
-
-        done();
-      });
-  });
-
-  it('should not render the description answer when not provided', (done) => {
+  it('should not render the description answer when not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -40,15 +29,8 @@ describe('view-implementation-timescales', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('[data-test-id="view-question-data-text-description"]').length).toEqual(0);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-question-data-text-description"]').length).toEqual(0);
+    });
+  }));
 });

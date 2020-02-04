@@ -1,49 +1,33 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './sections/view-features/macro.njk' import viewFeatures %}
-                        {{ viewFeatures(params) }}`;
-
+const setup = {
+  templateName: 'viewFeatures',
+  templateType: 'section',
+};
 
 describe('view-features', () => {
-  it('should render the title of the features section', (done) => {
+  it('should render the title of the features section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {},
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('h3').text().trim()).toEqual('Features');
+    });
+  }));
 
-        expect($('h3').text().trim()).toEqual('Features');
+  it('should not render the features section when not provided', createTestHarness(setup, (harness) => {
+    const context = {};
 
-        done();
-      });
-  });
-
-  it('should not render the features section when not provided', (done) => {
-    const context = {
-    };
-
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('[data-test-id="view-features"]').length).toEqual(0);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-features"]').length).toEqual(0);
+    });
+  }));
 
   describe('when there are answers provided for the questions', () => {
-    it('should render the listings', (done) => {
+    it('should render the listings', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -58,22 +42,16 @@ describe('view-features', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          const featuresList = $('[data-test-id="view-question-data-bulletlist"] li');
+      harness.request(context, ($) => {
+        const featuresList = $('[data-test-id="view-question-data-bulletlist"] li');
 
-          expect(featuresList.length).toEqual(3);
-
-          done();
-        });
-    });
+        expect(featuresList.length).toEqual(3);
+      });
+    }));
   });
 
   describe('when there are no answers provided for the questions', () => {
-    it('should not render the listings', (done) => {
+    it('should not render the listings', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -84,17 +62,11 @@ describe('view-features', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          const featuresList = $('[data-test-id="view-question-data-bulletlist"] li');
+      harness.request(context, ($) => {
+        const featuresList = $('[data-test-id="view-question-data-bulletlist"] li');
 
-          expect(featuresList.length).toEqual(0);
-
-          done();
-        });
-    });
+        expect(featuresList.length).toEqual(0);
+      });
+    }));
   });
 });

@@ -1,48 +1,33 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './sections/view-solution-description/macro.njk' import viewSolutionDescription %}
-                        {{ viewSolutionDescription(params) }}`;
+const setup = {
+  templateName: 'viewSolutionDescription',
+  templateType: 'section',
+};
 
 describe('view-solution-description', () => {
-  it('should render the title of the section', (done) => {
+  it('should render the title of the section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {},
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('h3').text().trim()).toEqual('Solution description');
+    });
+  }));
 
-        expect($('h3').text().trim()).toEqual('Solution description');
+  it('should not render the solution-description section when not provided', createTestHarness(setup, (harness) => {
+    const context = {};
 
-        done();
-      });
-  });
-
-  it('should not render the solution-description section when not provided', (done) => {
-    const context = {
-    };
-
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('[data-test-id="view-solution-description"]').length).toEqual(0);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-solution-description"]').length).toEqual(0);
+    });
+  }));
 
   describe('when there are answers provided for the questions', () => {
-    it('should render the summary question title and data', (done) => {
+    it('should render the summary question title and data', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -53,22 +38,15 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
+      harness.request(context, ($) => {
+        const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
 
-          const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
+        expect(summaryQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Summary');
+        expect(summaryQuestion.find('[data-test-id="view-question-data-text-summary"]').text().trim()).toEqual('Some summary data');
+      });
+    }));
 
-          expect(summaryQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Summary');
-          expect(summaryQuestion.find('[data-test-id="view-question-data-text-summary"]').text().trim()).toEqual('Some summary data');
-
-          done();
-        });
-    });
-
-    it('should render the description question title and data', (done) => {
+    it('should render the description question title and data', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -79,22 +57,15 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
+      harness.request(context, ($) => {
+        const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
 
-          const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
+        expect(descriptionQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('About the solution');
+        expect(descriptionQuestion.find('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual('Some description data');
+      });
+    }));
 
-          expect(descriptionQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('About the solution');
-          expect(descriptionQuestion.find('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual('Some description data');
-
-          done();
-        });
-    });
-
-    it('should only render the link question as a link component', (done) => {
+    it('should only render the link question as a link component', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -105,24 +76,17 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
+      harness.request(context, ($) => {
+        const linkQuestion = $('[data-test-id="view-section-question-link"]');
 
-          const linkQuestion = $('[data-test-id="view-section-question-link"]');
-
-          expect(linkQuestion.find('[data-test-id="view-question-title"]').length).toEqual(0);
-          expect(linkQuestion.find('[data-test-id="view-question-data-link"]').text().trim()).toEqual('www.somelink.com');
-
-          done();
-        });
-    });
+        expect(linkQuestion.find('[data-test-id="view-question-title"]').length).toEqual(0);
+        expect(linkQuestion.find('[data-test-id="view-question-data-link"]').text().trim()).toEqual('www.somelink.com');
+      });
+    }));
   });
 
   describe('when there are no answers provided for the questions', () => {
-    it('should not render the summary question title and data', (done) => {
+    it('should not render the summary question title and data', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -133,21 +97,14 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
+      harness.request(context, ($) => {
+        const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
 
-          const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
+        expect(summaryQuestion.length).toEqual(0);
+      });
+    }));
 
-          expect(summaryQuestion.length).toEqual(0);
-
-          done();
-        });
-    });
-
-    it('should not render the description question title and data', (done) => {
+    it('should not render the description question title and data', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -158,21 +115,13 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
+      harness.request(context, ($) => {
+        const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
+        expect(descriptionQuestion.length).toEqual(0);
+      });
+    }));
 
-          const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
-
-          expect(descriptionQuestion.length).toEqual(0);
-
-          done();
-        });
-    });
-
-    it('should not render the solution link', (done) => {
+    it('should not render the solution link', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -183,18 +132,10 @@ describe('view-solution-description', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-
-          const linkQuestion = $('[data-test-id="view-section-question-link"]');
-
-          expect(linkQuestion.length).toEqual(0);
-
-          done();
-        });
-    });
+      harness.request(context, ($) => {
+        const linkQuestion = $('[data-test-id="view-section-question-link"]');
+        expect(linkQuestion.length).toEqual(0);
+      });
+    }));
   });
 });

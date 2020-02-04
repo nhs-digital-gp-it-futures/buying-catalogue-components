@@ -1,49 +1,35 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './sections/view-client-application-types/macro.njk' import viewClientApplicationTypes %}
-                        {{ viewClientApplicationTypes(params) }}`;
+const setup = {
+  templateName: 'viewClientApplicationTypes',
+  templateType: 'section',
+};
 
 describe('view-client-application-types', () => {
-  it('should render the title of the section', (done) => {
+  it('should render the title of the section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {},
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('h3').text().trim()).toEqual('Client application type');
+    });
+  }));
 
-        expect($('h3').text().trim()).toEqual('Client application type');
-
-        done();
-      });
-  });
-
-  it('should not render the client-application-types section when not provided', (done) => {
+  it('should not render the client-application-types section when not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {},
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('[data-test-id="view-client-application-types"]').length).toEqual(0);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-client-application-types"]').length).toEqual(0);
+    });
+  }));
 
   describe('when a sub section exists for an application type', () => {
-    it('should render the browsed based application type', (done) => {
+    it('should render the browsed based application type', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -54,24 +40,16 @@ describe('view-client-application-types', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
+      harness.request(context, ($) => {
+        const browserBasedExpandableSection = $('[data-test-id="view-section-browser-based"]');
+        const browserBasedSection = browserBasedExpandableSection.find('[data-test-id="view-section-table-browser-based"]');
 
+        expect(browserBasedExpandableSection.length).toEqual(1);
+        expect(browserBasedSection.length).toEqual(1);
+      });
+    }));
 
-          const browserBasedExpandableSection = $('[data-test-id="view-section-browser-based"]');
-          const browserBasedSection = browserBasedExpandableSection.find('[data-test-id="view-section-table-browser-based"]');
-
-          expect(browserBasedExpandableSection.length).toEqual(1);
-          expect(browserBasedSection.length).toEqual(1);
-
-          done();
-        });
-    });
-
-    it('should render the native mobile application type', (done) => {
+    it('should render the native mobile application type', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -82,24 +60,16 @@ describe('view-client-application-types', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
+      harness.request(context, ($) => {
+        const nativeMobileExpandableSection = $('[data-test-id="view-section-native-mobile"]');
+        const nativeMobileSection = nativeMobileExpandableSection.find('[data-test-id="view-section-table-native-mobile"]');
 
+        expect(nativeMobileExpandableSection.length).toEqual(1);
+        expect(nativeMobileSection.length).toEqual(1);
+      });
+    }));
 
-          const nativeMobileExpandableSection = $('[data-test-id="view-section-native-mobile"]');
-          const nativeMobileSection = nativeMobileExpandableSection.find('[data-test-id="view-section-table-native-mobile"]');
-
-          expect(nativeMobileExpandableSection.length).toEqual(1);
-          expect(nativeMobileSection.length).toEqual(1);
-
-          done();
-        });
-    });
-
-    it('should render the native desktop application type', (done) => {
+    it('should render the native desktop application type', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -110,26 +80,18 @@ describe('view-client-application-types', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
+      harness.request(context, ($) => {
+        const nativeDesktopExpandableSection = $('[data-test-id="view-section-native-desktop"]');
+        const nativeDesktopSection = nativeDesktopExpandableSection.find('[data-test-id="view-section-table-native-desktop"]');
 
-
-          const nativeDesktopExpandableSection = $('[data-test-id="view-section-native-desktop"]');
-          const nativeDesktopSection = nativeDesktopExpandableSection.find('[data-test-id="view-section-table-native-desktop"]');
-
-          expect(nativeDesktopExpandableSection.length).toEqual(1);
-          expect(nativeDesktopSection.length).toEqual(1);
-
-          done();
-        });
-    });
+        expect(nativeDesktopExpandableSection.length).toEqual(1);
+        expect(nativeDesktopSection.length).toEqual(1);
+      });
+    }));
   });
 
   describe('when a sub section does not exist for an application type', () => {
-    it('should not render the browsed based application type', (done) => {
+    it('should not render the browsed based application type', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -144,20 +106,13 @@ describe('view-client-application-types', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          const browserBasedExpandableSection = $('[data-test-id="view-section-browser-based"]');
+      harness.request(context, ($) => {
+        const browserBasedExpandableSection = $('[data-test-id="view-section-browser-based"]');
+        expect(browserBasedExpandableSection.length).toEqual(0);
+      });
+    }));
 
-          expect(browserBasedExpandableSection.length).toEqual(0);
-
-          done();
-        });
-    });
-
-    it('should not render the native mobile application type', (done) => {
+    it('should not render the native mobile application type', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -172,20 +127,13 @@ describe('view-client-application-types', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          const nativeMobileExpandableSection = $('[data-test-id="view-section-native-mobile"]');
+      harness.request(context, ($) => {
+        const nativeMobileExpandableSection = $('[data-test-id="view-section-native-mobile"]');
+        expect(nativeMobileExpandableSection.length).toEqual(0);
+      });
+    }));
 
-          expect(nativeMobileExpandableSection.length).toEqual(0);
-
-          done();
-        });
-    });
-
-    it('should not render the native desktop application type', (done) => {
+    it('should not render the native desktop application type', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -200,17 +148,11 @@ describe('view-client-application-types', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          const nativeDesktopExpandableSection = $('[data-test-id="view-section-native-desktop"]');
+      harness.request(context, ($) => {
+        const nativeDesktopExpandableSection = $('[data-test-id="view-section-native-desktop"]');
 
-          expect(nativeDesktopExpandableSection.length).toEqual(0);
-
-          done();
-        });
-    });
+        expect(nativeDesktopExpandableSection.length).toEqual(0);
+      });
+    }));
   });
 });

@@ -1,46 +1,33 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './sections/view-solution-contact-details/macro.njk' import viewSolutionContactDetails %}
-                        {{ viewSolutionContactDetails(params) }}`;
-
+const setup = {
+  templateName: 'viewSolutionContactDetails',
+  templateType: 'section',
+};
 
 describe('view-solution-contact-details', () => {
-  it('should render the title of the section', (done) => {
+  it('should render the title of the section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {},
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('h3').text().trim()).toEqual('Contact details');
+    });
+  }));
 
-        expect($('h3').text().trim()).toEqual('Contact details');
-        done();
-      });
-  });
-
-  it('should not render the solution-contact-details section when not provided', (done) => {
+  it('should not render the solution-contact-details section when not provided', createTestHarness(setup, (harness) => {
     const context = {
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-solution-contact-details"]').length).toEqual(0);
+    });
+  }));
 
-        expect($('[data-test-id="view-solution-contact-details"]').length).toEqual(0);
-        done();
-      });
-  });
-
-  it('should render the contact 1 details', (done) => {
+  it('should render the contact 1 details', createTestHarness(setup, (harness) => {
     const contact1 = {
       'department-name': 'a contact dept',
       'contact-name': 'jim jones',
@@ -57,22 +44,17 @@ describe('view-solution-contact-details', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        const contact1component = $('[data-test-id="view-section-question-contact-1"]');
+    harness.request(context, ($) => {
+      const contact1component = $('[data-test-id="view-section-question-contact-1"]');
 
-        expect(contact1component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact1['department-name']);
-        expect(contact1component.find('[data-test-id="view-question-data-text-contact-name"]').text().trim()).toEqual(contact1['contact-name']);
-        expect(contact1component.find('[data-test-id="view-question-data-text-phone-number"]').text().trim()).toEqual(contact1['phone-number']);
-        expect(contact1component.find('[data-test-id="view-question-data-text-email-address"]').text().trim()).toEqual(contact1['email-address']);
-        done();
-      });
-  });
+      expect(contact1component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact1['department-name']);
+      expect(contact1component.find('[data-test-id="view-question-data-text-contact-name"]').text().trim()).toEqual(contact1['contact-name']);
+      expect(contact1component.find('[data-test-id="view-question-data-text-phone-number"]').text().trim()).toEqual(contact1['phone-number']);
+      expect(contact1component.find('[data-test-id="view-question-data-text-email-address"]').text().trim()).toEqual(contact1['email-address']);
+    });
+  }));
 
-  it('should render the contact 2 details', (done) => {
+  it('should render the contact 2 details', createTestHarness(setup, (harness) => {
     const contact2 = {
       'department-name': 'a second contact dept',
       'contact-name': 'jim jones jr',
@@ -89,18 +71,13 @@ describe('view-solution-contact-details', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        const contact2component = $('[data-test-id="view-section-question-contact-2"]');
+    harness.request(context, ($) => {
+      const contact2component = $('[data-test-id="view-section-question-contact-2"]');
 
-        expect(contact2component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact2['department-name']);
-        expect(contact2component.find('[data-test-id="view-question-data-text-contact-name"]').text().trim()).toEqual(contact2['contact-name']);
-        expect(contact2component.find('[data-test-id="view-question-data-text-phone-number"]').text().trim()).toEqual(contact2['phone-number']);
-        expect(contact2component.find('[data-test-id="view-question-data-text-email-address"]').text().trim()).toEqual(contact2['email-address']);
-        done();
-      });
-  });
+      expect(contact2component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact2['department-name']);
+      expect(contact2component.find('[data-test-id="view-question-data-text-contact-name"]').text().trim()).toEqual(contact2['contact-name']);
+      expect(contact2component.find('[data-test-id="view-question-data-text-phone-number"]').text().trim()).toEqual(contact2['phone-number']);
+      expect(contact2component.find('[data-test-id="view-question-data-text-email-address"]').text().trim()).toEqual(contact2['email-address']);
+    });
+  }));
 });

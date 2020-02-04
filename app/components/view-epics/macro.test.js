@@ -1,13 +1,13 @@
-import request from 'supertest';
-import cheerio from 'cheerio';
 import { createTestHarness } from '../../testUtils/testHarness';
 
-const macroWrapper = `{% from './components/view-epics/macro.njk' import viewEpics %}
-                        {{ viewEpics(params) }}`;
+const setup = {
+  templateName: 'viewEpics',
+  templateType: 'component',
+};
 
 describe('view-epics', () => {
   describe('for must epics', () => {
-    it('should render the tag if data provided', (done) => {
+    it('should render the tag if data provided', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -30,18 +30,12 @@ describe('view-epics', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          expect($('[data-test-id="must-tag"]').text().trim()).toEqual('Must Epics');
+      harness.request(context, ($) => {
+        expect($('[data-test-id="must-tag"]').text().trim()).toEqual('Must Epics');
+      });
+    }));
 
-          done();
-        });
-    });
-
-    it('should render the data if provided', (done) => {
+    it('should render the data if provided', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -72,18 +66,12 @@ describe('view-epics', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          expect($('[data-test-id="must-epics"]').length).toEqual(1);
+      harness.request(context, ($) => {
+        expect($('[data-test-id="must-epics"]').length).toEqual(1);
+      });
+    }));
 
-          done();
-        });
-    });
-
-    it('should not render the data if not provided', (done) => {
+    it('should not render the data if not provided', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -91,19 +79,13 @@ describe('view-epics', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          expect($('[data-test-id="must-epics"]').length).toEqual(0);
-
-          done();
-        });
-    });
+      harness.request(context, ($) => {
+        expect($('[data-test-id="must-epics"]').length).toEqual(0);
+      });
+    }));
 
     describe('with met type', () => {
-      it('should render the viewEpicList component when provided with epics that are must and met', (done) => {
+      it('should render the viewEpicList component when provided with epics that are must and met', createTestHarness(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -124,18 +106,12 @@ describe('view-epics', () => {
           },
         };
 
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="must-met-epics"]').length).toEqual(1);
+        harness.request(context, ($) => {
+          expect($('[data-test-id="must-met-epics"]').length).toEqual(1);
+        });
+      }));
 
-            done();
-          });
-      });
-
-      it('should not render the viewEpicList component when not provided with epics that are must and met', (done) => {
+      it('should not render the viewEpicList component when not provided with epics that are must and met', createTestHarness(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -145,20 +121,14 @@ describe('view-epics', () => {
           },
         };
 
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .must-met-epics').length).toEqual(0);
-
-            done();
-          });
-      });
+        harness.request(context, ($) => {
+          expect($('[data-test-id="some-data-identifier"] .must-met-epics').length).toEqual(0);
+        });
+      }));
     });
 
     describe('with not-met type', () => {
-      it('should render the viewEpicList component when provided with epics that are must and not-met', (done) => {
+      it('should render the viewEpicList component when provided with epics that are must and not-met', createTestHarness(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -179,18 +149,12 @@ describe('view-epics', () => {
           },
         };
 
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="must-not-met-epics"]').length).toEqual(1);
+        harness.request(context, ($) => {
+          expect($('[data-test-id="must-not-met-epics"]').length).toEqual(1);
+        });
+      }));
 
-            done();
-          });
-      });
-
-      it('should not render the viewEpicList component when not provided with epics that are must and not-met', (done) => {
+      it('should not render the viewEpicList component when not provided with epics that are must and not-met', createTestHarness(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -200,21 +164,15 @@ describe('view-epics', () => {
           },
         };
 
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .must-not-met-epics').length).toEqual(0);
-
-            done();
-          });
-      });
+        harness.request(context, ($) => {
+          expect($('[data-test-id="some-data-identifier"] .must-not-met-epics').length).toEqual(0);
+        });
+      }));
     });
   });
 
   describe('for may epics', () => {
-    it('should render the tag if data provided', (done) => {
+    it('should render the tag if data provided', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -237,18 +195,12 @@ describe('view-epics', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          expect($('[data-test-id="may-tag"]').text().trim()).toEqual('May Epics');
+      harness.request(context, ($) => {
+        expect($('[data-test-id="may-tag"]').text().trim()).toEqual('May Epics');
+      });
+    }));
 
-          done();
-        });
-    });
-
-    it('should render the data if provided', (done) => {
+    it('should render the data if provided', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -279,18 +231,12 @@ describe('view-epics', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          expect($('[data-test-id="may-epics"]').length).toEqual(1);
+      harness.request(context, ($) => {
+        expect($('[data-test-id="may-epics"]').length).toEqual(1);
+      });
+    }));
 
-          done();
-        });
-    });
-
-    it('should not render the data if not provided', (done) => {
+    it('should not render the data if not provided', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -298,19 +244,13 @@ describe('view-epics', () => {
         },
       };
 
-      const dummyApp = createTestHarness(macroWrapper, context);
-      request(dummyApp)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          expect($('[data-test-id="may-epics"]').length).toEqual(0);
-
-          done();
-        });
-    });
+      harness.request(context, ($) => {
+        expect($('[data-test-id="may-epics"]').length).toEqual(0);
+      });
+    }));
 
     describe('with met type', () => {
-      it('should render the viewEpicList component when provided with epics that are may and met', (done) => {
+      it('should render the viewEpicList component when provided with epics that are may and met', createTestHarness(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -331,18 +271,12 @@ describe('view-epics', () => {
           },
         };
 
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="may-met-epics"]').length).toEqual(1);
+        harness.request(context, ($) => {
+          expect($('[data-test-id="may-met-epics"]').length).toEqual(1);
+        });
+      }));
 
-            done();
-          });
-      });
-
-      it('should not render the viewEpicList component when not provided with epics that are may and met', (done) => {
+      it('should not render the viewEpicList component when not provided with epics that are may and met', createTestHarness(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -352,20 +286,14 @@ describe('view-epics', () => {
           },
         };
 
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .may-met-epics').length).toEqual(0);
-
-            done();
-          });
-      });
+        harness.request(context, ($) => {
+          expect($('[data-test-id="some-data-identifier"] .may-met-epics').length).toEqual(0);
+        });
+      }));
     });
 
     describe('with not-met type', () => {
-      it('should render the viewEpicList component when provided with epics that are may and not-met', (done) => {
+      it('should render the viewEpicList component when provided with epics that are may and not-met', createTestHarness(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -386,18 +314,12 @@ describe('view-epics', () => {
           },
         };
 
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="may-not-met-epics"]').length).toEqual(1);
+        harness.request(context, ($) => {
+          expect($('[data-test-id="may-not-met-epics"]').length).toEqual(1);
+        });
+      }));
 
-            done();
-          });
-      });
-
-      it('should not render the viewEpicList component when not provided with epics that are may and not-met', (done) => {
+      it('should not render the viewEpicList component when not provided with epics that are may and not-met', createTestHarness(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -407,39 +329,26 @@ describe('view-epics', () => {
           },
         };
 
-        const dummyApp = createTestHarness(macroWrapper, context);
-        request(dummyApp)
-          .get('/')
-          .then((res) => {
-            const $ = cheerio.load(res.text);
-            expect($('[data-test-id="some-data-identifier"] .may-not-met-epics').length).toEqual(0);
-
-            done();
-          });
-      });
+        harness.request(context, ($) => {
+          expect($('[data-test-id="some-data-identifier"] .may-not-met-epics').length).toEqual(0);
+        });
+      }));
     });
   });
 
-  it('should not render the data when not provided', (done) => {
+  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
+    });
+  }));
 
-        expect($('[data-test-id="some-data-identifier"]').length).toEqual(0);
-
-        done();
-      });
-  });
-
-  it('should add classes provided within the params', (done) => {
+  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -448,16 +357,10 @@ describe('view-epics', () => {
       },
     };
 
-    const dummyApp = createTestHarness(macroWrapper, context);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('bc-c-epics')).toEqual(true);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
-        expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
-
-        done();
-      });
-  });
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('bc-c-epics')).toEqual(true);
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('new-class')).toEqual(true);
+      expect($('div[data-test-id="some-data-identifier"]').hasClass('another-class')).toEqual(true);
+    });
+  }));
 });

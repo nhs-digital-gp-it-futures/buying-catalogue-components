@@ -92,7 +92,7 @@ describe('view-roadmap', () => {
         params: {
           section: {
             answers: {
-              documentLink: '/solution/10001/document/roadmap.pdf',
+              'document-link': '/solution/10001/document/roadmap.pdf',
             },
           },
         },
@@ -145,7 +145,7 @@ describe('view-roadmap', () => {
         params: {
           section: {
             answers: {
-              documentLink: '',
+              'document-link': '',
             },
           },
         },

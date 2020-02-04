@@ -18,11 +18,11 @@
                 }) }}
             </div>
           {% endif %}
-          {% if params.section.answers.documentLink %}
+          {% if params.section.answers['document-link'] %}
             <div data-test-id="view-section-question-document-link">
                 {{ viewDataLink({
                   dataTestId: 'view-question-data-link-document-link',
-                  data: params.section.answers.documentLink,
+                  data: params.section.answers['document-link'],
                   text: 'View roadmap',
                   classes: 'nhsuk-u-margin-bottom-4'
                 }) }}

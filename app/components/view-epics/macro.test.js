@@ -31,7 +31,7 @@ describe('view-epics', () => {
       };
 
       harness.request(context, ($) => {
-        expect($('[data-test-id="must-tag"]').text().trim()).toEqual('Must Epics');
+        expect($('[data-test-id="must-tag"]').text().trim()).toEqual('Must epics');
       });
     }));
 
@@ -196,7 +196,7 @@ describe('view-epics', () => {
       };
 
       harness.request(context, ($) => {
-        expect($('[data-test-id="may-tag"]').text().trim()).toEqual('May Epics');
+        expect($('[data-test-id="may-tag"]').text().trim()).toEqual('May epics');
       });
     }));
 

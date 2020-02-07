@@ -3,9 +3,9 @@
   {% if params.layout %}
     {% set layout = params.layout | lower %}
     {% if params.innerComponentClass %}
-      {% set innerComponentClass = params.innerComponentClass %}
+      {% set verticalInnerComponentClass = params.verticalInnerComponentClass %}
     {% else %}
-      {% set innerComponentClass = 'nhsuk-grid-column-two-thirds' %}
+      {% set verticalInnerComponentClass = 'nhsuk-grid-column-two-thirds' %}
     {% endif %}
   {% else %}
     {% set layout = 'horizontal' %}
@@ -36,7 +36,7 @@
             </div>
           {% endif %}
           <div class="nhsuk-grid-row">
-            <div data-test-id="view-section-table-row-component" class="{{ innerComponentClass }}">
+            <div data-test-id="view-section-table-row-component" class="{{ verticalInnerComponentClass }}">
               {{- params.innerComponent | safe | trim }}
             </div>
           </div>

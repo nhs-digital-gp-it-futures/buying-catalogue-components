@@ -1,3 +1,4 @@
+{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
 {% from 'components/view-epics/macro.njk' import viewEpics %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 {% from 'components/view-expandable-section/macro.njk' import viewExpandableSection %}
@@ -6,27 +7,60 @@
 
 {% macro viewCapabilities(params) %}
   {% if params and params.capabilities.length %}
-    <div class="nhsuk-width-container" data-test-id="view-capabilities">
-      {{ viewSectionHeading({ text: 'Capabilities met' }) }}
-        {% for capability in params.capabilities %}
-          {% set title = capability.name + ', ' + capability.version %}
-          {{ viewExpandableSection({
-            dataTestId: 'view-section-capabilities',
-            title: title,
-            innerComponent: viewDataText({
-              dataTestId: 'view-question-data-text-description',
-              data: capability.description
-            }) + viewDataLink({
-              dataTestId: 'view-question-data-text-link',
-              data: capability.link,
-              text: 'View more details including acceptance criteria for all epics',
-              classes: 'nhsuk-u-margin-bottom-5'
-            }) + viewEpics({
-              dataTestId: 'view-question-epic',
-              data: capability.epic
-            })
-          }) }}
-        {% endfor %}
+    <div class="nhsuk-width-container nhsuk-summary-list" data-test-id="view-capabilities">
+      {{ viewSectionHeading({ text: 'Capabilities met - NHS assured' }) }}
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
+        <div class="nhsuk-grid-column-full">
+          <div class="nhsuk-grid-row" data-test-id="view-section-capabilities-guidance">
+            {{ viewDataText({
+              dataTestId: 'view-capabilities-guidance',
+              data: 'This Catalogue Solution has demonstrated that it can help meet the following needs in primary care:',
+              classes: 'nhsuk-u-margin-bottom-3 nhsuk-grid-column-two-thirds'
+            }) }}
+          </div>
+          {% for capability in params.capabilities %}
+            {% set title = capability.name + ', ' + capability.version %}
+
+            {{ viewSectionTableRow({
+              questionId: 'capabilities',
+              questionTitle: title,
+              layout: 'vertical',
+              verticalInnerComponentClass: 'nhsuk-grid-column-full nhsuk-u-padding-0',
+              innerComponent: viewDataText({
+                dataTestId: 'view-question-data-text-description',
+                data: capability.description,
+                classes: 'nhsuk-grid-column-two-thirds'
+              }) + viewExpandableSection({
+                dataTestId: 'view-section-capabilities',
+                title: 'How this capability was met',
+                innerComponent: viewDataText({
+                  dataTestId: 'view-question-data-text-description-paragraph-one',
+                  data: 'Capabilities are a set of requirements that are defined using short descriptions called epics. Capabilities are achieved when a Catalogue Solution meets the required epics.',
+                  classes: 'nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
+                }) +  viewDataText({
+                  dataTestId: 'view-question-data-text-description-paragraph-two',
+                  data: 'There are two types of epic: must and may. Some capabilities require the Catalogue Solution to meet all of the must epics, some require only one must epic to be met. May epics are optional.',
+                  classes: 'nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
+                }) +  viewDataText({
+                  dataTestId: 'view-question-data-text-description-paragraph-three',
+                  data: ' This Catalogue Solution has achieved the following:',
+                  classes: 'nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
+                }) + viewDataLink({
+                  dataTestId: 'view-question-data-text-link',
+                  data: capability.link,
+                  text: 'View more details including acceptance criteria for all epics',
+                  classes: 'nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
+                }) + viewEpics({
+                  dataTestId: 'view-question-epic',
+                  data: capability.epic
+                }),
+                classes: 'nhsuk-grid-column-full'
+              }),
+              classes: 'nhsuk-grid-row'
+            }) }}
+          {% endfor %}
+        </div>
+      </div>
     </div>
   {% endif %}
 {% endmacro %}

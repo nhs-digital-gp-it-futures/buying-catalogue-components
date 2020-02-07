@@ -6,7 +6,7 @@
 {% macro viewSolutionDescription(params) %}
   {% if params.section %}
     <div class="nhsuk-width-container" data-test-id="view-solution-description">
-      {{ viewSectionHeading({ text: 'Solution description' }) }}
+      {{ viewSectionHeading({ text: 'Description' }) }}
       <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
         <div class="nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds">
           {% if params.section.answers.summary %}
@@ -26,7 +26,7 @@
             <div data-test-id="view-section-question-description" class="nhsuk-u-margin-top-4">
                 {{ viewDataTitle({
                   dataTestId: 'view-question-title',
-                  title: 'About the solution'
+                  title: 'Full description'
                 }) }}
                 {{ viewDataText({
                   dataTestId: 'view-question-data-text-description',

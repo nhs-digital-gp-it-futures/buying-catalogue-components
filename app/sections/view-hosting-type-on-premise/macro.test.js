@@ -113,7 +113,7 @@ describe('view-hosting-type-on-premise', () => {
       params: {
         section: {
           answers: {
-            'requires-hscn': 'This Solution requires a HSCN/N3 connection',
+            'requires-hscn': 'End user devices must be connected to HSCN/N3',
           },
         },
       },
@@ -126,7 +126,7 @@ describe('view-hosting-type-on-premise', () => {
         .find('[data-test-id="view-question-data-text-requires-hscn"]');
 
       expect(requiresHSCNInnerComponent.length).toEqual(1);
-      expect(requiresHSCNInnerComponent.text().trim()).toEqual('This Solution requires a HSCN/N3 connection');
+      expect(requiresHSCNInnerComponent.text().trim()).toEqual('End user devices must be connected to HSCN/N3');
     });
   }));
 

@@ -6,6 +6,13 @@
     <div class="nhsuk-width-container" data-test-id="view-features">
       {{ viewSectionHeading({ text: 'Features' }) }}
       <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
+        <div class="nhsuk-grid-row">
+          <div class="nhsuk-grid-column-two-thirds">
+            <p>
+              This Catalogue Solution has the following features that can help meet needs in primary care:
+            </p>
+          </div>
+        </div>
         {% if params.section.answers.listing and params.section.answers.listing.length > 0 %}
           <div class="nhsuk-grid-column-two-thirds">
             {{ viewDataBulletlist({

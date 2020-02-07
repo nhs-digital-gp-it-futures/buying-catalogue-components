@@ -6,7 +6,7 @@
   <div data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
     {{ viewSectionTableRow({
       questionId: 'supported-browsers',
-      questionTitle: 'Browsers Supported',
+      questionTitle: 'Supported browser types',
       innerComponent: viewDataBulletlist({
         dataTestId: 'view-question-data-bulletlist',
         data: params.section.sections['browser-browsers-supported'].answers['supported-browsers']
@@ -22,7 +22,7 @@
     }) }}
     {{ viewSectionTableRow({
       questionId: 'mobile-first-design',
-      questionTitle: 'Designed with a mobile first approach',
+      questionTitle: 'Mobile first approach',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-mobile-first-design',
         data: params.section.sections['browser-mobile-first'].answers['mobile-first-design']
@@ -38,7 +38,8 @@
     }) }}
     {{ viewSectionTableRow({
       questionId: 'plugins-detail',
-      questionTitle: 'Plug-ins or extensions information',
+      questionTitle: 'Additional information about plug-ins or extensions',
+      layout: 'vertical',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-plugins-detail',
         data: params.section.sections['browser-plug-ins-or-extensions'].answers['plugins-detail']
@@ -46,7 +47,7 @@
     }) }}
     {{ viewSectionTableRow({
       questionId: 'minimum-connection-speed',
-      questionTitle: 'Minimum connection speed required',
+      questionTitle: 'Minimum connection speed',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-minimum-connection-speed',
         data: params.section.sections['browser-connectivity-and-resolution'].answers['minimum-connection-speed']
@@ -54,7 +55,7 @@
     }) }}
     {{ viewSectionTableRow({
       questionId: 'minimum-desktop-resolution',
-      questionTitle: 'Recommended desktop aspect ratio and screen resolution',
+      questionTitle: 'Screen resolution and aspect ratio',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-minimum-desktop-resolution',
         data: params.section.sections['browser-connectivity-and-resolution'].answers['minimum-desktop-resolution']

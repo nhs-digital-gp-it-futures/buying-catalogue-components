@@ -29,8 +29,8 @@ describe('view-solution-contact-details', () => {
 
   it('should render the contact 1 details', createTestHarness(setup, (harness) => {
     const contact1 = {
-      'department-name': 'a contact dept',
       'contact-name': 'jim jones',
+      'department-name': 'a contact dept',
       'phone-number': '0111 111111',
       'email-address': 'jim@solution.com',
     };
@@ -47,8 +47,8 @@ describe('view-solution-contact-details', () => {
     harness.request(context, ($) => {
       const contact1component = $('[data-test-id="view-section-question-contact-1"]');
 
-      expect(contact1component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact1['department-name']);
       expect(contact1component.find('[data-test-id="view-question-data-text-contact-name"]').text().trim()).toEqual(contact1['contact-name']);
+      expect(contact1component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact1['department-name']);
       expect(contact1component.find('[data-test-id="view-question-data-text-phone-number"]').text().trim()).toEqual(contact1['phone-number']);
       expect(contact1component.find('[data-test-id="view-question-data-text-email-address"]').text().trim()).toEqual(contact1['email-address']);
     });
@@ -56,8 +56,8 @@ describe('view-solution-contact-details', () => {
 
   it('should render the contact 2 details', createTestHarness(setup, (harness) => {
     const contact2 = {
-      'department-name': 'a second contact dept',
       'contact-name': 'jim jones jr',
+      'department-name': 'a second contact dept',
       'phone-number': '0111 111112',
       'email-address': 'jim2@solution.com',
     };
@@ -74,8 +74,8 @@ describe('view-solution-contact-details', () => {
     harness.request(context, ($) => {
       const contact2component = $('[data-test-id="view-section-question-contact-2"]');
 
-      expect(contact2component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact2['department-name']);
       expect(contact2component.find('[data-test-id="view-question-data-text-contact-name"]').text().trim()).toEqual(contact2['contact-name']);
+      expect(contact2component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact2['department-name']);
       expect(contact2component.find('[data-test-id="view-question-data-text-phone-number"]').text().trim()).toEqual(contact2['phone-number']);
       expect(contact2component.find('[data-test-id="view-question-data-text-email-address"]').text().trim()).toEqual(contact2['email-address']);
     });

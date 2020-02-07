@@ -62,7 +62,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
       expect(operatingSystemsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional operating system information');
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Description of supported operating systems');
       expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
       expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Android 4.1 and above, IOS 10.6 and above.');
     });
@@ -93,71 +93,9 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(mobileFirstDesignQuestionRow.length).toEqual(1);
       expect(mobileFirstDesignQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Designed with a mobile first approach');
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile first approach');
       expect(mobileFirstDesignInnerComponent.length).toEqual(1);
       expect(mobileFirstDesignInnerComponent.text().trim()).toEqual('Yes');
-    });
-  }));
-
-  it('should render the minimum memory requirement answer', createTestHarness(setup, (harness) => {
-    const context = {
-      params: {
-        section: {
-          sections: {
-            'native-mobile-memory-and-storage': {
-              answers: {
-                'minimum-memory-requirement': '4GB',
-              },
-            },
-          },
-        },
-      },
-    };
-
-    harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const minimumMemoryRequirementQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-minimum-memory-requirement"]');
-      const minimumMemoryRequirementInnerComponent = minimumMemoryRequirementQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-minimum-memory-requirement"]');
-
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
-      expect(minimumMemoryRequirementQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum memory requirement');
-      expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
-      expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
-    });
-  }));
-
-  it('should render the additional storage requirements answer', createTestHarness(setup, (harness) => {
-    const context = {
-      params: {
-        section: {
-          sections: {
-            'native-mobile-memory-and-storage': {
-              answers: {
-                'storage-requirements-description': 'You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.',
-              },
-            },
-          },
-        },
-      },
-    };
-
-    harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const storageReqsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
-      const storageReqsDescriptionInnerComponent = storageReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
-
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
-      expect(storageReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional storage requirements');
-      expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
-      expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.');
     });
   }));
 
@@ -186,7 +124,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(minimumConnectionSpeedQuestionRow.length).toEqual(1);
       expect(minimumConnectionSpeedQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed required');
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
       expect(minimumConnectionSpeedInnerComponent.length).toEqual(1);
       expect(minimumConnectionSpeedInnerComponent.text().trim()).toEqual('1Mbps');
     });
@@ -248,9 +186,71 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(connectionReqsDescriptionQuestionRow.length).toEqual(1);
       expect(connectionReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information about connection types');
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Connection requirements');
       expect(connectionReqsDescriptionInnerComponent.length).toEqual(1);
       expect(connectionReqsDescriptionInnerComponent.text().trim()).toEqual('Average data usage will vary depending on application activity.');
+    });
+  }));
+
+  it('should render the minimum memory requirement answer', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'native-mobile-memory-and-storage': {
+              answers: {
+                'minimum-memory-requirement': '4GB',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
+      const minimumMemoryRequirementQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-minimum-memory-requirement"]');
+      const minimumMemoryRequirementInnerComponent = minimumMemoryRequirementQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-minimum-memory-requirement"]');
+
+      expect(nativeMobileSectionTable.length).toEqual(1);
+      expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
+      expect(minimumMemoryRequirementQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Memory size');
+      expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
+      expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
+    });
+  }));
+
+  it('should render the additional storage requirements answer', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            'native-mobile-memory-and-storage': {
+              answers: {
+                'storage-requirements-description': 'You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
+      const storageReqsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
+      const storageReqsDescriptionInnerComponent = storageReqsDescriptionQuestionRow
+        .find('div[data-test-id="view-section-table-row-component"]')
+        .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
+
+      expect(nativeMobileSectionTable.length).toEqual(1);
+      expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
+      expect(storageReqsDescriptionQuestionRow
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Storage space');
+      expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
+      expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.');
     });
   }));
 
@@ -279,7 +279,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(thirdPartyComponentsQuestionRow.length).toEqual(1);
       expect(thirdPartyComponentsQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third party components required');
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third-party components');
       expect(thirdPartyComponentsInnerComponent.length).toEqual(1);
       expect(thirdPartyComponentsInnerComponent.text().trim()).toEqual('The application supports and requires an authenticator on each device the application is installed. You will need a software-based authenticator that implements a two-step verification service.');
     });
@@ -310,7 +310,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(deviceCapabilitiesQuestionRow.length).toEqual(1);
       expect(deviceCapabilitiesQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities required');
+        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities');
       expect(deviceCapabilitiesInnerComponent.length).toEqual(1);
       expect(deviceCapabilitiesInnerComponent.text().trim()).toEqual('In order to use our file hosting services, the application will require permission to access device storage.');
     });

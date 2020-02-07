@@ -14,7 +14,7 @@
     }) }}
     {{ viewSectionTableRow({
       questionId: 'operating-systems-description',
-      questionTitle: 'Additional operating system information',
+      questionTitle: 'Description of supported operating systems',
       layout: 'vertical',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-operating-systems-description',
@@ -23,31 +23,15 @@
     }) }}
     {{ viewSectionTableRow({
       questionId: 'mobile-first-design',
-      questionTitle: 'Designed with a mobile first approach',
+      questionTitle: 'Mobile first approach',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-mobile-first-design',
         data: params.section.sections['native-mobile-first'].answers['mobile-first-design']
       })
     }) }}
     {{ viewSectionTableRow({
-      questionId: 'minimum-memory-requirement',
-      questionTitle: 'Minimum memory requirement',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-minimum-memory-requirement',
-        data: params.section.sections['native-mobile-memory-and-storage'].answers['minimum-memory-requirement']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'storage-requirements-description',
-      questionTitle: 'Additional storage requirements',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-storage-requirements-description',
-        data: params.section.sections['native-mobile-memory-and-storage'].answers['storage-requirements-description']
-      })
-    }) }}
-    {{ viewSectionTableRow({
       questionId: 'minimum-connection-speed',
-      questionTitle: 'Minimum connection speed required',
+      questionTitle: 'Minimum connection speed',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-minimum-connection-speed',
         data: params.section.sections['native-mobile-connection-details'].answers['minimum-connection-speed']
@@ -63,15 +47,32 @@
     }) }}
     {{ viewSectionTableRow({
       questionId: 'connection-requirements-description',
-      questionTitle: 'Additional information about connection types',
+      questionTitle: 'Connection requirements',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-connection-requirements-description',
         data: params.section.sections['native-mobile-connection-details'].answers['connection-requirements-description']
       })
     }) }}
     {{ viewSectionTableRow({
+      questionId: 'minimum-memory-requirement',
+      questionTitle: 'Memory size',
+      innerComponent: viewDataText({
+        dataTestId: 'view-question-data-text-minimum-memory-requirement',
+        data: params.section.sections['native-mobile-memory-and-storage'].answers['minimum-memory-requirement']
+      })
+    }) }}
+    {{ viewSectionTableRow({
+      questionId: 'storage-requirements-description',
+      questionTitle: 'Storage space',
+      innerComponent: viewDataText({
+        dataTestId: 'view-question-data-text-storage-requirements-description',
+        data: params.section.sections['native-mobile-memory-and-storage'].answers['storage-requirements-description']
+      })
+    }) }}
+    {{ viewSectionTableRow({
       questionId: 'third-party-components',
-      questionTitle: 'Third party components required',
+      questionTitle: 'Third-party components',
+      layout: 'vertical',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-third-party-components',
         data: params.section.sections['native-mobile-third-party'].answers['third-party-components']
@@ -79,7 +80,8 @@
     }) }}
     {{ viewSectionTableRow({
       questionId: 'device-capabilities',
-      questionTitle: 'Device capabilities required',
+      questionTitle: 'Device capabilities',
+      layout: 'vertical',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-device-capabilities',
         data: params.section.sections['native-mobile-third-party'].answers['device-capabilities']
@@ -88,6 +90,7 @@
     {{ viewSectionTableRow({
       questionId: 'hardware-requirements',
       questionTitle: 'Hardware requirements',
+      layout: 'vertical',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-hardware-requirements',
         data: params.section.sections['native-mobile-hardware-requirements'].answers['hardware-requirements']
@@ -96,6 +99,7 @@
     {{ viewSectionTableRow({
       questionId: 'additional-information',
       questionTitle: 'Additional information',
+      layout: 'vertical',
       innerComponent: viewDataText({
         dataTestId: 'view-question-data-text-additional-information',
         data: params.section.sections['native-mobile-additional-information'].answers['additional-information']

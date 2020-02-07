@@ -9,32 +9,32 @@
       {{ viewSectionHeading({ text: 'Roadmap' }) }}
       <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
         <div class="nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds">
-          {% if params.section.answers.summary %}
-            <div data-test-id="view-section-question-summary">
-                {{ viewDataText({
-                  dataTestId: 'view-question-data-text-summary',
-                  data: params.section.answers.summary,
-                  classes: 'nhsuk-u-margin-bottom-3'
-                }) }}
-            </div>
-          {% endif %}
-          {% if params.section.answers['document-link'] %}
-            <div data-test-id="view-section-question-document-link">
-                {{ viewDataLink({
-                  dataTestId: 'view-question-data-link-document-link',
-                  data: params.section.answers['document-link'],
-                  text: 'View roadmap',
-                  classes: 'nhsuk-u-margin-bottom-4'
-                }) }}
-            </div>
-          {% endif %}
           <div data-test-id="view-section-roadmap-guidance">
             {{ viewDataText({
-                dataTestId: 'view-roadmap-guidance',
-                data: 'We plan to deliver a task management function by Autumn 2019. We are also going to achieve the updated Document Management Standard ahead of schedule in August 2019.',
-                classes: 'nhsuk-u-font-weight-bold'
+              dataTestId: 'view-roadmap-guidance',
+              data: 'These are the supplier’s development plans for this Catalogue Solution:',
+              classes: 'nhsuk-u-margin-bottom-3'
             }) }}
           </div>
+          {% if params.section.answers['document-link'] %}
+            <div data-test-id="view-section-question-document-link">
+              {{ viewDataLink({
+                dataTestId: 'view-question-data-link-document-link',
+                data: params.section.answers['document-link'],
+                text: 'View roadmap',
+                classes: 'nhsuk-u-margin-bottom-4'
+              }) }}
+            </div>
+          {% endif %}
+          {% if params.section.answers.summary %}
+            <div data-test-id="view-section-question-summary">
+              {{ viewDataText({
+                dataTestId: 'view-question-data-text-summary',
+                data: params.section.answers.summary,
+                classes: 'nhsuk-u-font-weight-bold'
+              }) }}
+            </div>
+          {% endif %}
         </div>
       </div>
 

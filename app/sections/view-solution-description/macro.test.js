@@ -14,7 +14,7 @@ describe('view-solution-description', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('h3').text().trim()).toEqual('Solution description');
+      expect($('h3').text().trim()).toEqual('Description');
     });
   }));
 
@@ -60,7 +60,7 @@ describe('view-solution-description', () => {
       harness.request(context, ($) => {
         const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
 
-        expect(descriptionQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('About the solution');
+        expect(descriptionQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Full description');
         expect(descriptionQuestion.find('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual('Some description data');
       });
     }));

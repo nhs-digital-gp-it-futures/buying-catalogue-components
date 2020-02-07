@@ -21,7 +21,7 @@ describe('view-capabilities', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('h3').text().trim()).toEqual('Capabilities met');
+      expect($('h3').text().trim()).toEqual('Capabilities met - NHS assured');
     });
   }));
 
@@ -66,7 +66,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should render the name and version of the expandable section', createTestHarness(setup, (harness) => {
+  it('should render the name and version of the section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         capabilities: [
@@ -81,7 +81,45 @@ describe('view-capabilities', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('[data-test-id="view-section-capabilities"] .nhsuk-details__summary-text').text().trim()).toEqual('Prescribing, 1.0');
+      expect($('[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Prescribing, 1.0');
+    });
+  }));
+
+  it('should render the description of the section', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        capabilities: [
+          {
+            name: 'Prescribing',
+            version: '1.0',
+            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+            link: 'http://www.some-prescribing-link.com',
+          },
+        ],
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual('Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.');
+    });
+  }));
+
+  it('should render the text of the expandable section', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        capabilities: [
+          {
+            name: 'Prescribing',
+            version: '1.0',
+            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+            link: 'http://www.some-prescribing-link.com',
+          },
+        ],
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-section-capabilities"] .nhsuk-details__summary-text').text().trim()).toEqual('How this capability was met');
     });
   }));
 
@@ -102,9 +140,13 @@ describe('view-capabilities', () => {
     harness.request(context, ($) => {
       const viewCapabilities = $('[data-test-id="view-capabilities"]');
       const viewSectionCapabilities = viewCapabilities.find('[data-test-id="view-section-capabilities"]');
-      const viewCapabilitiesDescription = viewSectionCapabilities.find('[data-test-id="view-question-data-text-description"]');
+      const viewCapabilitiesDescriptionParagraphOne = viewSectionCapabilities.find('[data-test-id="view-question-data-text-description-paragraph-one"]');
+      const viewCapabilitiesDescriptionParagraphTwo = viewSectionCapabilities.find('[data-test-id="view-question-data-text-description-paragraph-two"]');
+      const viewCapabilitiesDescriptionParagraphThree = viewSectionCapabilities.find('[data-test-id="view-question-data-text-description-paragraph-three"]');
 
-      expect(viewCapabilitiesDescription.text().trim()).toEqual('Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.');
+      expect(viewCapabilitiesDescriptionParagraphOne.text().trim()).toEqual('Capabilities are a set of requirements that are defined using short descriptions called epics. Capabilities are achieved when a Catalogue Solution meets the required epics.');
+      expect(viewCapabilitiesDescriptionParagraphTwo.text().trim()).toEqual('There are two types of epic: must and may. Some capabilities require the Catalogue Solution to meet all of the must epics, some require only one must epic to be met. May epics are optional.');
+      expect(viewCapabilitiesDescriptionParagraphThree.text().trim()).toEqual('This Catalogue Solution has achieved the following:');
     });
   }));
 

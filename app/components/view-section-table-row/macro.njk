@@ -11,7 +11,7 @@
     {% set layout = 'horizontal' %}
   {% endif %}
 
-  {% set commonAttributes %} data-test-id="view-section-table-row-{{ params.questionId }}" class="nhsuk-width-container bc-c-section-table-row"{%- endset -%}
+  {% set commonAttributes %} data-test-id="view-section-table-row-{{ params.questionId }}" class="nhsuk-width-container bc-c-section-table-row {{ params.classes }}"{%- endset -%}
 
   {% if params.innerComponent | trim | length > 0 %}
     {% if layout == 'horizontal' %}
@@ -31,7 +31,7 @@
       <div {{ commonAttributes | safe }}>
         <div data-test-id="view-section-table-row-vertical">
           {% if params.questionTitle %}
-            <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-u-padding-bottom-2">
+            <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-u-padding-bottom-3">
               {{ params.questionTitle }}
             </div>
           {% endif %}

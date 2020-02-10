@@ -129,4 +129,18 @@ describe('view-section-table-row', () => {
       expect($('[data-test-id^="view-section-table-row"]').length).toEqual(0);
     });
   }));
+
+  it('should add classes if classes are provided', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        questionId: 'some-question-id',
+        innerComponent: '<p>Some inner component</p>',
+        classes: 'a-new-class',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-section-table-row-some-question-id"]').hasClass('a-new-class')).toEqual(true);
+    });
+  }));
 });

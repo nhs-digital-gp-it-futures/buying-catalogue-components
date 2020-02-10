@@ -5,17 +5,18 @@
 
 {% macro viewSupplierAssertedIntegrations(params) %}
   {% if params %}
-    <dl data-test-id="view-supplier-asserted-integrations" class="nhsuk-summary-list">
+    <dl data-test-id="view-supplier-asserted-integrations" class="nhsuk-summary-list nhsuk-u-margin-bottom-0">
       {{ viewSectionTableRow({
         questionId: 'supplier-asserted-integrations',
         questionTitle: 'Supplier asserted integrations',
         layout: 'vertical',
+        classes: 'bc-t-border--none',
         innerComponent: viewDataText({
           dataTestId: 'view-data-text-additional-information',
           data: 'Supplier assured integrations are interoperability interfaces prepared by a supplier and are not specified or assured by the NHS.'
         }) + viewDataLink({
           dataTestId: 'view-question-data-text-link',
-          data: params.section.answers['link']
+          data: params.section.answers.link
         })
       })}}
     </dl>

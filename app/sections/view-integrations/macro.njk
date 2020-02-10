@@ -6,10 +6,10 @@
 {% from 'sections/view-authority-asserted-integrations/macro.njk' import viewAuthorityAssertedIntegrations %}
 
 {% macro viewIntegrations(params) %}
-  {% if params.sections.integrations.answers.link %}
+  {% if params.section.integrations.answers.link %}
     {% set hasSupplierIntegrationsSections = true %}
   {% endif %}
-  {% if params.sections.integrations.answers['document-name'] %}
+  {% if params.section.integrations.answers['document-name'] %}
     {% set hasAuthorityIntegrationsSections = true %}
   {% endif %}
 

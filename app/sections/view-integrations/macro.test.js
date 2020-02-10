@@ -9,7 +9,7 @@ describe('view-integrations', () => {
   it('should render the integrations section if integrations answer link is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        sections: {
+        section: {
           integrations: {
             answers: {
               link: 'some-link',
@@ -28,7 +28,7 @@ describe('view-integrations', () => {
   it('should render the integrations section if integrations answer documant-name is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        sections: {
+        section: {
           integrations: {
             answers: {
               'document-name': 'some-name',
@@ -47,7 +47,7 @@ describe('view-integrations', () => {
   it('should not render the integrations section if no section data provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        sections: {
+        section: {
           integrations: {},
         },
       },
@@ -62,7 +62,7 @@ describe('view-integrations', () => {
   it('should not render the integrations section if invalid section provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        sections: {
+        section: {
           'invalid-section': {},
         },
       },
@@ -77,7 +77,7 @@ describe('view-integrations', () => {
   it('should render the title of the section if the integrations section is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        sections: {
+        section: {
           integrations: {
             answers: {
               link: 'some-link',
@@ -95,7 +95,7 @@ describe('view-integrations', () => {
   it('should render the additional information of the section if the integrations section is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        sections: {
+        section: {
           integrations: {
             answers: {
               link: 'some-link',
@@ -116,7 +116,7 @@ describe('view-integrations', () => {
   it('should render the viewSupplierAssertedIntegrations component if link answer is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        sections: {
+        section: {
           integrations: {
             answers: {
               link: 'some-link',
@@ -134,7 +134,7 @@ describe('view-integrations', () => {
   it('should render the viewAuthorityAssertedIntegrations component if document-name answer is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        sections: {
+        section: {
           integrations: {
             answers: {
               'document-name': 'some-document-link',

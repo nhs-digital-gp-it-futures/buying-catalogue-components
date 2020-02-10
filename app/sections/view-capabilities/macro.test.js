@@ -177,7 +177,7 @@ describe('view-capabilities', () => {
   it('should render the capability epic', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
+        'capabilities-met': [
           {
             name: 'Prescribing',
             version: '1.0',
@@ -205,11 +205,13 @@ describe('view-capabilities', () => {
     };
 
     harness.request(context, ($) => {
+      console.log($.html())
       const viewCapabilities = $('[data-test-id="view-capabilities"]');
       const viewSectionCapabilities = viewCapabilities.find('[data-test-id="view-section-capabilities"]');
       const viewCapabilitiesEpic = viewSectionCapabilities.find('[data-test-id="view-question-epic"]');
 
       expect(viewCapabilitiesEpic.length).toEqual(1);
+      expect(viewCapabilitiesEpic.find('[data-test-id="may-epics"]').length).toEqual(1);
     });
   }));
 });

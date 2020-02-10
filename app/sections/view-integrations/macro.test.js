@@ -25,13 +25,13 @@ describe('view-integrations', () => {
     });
   }));
 
-  it('should render the integrations section if integrations answer documant-name is provided', createTestHarness(setup, (harness) => {
+  it('should render the integrations section if integrations answer document-link is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
           integrations: {
             answers: {
-              'document-name': 'some-name',
+              'document-link': 'some-link',
             },
           },
         },
@@ -132,13 +132,13 @@ describe('view-integrations', () => {
     });
   }));
 
-  it('should render the viewAuthorityAssertedIntegrations component if document-name answer is provided', createTestHarness(setup, (harness) => {
+  it('should render the viewAuthorityAssertedIntegrations component if document-link answer is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
           integrations: {
             answers: {
-              'document-name': 'some-document-link',
+              'document-link': 'some-document-link',
             },
           },
         },

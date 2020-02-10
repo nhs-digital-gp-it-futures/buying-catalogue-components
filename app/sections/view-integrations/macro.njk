@@ -24,12 +24,12 @@
       <div class="nhsuk-u-padding-left-3">
         {% if hasAuthorityIntegrationsSections %}
           {{ viewAuthorityAssertedIntegrations({
-            section: params.sections.integrations
+            section: params.section.integrations
           })}}
         {% endif %}
         {% if hasSupplierIntegrationsSections %}
           {{ viewSupplierAssertedIntegrations({
-            section: params.sections.integrations
+            section: params.section.integrations
           })}}
         {% endif %}
       </div>

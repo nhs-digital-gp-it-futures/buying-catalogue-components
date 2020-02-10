@@ -16,7 +16,20 @@ const context = {
 };
 
 describe('view-solution-header', () => {
-  it('should render the foundation tag', createTestHarness(setup, (harness) => {
+  it('should not render the foundation tag if set to false', createTestHarness(setup, (harness) => {
+    const newContext = {
+      params: {
+        ...context,
+        isFoundation: false,
+      },
+    };
+
+    harness.request(newContext, ($) => {
+      expect($('[data-test-id="view-solution-foundation"]').length).toEqual(0);
+    });
+  }));
+
+  it('should render the foundation tag if set to true', createTestHarness(setup, (harness) => {
     harness.request(context, ($) => {
       expect($('[data-test-id="view-solution-foundation"]').text().trim()).toEqual('Foundation Solution Set');
     });

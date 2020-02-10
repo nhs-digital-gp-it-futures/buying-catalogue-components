@@ -205,7 +205,6 @@ describe('view-capabilities', () => {
     };
 
     harness.request(context, ($) => {
-      console.log($.html())
       const viewCapabilities = $('[data-test-id="view-capabilities"]');
       const viewSectionCapabilities = viewCapabilities.find('[data-test-id="view-section-capabilities"]');
       const viewCapabilitiesEpic = viewSectionCapabilities.find('[data-test-id="view-question-epic"]');

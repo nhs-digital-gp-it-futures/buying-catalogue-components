@@ -11,7 +11,25 @@ describe('view-integrations', () => {
       params: {
         section: {
           sections: {
-            integrations: {},
+            integrations: {
+              answers: {
+                link: 'some-link',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const context2 = {
+      params: {
+        section: {
+          sections: {
+            integrations: {
+              answers: {
+                'document-name': 'some-name',
+              },
+            },
           },
         },
       },
@@ -21,11 +39,22 @@ describe('view-integrations', () => {
       const integrations = $('[data-test-id="view-integrations"]');
       expect(integrations.length).toEqual(1);
     });
+
+    harness.request(context2, ($) => {
+      const integrations = $('[data-test-id="view-integrations"]');
+      expect(integrations.length).toEqual(1);
+    });
   }));
 
   it('should not render the integrations section if no section data provided', createTestHarness(setup, (harness) => {
     const context = {
-      params: {},
+      params: {
+        section: {
+          sections: {
+            integrations: {},
+          },
+        },
+      },
     };
 
     harness.request(context, ($) => {
@@ -56,7 +85,11 @@ describe('view-integrations', () => {
       params: {
         section: {
           sections: {
-            integrations: {},
+            integrations: {
+              answers: {
+                link: 'some-link',
+              },
+            },
           },
         },
       },
@@ -72,7 +105,11 @@ describe('view-integrations', () => {
       params: {
         section: {
           sections: {
-            integrations: {},
+            integrations: {
+              answers: {
+                link: 'some-link',
+              },
+            },
           },
         },
       },
@@ -83,6 +120,46 @@ describe('view-integrations', () => {
       const integrationsAdditionalInformation = integrationsSection.find('div[data-test-id="view-section-integrations-additional-information"]');
 
       expect(integrationsAdditionalInformation.text().trim()).toEqual('View information about the systems this Catalogue Solution integrates with to exchange data:');
+    });
+  }));
+
+  it('should render the viewSupplierAssertedIntegrations component if link answer is provided', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            integrations: {
+              answers: {
+                link: 'some-link',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-supplier-asserted-integrations"]').length).toEqual(1);
+    });
+  }));
+
+  it('should render the viewAuthorityAssertedIntegrations component if document-name answer is provided', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        section: {
+          sections: {
+            integrations: {
+              answers: {
+                'document-name': 'some-document-link',
+              },
+            },
+          },
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-authority-asserted-integrations"]').length).toEqual(1);
     });
   }));
 });

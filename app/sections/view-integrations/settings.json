@@ -6,7 +6,8 @@
       "sections": {
         "integrations": {
           "answers": {
-            "link": "http://www.some-link.com"
+            "link": "http://www.some-link.com",
+            "document-name": "document-name"
           }
         }
       }

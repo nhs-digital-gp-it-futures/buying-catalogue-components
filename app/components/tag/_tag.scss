@@ -13,3 +13,12 @@
   padding: nhsuk-spacing(1) nhsuk-spacing(3);
   @include nhsuk-font(22);
 }
+
+.bc-c-tag-outline-small {
+  background-color: transparent;
+  border: 2px solid $color_nhsuk-blue;
+  color: $color_nhsuk-blue;
+  display: inline-block;
+  padding: nhsuk-spacing(1) nhsuk-spacing(3);
+  @include nhsuk-font(16);
+}

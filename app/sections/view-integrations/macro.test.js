@@ -6,7 +6,7 @@ const setup = {
 };
 
 describe('view-integrations', () => {
-  it('should render the integrations section if section data provided', createTestHarness(setup, (harness) => {
+  it('should render the integrations section if integrations answer link is provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -21,7 +21,14 @@ describe('view-integrations', () => {
       },
     };
 
-    const context2 = {
+    harness.request(context, ($) => {
+      const integrations = $('[data-test-id="view-integrations"]');
+      expect(integrations.length).toEqual(1);
+    });
+  }));
+
+  it('should render the integrations section if integrations answer documant-name is provided', createTestHarness(setup, (harness) => {
+    const context = {
       params: {
         section: {
           sections: {
@@ -36,11 +43,6 @@ describe('view-integrations', () => {
     };
 
     harness.request(context, ($) => {
-      const integrations = $('[data-test-id="view-integrations"]');
-      expect(integrations.length).toEqual(1);
-    });
-
-    harness.request(context2, ($) => {
       const integrations = $('[data-test-id="view-integrations"]');
       expect(integrations.length).toEqual(1);
     });

@@ -1,0 +1,11 @@
+{
+  "componentName": "viewAuthorityAssertedIntegrations",
+  "dataTestId": "some-test-identifier",
+  "params": {
+    "section": {
+      "answers": {
+        "document-name": "document-name"
+      }
+    }
+  }
+}

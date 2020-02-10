@@ -148,7 +148,6 @@ describe('view-integrations', () => {
     harness.request(context, ($) => {
       expect($('[data-test-id="view-authority-asserted-integrations"]').length).toEqual(1);
       expect($('[data-test-id="view-question-data-text-link-authority-integrations"] a').text().trim()).toEqual('View NHS assured integrations');
-
     });
   }));
 });

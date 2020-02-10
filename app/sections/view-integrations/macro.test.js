@@ -10,11 +10,9 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          sections: {
-            integrations: {
-              answers: {
-                link: 'some-link',
-              },
+          integrations: {
+            answers: {
+              link: 'some-link',
             },
           },
         },
@@ -31,11 +29,9 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          sections: {
-            integrations: {
-              answers: {
-                'document-name': 'some-name',
-              },
+          integrations: {
+            answers: {
+              'document-name': 'some-name',
             },
           },
         },
@@ -52,9 +48,7 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          sections: {
-            integrations: {},
-          },
+          integrations: {},
         },
       },
     };
@@ -69,9 +63,7 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          sections: {
-            'invalid-section': {},
-          },
+          'invalid-section': {},
         },
       },
     };
@@ -86,11 +78,9 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          sections: {
-            integrations: {
-              answers: {
-                link: 'some-link',
-              },
+          integrations: {
+            answers: {
+              link: 'some-link',
             },
           },
         },
@@ -106,11 +96,9 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          sections: {
-            integrations: {
-              answers: {
-                link: 'some-link',
-              },
+          integrations: {
+            answers: {
+              link: 'some-link',
             },
           },
         },
@@ -129,11 +117,9 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          sections: {
-            integrations: {
-              answers: {
-                link: 'some-link',
-              },
+          integrations: {
+            answers: {
+              link: 'some-link',
             },
           },
         },
@@ -149,11 +135,9 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          sections: {
-            integrations: {
-              answers: {
-                'document-name': 'some-document-link',
-              },
+          integrations: {
+            answers: {
+              'document-name': 'some-document-link',
             },
           },
         },

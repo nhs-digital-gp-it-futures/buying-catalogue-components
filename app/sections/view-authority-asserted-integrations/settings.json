@@ -1,4 +1,3 @@
-// API returns 'document-name' which is transformed into 'document-link' in createContext function
 {
   "componentName": "viewAuthorityAssertedIntegrations",
   "dataTestId": "some-test-identifier",

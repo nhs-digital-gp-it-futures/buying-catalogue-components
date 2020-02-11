@@ -1,3 +1,4 @@
+// API returns 'document-name' which is transformed into 'document-link' in createContext function
 {
   "componentName": "viewIntegrations",
   "dataTestId": "some-test-identifier",

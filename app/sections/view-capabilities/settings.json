@@ -1,3 +1,4 @@
+// API returns 'capabilities-met' which is passed through with the key 'capabilities'
 {
   "componentName": "viewCapabilities",
   "dataTestId": "some-test-identifier",

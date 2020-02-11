@@ -1,5 +1,4 @@
 // API returns 'document-name' which is transformed into 'document-link' in createContext function
-// API returns 'document-name' which is transformed into 'document-link' in createContext function
 {
   "componentName": "viewSupplierAssertedIntegrations",
   "dataTestId": "some-test-identifier",

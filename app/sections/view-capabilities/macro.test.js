@@ -183,22 +183,17 @@ describe('view-capabilities', () => {
             version: '1.0',
             description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
             link: 'http://www.some-prescribing-link.com',
-            epic: [
-              {
-                may: {
-                  met: [
-                    {
-                      id: 'C14E13',
-                      name: 'access Patient Record',
-                    },
-                    {
-                      id: 'C14E14',
-                      name: 'search the directory',
-                    },
-                  ],
-                },
+            epic: {
+              may: {
+                met: [{
+                  id: 'C14E13',
+                  name: 'access Patient Record',
+                }, {
+                  id: 'C14E14',
+                  name: 'search the directory',
+                }],
               },
-            ],
+            },
           },
         ],
       },
@@ -210,6 +205,7 @@ describe('view-capabilities', () => {
       const viewCapabilitiesEpic = viewSectionCapabilities.find('[data-test-id="view-question-epic"]');
 
       expect(viewCapabilitiesEpic.length).toEqual(1);
+      expect(viewCapabilitiesEpic.find('[data-test-id="may-epics"]').length).toEqual(1);
     });
   }));
 });

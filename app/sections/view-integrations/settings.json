@@ -1,14 +1,13 @@
+// API returns 'document-name' which is transformed into 'document-link' in createContext function
 {
   "componentName": "viewIntegrations",
   "dataTestId": "some-test-identifier",
   "params": {
     "section": {
-      "sections": {
-        "integrations": {
-          "answers": {
-            "link": "http://www.some-link.com",
-            "document-name": "document-name"
-          }
+      "integrations": {
+        "answers": {
+          "link": "http://www.some-link.com",
+          "document-link": "document-link"
         }
       }
     }

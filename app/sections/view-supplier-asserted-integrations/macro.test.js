@@ -49,7 +49,7 @@ describe('view-supplier-asserted-integrations', () => {
       const summaryQuestionRow = $('[data-test-id="view-section-table-row-supplier-asserted-integrations"]');
       const linkInnerComponent = summaryQuestionRow
         .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-link"]');
+        .find('[data-test-id="view-question-data-text-link-supplier-integrations"]');
 
       expect(linkInnerComponent.length).toEqual(1);
       expect(linkInnerComponent.text().trim()).toEqual('http://www.some-link.com');

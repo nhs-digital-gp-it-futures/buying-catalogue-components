@@ -1,4 +1,3 @@
-{# API returns 'capabilities-met.answers.capabilities' which is passed through with the key 'capabilities' #}
 {% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
 {% from 'components/view-epics/macro.njk' import viewEpics %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
@@ -7,7 +6,7 @@
 {% from 'components/view-data-link/macro.njk' import viewDataLink %}
 
 {% macro viewCapabilities(params) %}
-  {% if params and params.capabilities.length %}
+  {% if params and params.section.answers['capabilities-met'].length %}
     <div class="nhsuk-width-container nhsuk-summary-list" data-test-id="view-capabilities">
       {{ viewSectionHeading({ text: 'Capabilities met - NHS assured' }) }}
       <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
@@ -19,7 +18,7 @@
               classes: 'nhsuk-u-margin-bottom-3 nhsuk-grid-column-two-thirds'
             }) }}
           </div>
-          {% for capability in params.capabilities %}
+          {% for capability in params.section.answers['capabilities-met'] %}
             {% set title = capability.name + ', ' + capability.version %}
 
             {{ viewSectionTableRow({

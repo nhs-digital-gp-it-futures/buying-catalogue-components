@@ -5,7 +5,7 @@ const setup = {
   templateType: 'section',
 };
 
-describe('preview page', () => {
+describe('viewSolution component', () => {
   it('should render the solutionHeader component', createTestHarness(setup, (harness) => {
     const context = {
       params: {
@@ -141,6 +141,24 @@ describe('preview page', () => {
 
     harness.request(context, ($) => {
       expect($('[data-test-id="view-capabilities"]').length).toEqual(1);
+    });
+  }));
+
+  it('should render the learn-more section when provided', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        sections: {
+          'learn-more': {
+            answers: {
+              'document-link': '/solution/10001/document/solution.pdf',
+            },
+          },
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-learn-more"]').length).toEqual(1);
     });
   }));
 });

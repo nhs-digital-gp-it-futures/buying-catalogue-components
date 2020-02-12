@@ -9,6 +9,7 @@
 {% from 'sections/view-roadmap/macro.njk' import viewRoadmap %}
 {% from 'sections/view-about-supplier/macro.njk' import viewAboutSupplier %}
 {% from 'sections/view-capabilities/macro.njk' import viewCapabilities %}
+{% from 'sections/view-learn-more/macro.njk' import viewLearnMore %}
 {% from 'components/back-link/macro.njk' import backLink %}
 
 {% macro viewSolution(params) %}
@@ -29,15 +30,15 @@
       }) }}
 
       {{ viewFeatures({
-        section: params.sections.features
+        section: params.sections['features']
       }) }}
 
       {{ viewCapabilities({
-        capabilities: params.sections.capabilities.answers['capabilities-met']
+        section: params.sections['capabilities']
       }) }}
 
       {{ viewIntegrations({
-        section: params.sections.integrations
+        section: params.sections['integrations']
       }) }}
 
       {{ viewImplementationTimescales({
@@ -53,11 +54,15 @@
       }) }}
 
       {{ viewRoadmap({
-        section: params.sections.roadmap
+        section: params.sections['roadmap']
       }) }}
 
       {{ viewAboutSupplier({
         section: params.sections['about-supplier']
+      }) }}
+
+      {{ viewLearnMore({
+        section: params.sections['learn-more']
       }) }}
 
       {{ viewSolutionContactDetails({

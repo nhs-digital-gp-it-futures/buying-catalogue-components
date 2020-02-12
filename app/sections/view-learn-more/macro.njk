@@ -1,0 +1,30 @@
+{% from 'components/button/macro.njk' import button %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+
+{% macro viewLearnMore(params) %}
+  {% if params.section and params.section.answers['document-link'] %}
+    <div class="nhsuk-width-container" data-test-id="view-learn-more">
+      {{ viewSectionHeading({ text: 'Learn more' }) }}
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
+        <div class="nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds">
+          <div data-test-id="view-section-learn-more">
+            {{ viewDataText({
+              dataTestId: 'view-learn-more-guidance',
+              data: 'Find out more about this Catalogue Solution by downloading the full details.',
+              classes: 'nhsuk-u-margin-bottom-3'
+            }) }}
+          </div>
+
+          <div data-test-id="view-section-question-document-link">
+            {{ button({
+              "text": "Download this PDF",
+              "classes": "nhsuk-button--secondary",
+              "href": params.section.answers['document-link']
+            }) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

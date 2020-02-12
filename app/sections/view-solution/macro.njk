@@ -10,18 +10,10 @@
 {% from 'sections/view-about-supplier/macro.njk' import viewAboutSupplier %}
 {% from 'sections/view-capabilities/macro.njk' import viewCapabilities %}
 {% from 'sections/view-learn-more/macro.njk' import viewLearnMore %}
-{% from 'components/back-link/macro.njk' import backLink %}
 
 {% macro viewSolution(params) %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-full">
-      <div data-test-id="view-solution-page-back-link" class="nhsuk-u-margin-bottom-5">
-        {{ backLink({
-          "href": params.returnToDashboardUrl,
-          "text": "Go back to previous page"
-        }) }}
-      </div>
-
       {{ viewSolutionHeader(params.solutionHeader) }}
 
       {{ viewSolutionDescription({

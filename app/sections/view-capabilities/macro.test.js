@@ -9,14 +9,16 @@ describe('view-capabilities', () => {
   it('should render the title of the section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
-          {
-            name: 'Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
+        section: {
+          answers: {
+            'capabilities-met': [{
+              name: 'Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+            }],
           },
-        ],
+        },
       },
     };
 
@@ -28,20 +30,22 @@ describe('view-capabilities', () => {
   it('should render the capability expandable sections if data provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
-          {
-            name: 'Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
+        section: {
+          answers: {
+            'capabilities-met': [{
+              name: 'Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+            },
+            {
+              name: 'Social Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+            }],
           },
-          {
-            name: 'Social Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
-          },
-        ],
+        },
       },
     };
 
@@ -55,7 +59,11 @@ describe('view-capabilities', () => {
   it('should not render the capability expandable sections if capabilities data not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [],
+        section: {
+          answers: {
+            'capabilities-met': [],
+          },
+        },
       },
     };
 
@@ -69,14 +77,16 @@ describe('view-capabilities', () => {
   it('should render the name and version of the section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
-          {
-            name: 'Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
+        section: {
+          answers: {
+            'capabilities-met': [{
+              name: 'Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+            }],
           },
-        ],
+        },
       },
     };
 
@@ -88,14 +98,16 @@ describe('view-capabilities', () => {
   it('should render the description of the section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
-          {
-            name: 'Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
+        section: {
+          answers: {
+            'capabilities-met': [{
+              name: 'Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+            }],
           },
-        ],
+        },
       },
     };
 
@@ -107,14 +119,16 @@ describe('view-capabilities', () => {
   it('should render the text of the expandable section', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
-          {
-            name: 'Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
+        section: {
+          answers: {
+            'capabilities-met': [{
+              name: 'Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+            }],
           },
-        ],
+        },
       },
     };
 
@@ -126,14 +140,16 @@ describe('view-capabilities', () => {
   it('should render the capability description', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
-          {
-            name: 'Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
+        section: {
+          answers: {
+            'capabilities-met': [{
+              name: 'Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+            }],
           },
-        ],
+        },
       },
     };
 
@@ -153,14 +169,16 @@ describe('view-capabilities', () => {
   it('should render the capability link', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
-          {
-            name: 'Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
+        section: {
+          answers: {
+            'capabilities-met': [{
+              name: 'Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+            }],
           },
-        ],
+        },
       },
     };
 
@@ -177,25 +195,27 @@ describe('view-capabilities', () => {
   it('should render the capability epic', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        capabilities: [
-          {
-            name: 'Prescribing',
-            version: '1.0',
-            description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
-            link: 'http://www.some-prescribing-link.com',
-            epic: {
-              may: {
-                met: [{
-                  id: 'C14E13',
-                  name: 'access Patient Record',
-                }, {
-                  id: 'C14E14',
-                  name: 'search the directory',
-                }],
+        section: {
+          answers: {
+            'capabilities-met': [{
+              name: 'Prescribing',
+              version: '1.0',
+              description: 'Supports the effective and safe prescribing of medical products and appliances to Patients. Information to support prescribing will be available.',
+              link: 'http://www.some-prescribing-link.com',
+              epic: {
+                may: {
+                  met: [{
+                    id: 'C14E13',
+                    name: 'access Patient Record',
+                  }, {
+                    id: 'C14E14',
+                    name: 'search the directory',
+                  }],
+                },
               },
-            },
+            }],
           },
-        ],
+        },
       },
     };
 

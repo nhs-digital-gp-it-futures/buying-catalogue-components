@@ -6,8 +6,8 @@
 {% from 'sections/view-hosting-type-on-premise/macro.njk' import viewHostingTypeOnPremise %}
 
 {% macro viewHostingTypes(params) %}
-  {% if params.section.sections['hosting-type-public-cloud'] or params.section.sections['hosting-type-private-cloud']
-    or params.section.sections['hosting-type-hybrid'] or params.section.sections['hosting-type-on-premise'] %}
+  {% if params.sections['hosting-type-public-cloud'] or params.sections['hosting-type-private-cloud']
+    or params.sections['hosting-type-hybrid'] or params.sections['hosting-type-on-premise'] %}
     {% set hasHostingTypeSections = true %}
   {% endif %}
 
@@ -23,42 +23,43 @@
         <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
           <div class="nhsuk-grid-row">
             <div class="nhsuk-u-padding-left-3">
-              {% if params.section.sections['hosting-type-public-cloud'] %}
+              {% if params.sections['hosting-type-public-cloud'] %}
                 {{ viewExpandableSection({
                   dataTestId: 'view-section-hosting-type-public-cloud',
                   title: 'Public cloud',
                   innerComponent: viewHostingTypePublicCloud({
-                    section: params.section.sections['hosting-type-public-cloud']
+                    section: params.sections['hosting-type-public-cloud']
                   })
                 }) }}
               {% endif %}
 
-              {% if params.section.sections['hosting-type-private-cloud'] %}
+              {% if params.sections['hosting-type-private-cloud'] %}
                 {{ viewExpandableSection({
                   dataTestId: 'view-section-hosting-type-private-cloud',
                   title: 'Private cloud',
                   innerComponent: viewHostingTypePrivateCloud({
-                    section: params.section.sections['hosting-type-private-cloud']
+                    section: params.sections['hosting-type-private-cloud']
                   })
                 }) }}
               {% endif %}
 
-              {% if params.section.sections['hosting-type-hybrid'] %}
+              {% if params.sections['hosting-type-hybrid'] %}
                 {{ viewExpandableSection({
                   dataTestId: 'view-section-hosting-type-hybrid',
                   title: 'Hybrid',
                   innerComponent: viewHostingTypeHybrid({
-                    section: params.section.sections['hosting-type-hybrid']
+                    section: params.sections['hosting-type-hybrid']
                   })
                 }) }}
               {% endif %}
 
-              {% if params.section.sections['hosting-type-on-premise'] %}
+              {% if params.sections['hosting-type-on-premise'] %}
+              {{params.sections['hosting-type-on-premise']}}
                 {{ viewExpandableSection({
                   dataTestId: 'view-section-hosting-type-on-premise',
                   title: 'On premise',
                   innerComponent: viewHostingTypeOnPremise({
-                    section: params.section.sections['hosting-type-on-premise']
+                    section: params.sections['hosting-type-on-premise']
                   })
                 }) }}
               {% endif %}

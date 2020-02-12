@@ -7,10 +7,10 @@
 {% from 'sections/view-authority-asserted-integrations/macro.njk' import viewAuthorityAssertedIntegrations %}
 
 {% macro viewIntegrations(params) %}
-  {% if params.section.integrations.answers.link %}
+  {% if params.section.answers.link %}
     {% set hasSupplierIntegrationsSections = true %}
   {% endif %}
-  {% if params.section.integrations.answers['document-link'] %}
+  {% if params.section.answers['document-link'] %}
     {% set hasAuthorityIntegrationsSections = true %}
   {% endif %}
 
@@ -25,12 +25,12 @@
       <div class="nhsuk-u-padding-left-3">
         {% if hasAuthorityIntegrationsSections %}
           {{ viewAuthorityAssertedIntegrations({
-            section: params.section.integrations
+            section: params.section
           })}}
         {% endif %}
         {% if hasSupplierIntegrationsSections %}
           {{ viewSupplierAssertedIntegrations({
-            section: params.section.integrations
+            section: params.section
           })}}
         {% endif %}
       </div>

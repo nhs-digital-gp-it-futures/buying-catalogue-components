@@ -1,0 +1,10 @@
+{
+  "componentName": "viewLearnMore",
+  "params": {
+    "section": {
+      "answers": {
+        "document-link": "/solution/10001/document/solution.pdf"
+      }
+    }
+  }
+}

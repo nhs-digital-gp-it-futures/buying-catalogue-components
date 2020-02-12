@@ -1,0 +1,69 @@
+{% from 'sections/view-solution-header/macro.njk' import viewSolutionHeader %}
+{% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+{% from 'sections/view-features/macro.njk' import viewFeatures %}
+{% from 'sections/view-integrations/macro.njk' import viewIntegrations %}
+{% from 'sections/view-implementation-timescales/macro.njk' import viewImplementationTimescales %}
+{% from 'sections/view-client-application-types/macro.njk' import viewClientApplicationTypes %}
+{% from 'sections/view-hosting-types/macro.njk' import viewHostingTypes %}
+{% from 'sections/view-solution-contact-details/macro.njk' import viewSolutionContactDetails %}
+{% from 'sections/view-roadmap/macro.njk' import viewRoadmap %}
+{% from 'sections/view-about-supplier/macro.njk' import viewAboutSupplier %}
+{% from 'sections/view-capabilities/macro.njk' import viewCapabilities %}
+{% from 'components/back-link/macro.njk' import backLink %}
+
+{% macro viewSolution(params) %}
+  {{params}}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <div data-test-id="view-solution-page-back-link" class="nhsuk-u-margin-bottom-5">
+        {{ backLink({
+          "href": params.returnToDashboardUrl,
+          "text": "Go back to previous page"
+        }) }}
+      </div>
+
+      {{ viewSolutionHeader(params.solutionHeader) }}
+
+      {{ viewSolutionDescription({
+        section: params.sections['solution-description']
+      }) }}
+
+      {{ viewFeatures({
+        section: params.sections.features
+      }) }}
+
+      {{ viewCapabilities({
+        capabilities: params.sections.capabilities.answers['capabilities-met']
+      }) }}
+
+      {{ viewIntegrations({
+        section: params.sections.integrations
+      }) }}
+
+      {{ viewImplementationTimescales({
+        section: params.sections['implementation-timescales']
+      }) }}
+
+      {{ viewClientApplicationTypes({
+        section: params.sections['client-application-types']
+      }) }}
+
+      {{ viewHostingTypes({
+        sections: params.sections
+      }) }}
+
+      {{ viewRoadmap({
+        section: params.sections.roadmap
+      }) }}
+
+      {{ viewAboutSupplier({
+        section: params.sections['about-supplier']
+      }) }}
+
+      {{ viewSolutionContactDetails({
+        section: params.sections['contact-details']
+      }) }}
+    </div>
+  </div>
+
+{% endmacro %}

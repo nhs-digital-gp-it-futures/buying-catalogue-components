@@ -10,10 +10,8 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          integrations: {
-            answers: {
-              link: 'some-link',
-            },
+          answers: {
+            link: 'some-link',
           },
         },
       },
@@ -29,10 +27,8 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          integrations: {
-            answers: {
-              'document-link': 'some-link',
-            },
+          answers: {
+            'document-link': 'some-link',
           },
         },
       },
@@ -47,9 +43,7 @@ describe('view-integrations', () => {
   it('should not render the integrations section if no section data provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        section: {
-          integrations: {},
-        },
+        section: {},
       },
     };
 
@@ -78,10 +72,8 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          integrations: {
-            answers: {
-              link: 'some-link',
-            },
+          answers: {
+            link: 'some-link',
           },
         },
       },
@@ -96,10 +88,8 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          integrations: {
-            answers: {
-              link: 'some-link',
-            },
+          answers: {
+            link: 'some-link',
           },
         },
       },
@@ -117,10 +107,8 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          integrations: {
-            answers: {
-              link: 'some-link',
-            },
+          answers: {
+            link: 'some-link',
           },
         },
       },
@@ -136,10 +124,8 @@ describe('view-integrations', () => {
     const context = {
       params: {
         section: {
-          integrations: {
-            answers: {
-              'document-link': 'some-document-link',
-            },
+          answers: {
+            'document-link': 'some-document-link',
           },
         },
       },

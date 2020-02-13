@@ -26,14 +26,14 @@ describe('view-learn-more', () => {
     it('should render the guidance text if the section is provided', createTestHarness(setup, (harness) => {
       harness.request(context, ($) => {
         const learnMoreGuidance = $('[data-test-id="view-learn-more-guidance"]');
-        expect(learnMoreGuidance.text().trim()).toEqual('Find out more about this Catalogue Solution by downloading the full details.');
+        expect(learnMoreGuidance.text().trim()).toEqual('Learn more about this Catalogue Solution, for example its price, the standards it has met and any additional or associated services available.');
       });
     }));
 
     it('should render the button to download the solution pdf', createTestHarness(setup, (harness) => {
       harness.request(context, ($) => {
         const documentLinkQuestion = $('[data-test-id="view-section-question-document-link"]');
-        expect(documentLinkQuestion.text().trim()).toEqual('Download this PDF');
+        expect(documentLinkQuestion.text().trim()).toEqual('Download PDF');
         expect(documentLinkQuestion.find('a').attr('href')).toEqual('/solution/10001/document/solution.pdf');
       });
     }));

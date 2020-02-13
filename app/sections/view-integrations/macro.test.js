@@ -96,10 +96,9 @@ describe('view-integrations', () => {
     };
 
     harness.request(context, ($) => {
-      const integrationsSection = $('[data-test-id="view-integrations"]');
-      const integrationsAdditionalInformation = integrationsSection.find('div[data-test-id="view-section-integrations-additional-information"]');
+      const integrationsGuidance = $('[data-test-id="view-integrations-guidance"]');
 
-      expect(integrationsAdditionalInformation.text().trim()).toEqual('View information about the systems this Catalogue Solution integrates with to exchange data:');
+      expect(integrationsGuidance.text().trim()).toEqual('View information about the systems this Catalogue Solution integrates with to exchange data:');
     });
   }));
 

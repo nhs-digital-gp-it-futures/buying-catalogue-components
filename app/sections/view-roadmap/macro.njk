@@ -7,15 +7,15 @@
   {% if params.section %}
     <div class="nhsuk-width-container" data-test-id="view-roadmap">
       {{ viewSectionHeading({ text: 'Roadmap' }) }}
-      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
-        <div class="nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds">
-          <div data-test-id="view-section-roadmap-guidance">
-            {{ viewDataText({
-              dataTestId: 'view-roadmap-guidance',
-              data: 'These are the supplier’s development plans for this Catalogue Solution:',
-              classes: 'nhsuk-u-margin-bottom-3'
-            }) }}
-          </div>
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3 nhsuk-u-padding-right-3">
+        <div data-test-id="view-section-roadmap-guidance">
+          {{ viewDataText({
+            dataTestId: 'view-roadmap-guidance',
+            data: 'These are the supplier’s development plans for this Catalogue Solution:',
+            classes: 'bcc-t-font-color-grey nhsuk-u-margin-bottom-3 nhsuk-grid-column-two-thirds'
+          }) }}
+        </div>
+        <div class="nhsuk-grid-column-full">
           {% if params.section.answers['document-link'] %}
             <div data-test-id="view-section-question-document-link">
               {{ viewDataLink({
@@ -37,7 +37,6 @@
           {% endif %}
         </div>
       </div>
-
     </div>
   {% endif %}
 {% endmacro %}

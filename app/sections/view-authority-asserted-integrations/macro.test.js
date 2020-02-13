@@ -24,7 +24,7 @@ describe('view-authority-asserted-integrations', () => {
       const im1Link = authorityAssertedIntegrationsQuestionRow.find('div[data-test-id="view-question-data-text-link-im1"] > a');
 
       expect(authorityAssertedIntegrationsQuestionRow.length).toEqual(1);
-      expect(authorityAssertedIntegrationsQuestionRow.find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('NHS asserted integrations');
+      expect(authorityAssertedIntegrationsQuestionRow.find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('NHS asserted integrations');
       expect(documentLink.text().trim()).toEqual('View NHS assured integrations');
       expect(documentLink.attr('href')).toEqual(context.params.section.answers['document-link']);
       expect(authorityAssertedIntegrationsQuestionRow.find('div[data-test-id="view-data-text-additional-information"]').text().trim()).toEqual('To find out more about these NHS assured integrations, follow the links below.');

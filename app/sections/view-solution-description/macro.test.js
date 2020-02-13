@@ -39,10 +39,16 @@ describe('view-solution-description', () => {
       };
 
       harness.request(context, ($) => {
-        const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
+        const summaryQuestionRow = $('[data-test-id="view-section-table-row-summary"]');
+        const summaryTitle = summaryQuestionRow.find('[data-test-id="view-section-table-row-title"]');
+        const summaryInnerComponent = summaryQuestionRow.find('[data-test-id="view-section-table-row-component"]');
+        const summaryAnswer = summaryInnerComponent.find('[data-test-id="view-question-data-text-summary"]');
 
-        expect(summaryQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Summary');
-        expect(summaryQuestion.find('[data-test-id="view-question-data-text-summary"]').text().trim()).toEqual('Some summary data');
+        expect(summaryQuestionRow.length).toEqual(1);
+        expect(summaryTitle.text().trim()).toEqual('Summary');
+
+        expect(summaryInnerComponent.length).toEqual(1);
+        expect(summaryAnswer.text().trim()).toEqual('Some summary data');
       });
     }));
 
@@ -58,10 +64,16 @@ describe('view-solution-description', () => {
       };
 
       harness.request(context, ($) => {
-        const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
+        const descriptionQuestionRow = $('[data-test-id="view-section-table-row-description"]');
+        const descriptionTitle = descriptionQuestionRow.find('[data-test-id="view-section-table-row-title"]');
+        const descriptionInnerComponent = descriptionQuestionRow.find('[data-test-id="view-section-table-row-component"]');
+        const descriptionAnswer = descriptionInnerComponent.find('[data-test-id="view-question-data-text-description"]');
 
-        expect(descriptionQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Full description');
-        expect(descriptionQuestion.find('[data-test-id="view-question-data-text-description"]').text().trim()).toEqual('Some description data');
+        expect(descriptionQuestionRow.length).toEqual(1);
+        expect(descriptionTitle.text().trim()).toEqual('Full description');
+
+        expect(descriptionInnerComponent.length).toEqual(1);
+        expect(descriptionAnswer.text().trim()).toEqual('Some description data');
       });
     }));
 
@@ -77,10 +89,16 @@ describe('view-solution-description', () => {
       };
 
       harness.request(context, ($) => {
-        const linkQuestion = $('[data-test-id="view-section-question-link"]');
+        const descriptionQuestionRow = $('[data-test-id="view-section-table-row-description"]');
+        const descriptionTitle = descriptionQuestionRow.find('[data-test-id="view-section-table-row-title"]');
+        const descriptionInnerComponent = descriptionQuestionRow.find('[data-test-id="view-section-table-row-component"]');
+        const linkAnswer = descriptionInnerComponent.find('[data-test-id="view-question-data-link"]');
 
-        expect(linkQuestion.find('[data-test-id="view-question-title"]').length).toEqual(0);
-        expect(linkQuestion.find('[data-test-id="view-question-data-link"]').text().trim()).toEqual('www.somelink.com');
+        expect(descriptionQuestionRow.length).toEqual(1);
+        expect(descriptionTitle.text().trim()).toEqual('Full description');
+
+        expect(descriptionInnerComponent.length).toEqual(1);
+        expect(linkAnswer.text().trim()).toEqual('www.somelink.com');
       });
     }));
   });
@@ -98,9 +116,8 @@ describe('view-solution-description', () => {
       };
 
       harness.request(context, ($) => {
-        const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
-
-        expect(summaryQuestion.length).toEqual(0);
+        const summaryQuestionRow = $('[data-test-id="view-section-table-row-summary"]');
+        expect(summaryQuestionRow.length).toEqual(0);
       });
     }));
 
@@ -116,8 +133,8 @@ describe('view-solution-description', () => {
       };
 
       harness.request(context, ($) => {
-        const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
-        expect(descriptionQuestion.length).toEqual(0);
+        const descriptionQuestionRow = $('[data-test-id="view-section-table-row-description"]');
+        expect(descriptionQuestionRow.length).toEqual(0);
       });
     }));
 
@@ -133,8 +150,8 @@ describe('view-solution-description', () => {
       };
 
       harness.request(context, ($) => {
-        const linkQuestion = $('[data-test-id="view-section-question-link"]');
-        expect(linkQuestion.length).toEqual(0);
+        const descriptionQuestionRow = $('[data-test-id="view-section-table-row-description"]');
+        expect(descriptionQuestionRow.length).toEqual(0);
       });
     }));
   });

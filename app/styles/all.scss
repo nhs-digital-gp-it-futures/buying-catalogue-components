@@ -9,6 +9,10 @@ $color_nhsuk-white--alpha20: rgba($color_nhsuk-white, .2);
 $color_nhsuk-white--alpha30: rgba($color_nhsuk-white, .3);
 $color_nhsuk-white--alpha40: rgba($color_nhsuk-white, .4);
 
+.bcc-t-font-color-grey {
+  color: $color_nhsuk-grey-1;
+}
+
 .bcc-t-bg-white {
   background: $color_nhsuk-white;
 }

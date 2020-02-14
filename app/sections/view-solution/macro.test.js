@@ -161,4 +161,16 @@ describe('viewSolution component', () => {
       expect($('[data-test-id="view-learn-more"]').length).toEqual(1);
     });
   }));
+
+  it('should render the back to top link', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        sections: {},
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="back-to-top-link"]').length).toEqual(1);
+    });
+  }));
 });

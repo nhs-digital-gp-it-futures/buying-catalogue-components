@@ -10,6 +10,7 @@
 {% from 'sections/view-about-supplier/macro.njk' import viewAboutSupplier %}
 {% from 'sections/view-capabilities/macro.njk' import viewCapabilities %}
 {% from 'sections/view-learn-more/macro.njk' import viewLearnMore %}
+{% from 'components/back-to-top/macro.njk' import backToTop %}
 
 {% macro viewSolution(params) %}
   <div class="nhsuk-grid-row">
@@ -59,6 +60,12 @@
       {{ viewSolutionContactDetails({
         section: params.sections['contact-details']
       }) }}
+
+      <div class="nhsuk-u-padding-left-3 nhsuk-u-padding-right-3 nhsuk-u-padding-top-5 bc-u-text-align-right">
+        {{ backToTop({
+          dataTestId: 'back-to-top-link'
+        }) }}
+      </div>
     </div>
   </div>
 

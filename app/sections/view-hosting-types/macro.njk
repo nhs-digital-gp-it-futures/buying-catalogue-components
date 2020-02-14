@@ -1,3 +1,4 @@
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
 {% from 'components/view-expandable-section/macro.njk' import viewExpandableSection %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 {% from 'sections/view-hosting-type-public-cloud/macro.njk' import viewHostingTypePublicCloud %}
@@ -14,58 +15,55 @@
   {% if hasHostingTypeSections %}
     <div class="nhsuk-width-container" data-test-id="view-hosting-types">
       {{ viewSectionHeading({ text: 'Hosting type' }) }}
-      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
-        <div class="nhsuk-grid-column-two-thirds">
-          <p>
-            These are the ways this Catalogue Solution can be hosted:
-          </p>
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3 nhsuk-u-padding-right-3">
+        <div data-test-id="view-section-hosting-types-guidance">
+          {{ viewDataText({
+            dataTestId: 'view-hosting-types-guidance',
+            data: 'These are the ways this Catalogue Solution can be hosted:',
+            classes: 'bcc-t-font-color-grey1 nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds'
+          }) }}
         </div>
-        <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
-          <div class="nhsuk-grid-row">
-            <div class="nhsuk-u-padding-left-3">
-              {% if params.sections['hosting-type-public-cloud'] %}
-                {{ viewExpandableSection({
-                  dataTestId: 'view-section-hosting-type-public-cloud',
-                  title: 'Public cloud',
-                  innerComponent: viewHostingTypePublicCloud({
-                    section: params.sections['hosting-type-public-cloud']
-                  })
-                }) }}
-              {% endif %}
+        <div class="nhsuk-grid-column-full">
+          {% if params.sections['hosting-type-public-cloud'] %}
+            {{ viewExpandableSection({
+              dataTestId: 'view-section-hosting-type-public-cloud',
+              title: 'Public cloud',
+              innerComponent: viewHostingTypePublicCloud({
+                section: params.sections['hosting-type-public-cloud']
+              })
+            }) }}
+          {% endif %}
 
-              {% if params.sections['hosting-type-private-cloud'] %}
-                {{ viewExpandableSection({
-                  dataTestId: 'view-section-hosting-type-private-cloud',
-                  title: 'Private cloud',
-                  innerComponent: viewHostingTypePrivateCloud({
-                    section: params.sections['hosting-type-private-cloud']
-                  })
-                }) }}
-              {% endif %}
+          {% if params.sections['hosting-type-private-cloud'] %}
+            {{ viewExpandableSection({
+              dataTestId: 'view-section-hosting-type-private-cloud',
+              title: 'Private cloud',
+              innerComponent: viewHostingTypePrivateCloud({
+                section: params.sections['hosting-type-private-cloud']
+              })
+            }) }}
+          {% endif %}
 
-              {% if params.sections['hosting-type-hybrid'] %}
-                {{ viewExpandableSection({
-                  dataTestId: 'view-section-hosting-type-hybrid',
-                  title: 'Hybrid',
-                  innerComponent: viewHostingTypeHybrid({
-                    section: params.sections['hosting-type-hybrid']
-                  })
-                }) }}
-              {% endif %}
+          {% if params.sections['hosting-type-hybrid'] %}
+            {{ viewExpandableSection({
+              dataTestId: 'view-section-hosting-type-hybrid',
+              title: 'Hybrid',
+              innerComponent: viewHostingTypeHybrid({
+                section: params.sections['hosting-type-hybrid']
+              })
+            }) }}
+          {% endif %}
 
-              {% if params.sections['hosting-type-on-premise'] %}
-                {{ viewExpandableSection({
-                  dataTestId: 'view-section-hosting-type-on-premise',
-                  title: 'On premise',
-                  innerComponent: viewHostingTypeOnPremise({
-                    section: params.sections['hosting-type-on-premise']
-                  })
-                }) }}
-              {% endif %}
-
-            </div>
+          {% if params.sections['hosting-type-on-premise'] %}
+            {{ viewExpandableSection({
+              dataTestId: 'view-section-hosting-type-on-premise',
+              title: 'On premise',
+              innerComponent: viewHostingTypeOnPremise({
+                section: params.sections['hosting-type-on-premise']
+              })
+            }) }}
+          {% endif %}
           </div>
-        </div>
       </div>
     </div>
   {% endif %}

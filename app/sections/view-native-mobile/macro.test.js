@@ -31,7 +31,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(operatingSystemsQuestionRow.length).toEqual(1);
       expect(operatingSystemsQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
       expect(operatingSystemsInnerComponent.length).toEqual(1);
       expect(operatingSystemsInnerComponent.text().trim()).toEqual('Apple IOS');
     });
@@ -62,7 +62,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
       expect(operatingSystemsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Description of supported operating systems');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Description of supported operating systems');
       expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
       expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Android 4.1 and above, IOS 10.6 and above.');
     });
@@ -93,7 +93,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(mobileFirstDesignQuestionRow.length).toEqual(1);
       expect(mobileFirstDesignQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile first approach');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile first approach');
       expect(mobileFirstDesignInnerComponent.length).toEqual(1);
       expect(mobileFirstDesignInnerComponent.text().trim()).toEqual('Yes');
     });
@@ -124,7 +124,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(minimumConnectionSpeedQuestionRow.length).toEqual(1);
       expect(minimumConnectionSpeedQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
       expect(minimumConnectionSpeedInnerComponent.length).toEqual(1);
       expect(minimumConnectionSpeedInnerComponent.text().trim()).toEqual('1Mbps');
     });
@@ -155,7 +155,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(connectionTypesQuestionRow.length).toEqual(1);
       expect(connectionTypesQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Connection types supported');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Connection types supported');
       expect(connectionTypesInnerComponent.length).toEqual(1);
       expect(connectionTypesInnerComponent.text().trim()).toEqual('GPRS');
     });
@@ -186,7 +186,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(connectionReqsDescriptionQuestionRow.length).toEqual(1);
       expect(connectionReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Connection requirements');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Connection requirements');
       expect(connectionReqsDescriptionInnerComponent.length).toEqual(1);
       expect(connectionReqsDescriptionInnerComponent.text().trim()).toEqual('Average data usage will vary depending on application activity.');
     });
@@ -217,7 +217,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
       expect(minimumMemoryRequirementQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Memory size');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Memory size');
       expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
       expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
     });
@@ -248,7 +248,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
       expect(storageReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Storage space');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Storage space');
       expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
       expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.');
     });
@@ -279,7 +279,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(thirdPartyComponentsQuestionRow.length).toEqual(1);
       expect(thirdPartyComponentsQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third-party components');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third-party components');
       expect(thirdPartyComponentsInnerComponent.length).toEqual(1);
       expect(thirdPartyComponentsInnerComponent.text().trim()).toEqual('The application supports and requires an authenticator on each device the application is installed. You will need a software-based authenticator that implements a two-step verification service.');
     });
@@ -310,7 +310,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(deviceCapabilitiesQuestionRow.length).toEqual(1);
       expect(deviceCapabilitiesQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities');
       expect(deviceCapabilitiesInnerComponent.length).toEqual(1);
       expect(deviceCapabilitiesInnerComponent.text().trim()).toEqual('In order to use our file hosting services, the application will require permission to access device storage.');
     });
@@ -341,7 +341,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(hardwareRequirementsQuestionRow.length).toEqual(1);
       expect(hardwareRequirementsQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
       expect(hardwareRequirementsInnerComponent.length).toEqual(1);
       expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('To fully utilise our print functionality within the application, you will need a WiFi or Bluetooth connected printer to connect and print documents straight from the device.');
     });
@@ -372,7 +372,7 @@ describe('view-native-mobile', () => {
       expect(nativeMobileSectionTable.length).toEqual(1);
       expect(additionalInformationQuestionRow.length).toEqual(1);
       expect(additionalInformationQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
       expect(additionalInformationInnerComponent.length).toEqual(1);
       expect(additionalInformationInnerComponent.text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
     });

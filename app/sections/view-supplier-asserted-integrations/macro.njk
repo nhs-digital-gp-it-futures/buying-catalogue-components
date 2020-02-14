@@ -6,7 +6,7 @@
 
 {% macro viewSupplierAssertedIntegrations(params) %}
   {% if params %}
-    <dl data-test-id="view-supplier-asserted-integrations" class="nhsuk-summary-list nhsuk-u-margin-bottom-0">
+    <div data-test-id="view-supplier-asserted-integrations">
       {{ viewSectionTableRow({
         questionId: 'supplier-asserted-integrations',
         questionTitle: 'Supplier asserted integrations',
@@ -20,6 +20,6 @@
           data: params.section.answers.link
         })
       })}}
-    </dl>
+    </div>
   {% endif %}
 {% endmacro %}

@@ -10,7 +10,7 @@ describe('view-section-heading', () => {
     const context = {};
 
     harness.request(context, ($) => {
-      expect($('div').hasClass('bc-c-title-block')).toEqual(true);
+      expect($('div').hasClass('bc-c-section-heading')).toEqual(true);
     });
   }));
 

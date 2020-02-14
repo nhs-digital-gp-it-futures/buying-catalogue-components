@@ -1,3 +1,4 @@
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
 {% from 'components/view-expandable-section/macro.njk' import viewExpandableSection %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 {% from 'sections/view-browser-based/macro.njk' import viewBrowserBased %}
@@ -8,47 +9,44 @@
   {% if params.section %}
     <div class="nhsuk-width-container" data-test-id="view-client-application-types">
       {{ viewSectionHeading({ text: 'Client application type' }) }}
-      <div class="nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
-        <div class="nhsuk-grid-row">
-          <div class="nhsuk-grid-column-two-thirds">
-            <p>
-              This Catalogue Solution is supported by the following client application types:
-            </p>
-          </div>
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3 nhsuk-u-padding-right-3">
+        <div data-test-id="view-section-client-application-types-guidance">
+          {{ viewDataText({
+            dataTestId: 'view-client-application-types-guidance',
+            data: 'This Catalogue Solution is supported by the following client application types:',
+            classes: 'bcc-t-font-color-grey1 nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds'
+          }) }}
         </div>
+        <div class="nhsuk-grid-column-full">
+          {% if params.section.sections['browser-based'] %}
+            {{ viewExpandableSection({
+              dataTestId: 'view-section-browser-based',
+              title: 'Browser-based application',
+              innerComponent: viewBrowserBased({
+                section: params.section.sections['browser-based']
+              })
+            }) }}
+          {% endif %}
 
-        <div class="nhsuk-grid-row">
-          <div class="nhsuk-u-padding-left-3">
-            {% if params.section.sections['browser-based'] %}
-              {{ viewExpandableSection({
-                dataTestId: 'view-section-browser-based',
-                title: 'Browser-based application',
-                innerComponent: viewBrowserBased({
-                  section: params.section.sections['browser-based']
-                })
-              }) }}
-            {% endif %}
+          {% if params.section.sections['native-mobile'] %}
+            {{ viewExpandableSection({
+              dataTestId: 'view-section-native-mobile',
+              title: 'Native mobile or tablet application',
+              innerComponent: viewNativeMobile({
+                section: params.section.sections['native-mobile']
+              })
+            }) }}
+          {% endif %}
 
-            {% if params.section.sections['native-mobile'] %}
-              {{ viewExpandableSection({
-                dataTestId: 'view-section-native-mobile',
-                title: 'Native mobile or tablet application',
-                innerComponent: viewNativeMobile({
-                  section: params.section.sections['native-mobile']
-                })
-              }) }}
-            {% endif %}
-
-            {% if params.section.sections['native-desktop'] %}
-              {{ viewExpandableSection({
-                dataTestId: 'view-section-native-desktop',
-                title: 'Native desktop application',
-                innerComponent: viewNativeDesktop({
-                  section: params.section.sections['native-desktop']
-                })
-              }) }}
-            {% endif %}
-          </div>
+          {% if params.section.sections['native-desktop'] %}
+            {{ viewExpandableSection({
+              dataTestId: 'view-section-native-desktop',
+              title: 'Native desktop application',
+              innerComponent: viewNativeDesktop({
+                section: params.section.sections['native-desktop']
+              })
+            }) }}
+          {% endif %}
         </div>
       </div>
     </div>

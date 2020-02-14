@@ -18,9 +18,9 @@
       <div {{ commonAttributes | safe }}>
         <div data-test-id="view-section-table-row-horizontal" class="nhsuk-grid-row">
           {% if params.questionTitle %}
-            <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-grid-column-one-half">
+            <h4 data-test-id="view-section-table-row-title" class="nhsuk-heading-xs nhsuk-u-font-weight-bold nhsuk-grid-column-one-half">
               {{ params.questionTitle }}
-            </div>
+            </h4>
           {% endif %}
           <div data-test-id="view-section-table-row-component" class="nhsuk-grid-column-one-half">
             {{- params.innerComponent | safe | trim }}
@@ -31,9 +31,9 @@
       <div {{ commonAttributes | safe }}>
         <div data-test-id="view-section-table-row-vertical">
           {% if params.questionTitle %}
-            <div data-test-id="view-section-table-row-title" class="nhsuk-u-font-weight-bold nhsuk-u-padding-bottom-3">
+            <h4 data-test-id="view-section-table-row-title" class="nhsuk-heading-xs nhsuk-u-font-weight-bold nhsuk-u-margin-bottom-2">
               {{ params.questionTitle }}
-            </div>
+            </h4>
           {% endif %}
           <div class="nhsuk-grid-row">
             <div data-test-id="view-section-table-row-component" class="{{ verticalInnerComponentClass }}">

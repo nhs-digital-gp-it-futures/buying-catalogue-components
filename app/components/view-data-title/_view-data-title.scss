@@ -1,8 +1,7 @@
-.bc-c-data-title__text {
+.bc-c-data-title {
   @include nhsuk-typography-responsive(19);
   display: block;
   font-weight: $nhsuk-font-bold;
-  margin-bottom: nhsuk-spacing(1);
+  margin-bottom: nhsuk-spacing(2);
   margin-top: 0;
-  @include nhsuk-responsive-margin(1, 'bottom');
 }

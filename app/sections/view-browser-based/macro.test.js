@@ -31,7 +31,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(supportedBrowserQuestionRow.length).toEqual(1);
       expect(supportedBrowserQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported browser types');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported browser types');
       expect(supportedBrowserInnerComponent.length).toEqual(1);
       expect(supportedBrowserInnerComponent.text().trim()).toEqual('chrome');
     });
@@ -62,7 +62,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(mobileResponsiveQuestionRow.length).toEqual(1);
       expect(mobileResponsiveQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile responsive');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile responsive');
       expect(mobileResponsiveInnerComponent.length).toEqual(1);
       expect(mobileResponsiveInnerComponent.text().trim()).toEqual('yes');
     });
@@ -93,7 +93,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(mobileFirstDesignQuestionRow.length).toEqual(1);
       expect(mobileFirstDesignQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile first approach');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile first approach');
       expect(mobileFirstDesignInnerComponent.length).toEqual(1);
       expect(mobileFirstDesignInnerComponent.text().trim()).toEqual('yes');
     });
@@ -124,7 +124,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(pluginsRequiredQuestionRow.length).toEqual(1);
       expect(pluginsRequiredQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Plug-ins or extensions required');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Plug-ins or extensions required');
       expect(pluginsRequiredInnerComponent.length).toEqual(1);
       expect(pluginsRequiredInnerComponent.text().trim()).toEqual('yes');
     });
@@ -155,7 +155,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(pluginsDetailQuestionRow.length).toEqual(1);
       expect(pluginsDetailQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information about plug-ins or extensions');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information about plug-ins or extensions');
       expect(pluginsDetailInnerComponent.length).toEqual(1);
       expect(pluginsDetailInnerComponent.text().trim()).toEqual('Some plugin detail');
     });
@@ -186,7 +186,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(minimumConnectionQuestionRow.length).toEqual(1);
       expect(minimumConnectionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
       expect(minimumConnectionQuestionInnerComponent.length).toEqual(1);
       expect(minimumConnectionQuestionInnerComponent.text().trim()).toEqual('1Mbps');
     });
@@ -217,7 +217,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(minimumResolutionQuestionRow.length).toEqual(1);
       expect(minimumResolutionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Screen resolution and aspect ratio');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Screen resolution and aspect ratio');
       expect(minimumResolutionQuestionInnerComponent.length).toEqual(1);
       expect(minimumResolutionQuestionInnerComponent.text().trim()).toEqual('4:3 800 x 600');
     });
@@ -248,7 +248,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(hardwareRequirementsQuestionRow.length).toEqual(1);
       expect(hardwareRequirementsQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
       expect(hardwareRequirementsInnerComponent.length).toEqual(1);
       expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('Some hardware requirement description');
     });
@@ -279,7 +279,7 @@ describe('view-browser-based', () => {
       expect(browserBasedSectionTable.length).toEqual(1);
       expect(additionalInformationQuestionRow.length).toEqual(1);
       expect(additionalInformationQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
       expect(additionalInformationInnerComponent.length).toEqual(1);
       expect(additionalInformationInnerComponent.text().trim()).toEqual('Some additional information');
     });

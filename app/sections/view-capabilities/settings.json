@@ -2,7 +2,7 @@
   "componentName": "viewCapabilities",
   "dataTestId": "some-test-identifier",
   "params": {
-    "capabilities": {
+    "section": {
       "answers": {
         "capabilities-met": [
           {

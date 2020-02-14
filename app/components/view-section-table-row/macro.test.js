@@ -17,7 +17,7 @@ describe('view-section-table-row', () => {
 
     harness.request(context, ($) => {
       const sectionTableRow = $('div[data-test-id="view-section-table-row-some-question-id"]');
-      expect(sectionTableRow.find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Some question title');
+      expect(sectionTableRow.find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Some question title');
     });
   }));
 
@@ -31,7 +31,7 @@ describe('view-section-table-row', () => {
 
     harness.request(context, ($) => {
       const sectionTableRow = $('div[data-test-id="view-section-table-row-some-question-id"]');
-      expect(sectionTableRow.find('div[data-test-id="view-section-table-row-title"]').length).toEqual(0);
+      expect(sectionTableRow.find('h4[data-test-id="view-section-table-row-title"]').length).toEqual(0);
     });
   }));
 

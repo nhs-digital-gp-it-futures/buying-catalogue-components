@@ -31,7 +31,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
       expect(operatingSystemsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
       expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
       expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Windows 7 and above.');
     });
@@ -62,7 +62,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(minimumConnectionSpeedQuestionRow.length).toEqual(1);
       expect(minimumConnectionSpeedQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
       expect(minimumConnectionSpeedInnerComponent.length).toEqual(1);
       expect(minimumConnectionSpeedInnerComponent.text().trim()).toEqual('2Mbps');
     });
@@ -93,7 +93,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
       expect(minimumMemoryRequirementQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Memory size');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Memory size');
       expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
       expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
     });
@@ -124,7 +124,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
       expect(storageReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Storage space');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Storage space');
       expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
       expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 2.5GB of free space on each device the application is installed.');
     });
@@ -155,7 +155,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(minimumCPUQuestionRow.length).toEqual(1);
       expect(minimumCPUQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Processing power');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Processing power');
       expect(minimumCPUInnerComponent.length).toEqual(1);
       expect(minimumCPUInnerComponent.text().trim()).toEqual('Intel Core i5-4460 (3.4GHz) Quad-core or Better.');
     });
@@ -186,7 +186,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(recommendedResolutionQuestionRow.length).toEqual(1);
       expect(recommendedResolutionQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Screen resolution and aspect ratio');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Screen resolution and aspect ratio');
       expect(recommendedResolutionInnerComponent.length).toEqual(1);
       expect(recommendedResolutionInnerComponent.text().trim()).toEqual('16:9 - 1920 x 1080');
     });
@@ -217,7 +217,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(thirdPartyComponentsQuestionRow.length).toEqual(1);
       expect(thirdPartyComponentsQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third-party components');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third-party components');
       expect(thirdPartyComponentsInnerComponent.length).toEqual(1);
       expect(thirdPartyComponentsInnerComponent.text().trim()).toEqual('To fully utilise the letter template functionality, you will need a fully licensed version of Microsoft Word 2013 or higher.');
     });
@@ -248,7 +248,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(deviceCapabilitiesQuestionRow.length).toEqual(1);
       expect(deviceCapabilitiesQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities');
       expect(deviceCapabilitiesInnerComponent.length).toEqual(1);
       expect(deviceCapabilitiesInnerComponent.text().trim()).toEqual('In order to use our branded wireless Dictaphone, the device will require Bluetooth.');
     });
@@ -279,7 +279,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(hardwareRequirementsQuestionRow.length).toEqual(1);
       expect(hardwareRequirementsQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
       expect(hardwareRequirementsInnerComponent.length).toEqual(1);
       expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('To fully utilise the transcribing functionality within the application, you will need to purchase our branded wireless Dictaphone.');
     });
@@ -310,7 +310,7 @@ describe('view-native-desktop', () => {
       expect(nativeDesktopSectionTable.length).toEqual(1);
       expect(additionalInformationQuestionRow.length).toEqual(1);
       expect(additionalInformationQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
       expect(additionalInformationInnerComponent.length).toEqual(1);
       expect(additionalInformationInnerComponent.text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
     });

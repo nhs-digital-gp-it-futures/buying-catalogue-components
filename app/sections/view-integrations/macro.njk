@@ -15,24 +15,26 @@
   {% endif %}
 
   {% if hasSupplierIntegrationsSections or hasAuthorityIntegrationsSections %}
-    <div data-test-id="view-integrations" class="nhsuk-width-container nhsuk-summary-list">
+    <div data-test-id="view-integrations" class="nhsuk-width-container">
       {{ viewSectionHeading({ text: 'Integrations' }) }}
-      {{ viewDataText({
-        dataTestId: 'view-section-integrations-additional-information',
-        data: 'View information about the systems this Catalogue Solution integrates with to exchange data:',
-        classes: 'nhsuk-grid-column-two-thirds'
-      }) }}
-      <div class="nhsuk-u-padding-left-3">
-        {% if hasAuthorityIntegrationsSections %}
-          {{ viewAuthorityAssertedIntegrations({
-            section: params.section
-          })}}
-        {% endif %}
-        {% if hasSupplierIntegrationsSections %}
-          {{ viewSupplierAssertedIntegrations({
-            section: params.section
-          })}}
-        {% endif %}
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3 nhsuk-u-padding-right-3">
+        {{ viewDataText({
+          dataTestId: 'view-integrations-guidance',
+          data: 'View information about the systems this Catalogue Solution integrates with to exchange data:',
+          classes: 'bcc-t-font-color-grey1 nhsuk-u-margin-bottom-3 nhsuk-grid-column-two-thirds'
+        }) }}
+        <div class="nhsuk-grid-column-full">
+          {% if hasAuthorityIntegrationsSections %}
+            {{ viewAuthorityAssertedIntegrations({
+              section: params.section
+            })}}
+          {% endif %}
+          {% if hasSupplierIntegrationsSections %}
+            {{ viewSupplierAssertedIntegrations({
+              section: params.section
+            })}}
+          {% endif %}
+        </div>
       </div>
     </div>
   {% endif %}

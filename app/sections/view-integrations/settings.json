@@ -3,11 +3,9 @@
   "dataTestId": "some-test-identifier",
   "params": {
     "section": {
-      "integrations": {
-        "answers": {
-          "link": "http://www.some-link.com",
-          "document-link": "document-link"
-        }
+      "answers": {
+        "link": "http://www.some-link.com",
+        "document-link": "document-link"
       }
     }
   }

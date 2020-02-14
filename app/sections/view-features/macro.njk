@@ -1,15 +1,18 @@
 {% from 'components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
 {% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+{% from 'components/view-data-text/macro.njk' import viewDataText %}
 
 {% macro viewFeatures(params) %}
   {% if params.section %}
     <div class="nhsuk-width-container" data-test-id="view-features">
       {{ viewSectionHeading({ text: 'Features' }) }}
-      <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
-        <div class="nhsuk-grid-column-two-thirds">
-          <p>
-            This Catalogue Solution has the following features that can help meet needs in primary care:
-          </p>
+      <div class="nhsuk-grid-row nhsuk-u-padding-left-3 nhsuk-u-padding-right-3">
+        <div data-test-id="view-section-features-guidance">
+          {{ viewDataText({
+            dataTestId: 'view-features-guidance',
+            data: 'This Catalogue Solution has the following features that can help meet needs in primary care:',
+            classes: 'bcc-t-font-color-grey1 nhsuk-u-margin-bottom-4 nhsuk-grid-column-two-thirds'
+          }) }}
         </div>
         {% if params.section.answers.listing and params.section.answers.listing.length > 0 %}
           <div class="nhsuk-grid-column-two-thirds">

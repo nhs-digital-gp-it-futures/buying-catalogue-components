@@ -15,7 +15,7 @@
             {{ viewDataText({
               dataTestId: 'view-capabilities-guidance',
               data: 'This Catalogue Solution has demonstrated that it can help meet the following needs in primary care:',
-              classes: 'nhsuk-u-margin-bottom-3 nhsuk-grid-column-two-thirds'
+              classes: 'bcc-t-font-color-grey1 nhsuk-u-margin-bottom-3 nhsuk-grid-column-two-thirds'
             }) }}
           </div>
           {% for capability in params.section.answers['capabilities-met'] %}
@@ -36,20 +36,20 @@
                 innerComponent: viewDataText({
                   dataTestId: 'view-question-data-text-description-paragraph-one',
                   data: 'Capabilities are a set of requirements that are defined using short descriptions called epics. Capabilities are achieved when a Catalogue Solution meets the required epics.',
-                  classes: 'nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
+                  classes: 'nhsuk-u-padding-left-0 nhsuk-u-padding-right-0 nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
                 }) +  viewDataText({
                   dataTestId: 'view-question-data-text-description-paragraph-two',
                   data: 'There are two types of epic: must and may. Some capabilities require the Catalogue Solution to meet all of the must epics, some require only one must epic to be met. May epics are optional.',
-                  classes: 'nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
+                  classes: 'nhsuk-u-padding-left-0 nhsuk-u-padding-right-0 nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
                 }) +  viewDataText({
                   dataTestId: 'view-question-data-text-description-paragraph-three',
                   data: ' This Catalogue Solution has achieved the following:',
-                  classes: 'nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
+                  classes: 'nhsuk-u-padding-left-0 nhsuk-u-padding-right-0 nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
                 }) + viewDataLink({
                   dataTestId: 'view-question-data-text-link',
                   data: capability.link,
                   text: 'View more details including acceptance criteria for all epics',
-                  classes: 'nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
+                  classes: 'nhsuk-u-padding-left-0 nhsuk-u-padding-right-0 nhsuk-u-margin-bottom-5 nhsuk-grid-column-two-thirds'
                 }) + viewEpics({
                   dataTestId: 'view-question-epic',
                   data: capability.epic

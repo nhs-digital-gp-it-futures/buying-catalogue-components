@@ -21,7 +21,7 @@ describe('view-supplier-asserted-integrations', () => {
       const supplierAssertedIntegrationsQuestionRow = $('[data-test-id="view-section-table-row-supplier-asserted-integrations"]');
 
       expect(supplierAssertedIntegrationsQuestionRow.length).toEqual(1);
-      expect(supplierAssertedIntegrationsQuestionRow.find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supplier asserted integrations');
+      expect(supplierAssertedIntegrationsQuestionRow.find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supplier asserted integrations');
     });
   }));
 

@@ -25,7 +25,7 @@ describe('view-hosting-type-public-cloud', () => {
 
       expect(summaryQuestionRow.length).toEqual(1);
       expect(summaryQuestionRow
-        .find('div[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Summary');
+        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Summary');
       expect(summaryInnerComponent.length).toEqual(1);
       expect(summaryInnerComponent.text().trim()).toEqual('Our solution uses a combination of private and public cloud suppliers. We store all of our patient confidential data in a data center that we own and manage. We leverage the power of [Public cloud provider] to run our analytical suite and only transfer anonymised or pseudonymised to that provider to support this.');
     });

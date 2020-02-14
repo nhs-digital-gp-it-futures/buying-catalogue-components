@@ -1,0 +1,7 @@
+{
+  "componentName": "backToTop",
+  "params": {
+    "dataTestId": "some-test-identifier",
+    "text": "Back to top"
+  }
+}

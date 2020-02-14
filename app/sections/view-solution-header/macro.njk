@@ -21,7 +21,7 @@
         <p data-test-id="view-solution-page-solution-id" class="nhsuk-u-font-size-24">Solution ID: {{ params.id }}</p>
       {% endif %}
       {% if params.lastUpdated %}
-        <div data-test-id="view-solution-page-last-updated" class="bcc-t-font-color-grey1">Solution information last updated: {{ params.lastUpdated | dateTime('D MMMM YYYY') }}</div>
+        <div data-test-id="view-solution-page-last-updated" class="bc-t-font-color--grey1">Solution information last updated: {{ params.lastUpdated | dateTime('D MMMM YYYY') }}</div>
       {% endif %}
     </div>
   {% endif %}

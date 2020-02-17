@@ -75,7 +75,8 @@ describe('view-epics', () => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
-          data: {},
+          data: {
+          },
         },
       };
 
@@ -116,7 +117,9 @@ describe('view-epics', () => {
           params: {
             dataTestId: 'some-data-identifier',
             data: {
-              must: {},
+              must: {
+                met: [],
+              },
             },
           },
         };
@@ -159,7 +162,9 @@ describe('view-epics', () => {
           params: {
             dataTestId: 'some-data-identifier',
             data: {
-              must: {},
+              must: {
+                'not-met': [],
+              },
             },
           },
         };

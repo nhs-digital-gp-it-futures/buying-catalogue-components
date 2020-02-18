@@ -1,8 +1,8 @@
 {
-  "componentName": "header",
+  "componentName": "loginLogout",
   "params": {
     "dataTestId": "header-banner",
-    "innerComponent": "<span>Inner component</span>",
+    "username": "NHS Digital",
     "classes": "example-class"
   }
 }

@@ -1,0 +1,18 @@
+{% macro loginLogout(params) %}
+  {% if params %}
+  <div data-test-id="{{ params.dataTestId }}" class="bc-c-login-logout {{ params.classes }}">
+    {% if params.username %}
+      <span class="bc-u-display-inline-block nhsuk-u-padding-right-4" aria-label="Log in">
+        Logged in as: {{params.username}}
+      </span>
+      <a class="nhsuk-header__link bc-u-display-inline" href="/" aria-label="Log out">
+        Log out
+      </a>
+    {% else %}
+      <a class="nhsuk-header__link bc-u-display-inline" href="/" aria-label="Log out">
+        Log in
+      </a>
+    {% endif %}
+  </div>
+  {% endif %}
+{% endmacro %}

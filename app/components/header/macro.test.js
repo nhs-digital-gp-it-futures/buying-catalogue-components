@@ -6,43 +6,54 @@ const setup = {
 };
 
 describe('header', () => {
-  it('should render the tag with the correct data-test-id', createTestHarness(setup, (harness) => {
+  it('should render the header component with the correct data-test-id', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        dataTestId: 'qa-identifier-tag',
+        dataTestId: 'qa-identifier-header',
       },
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="qa-identifier-tag"]').length).toEqual(1);
+      expect($('header[data-test-id="qa-identifier-header"]').length).toEqual(1);
     });
   }));
 
-  it('should render the tag with the correct text', createTestHarness(setup, (harness) => {
+  it('should render the innerComponent if provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        dataTestId: 'qa-identifier-tag',
-        text: 'some tag text',
+        dataTestId: 'qa-identifier-header',
+        innerComponent: '<p>Inner component</p>',
       },
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="qa-identifier-tag"]').text().trim()).toEqual('some tag text');
+      expect($('header[data-test-id="qa-identifier-header"] .nhsuk-header__content p').text().trim()).toEqual('Inner component');
     });
   }));
 
-  it('should render the tag with the correct classes', createTestHarness(setup, (harness) => {
+  it('should not render the innerComponent if not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
-        dataTestId: 'qa-identifier-tag',
-        text: 'some tag text',
+        dataTestId: 'qa-identifier-header',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('header[data-test-id="qa-identifier-header"] .nhsuk-header__content').length).toEqual(0);
+    });
+  }));
+
+  it('should render the header component with the correct classes', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'qa-identifier-header',
         classes: 'extra-class',
       },
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="qa-identifier-tag"]').hasClass('bc-c-tag')).toEqual(true);
-      expect($('div[data-test-id="qa-identifier-tag"]').hasClass('extra-class')).toEqual(true);
+      expect($('header[data-test-id="qa-identifier-header"]').hasClass('bc-c-header')).toEqual(true);
+      expect($('header[data-test-id="qa-identifier-header"]').hasClass('extra-class')).toEqual(true);
     });
   }));
 });

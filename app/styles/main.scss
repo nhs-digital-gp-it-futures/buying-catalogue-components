@@ -1,7 +1,8 @@
 // NHS.UK frontend styles
 @import 'node_modules/nhsuk-frontend/packages/nhsuk';
 
-//Components
+// Components
+@import '../components/login-logout/login-logout';
 @import '../components/view-section-heading/section-heading';
 @import '../components/view-section-table-row/section-table-row';
 @import '../components/tag/tag';
@@ -28,4 +29,8 @@
 
 .bc-u-text-align-left {
   text-align: left;
+}
+
+.bc-u-display-inline {
+  display: inline;
 }

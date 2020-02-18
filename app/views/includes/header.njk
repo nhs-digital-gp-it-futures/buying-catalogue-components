@@ -1,7 +1,9 @@
 {% from 'components/header/macro.njk' import header %}
+{% from 'components/login-logout/macro.njk' import loginLogout %}
 
 {{ header({
-  "showNav": "false",
-  "showSearch": "false"
+    innerComponent: loginLogout({
+      username: 'NHS Digital'
+    })
   })
 }}

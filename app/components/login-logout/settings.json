@@ -1,0 +1,8 @@
+{
+  "componentName": "loginLogout",
+  "params": {
+    "dataTestId": "some-test-identifier",
+    "username": "NHS Digital",
+    "classes": "example-class"
+  }
+}

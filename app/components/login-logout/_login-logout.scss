@@ -1,0 +1,11 @@
+.bc-c-login-logout {
+  line-height: 60px;
+  a {
+    text-decoration: none;
+    box-shadow: 0 1px 0 0 $color_nhsuk-blue;
+
+    &:visited {
+      color: $color_nhsuk-blue;
+    }
+  }
+}

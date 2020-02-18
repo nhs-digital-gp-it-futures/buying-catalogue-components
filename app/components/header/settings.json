@@ -1,7 +1,7 @@
 {
   "componentName": "header",
   "params": {
-    "dataTestId": "header-banner",
+    "dataTestId": "some-test-identifier",
     "innerComponent": "<span>Inner component</span>",
     "classes": "example-class"
   }

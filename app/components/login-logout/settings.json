@@ -1,7 +1,7 @@
 {
   "componentName": "loginLogout",
   "params": {
-    "dataTestId": "header-banner",
+    "dataTestId": "some-test-identifier",
     "username": "NHS Digital",
     "classes": "example-class"
   }

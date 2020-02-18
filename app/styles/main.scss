@@ -1,7 +1,8 @@
 // NHS.UK frontend styles
 @import 'node_modules/nhsuk-frontend/packages/nhsuk';
 
-//Components
+// Components
+@import '../components/header/header';
 @import '../components/view-section-heading/section-heading';
 @import '../components/view-section-table-row/section-table-row';
 @import '../components/tag/tag';

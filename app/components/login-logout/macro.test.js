@@ -31,7 +31,7 @@ describe('login-logout', () => {
     });
   }));
 
-  it('should render the logout button if username provided', createTestHarness(setup, (harness) => {
+  it('should render the logout link if username provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -44,7 +44,7 @@ describe('login-logout', () => {
     });
   }));
 
-  it('should render the login button if username not provided', createTestHarness(setup, (harness) => {
+  it('should render the login link if username not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -53,6 +53,33 @@ describe('login-logout', () => {
 
     harness.request(context, ($) => {
       expect($('div[data-test-id="qa-identifier-login-logout"] a').text().trim()).toEqual('Log in');
+    });
+  }));
+
+  it('should render the login link with the loginUrl provided', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'qa-identifier-login-logout',
+        loginUrl: '/some-login-url',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="qa-identifier-login-logout"] a').attr('href')).toEqual('/some-login-url');
+    });
+  }));
+
+  it('should render the logout link with the logoutUrl provided', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'qa-identifier-login-logout',
+        username: 'NHS Digital',
+        logoutUrl: '/some-logout-url',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="qa-identifier-login-logout"] a').attr('href')).toEqual('/some-logout-url');
     });
   }));
 
@@ -69,4 +96,5 @@ describe('login-logout', () => {
       expect($('div[data-test-id="qa-identifier-login-logout"]').hasClass('extra-class')).toEqual(true);
     });
   }));
+
 });

@@ -5,11 +5,11 @@
       <span class="bc-u-display-inline-block nhsuk-u-padding-right-4" aria-label="Log in">
         Logged in as: {{params.username}}
       </span>
-      <a class="nhsuk-header__link bc-u-display-inline" href="/" aria-label="Log out">
+      <a class="nhsuk-header__link bc-u-display-inline" href="{{ params.logoutUrl }}" aria-label="Log out">
         Log out
       </a>
     {% else %}
-      <a class="nhsuk-header__link bc-u-display-inline" href="/" aria-label="Log out">
+      <a class="nhsuk-header__link bc-u-display-inline" href="{{ params.loginUrl }}" aria-label="Log out">
         Log in
       </a>
     {% endif %}

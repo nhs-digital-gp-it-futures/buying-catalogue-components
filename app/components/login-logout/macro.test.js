@@ -96,5 +96,4 @@ describe('login-logout', () => {
       expect($('div[data-test-id="qa-identifier-login-logout"]').hasClass('extra-class')).toEqual(true);
     });
   }));
-
 });

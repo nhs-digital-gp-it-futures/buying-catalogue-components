@@ -18,6 +18,16 @@ describe('header', () => {
     });
   }));
 
+  it('should render the nhs digital svg', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {},
+    };
+
+    harness.request(context, ($) => {
+      expect($('svg[data-test-id="nhs-digital-logo"]').length).toEqual(1);
+    });
+  }));
+
   it('should render the innerComponent if provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {

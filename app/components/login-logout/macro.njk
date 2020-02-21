@@ -2,14 +2,14 @@
   {% if params %}
   <div data-test-id="{{ params.dataTestId }}" class="bc-c-login-logout {{ params.classes }}">
     {% if params.username %}
-      <span class="bc-u-display-inline-block nhsuk-u-padding-right-4" aria-label="Log in">
+      <span class="bc-u-display-inline-block">
         Logged in as: {{params.username}}
+        <a class="nhsuk-header__link bc-u-display-inline nhsuk-u-margin-left-4" href="{{ params.logoutUrl }}" aria-label="Log out">
+          Log out
+        </a>
       </span>
-      <a class="nhsuk-header__link bc-u-display-inline" href="{{ params.logoutUrl }}" aria-label="Log out">
-        Log out
-      </a>
     {% else %}
-      <a class="nhsuk-header__link bc-u-display-inline" href="{{ params.loginUrl }}" aria-label="Log out">
+      <a class="nhsuk-header__link bc-u-display-inline" href="{{ params.loginUrl }}" aria-label="Log in">
         Log in
       </a>
     {% endif %}

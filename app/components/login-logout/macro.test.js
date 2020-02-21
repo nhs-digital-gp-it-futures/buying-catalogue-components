@@ -27,7 +27,9 @@ describe('login-logout', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="qa-identifier-login-logout"] span').text().trim()).toEqual('Logged in as: NHS Digital');
+      const text = $('div[data-test-id="qa-identifier-login-logout"] span').text().trim().split(/\s\s+/);
+      expect(text[0]).toEqual('Logged in as: NHS Digital');
+      expect(text[1]).toEqual('Log out');
     });
   }));
 

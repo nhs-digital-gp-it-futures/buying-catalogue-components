@@ -2,9 +2,9 @@
 @import 'node_modules/nhsuk-frontend/packages/nhsuk';
 
 // Helpers
-@import './helpers/colors/colors';
-@import './helpers/alignment/alignment';
-@import './helpers/borders/borders';
+@import './helpers/colors';
+@import './helpers/alignment';
+@import './helpers/borders';
 
 // Components
 @import '../components/login-logout/login-logout';

@@ -5,7 +5,7 @@
 $color_bc-light-blue: #41B6E6;
 $color_bc-white--alpha02: rgba($color_nhsuk-white, .02);
 $color_bc-white--alpha05: rgba($color_nhsuk-white, .05);
-$color_nhsuk-white--alpha20: rgba($color_nhsuk-white, .2);
+$color_bc-white--alpha20: rgba($color_nhsuk-white, .2);
 $color_bc-white--alpha30: rgba($color_nhsuk-white, .3);
 $color_bc-white--alpha40: rgba($color_nhsuk-white, .4);
 
@@ -61,7 +61,7 @@ $color_bc-white--alpha40: rgba($color_nhsuk-white, .4);
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: $color_nhsuk-white--alpha20;
+    background: $color_bc-white--alpha20;
     border-radius: 10px;
   }
 

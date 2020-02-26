@@ -1,11 +1,11 @@
 import { createTestHarness } from '../../testUtils/testHarness';
 
 const setup = {
-  templateName: 'header',
+  templateName: 'bcHeader',
   templateType: 'component',
 };
 
-describe('header', () => {
+describe('bc-header', () => {
   it('should render the header component with the correct data-test-id', createTestHarness(setup, (harness) => {
     const context = {
       params: {

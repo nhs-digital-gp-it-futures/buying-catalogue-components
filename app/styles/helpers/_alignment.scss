@@ -1,0 +1,26 @@
+.bc-u-text-align-right {
+  text-align: right;
+}
+
+.bc-u-text-align-left {
+  text-align: left;
+}
+
+.bc-u-display-inline {
+  display: inline;
+}
+
+.bc-u-inline-block {
+  display: inline-block;
+}
+
+.bc-u-block-float-left {
+  display: block;
+  @media (min-width: 641px) {
+    float: left;
+  }
+}
+
+.bc-u-max-width-full {
+  max-width: 100%;
+}

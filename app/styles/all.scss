@@ -1,21 +1,13 @@
 @import 'main';
 
-// these classes are just used for displaying the templates in this app and are not bundled with the npm release
+// these classes are ONLY used for displaying the templates in this app and are not bundled with the npm release
 
-$color_nhsuk-light-blue: #41B6E6;
-$color_nhsuk-white--alpha02: rgba($color_nhsuk-white, .02);
-$color_nhsuk-white--alpha05: rgba($color_nhsuk-white, .05);
-$color_nhsuk-white--alpha20: rgba($color_nhsuk-white, .2);
-$color_nhsuk-white--alpha30: rgba($color_nhsuk-white, .3);
-$color_nhsuk-white--alpha40: rgba($color_nhsuk-white, .4);
-
-.bcc-t-bg-white {
-  background: $color_nhsuk-white;
-}
-
-.bcc-t-bg-pale-yellow {
-  background: $color_nhsuk-pale-yellow;
-}
+$color_bc-light-blue: #41B6E6;
+$color_bc-white--alpha02: rgba($color_nhsuk-white, .02);
+$color_bc-white--alpha05: rgba($color_nhsuk-white, .05);
+$color_bc-white--alpha20: rgba($color_nhsuk-white, .2);
+$color_bc-white--alpha30: rgba($color_nhsuk-white, .3);
+$color_bc-white--alpha40: rgba($color_nhsuk-white, .4);
 
 .bcc-c-try-button {
   background-color: $color_nhsuk-green;
@@ -69,20 +61,19 @@ $color_nhsuk-white--alpha40: rgba($color_nhsuk-white, .4);
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: $color_nhsuk-white--alpha20;
+    background: $color_bc-white--alpha20;
     border-radius: 10px;
   }
 
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: $color_nhsuk-white--alpha40;
+    background: $color_bc-white--alpha40;
   }
 
   /* Corner */
   &::-webkit-scrollbar-corner {
     background: darken($color_nhsuk-black, 2%);
   }
-
 }
 
 .bcc-c-code-key-label {
@@ -95,7 +86,7 @@ $color_nhsuk-white--alpha40: rgba($color_nhsuk-white, .4);
 .bcc-c-code-editable-content {
   background: none;
   border: 0;
-  border-bottom: 1px dashed $color_nhsuk-white--alpha30;
+  border-bottom: 1px dashed $color_bc-white--alpha30;
   box-shadow: none;
   font-family: monospace;
   font-size: 14px;
@@ -104,7 +95,7 @@ $color_nhsuk-white--alpha40: rgba($color_nhsuk-white, .4);
 
   &:hover,
   &:focus {
-    background: $color_nhsuk-white--alpha05;
+    background: $color_bc-white--alpha05;
   }
 
   span {
@@ -130,13 +121,13 @@ $color_nhsuk-white--alpha40: rgba($color_nhsuk-white, .4);
 }
 
 .bcc-u-code-secondary-color {
-  color: $color_nhsuk-light-blue;
+  color: $color_bc-light-blue;
 }
 
 .bcc-c-code-nested {
   white-space: nowrap;
   &:hover {
-    border-left: 4px solid $color_nhsuk-white--alpha02;
+    border-left: 4px solid $color_bc-white--alpha02;
     margin-left: -12px;
     padding-left: 8px;
   }

@@ -1,6 +1,11 @@
 // NHS.UK frontend styles
 @import 'node_modules/nhsuk-frontend/packages/nhsuk';
 
+// Helpers
+@import './helpers/colors/colors';
+@import './helpers/alignment/alignment';
+@import './helpers/borders/borders';
+
 // Components
 @import '../components/login-logout/login-logout';
 @import '../components/view-section-heading/section-heading';
@@ -10,27 +15,3 @@
 @import '../components/view-data-bulletlist/view-data-bulletlist';
 @import '../components/view-data-title/view-data-title';
 @import '../components/view-data-link/view-data-link';
-
-.bc-t-border--none {
-  border: 0;
-}
-
-.bc-t-font-color--grey1 {
-  color: $color_nhsuk-grey-1;
-}
-
-.bc-t-font-color--white {
-  color: $color_nhsuk-white;
-}
-
-.bc-u-text-align-right {
-  text-align: right;
-}
-
-.bc-u-text-align-left {
-  text-align: left;
-}
-
-.bc-u-display-inline {
-  display: inline;
-}

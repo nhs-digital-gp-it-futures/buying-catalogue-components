@@ -1,5 +1,5 @@
 {
-  "componentName": "header",
+  "componentName": "bcHeader",
   "params": {
     "dataTestId": "some-test-identifier",
     "innerComponent": "<span>Inner component</span>",

@@ -1,7 +1,7 @@
-{% from 'components/header/macro.njk' import header %}
+{% from 'components/bc-header/macro.njk' import bcHeader %}
 {% from 'components/login-logout/macro.njk' import loginLogout %}
 
-{{ header({
+{{ bcHeader({
     innerComponent: loginLogout({
       username: 'NHS Digital'
     }),

@@ -30,7 +30,7 @@ const footerLinks = [
 
 describe('bc-footer', () => {
   it('should render the footer panel with correct links', createTestHarness(setup, (harness) => {
-    const context = { params: { links: footerLinks } };
+    const context = { params: { footerLinks } };
 
     harness.request(context, ($) => {
       const footer = $('[data-test-id="footer"]');

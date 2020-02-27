@@ -1,7 +1,7 @@
 {
   "componentName": "bcFooter",
   "params": {
-    "links": [
+    "footerLinks": [
       {
         "label": "Buyer's Guide",
         "URL": "/guide"

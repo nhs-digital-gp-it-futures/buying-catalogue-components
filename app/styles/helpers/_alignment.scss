@@ -24,3 +24,7 @@
 .bc-u-max-width-full {
   max-width: 100%;
 }
+
+.bc-u-flex {
+  @include flex();
+}

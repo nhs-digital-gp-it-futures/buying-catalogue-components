@@ -1,0 +1,17 @@
+{
+  "componentName": "textareaField",
+  "params": {
+    "isMultiQuestion": true,
+    "question": {
+      "id": "question-id",
+      "mainAdvice": "Some main advice",
+      "additionalAdvice": "Some additional advice",
+      "data":"The data goes here",
+      "rows": "3",
+      "footerAdvice": "Some footer advice",
+      "error": {
+        "message": "The error message"
+      }
+    }
+  }
+}

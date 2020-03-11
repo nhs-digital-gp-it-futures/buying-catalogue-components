@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const browserSync = require('browser-sync');
 const routes = require('./app/routes');
 const config = require('./app/config');

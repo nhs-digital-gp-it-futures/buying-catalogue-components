@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // Core dependencies
 const path = require('path');
 

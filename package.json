@@ -2,7 +2,7 @@
   "name": "buying-catalogue-components",
   "version": "1.1.39",
   "description": "Nodejs express app for Buying Catalogue components",
-  "main": "server.js",
+  "main": "./app/server.js",
   "scripts": {
     "babel": "babel --presets es2015 app/scripts/main.js -o public/js/main.bundle.js",
     "build": "npm run build:js && npm run build:css",
@@ -13,7 +13,7 @@
     "lint:js": "eslint \"**/*.js\" --ignore-pattern node_modules/",
     "lint:css": "sass-lint 'app/**/*.scss' -v -q",
     "nuke": "npm run clean && rm -rf node_modules/",
-    "start": "babel-node server",
+    "start": "babel-node ./app/server",
     "test": "jest",
     "prewatch": "npm run build:css",
     "watch": "concurrently \"npm run watch:scss\" \"npm run watch:js\" \"npm start\"",
@@ -66,6 +66,9 @@
       "/node_modules/"
     ]
   },
+  "files": [
+    ".github/*"
+  ],
   "husky": {
     "hooks": {
       "pre-push": "npm run lint && npm t"

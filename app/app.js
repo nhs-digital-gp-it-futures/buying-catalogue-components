@@ -10,8 +10,8 @@ const bodyParser = require('body-parser');
 const dateFilter = require('nunjucks-date-filter');
 
 // Local dependencies
-const config = require('./app/config');
-const locals = require('./app/locals');
+const config = require('./config');
+const locals = require('./locals');
 
 class App {
   constructor() {
@@ -29,8 +29,8 @@ class App {
     this.app.use(express.json());
 
     // Middleware to serve static assets
-    this.app.use(express.static(path.join(__dirname, 'public/')));
-    this.app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/node_modules/nhsuk-frontend/packages')));
+    this.app.use(express.static(path.join(__dirname, '/../public/')));
+    this.app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/../node_modules/nhsuk-frontend/packages')));
 
     // View engine (Nunjucks)
     this.app.set('view engine', 'njk');
@@ -40,8 +40,8 @@ class App {
 
     // Nunjucks configuration
     const appViews = [
-      path.join(__dirname, 'app/'),
-      path.join(__dirname, 'node_modules/nhsuk-frontend/packages/'),
+      __dirname,
+      path.join(__dirname, '/../node_modules/nhsuk-frontend/packages/'),
     ];
 
     const env = nunjucks.configure(appViews, {

@@ -1,0 +1,11 @@
+{
+  "componentName": "bcErrorSummary",
+  "params": {
+    "errors": [
+      {
+        "text": "Error summary text",
+        "href": "#id"
+      }
+    ]
+  }
+}

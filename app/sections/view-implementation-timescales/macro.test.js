@@ -1,6 +1,6 @@
 import { createTestHarness } from '../../testUtils/testHarness';
 
-import * as settingsContext from './settings';
+import * as settingsContext from './settings.json';
 
 const setup = {
   templateName: 'viewImplementationTimescales',

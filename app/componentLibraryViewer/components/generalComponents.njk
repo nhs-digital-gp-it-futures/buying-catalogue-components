@@ -1,0 +1,19 @@
+{% from 'components/back-link/macro.njk' import backLink %}
+
+{% extends 'views/includes/layout.njk' %}
+
+{% block body %}
+  {{ backLink({
+    "href": "/components",
+    "text": "Return to components"
+  }) }}
+  <h1>General components</h1>
+  <ul>
+    <li><a href="general/bc-header">BC Header</a></li>
+    <li><a href="general/bc-footer">BC Footer</a></li>
+    <li><a href="general/bc-error-summary">BC Error summary</a></li>
+    <li><a href="general/login-logout">Login Logout</a></li>
+    <li><a href="general/tag">Tag</a></li>
+    <li><a href="general/back-to-top">Back to top</a></li>
+  </ul>
+{% endblock %}

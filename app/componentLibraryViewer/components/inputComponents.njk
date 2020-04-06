@@ -1,0 +1,15 @@
+{% from 'components/back-link/macro.njk' import backLink %}
+
+{% extends 'views/includes/layout.njk' %}
+
+{% block body %}
+  {{ backLink({
+    "href": "/components",
+    "text": "Return to components"
+  }) }}
+  <h1>Data input fields</h1>
+  <ul>
+    <li><a href="input/text-field">Text Field</a></li>
+    <li><a href="input/textarea-field">Text Area Field</a></li>
+  </ul>
+{% endblock %}

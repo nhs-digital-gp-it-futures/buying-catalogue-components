@@ -1,0 +1,38 @@
+{% from 'components/back-link/macro.njk' import backLink %}
+
+{% extends 'views/includes/layout.njk' %}
+
+{% block body %}
+  {{ backLink({
+    "href": "/",
+    "text": "Return to index"
+  }) }}
+  <h1>Sections</h1>
+  <h2>View solution sections</h2>
+  <ul>
+    <li><a href="sections/view-solution-header">View Solution Header</a></li>
+    <li><a href="sections/view-solution-description">View Solution Description</a></li>
+    <li><a href="sections/view-solution-contact-details">View Solution Contact Details</a></li>
+    <li><a href="sections/view-solution-capabilities">View Solution Capabilities</a></li>
+    <li><a href="sections/view-features">View Features</a></li>
+    <li><a href="sections/view-browser-based">View Browser Based</a></li>
+    <li><a href="sections/view-native-mobile">View Native Mobile</a></li>
+    <li><a href="sections/view-native-desktop">View Native Desktop</a></li>
+    <li><a href="sections/view-client-application-types">View Client Application Types</a></li>
+    <li><a href="sections/view-hosting-type-public-cloud">View Hosting Type Public Cloud</a></li>
+    <li><a href="sections/view-hosting-type-private-cloud">View Hosting Type Private Cloud</a></li>
+    <li><a href="sections/view-hosting-type-hybrid">View Hosting Type Hybrid</a></li>
+    <li><a href="sections/view-hosting-type-on-premise">View Hosting Type On Premise</a></li>
+    <li><a href="sections/view-hosting-types">View Hosting Types</a></li>
+    <li><a href="sections/view-roadmap">View Roadmap</a></li>
+    <li><a href="sections/view-learn-more">View Learn More</a></li>
+    <li><a href="sections/view-about-supplier">View About Supplier</a></li>
+    <li><a href="sections/view-capabilities">View Capabilities</a></li>
+    <li><a href="sections/view-integrations">View Integrations</a></li>
+    <li><a href="sections/view-supplier-asserted-integrations">View Supplier Asserted Integrations</a></li>
+    <li><a href="sections/view-implementation-timescales">View Implementation Timescales</a></li>
+    <li><a href="sections/view-authority-asserted-integrations">View Authority Asserted Integrations</a></li>
+    <li><a href="sections/view-supplier-asserted-integrations">View Supplier Asserted Integrations</a></li>
+    <li><a href="sections/view-solution">View Solution</a></li>
+  </ul>
+{% endblock %}

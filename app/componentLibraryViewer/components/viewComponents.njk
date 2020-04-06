@@ -1,0 +1,22 @@
+{% from 'components/back-link/macro.njk' import backLink %}
+
+{% extends 'views/includes/layout.njk' %}
+
+{% block body %}
+  {{ backLink({
+    "href": "/components",
+    "text": "Return to components"
+  }) }}
+  <h1>View solution components</h1>
+  <ul>
+    <li><a href="view/view-data-link">View Data Link</a></li>
+    <li><a href="view/view-data-text">View Data Text</a></li>
+    <li><a href="view/view-data-bulletlist">View Data Bulletlist</a></li>
+    <li><a href="view/view-data-title">View Data Title</a></li>
+    <li><a href="view/view-section-heading">View Section Heading</a></li>
+    <li><a href="view/view-section-table-row">View Section Table Row</a></li>
+    <li><a href="view/view-expandable-section">View Expandable Section</a></li>
+    <li><a href="view/view-epic-list">View Epic List</a></li>
+    <li><a href="view/view-epics">View Epics</a></li>
+  </ul>
+{% endblock %}

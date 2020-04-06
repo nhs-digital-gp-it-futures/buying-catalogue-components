@@ -8,34 +8,44 @@ router.get('/', async (req, res) => {
   res.render('index', {});
 });
 
-router.get('/component/:subType/:component', async (req, res) => {
-  const { component: name, subType } = req.params;
-  generateTemplate({ name, templateType: 'component', subType });
-
-  res.render(`templates/components/${subType}/${name}-template`);
+router.get('/:templateType', async (req, res) => {
+  const { templateType } = req.params;
+  res.render(`componentLibraryViewer/${templateType}`);
 });
 
-router.post('/component/:subType/:component', async (req, res) => {
-  const { component: name, subType } = req.params;
+router.get('/components/:componentType', async (req, res) => {
+  const { componentType } = req.params;
+  res.render(`componentLibraryViewer/components/${componentType}Components`);
+});
+
+router.get('/components/:componentType/:component', async (req, res) => {
+  const { component: name, componentType } = req.params;
+  generateTemplate({ name, templateType: 'component', componentType });
+
+  res.render(`templates/components/${componentType}/${name}-template`);
+});
+
+router.post('/components/:componentType/:component', async (req, res) => {
+  const { component: name, componentType } = req.params;
   const formParams = JSON.parse(req.body.params);
   generateTemplate({
     name,
     formParams,
     templateType: 'component',
-    subType,
+    componentType,
   });
 
-  res.render(`templates/components/${subType}/${name}-template`);
+  res.render(`templates/components/${componentType}/${name}-template`);
 });
 
-router.get('/section/:sectionName', async (req, res) => {
+router.get('/sections/:sectionName', async (req, res) => {
   const name = req.params.sectionName;
   generateTemplate({ name, templateType: 'section' });
 
   res.render(`templates/sections/${name}-template`);
 });
 
-router.post('/section/:sectionName', async (req, res) => {
+router.post('/sections/:sectionName', async (req, res) => {
   const name = req.params.sectionName;
   const formParams = JSON.parse(req.body.params);
   generateTemplate({ name, formParams, templateType: 'section' });

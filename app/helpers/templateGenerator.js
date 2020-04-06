@@ -175,8 +175,9 @@ const generateTemplate = ({
   templateType,
   componentType,
 }) => {
-  const { componentName, params: paramsFromSettings } = getSettings({
-    name, templateType, componentType });
+  const {
+    componentName, params: paramsFromSettings,
+  } = getSettings({ name, templateType, componentType });
   const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
   const editorBlock = generateEditorBlock({

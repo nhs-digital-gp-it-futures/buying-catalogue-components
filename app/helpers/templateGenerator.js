@@ -130,7 +130,10 @@ const generateBlock = (params, blockType) => (
 );
 
 const getSettings = ({ name, templateType, componentType }) => {
-  const settingsString = fs.readFileSync(`app/${templateType}s/${componentType ? `${componentType}/` : ''}${name}/settings.json`, 'utf-8');
+  const settingsString = fs.readFileSync(
+    `app/${templateType}s/${componentType ? `${componentType}/` : ''}${name}/settings.json`,
+    'utf-8',
+  );
   return JSON.parse(settingsString);
 };
 

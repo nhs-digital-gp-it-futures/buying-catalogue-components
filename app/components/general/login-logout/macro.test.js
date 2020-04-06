@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'loginLogout',
   templateType: 'component',
+  componentType: 'general',
 };
 
 describe('login-logout', () => {

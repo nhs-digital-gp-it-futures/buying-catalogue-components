@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'viewSectionHeading',
   templateType: 'component',
+  componentType: 'view',
 };
 
 describe('view-section-heading', () => {

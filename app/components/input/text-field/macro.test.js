@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'textField',
   templateType: 'component',
+  componentType: 'input',
 };
 
 describe('textField', () => {

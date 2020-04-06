@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'bcErrorSummary',
   templateType: 'component',
+  componentType: 'general',
 };
 
 describe('bcErrorSummary', () => {

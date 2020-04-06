@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'viewEpics',
   templateType: 'component',
+  componentType: 'view',
 };
 
 describe('view-epics', () => {

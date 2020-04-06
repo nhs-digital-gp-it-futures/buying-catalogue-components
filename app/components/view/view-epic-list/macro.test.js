@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'viewEpicList',
   templateType: 'component',
+  componentType: 'view',
 };
 
 describe('view-epic-list', () => {

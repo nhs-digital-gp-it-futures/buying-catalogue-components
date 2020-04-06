@@ -1,9 +1,9 @@
-{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
-{% from 'components/view-epics/macro.njk' import viewEpics %}
-{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
-{% from 'components/view-expandable-section/macro.njk' import viewExpandableSection %}
-{% from 'components/view-data-text/macro.njk' import viewDataText %}
-{% from 'components/view-data-link/macro.njk' import viewDataLink %}
+{% from 'components/view/view-section-table-row/macro.njk' import viewSectionTableRow %}
+{% from 'components/view/view-epics/macro.njk' import viewEpics %}
+{% from 'components/view/view-section-heading/macro.njk' import viewSectionHeading %}
+{% from 'components/view/view-expandable-section/macro.njk' import viewExpandableSection %}
+{% from 'components/view/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view/view-data-link/macro.njk' import viewDataLink %}
 
 {% macro viewCapabilities(params) %}
   {% if params and params.section.answers['capabilities-met'].length %}

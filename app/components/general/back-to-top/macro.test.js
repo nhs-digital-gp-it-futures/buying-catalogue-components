@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'backToTop',
   templateType: 'component',
+  componentType: 'general',
 };
 
 describe('back-to-top', () => {

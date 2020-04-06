@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'tag',
   templateType: 'component',
+  componentType: 'general',
 };
 
 describe('tag', () => {

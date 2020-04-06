@@ -1,8 +1,9 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { createTestHarness } from '../../../testUtils/testHarness';
 
 const setup = {
   templateName: 'viewSectionTableRow',
   templateType: 'component',
+  componentType: 'view',
 };
 
 describe('view-section-table-row', () => {

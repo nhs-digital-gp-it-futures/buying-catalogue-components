@@ -7,12 +7,12 @@
 @import './helpers/borders';
 
 // Components
-@import '../components/login-logout/login-logout';
-@import '../components/view-section-heading/section-heading';
-@import '../components/view-section-table-row/section-table-row';
-@import '../components/tag/tag';
-@import '../components/view-data-text/view-data-text';
-@import '../components/view-data-bulletlist/view-data-bulletlist';
-@import '../components/view-data-title/view-data-title';
-@import '../components/view-data-link/view-data-link';
-@import '../components/view-expandable-section/view-expandable-section';
+@import '../components/general/login-logout/login-logout';
+@import '../components/view/view-section-heading/section-heading';
+@import '../components/view/view-section-table-row/section-table-row';
+@import '../components/general/tag/tag';
+@import '../components/view/view-data-text/view-data-text';
+@import '../components/view/view-data-bulletlist/view-data-bulletlist';
+@import '../components/view/view-data-title/view-data-title';
+@import '../components/view/view-data-link/view-data-link';
+@import '../components/view/view-expandable-section/view-expandable-section';

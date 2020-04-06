@@ -129,17 +129,21 @@ const generateBlock = (params, blockType) => (
   })).join('')
 );
 
-const getSettings = (name, type) => {
-  const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');
+const getSettings = (name, type, subtype) => {
+  const settingsString = fs.readFileSync(`app/${type}s/${subtype}/${name}/settings.json`, 'utf-8');
   return JSON.parse(settingsString);
 };
 
-const writeTemplate = (template, name, type) => {
+const writeTemplate = ({
+  template, name, type, subType,
+}) => {
   const directory = 'app/templates';
   const subDirectory = `${directory}/${type}s`;
+  const subSubDirectory = `${subDirectory}/${subType}`;
   if (!fs.existsSync(directory)) fs.mkdirSync(directory);
   if (!fs.existsSync(subDirectory)) fs.mkdirSync(subDirectory);
-  fs.writeFileSync(`${subDirectory}/${name}-template.njk`, template);
+  if (!fs.existsSync(subSubDirectory)) fs.mkdirSync(subSubDirectory);
+  fs.writeFileSync(`${subSubDirectory}/${name}-template.njk`, template);
 };
 
 const generateEditorBlock = ({
@@ -165,8 +169,9 @@ const generateTemplate = ({
   name,
   formParams = {},
   templateType,
+  subType,
 }) => {
-  const { componentName, params: paramsFromSettings } = getSettings(name, templateType);
+  const { componentName, params: paramsFromSettings } = getSettings(name, templateType, subType);
   const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
   const editorBlock = generateEditorBlock({
@@ -174,38 +179,43 @@ const generateTemplate = ({
   });
   const renderedSection = generateRenderedBlock({ componentName, paramsToUse });
 
-  writeTemplate(`
-    {% extends 'views/includes/layout.njk' %}
-    {% from 'components/back-link/macro.njk' import backLink %}
-    {% from '${templateType}s/${name}/macro.njk' import ${componentName} %}
+  writeTemplate({
+    template: `
+      {% extends 'views/includes/layout.njk' %}
+      {% from 'components/back-link/macro.njk' import backLink %}
+      {% from '${templateType}s/${subType}/${name}/macro.njk' import ${componentName} %}
 
-    {% block body %}
-      {{ backLink({
-        "href": "/",
-        "text": "Return to component list"
-      }) }}
+      {% block body %}
+        {{ backLink({
+          "href": "/",
+          "text": "Return to component list"
+        }) }}
 
-    <h1>${componentName} ${templateType}</h1>
+      <h1>${componentName} ${templateType}</h1>
 
-    <div>
-      <form method="post" action="/${templateType}/${name}" id="try-params" class="nhsuk-u-clear">
-        <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
-        <div class="bcc-c-code-block">
-          {% verbatim %}
-              ${editorBlock}
-          {% endverbatim %}
-        </div>
-      </form>
-    </div>
-
-    <div id="display-block">
-      <h3 class="bcc-c-display-title">Rendered ${templateType}</h3>
-      <div class="bcc-c-display-block">
-        ${renderedSection}
+      <div>
+        <form method="post" action="/${templateType}/${subType}/${name}" id="try-params" class="nhsuk-u-clear">
+          <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
+          <div class="bcc-c-code-block">
+            {% verbatim %}
+                ${editorBlock}
+            {% endverbatim %}
+          </div>
+        </form>
       </div>
-    </div>
-    {% endblock %}
-  `, name, templateType);
+
+      <div id="display-block">
+        <h3 class="bcc-c-display-title">Rendered ${templateType}</h3>
+        <div class="bcc-c-display-block">
+          ${renderedSection}
+        </div>
+      </div>
+      {% endblock %}
+    `,
+    name,
+    type: templateType,
+    subType,
+  });
 };
 
 module.exports = {

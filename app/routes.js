@@ -8,19 +8,24 @@ router.get('/', async (req, res) => {
   res.render('index', {});
 });
 
-router.get('/component/:component', async (req, res) => {
-  const name = req.params.component;
-  generateTemplate({ name, templateType: 'component' });
+router.get('/component/:subType/:component', async (req, res) => {
+  const { component: name, subType } = req.params;
+  generateTemplate({ name, templateType: 'component', subType });
 
-  res.render(`templates/components/${name}-template`);
+  res.render(`templates/components/${subType}/${name}-template`);
 });
 
-router.post('/component/:component', async (req, res) => {
-  const name = req.params.component;
+router.post('/component/:subType/:component', async (req, res) => {
+  const { component: name, subType } = req.params;
   const formParams = JSON.parse(req.body.params);
-  generateTemplate({ name, formParams, templateType: 'component' });
+  generateTemplate({
+    name,
+    formParams,
+    templateType: 'component',
+    subType,
+  });
 
-  res.render(`templates/components/${name}-template`);
+  res.render(`templates/components/${subType}/${name}-template`);
 });
 
 router.get('/section/:sectionName', async (req, res) => {

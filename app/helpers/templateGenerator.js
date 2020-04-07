@@ -131,7 +131,7 @@ const generateBlock = (params, blockType) => (
 
 const getSettings = ({ name, templateType, componentType }) => {
   const settingsString = fs.readFileSync(
-    `app/${templateType}s/${componentType ? `${componentType}/` : ''}${name}/settings.json`,
+    `app/${templateType}s/${componentType ? `${componentType}/components/` : ''}${name}/settings.json`,
     'utf-8',
   );
   return JSON.parse(settingsString);
@@ -142,7 +142,7 @@ const writeTemplate = ({
 }) => {
   const directory = 'app/templates';
   const templateDirectory = `${directory}/${templateType}s`;
-  const componentDirectory = `${templateDirectory}${componentType ? `/${componentType}/` : ''}`;
+  const componentDirectory = `${templateDirectory}${componentType ? `/${componentType}/components/` : ''}`;
   if (!fs.existsSync(directory)) fs.mkdirSync(directory);
   if (!fs.existsSync(templateDirectory)) fs.mkdirSync(templateDirectory);
   if (!fs.existsSync(componentDirectory)) fs.mkdirSync(componentDirectory);
@@ -157,7 +157,7 @@ const generateEditorBlock = ({
   componentType,
 }) => {
   const editorBlock = generateBlock(paramsToUse, 'html');
-  const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${templateType}s/${componentType ? `${componentType}/` : ''}${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
+  const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${templateType}s/${componentType ? `${componentType}/components` : ''}${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
   return `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="bcc-c-code-json-block">${editorBlock}</div>}) }}`;
 };
 
@@ -189,18 +189,18 @@ const generateTemplate = ({
     template: `
       {% extends 'views/includes/layout.njk' %}
       {% from 'components/back-link/macro.njk' import backLink %}
-      {% from '${templateType}s/${componentType ? `${componentType}/` : ''}${name}/macro.njk' import ${componentName} %}
+      {% from '${templateType}s/${componentType ? `${componentType}/components/` : ''}${name}/macro.njk' import ${componentName} %}
 
       {% block body %}
         {{ backLink({
-          "href": "/${templateType}s${componentType ? `/${componentType}` : ''}",
+          "href": "/${templateType}s${componentType ? `/${componentType}/components` : ''}",
           "text": "Return to ${componentType ? `${componentType} ` : ''}${templateType}s"
         }) }}
 
       <h1>${componentName} ${templateType}</h1>
 
       <div>
-        <form method="post" action="/${templateType}/${componentType ? `${componentType}/` : ''}${name}" id="try-params" class="nhsuk-u-clear">
+        <form method="post" action="/${templateType}/${componentType ? `${componentType}/components/` : ''}${name}" id="try-params" class="nhsuk-u-clear">
           <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
           <div class="bcc-c-code-block">
             {% verbatim %}

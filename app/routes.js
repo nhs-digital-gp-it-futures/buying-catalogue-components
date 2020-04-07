@@ -22,7 +22,7 @@ router.get('/components/:componentType/:component', async (req, res) => {
   const { component: name, componentType } = req.params;
   generateTemplate({ name, templateType: 'component', componentType });
 
-  res.render(`templates/components/${componentType}/${name}-template`);
+  res.render(`templates/components/${componentType}/components/${name}-template`);
 });
 
 router.post('/components/:componentType/:component', async (req, res) => {
@@ -35,7 +35,7 @@ router.post('/components/:componentType/:component', async (req, res) => {
     componentType,
   });
 
-  res.render(`templates/components/${componentType}/${name}-template`);
+  res.render(`templates/components/${componentType}/components/${name}-template`);
 });
 
 router.get('/sections/:sectionName', async (req, res) => {

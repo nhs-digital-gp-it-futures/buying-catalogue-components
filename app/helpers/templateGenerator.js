@@ -142,11 +142,13 @@ const writeTemplate = ({
 }) => {
   const directory = 'app/templates';
   const templateDirectory = `${directory}/${templateType}s`;
-  const componentDirectory = `${templateDirectory}${componentType ? `/${componentType}/components/` : ''}`;
+  const componentDirectory = `${templateDirectory}${componentType ? `/${componentType}` : ''}`;
+  const componentsFolder = `${componentDirectory}${componentType ? '/components' : ''}`;
   if (!fs.existsSync(directory)) fs.mkdirSync(directory);
   if (!fs.existsSync(templateDirectory)) fs.mkdirSync(templateDirectory);
   if (!fs.existsSync(componentDirectory)) fs.mkdirSync(componentDirectory);
-  fs.writeFileSync(`${componentDirectory}/${name}-template.njk`, template);
+  if (!fs.existsSync(componentsFolder)) fs.mkdirSync(componentsFolder);
+  fs.writeFileSync(`${componentType ? componentsFolder : componentDirectory}/${name}-template.njk`, template);
 };
 
 const generateEditorBlock = ({
@@ -193,7 +195,7 @@ const generateTemplate = ({
 
       {% block body %}
         {{ backLink({
-          "href": "/${templateType}s${componentType ? `/${componentType}/components` : ''}",
+          "href": "/${templateType}s${componentType ? `/${componentType}` : ''}",
           "text": "Return to ${componentType ? `${componentType} ` : ''}${templateType}s"
         }) }}
 

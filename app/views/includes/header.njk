@@ -1,10 +1,6 @@
-{% from 'components/general/bc-header/macro.njk' import bcHeader %}
-{% from 'components/general/login-logout/macro.njk' import loginLogout %}
+{% from 'components/general/components/bc-header/macro.njk' import bcHeader %}
 
 {{ bcHeader({
-    innerComponent: loginLogout({
-      username: 'NHS Digital'
-    }),
     classes: "nhsuk-header__container"
   })
 }}

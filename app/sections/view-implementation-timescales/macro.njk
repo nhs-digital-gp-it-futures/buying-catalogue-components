@@ -1,6 +1,6 @@
-{% from 'components/view-epics/macro.njk' import viewEpics %}
-{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
-{% from 'components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view/components/view-epics/macro.njk' import viewEpics %}
+{% from 'components/view/components/view-section-heading/macro.njk' import viewSectionHeading %}
+{% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
 
 {% macro viewImplementationTimescales(params) %}
   {% if params and params.section.answers.description %}

@@ -9,7 +9,7 @@ const testFunction = ({ setup, done }) => {
   const app = new App().createApp();
   const router = express.Router();
 
-  const macroWrapper = `{% from './${setup.templateType}s/${setup.templateName.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()}/macro.njk' import ${setup.templateName} %} {{ ${setup.templateName}(params) }}`;
+  const macroWrapper = `{% from './${setup.templateType}s/${setup.componentType ? `${setup.componentType}/components/` : ''}${setup.templateName.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()}/macro.njk' import ${setup.templateName} %} {{ ${setup.templateName}(params) }}`;
 
   return {
     request: (context, callback) => {

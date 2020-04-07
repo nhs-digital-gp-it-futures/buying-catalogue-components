@@ -1,8 +1,8 @@
 {# API returns 'document-name' which is transformed into 'document-link' in createContext function #}
-{% from 'components/view-section-table-row/macro.njk' import viewSectionTableRow %}
-{% from 'components/view-data-text/macro.njk' import viewDataText %}
-{% from 'components/view-data-link/macro.njk' import viewDataLink %}
-{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+{% from 'components/view/components/view-section-table-row/macro.njk' import viewSectionTableRow %}
+{% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view/components/view-data-link/macro.njk' import viewDataLink %}
+{% from 'components/view/components/view-section-heading/macro.njk' import viewSectionHeading %}
 
 {% macro viewSupplierAssertedIntegrations(params) %}
   {% if params %}

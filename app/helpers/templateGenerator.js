@@ -129,17 +129,26 @@ const generateBlock = (params, blockType) => (
   })).join('')
 );
 
-const getSettings = (name, type) => {
-  const settingsString = fs.readFileSync(`app/${type}s/${name}/settings.json`, 'utf-8');
+const getSettings = ({ name, templateType, componentType }) => {
+  const settingsString = fs.readFileSync(
+    `app/${templateType}s/${componentType ? `${componentType}/components/` : ''}${name}/settings.json`,
+    'utf-8',
+  );
   return JSON.parse(settingsString);
 };
 
-const writeTemplate = (template, name, type) => {
+const writeTemplate = ({
+  template, name, templateType, componentType,
+}) => {
   const directory = 'app/templates';
-  const subDirectory = `${directory}/${type}s`;
+  const templateDirectory = `${directory}/${templateType}s`;
+  const componentDirectory = `${templateDirectory}${componentType ? `/${componentType}` : ''}`;
+  const componentsFolder = `${componentDirectory}${componentType ? '/components' : ''}`;
   if (!fs.existsSync(directory)) fs.mkdirSync(directory);
-  if (!fs.existsSync(subDirectory)) fs.mkdirSync(subDirectory);
-  fs.writeFileSync(`${subDirectory}/${name}-template.njk`, template);
+  if (!fs.existsSync(templateDirectory)) fs.mkdirSync(templateDirectory);
+  if (!fs.existsSync(componentDirectory)) fs.mkdirSync(componentDirectory);
+  if (!fs.existsSync(componentsFolder)) fs.mkdirSync(componentsFolder);
+  fs.writeFileSync(`${componentType ? componentsFolder : componentDirectory}/${name}-template.njk`, template);
 };
 
 const generateEditorBlock = ({
@@ -147,9 +156,10 @@ const generateEditorBlock = ({
   templateType,
   componentName,
   paramsToUse,
+  componentType,
 }) => {
   const editorBlock = generateBlock(paramsToUse, 'html');
-  const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${templateType}s/${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
+  const importCode = `{% <span class="bcc-u-code-primary-color">from</span> <span class="bcc-u-code-secondary-color">'${templateType}s/${componentType ? `${componentType}/components` : ''}${name}/macro.njk'</span> <span class="bcc-u-code-primary-color">import</span> ${componentName} %}`;
   return `${importCode}<br><br> {{ ${componentName}({<div id="json-params" class="bcc-c-code-json-block">${editorBlock}</div>}) }}`;
 };
 
@@ -165,47 +175,55 @@ const generateTemplate = ({
   name,
   formParams = {},
   templateType,
+  componentType,
 }) => {
-  const { componentName, params: paramsFromSettings } = getSettings(name, templateType);
+  const {
+    componentName, params: paramsFromSettings,
+  } = getSettings({ name, templateType, componentType });
   const paramsToUse = Object.keys(formParams).length > 0 ? formParams : paramsFromSettings;
 
   const editorBlock = generateEditorBlock({
-    name, templateType, componentName, paramsToUse,
+    name, templateType, componentName, paramsToUse, componentType,
   });
   const renderedSection = generateRenderedBlock({ componentName, paramsToUse });
 
-  writeTemplate(`
-    {% extends 'views/includes/layout.njk' %}
-    {% from 'components/back-link/macro.njk' import backLink %}
-    {% from '${templateType}s/${name}/macro.njk' import ${componentName} %}
+  writeTemplate({
+    template: `
+      {% extends 'views/includes/layout.njk' %}
+      {% from 'components/back-link/macro.njk' import backLink %}
+      {% from '${templateType}s/${componentType ? `${componentType}/components/` : ''}${name}/macro.njk' import ${componentName} %}
 
-    {% block body %}
-      {{ backLink({
-        "href": "/",
-        "text": "Return to component list"
-      }) }}
+      {% block body %}
+        {{ backLink({
+          "href": "/${templateType}s${componentType ? `/${componentType}` : ''}",
+          "text": "Return to ${componentType ? `${componentType} ` : ''}${templateType}s"
+        }) }}
 
-    <h1>${componentName} ${templateType}</h1>
+      <h1>${componentName} ${templateType}</h1>
 
-    <div>
-      <form method="post" action="/${templateType}/${name}" id="try-params" class="nhsuk-u-clear">
-        <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
-        <div class="bcc-c-code-block">
-          {% verbatim %}
-              ${editorBlock}
-          {% endverbatim %}
-        </div>
-      </form>
-    </div>
-
-    <div id="display-block">
-      <h3 class="bcc-c-display-title">Rendered ${templateType}</h3>
-      <div class="bcc-c-display-block">
-        ${renderedSection}
+      <div>
+        <form method="post" action="/${templateType}/${componentType ? `${componentType}/components/` : ''}${name}" id="try-params" class="nhsuk-u-clear">
+          <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
+          <div class="bcc-c-code-block">
+            {% verbatim %}
+                ${editorBlock}
+            {% endverbatim %}
+          </div>
+        </form>
       </div>
-    </div>
-    {% endblock %}
-  `, name, templateType);
+
+      <div id="display-block">
+        <h3 class="bcc-c-display-title">Rendered ${templateType}</h3>
+        <div class="bcc-c-display-block">
+          ${renderedSection}
+        </div>
+      </div>
+      {% endblock %}
+    `,
+    name,
+    templateType,
+    componentType,
+  });
 };
 
 module.exports = {

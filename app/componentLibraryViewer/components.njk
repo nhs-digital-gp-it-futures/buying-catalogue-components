@@ -1,0 +1,14 @@
+{% from 'components/back-link/macro.njk' import backLink %}
+
+{% extends 'views/includes/layout.njk' %}
+
+{% block body %}
+  {{ backLink({
+    "href": "/",
+    "text": "Return to index"
+  }) }}
+  <h1>Components</h1>
+  <h2><a href="/components/general">General</a></h2>
+  <h2><a href="/components/view">View</a></h2>
+  <h2><a href="/components/input">Input</a></h2>
+{% endblock %}

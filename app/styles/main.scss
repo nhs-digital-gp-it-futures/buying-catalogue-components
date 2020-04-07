@@ -7,12 +7,12 @@
 @import './helpers/borders';
 
 // Components
-@import '../components/login-logout/login-logout';
-@import '../components/view-section-heading/section-heading';
-@import '../components/view-section-table-row/section-table-row';
-@import '../components/tag/tag';
-@import '../components/view-data-text/view-data-text';
-@import '../components/view-data-bulletlist/view-data-bulletlist';
-@import '../components/view-data-title/view-data-title';
-@import '../components/view-data-link/view-data-link';
-@import '../components/view-expandable-section/view-expandable-section';
+@import '../components/general/components/login-logout/login-logout';
+@import '../components/view/components/view-section-heading/section-heading';
+@import '../components/view/components/view-section-table-row/section-table-row';
+@import '../components/general/components/tag/tag';
+@import '../components/view/components/view-data-text/view-data-text';
+@import '../components/view/components/view-data-bulletlist/view-data-bulletlist';
+@import '../components/view/components/view-data-title/view-data-title';
+@import '../components/view/components/view-data-link/view-data-link';
+@import '../components/view/components/view-expandable-section/view-expandable-section';

@@ -1,6 +1,6 @@
 {% from 'components/button/macro.njk' import button %}
-{% from 'components/view-data-text/macro.njk' import viewDataText %}
-{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
+{% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view/components/view-section-heading/macro.njk' import viewSectionHeading %}
 
 {% macro viewLearnMore(params) %}
   {% if params.section and params.section.answers['document-link'] %}

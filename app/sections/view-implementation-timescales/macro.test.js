@@ -20,6 +20,13 @@ describe('view-implementation-timescales', () => {
     });
   }));
 
+  it('should render the additional information of the section if the implementation timescales section is provided', createTestHarness(setup, (harness) => {
+    harness.request(settingsContext, ($) => {
+      const implementationTimescalesGuidance = $('[data-test-id="view-implementation-timescales-guidance"]');
+      expect(implementationTimescalesGuidance.text().trim()).toEqual('These are the typical processes and timescales to implement this Catalogue Solution:');
+    });
+  }));
+
   it('should not render the description answer when not provided', createTestHarness(setup, (harness) => {
     const context = {
       params: {
@@ -28,7 +35,6 @@ describe('view-implementation-timescales', () => {
         },
       },
     };
-
     harness.request(context, ($) => {
       expect($('[data-test-id="view-question-data-text-description"]').length).toEqual(0);
     });

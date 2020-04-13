@@ -31,6 +31,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "govuk-frontend": "^3.6.0",
     "nhsuk-frontend": "^3.0.4",
     "nunjucks": "^3.2.1",
     "nunjucks-date-filter": "^0.1.1",

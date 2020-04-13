@@ -1,5 +1,5 @@
-{% from 'components/label/macro.njk' import label %}
 {% from 'components/input/macro.njk' import input %}
+{% from "components/character-count/macro.njk" import govukCharacterCount %}
 
 {% macro textField(params) %}
   {% if params.isMultiQuestion %}
@@ -22,7 +22,7 @@
   <div data-test-id="question-{{ params.question.id }}">
     {% if (params.question.error) %}
       <div data-test-id="text-field-input-error">
-        {{ input({
+        {{ govukCharacterCount({
           "id": params.question.id,
           "name": params.question.id,
           "label": {
@@ -36,12 +36,13 @@
           },
           "formGroup": {
             "classes": "nhsuk-u-margin-bottom-2"
-          }
+          },
+          maxlength: 255
         }) }}
       </div>
     {% else %}
       <div data-test-id="text-field-input">
-        {{ input({
+        {{ govukCharacterCount({
           "id": params.question.id,
           "name": params.question.id,
           "label": {
@@ -52,7 +53,8 @@
           "value": params.question.data,
           "formGroup": {
             "classes": "nhsuk-u-margin-bottom-2"
-          }
+          },
+          maxlength: 255
         }) }}
       </div>
     {% endif %}

@@ -32,7 +32,6 @@ class App {
     this.app.use(express.static(path.join(__dirname, '/../public/')));
     this.app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/../node_modules/nhsuk-frontend/packages')));
 
-
     // View engine (Nunjucks)
     this.app.set('view engine', 'njk');
 

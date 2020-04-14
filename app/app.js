@@ -42,6 +42,7 @@ class App {
     const appViews = [
       __dirname,
       path.join(__dirname, '/../node_modules/nhsuk-frontend/packages/'),
+      path.join(__dirname, '/../node_modules/govuk-frontend/govuk/'),
     ];
 
     const env = nunjucks.configure(appViews, {

@@ -1,3 +1,5 @@
+import { initAll } from 'govuk-frontend';
+
 window.onload = () => {
   document.getElementById('try-params').addEventListener('submit', (form) => {
     form.preventDefault();
@@ -19,3 +21,5 @@ window.onload = () => {
     post(document.getElementsByTagName('form')[0].getAttribute('action'), { params: `{${JSON.parse(JSON.stringify(json))}}` });
   });
 };
+
+initAll();

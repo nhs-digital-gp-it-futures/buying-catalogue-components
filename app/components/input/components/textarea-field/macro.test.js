@@ -70,7 +70,7 @@ describe('textarea', () => {
 
     harness.request(context, ($) => {
       const question = $('div[data-test-id="question-fieldId"]');
-      expect(question.find('textarea').attr('rows')).toEqual(' 10 ');
+      expect(question.find('textarea').attr('rows').trim()).toEqual('10');
     });
   }));
 

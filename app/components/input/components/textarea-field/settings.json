@@ -1,7 +1,6 @@
 {
   "componentName": "textareaField",
   "params": {
-    "isMultiQuestion": true,
     "question": {
       "id": "question-id",
       "mainAdvice": "Some main advice",
@@ -11,7 +10,8 @@
       "footerAdvice": "Some footer advice",
       "error": {
         "message": "The error message"
-      }
+      },
+      "maxlength": 200
     }
   }
 }

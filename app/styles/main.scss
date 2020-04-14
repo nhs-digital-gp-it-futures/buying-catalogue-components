@@ -1,6 +1,10 @@
 // NHS.UK frontend styles
 @import 'node_modules/nhsuk-frontend/packages/nhsuk';
 
+// GOV.UK frontend styles
+$govuk-global-styles: true;
+@import 'node_modules/govuk-frontend/govuk/all';
+
 // Helpers
 @import './helpers/colors';
 @import './helpers/alignment';

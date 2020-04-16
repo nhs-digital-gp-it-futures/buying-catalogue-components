@@ -11,7 +11,7 @@
       "error": {
         "message": "The error message"
       },
-      "maxlength": 200
+      "maxlength": "200"
     }
   }
 }

@@ -115,24 +115,6 @@ describe('textarea', () => {
     });
   }));
 
-  it('should render the footer advice', createTestHarness(setup, (harness) => {
-    const context = {
-      params: {
-        question: {
-          id: 'fieldId',
-          mainAdvice: 'Some really important main advice',
-          additionalAdvice: 'Some not so important additional advice',
-          footerAdvice: 'Some footer based advice',
-        },
-      },
-    };
-
-    harness.request(context, ($) => {
-      const question = $('div[data-test-id="question-fieldId"]');
-      expect(question.find('[data-test-id="textarea-field-footer"]').text().trim()).toEqual('Some footer based advice');
-    });
-  }));
-
   it('should render the correct label classes if is part of a multi question', createTestHarness(setup, (harness) => {
     const context = {
       params: {

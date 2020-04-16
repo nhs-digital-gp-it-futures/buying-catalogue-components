@@ -57,14 +57,9 @@
           formGroup: {
             classes: "nhsuk-u-margin-bottom-2"
           },
-          maxlength: 200
+          maxlength: params.question.maxlength
         }) }}
       </div>
     {% endif %}
-    <div data-test-id="textarea-field-footer">
-      <span class="nhsuk-label bc-t-font-color--grey-1 nhsuk-u-font-size-16">
-        {{ params.question.footerAdvice }}
-      </span>
-    </div>
   </div>
 {% endmacro %}

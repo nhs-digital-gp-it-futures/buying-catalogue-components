@@ -1,7 +1,7 @@
 import { createTestHarness } from '../../../../testUtils/testHarness';
 
 const setup = {
-  templateName: 'textareaField',
+  templateName: 'textareaFieldNoCount',
   templateType: 'component',
   componentType: 'input',
 };
@@ -70,7 +70,7 @@ describe('textarea', () => {
 
     harness.request(context, ($) => {
       const question = $('div[data-test-id="question-fieldId"]');
-      expect(question.find('textarea').attr('rows').trim()).toEqual('10');
+      expect(question.find('textarea').attr('rows')).toEqual(' 10 ');
     });
   }));
 
@@ -112,6 +112,24 @@ describe('textarea', () => {
       const question = $('div[data-test-id="question-fieldId"]');
       expect(question.find('.nhsuk-error-message').text().trim()).toEqual('Error: Some error message');
       expect(question.find('div[data-test-id="textarea-field-error"]').length).toEqual(1);
+    });
+  }));
+
+  it('should render the footer advice', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        question: {
+          id: 'fieldId',
+          mainAdvice: 'Some really important main advice',
+          additionalAdvice: 'Some not so important additional advice',
+          footerAdvice: 'Some footer based advice',
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const question = $('div[data-test-id="question-fieldId"]');
+      expect(question.find('[data-test-id="textarea-field-footer"]').text().trim()).toEqual('Some footer based advice');
     });
   }));
 

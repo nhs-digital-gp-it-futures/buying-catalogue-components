@@ -19,6 +19,18 @@ describe('bcErrorSummary', () => {
     });
   }));
 
+  it('should render the error summary body', createTestHarness(setup, (harness) => {
+    const context = {
+      params: {
+        errors: [],
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('.nhsuk-error-summary p').text().trim()).toEqual('To complete this page, resolve the following errors;');
+    });
+  }));
+
   it('should render the one error if the context only contains a single error', createTestHarness(setup, (harness) => {
     const context = {
       params: {

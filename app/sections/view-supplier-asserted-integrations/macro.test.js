@@ -74,7 +74,7 @@ describe('view-supplier-asserted-integrations', () => {
         .find('[data-test-id="view-data-text-additional-information"]');
 
       expect(linkInnerComponent.length).toEqual(1);
-      expect(linkInnerComponent.text().trim()).toEqual('Supplier assured integrations are interoperability interfaces prepared by a supplier and are not specified or assured by the NHS.');
+      expect(linkInnerComponent.text().trim()).toEqual('Supplier asserted integrations are interoperability interfaces prepared by a supplier and are not specified or assured by the NHS.');
     });
   }));
 });

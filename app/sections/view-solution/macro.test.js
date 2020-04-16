@@ -21,6 +21,7 @@ describe('viewSolution component', () => {
     };
 
     harness.request(context, ($) => {
+      console.log($.html())
       expect($('h1').text().trim()).toEqual('Write on Time');
     });
   }));

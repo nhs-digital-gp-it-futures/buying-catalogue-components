@@ -4,7 +4,7 @@
 {% from 'components/view/components/view-data-link/macro.njk' import viewDataLink %}
 {% from 'components/view/components/view-section-heading/macro.njk' import viewSectionHeading %}
 {% from 'sections/view-supplier-asserted-integrations/macro.njk' import viewSupplierAssertedIntegrations %}
-{% from 'sections/view-authority-asserted-integrations/macro.njk' import viewAuthorityAssertedIntegrations %}
+{% from 'sections/view-authority-assured-integrations/macro.njk' import viewAuthorityAssuredIntegrations %}
 
 {% macro viewIntegrations(params) %}
   {% if params.section.answers.link %}
@@ -25,7 +25,7 @@
         }) }}
         <div class="nhsuk-grid-column-full">
           {% if hasAuthorityIntegrationsSections %}
-            {{ viewAuthorityAssertedIntegrations({
+            {{ viewAuthorityAssuredIntegrations({
               section: params.section
             })}}
           {% endif %}

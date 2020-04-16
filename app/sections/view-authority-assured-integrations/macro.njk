@@ -4,12 +4,12 @@
 {% from 'components/view/components/view-data-link/macro.njk' import viewDataLink %}
 {% from 'components/view/components/view-section-heading/macro.njk' import viewSectionHeading %}
 
-{% macro viewAuthorityAssertedIntegrations(params) %}
+{% macro viewAuthorityAssuredIntegrations(params) %}
   {% if params %}
-      <div data-test-id="view-authority-asserted-integrations">
+      <div data-test-id="view-authority-assured-integrations">
           {{ viewSectionTableRow({
-          questionId: 'authority-asserted-integrations',
-          questionTitle: 'NHS asserted integrations',
+          questionId: 'authority-assured-integrations',
+          questionTitle: 'NHS assured integrations',
           layout: 'vertical',
           innerComponent: viewDataLink({
             dataTestId: 'view-question-data-text-link-authority-integrations',

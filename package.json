@@ -72,7 +72,7 @@
     "app/components/*",
     "app/sections/*",
     "app/styles/*",
-    "app/common/*"
+    "library/*"
   ],
   "husky": {
     "hooks": {

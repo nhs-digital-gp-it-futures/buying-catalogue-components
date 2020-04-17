@@ -71,7 +71,8 @@
     ".github/*",
     "app/components/*",
     "app/sections/*",
-    "app/styles/*"
+    "app/styles/*",
+    "app/common/*"
   ],
   "husky": {
     "hooks": {

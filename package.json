@@ -1,6 +1,6 @@
 {
   "name": "buying-catalogue-components",
-  "version": "1.1.53",
+  "version": "1.1.54",
   "description": "Nodejs express app for Buying Catalogue components",
   "main": "./app/server.js",
   "scripts": {
@@ -72,7 +72,7 @@
     "app/components/*",
     "app/sections/*",
     "app/styles/*",
-    "app/common/*"
+    "library/*"
   ],
   "husky": {
     "hooks": {

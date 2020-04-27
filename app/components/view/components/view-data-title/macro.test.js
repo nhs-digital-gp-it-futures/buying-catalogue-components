@@ -1,10 +1,12 @@
 import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewDataTitle',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewDataTitle',
+    path: 'components/view/components/view-data-title/macro.njk',
+  },
 };
+
 
 describe('view-data-title', () => {
   it('should render the title', componentTester(setup, (harness) => {

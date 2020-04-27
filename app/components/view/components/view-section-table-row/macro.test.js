@@ -1,9 +1,10 @@
 import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSectionTableRow',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewSectionTableRow',
+    path: 'components/view/components/view-section-table-row/macro.njk',
+  },
 };
 
 describe('view-section-table-row', () => {

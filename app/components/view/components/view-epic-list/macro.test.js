@@ -1,9 +1,10 @@
 import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewEpicList',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewEpicList',
+    path: 'components/view/components/view-epic-list/macro.njk',
+  },
 };
 
 describe('view-epic-list', () => {

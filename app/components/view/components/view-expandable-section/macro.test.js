@@ -1,10 +1,12 @@
 import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewExpandableSection',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewExpandableSection',
+    path: 'components/view/components/view-expandable-section/macro.njk',
+  },
 };
+
 
 describe('view-expandable-section', () => {
   it('should render title of the expandable section', componentTester(setup, (harness) => {

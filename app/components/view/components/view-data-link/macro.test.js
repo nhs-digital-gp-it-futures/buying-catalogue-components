@@ -1,9 +1,10 @@
 import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewDataLink',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewDataLink',
+    path: 'components/view/components/view-data-link/macro.njk',
+  },
 };
 
 describe('view-data-link', () => {

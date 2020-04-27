@@ -1,10 +1,12 @@
 import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewDataText',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewDataText',
+    path: 'components/view/components/view-data-text/macro.njk',
+  },
 };
+
 
 describe('view-data-text', () => {
   it('should render the data when provided', componentTester(setup, (harness) => {

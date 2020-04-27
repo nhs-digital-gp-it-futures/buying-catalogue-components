@@ -1,9 +1,10 @@
 import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSectionHeading',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewSectionHeading',
+    path: 'components/view/components/view-section-heading/macro.njk',
+  },
 };
 
 describe('view-section-heading', () => {

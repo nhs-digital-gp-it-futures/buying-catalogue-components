@@ -1,9 +1,10 @@
 import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewDataBulletlist',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewDataBulletlist',
+    path: 'components/view/components/view-data-bulletlist/macro.njk',
+  },
 };
 
 describe('view-data-bulletlist', () => {

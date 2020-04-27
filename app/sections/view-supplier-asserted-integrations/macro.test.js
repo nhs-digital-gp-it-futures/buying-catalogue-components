@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('view-supplier-asserted-integrations', () => {
   it('should render the supplier asserted integrations answer if provided', componentTester(setup, (harness) => {
     const context = {

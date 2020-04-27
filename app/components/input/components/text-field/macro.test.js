@@ -1,13 +1,14 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'textField',
-  templateType: 'component',
-  componentType: 'input',
+  component: {
+    name: 'textField',
+    path: 'components/input/components/text-field/macro.njk',
+  },
 };
 
 describe('textField', () => {
-  it('should render the main advice', createTestHarness(setup, (harness) => {
+  it('should render the main advice', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -24,7 +25,7 @@ describe('textField', () => {
     });
   }));
 
-  it('should render the additional advice', createTestHarness(setup, (harness) => {
+  it('should render the additional advice', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -41,7 +42,7 @@ describe('textField', () => {
     });
   }));
 
-  it('should render the input text field', createTestHarness(setup, (harness) => {
+  it('should render the input text field', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -58,7 +59,7 @@ describe('textField', () => {
     });
   }));
 
-  it('should render the text field with the data populated', createTestHarness(setup, (harness) => {
+  it('should render the text field with the data populated', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -76,7 +77,7 @@ describe('textField', () => {
     });
   }));
 
-  it('should render the text field as an error if the context provided contains an error', createTestHarness(setup, (harness) => {
+  it('should render the text field as an error if the context provided contains an error', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -100,7 +101,7 @@ describe('textField', () => {
     });
   }));
 
-  it('should render the footer advice', createTestHarness(setup, (harness) => {
+  it('should render the footer advice', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -118,7 +119,7 @@ describe('textField', () => {
     });
   }));
 
-  it('should render the correct label classes if is part of a multi question', createTestHarness(setup, (harness) => {
+  it('should render the correct label classes if is part of a multi question', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -138,7 +139,7 @@ describe('textField', () => {
     });
   }));
 
-  it('should render the correct label classes if is not part of a multi question', createTestHarness(setup, (harness) => {
+  it('should render the correct label classes if is not part of a multi question', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -157,7 +158,7 @@ describe('textField', () => {
     });
   }));
 
-  it('should not render any additional advice if not provided', createTestHarness(setup, (harness) => {
+  it('should not render any additional advice if not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {

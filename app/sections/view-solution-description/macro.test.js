@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewSolutionDescription',
@@ -6,7 +6,7 @@ const setup = {
 };
 
 describe('view-solution-description', () => {
-  it('should render the title of the section', createTestHarness(setup, (harness) => {
+  it('should render the title of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {},
@@ -18,7 +18,7 @@ describe('view-solution-description', () => {
     });
   }));
 
-  it('should not render the solution-description section when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the solution-description section when not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -27,7 +27,7 @@ describe('view-solution-description', () => {
   }));
 
   describe('when there are answers provided for the questions', () => {
-    it('should render the summary question title and data', createTestHarness(setup, (harness) => {
+    it('should render the summary question title and data', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -52,7 +52,7 @@ describe('view-solution-description', () => {
       });
     }));
 
-    it('should render the description question title and data', createTestHarness(setup, (harness) => {
+    it('should render the description question title and data', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -77,7 +77,7 @@ describe('view-solution-description', () => {
       });
     }));
 
-    it('should only render the link question as a link component', createTestHarness(setup, (harness) => {
+    it('should only render the link question as a link component', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -104,7 +104,7 @@ describe('view-solution-description', () => {
   });
 
   describe('when there are no answers provided for the questions', () => {
-    it('should not render the summary question title and data', createTestHarness(setup, (harness) => {
+    it('should not render the summary question title and data', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -121,7 +121,7 @@ describe('view-solution-description', () => {
       });
     }));
 
-    it('should not render the description question title and data', createTestHarness(setup, (harness) => {
+    it('should not render the description question title and data', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -138,7 +138,7 @@ describe('view-solution-description', () => {
       });
     }));
 
-    it('should not render the solution link', createTestHarness(setup, (harness) => {
+    it('should not render the solution link', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {

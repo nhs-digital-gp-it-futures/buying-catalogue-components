@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewNativeMobile',
@@ -6,7 +6,7 @@ const setup = {
 };
 
 describe('view-native-mobile', () => {
-  it('should render the supported operating systems answer', createTestHarness(setup, (harness) => {
+  it('should render the supported operating systems answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -37,7 +37,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the additional operating system information answer', createTestHarness(setup, (harness) => {
+  it('should render the additional operating system information answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -68,7 +68,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the mobile first answer', createTestHarness(setup, (harness) => {
+  it('should render the mobile first answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -99,7 +99,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the minimum connection speed required answer', createTestHarness(setup, (harness) => {
+  it('should render the minimum connection speed required answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -130,7 +130,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the connection types supported answer', createTestHarness(setup, (harness) => {
+  it('should render the connection types supported answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -161,7 +161,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the additional information about connection types answer', createTestHarness(setup, (harness) => {
+  it('should render the additional information about connection types answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -192,7 +192,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the minimum memory requirement answer', createTestHarness(setup, (harness) => {
+  it('should render the minimum memory requirement answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -223,7 +223,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the additional storage requirements answer', createTestHarness(setup, (harness) => {
+  it('should render the additional storage requirements answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -254,7 +254,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the third party components answer', createTestHarness(setup, (harness) => {
+  it('should render the third party components answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -285,7 +285,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the device capabilities answer', createTestHarness(setup, (harness) => {
+  it('should render the device capabilities answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -316,7 +316,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the hardware requirements answer', createTestHarness(setup, (harness) => {
+  it('should render the hardware requirements answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -347,7 +347,7 @@ describe('view-native-mobile', () => {
     });
   }));
 
-  it('should render the additional information answer', createTestHarness(setup, (harness) => {
+  it('should render the additional information answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {

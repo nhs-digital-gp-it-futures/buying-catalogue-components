@@ -1,13 +1,14 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'textareaField',
-  templateType: 'component',
-  componentType: 'input',
+  component: {
+    name: 'textareaField',
+    path: 'components/input/components/textarea-field/macro.njk',
+  },
 };
 
 describe('textarea', () => {
-  it('should render the main advice', createTestHarness(setup, (harness) => {
+  it('should render the main advice', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -24,7 +25,7 @@ describe('textarea', () => {
     });
   }));
 
-  it('should render the additional advice', createTestHarness(setup, (harness) => {
+  it('should render the additional advice', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -41,7 +42,7 @@ describe('textarea', () => {
     });
   }));
 
-  it('should render the text area', createTestHarness(setup, (harness) => {
+  it('should render the text area', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -58,7 +59,7 @@ describe('textarea', () => {
     });
   }));
 
-  it('should render the text area with specific amount of rows as specified in the context', createTestHarness(setup, (harness) => {
+  it('should render the text area with specific amount of rows as specified in the context', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -75,7 +76,7 @@ describe('textarea', () => {
   }));
 
 
-  it('should render the text area with the data populated', createTestHarness(setup, (harness) => {
+  it('should render the text area with the data populated', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -93,7 +94,7 @@ describe('textarea', () => {
     });
   }));
 
-  it('should render the textarea-field as an error if the context provided contains an error', createTestHarness(setup, (harness) => {
+  it('should render the textarea-field as an error if the context provided contains an error', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -115,7 +116,7 @@ describe('textarea', () => {
     });
   }));
 
-  it('should render the correct label classes if is part of a multi question', createTestHarness(setup, (harness) => {
+  it('should render the correct label classes if is part of a multi question', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -135,7 +136,7 @@ describe('textarea', () => {
     });
   }));
 
-  it('should render the correct label classes if is not part of a multi question', createTestHarness(setup, (harness) => {
+  it('should render the correct label classes if is not part of a multi question', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
@@ -154,7 +155,7 @@ describe('textarea', () => {
     });
   }));
 
-  it('should not render any additional advice if not provided', createTestHarness(setup, (harness) => {
+  it('should not render any additional advice if not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {

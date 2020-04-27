@@ -1,13 +1,15 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'tag',
-  templateType: 'component',
-  componentType: 'general',
+  component: {
+    name: 'tag',
+    path: 'components/general/components/tag/macro.njk',
+  },
 };
 
+
 describe('tag', () => {
-  it('should render the tag with the correct data-test-id', createTestHarness(setup, (harness) => {
+  it('should render the tag with the correct data-test-id', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-tag',
@@ -19,7 +21,7 @@ describe('tag', () => {
     });
   }));
 
-  it('should render the tag with the correct text', createTestHarness(setup, (harness) => {
+  it('should render the tag with the correct text', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-tag',
@@ -32,7 +34,7 @@ describe('tag', () => {
     });
   }));
 
-  it('should render the tag with the correct classes', createTestHarness(setup, (harness) => {
+  it('should render the tag with the correct classes', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-tag',

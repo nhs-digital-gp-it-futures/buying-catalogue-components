@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewAboutSupplier',
@@ -6,7 +6,7 @@ const setup = {
 };
 
 describe('view-about-supplier', () => {
-  it('should render the title of the section', createTestHarness(setup, (harness) => {
+  it('should render the title of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {},
@@ -18,7 +18,7 @@ describe('view-about-supplier', () => {
     });
   }));
 
-  it('should not render the About supplier section when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the About supplier section when not provided', componentTester(setup, (harness) => {
     const context = {
     };
 
@@ -28,7 +28,7 @@ describe('view-about-supplier', () => {
   }));
 
   describe('when there are answers provided for the questions', () => {
-    it('should only render the description data', createTestHarness(setup, (harness) => {
+    it('should only render the description data', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -46,7 +46,7 @@ describe('view-about-supplier', () => {
       });
     }));
 
-    it('should only render the link', createTestHarness(setup, (harness) => {
+    it('should only render the link', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -66,7 +66,7 @@ describe('view-about-supplier', () => {
   });
 
   describe('when there are no answers provided for the questions', () => {
-    it('should not render the description data', createTestHarness(setup, (harness) => {
+    it('should not render the description data', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -83,7 +83,7 @@ describe('view-about-supplier', () => {
       });
     }));
 
-    it('should not render the solution link', createTestHarness(setup, (harness) => {
+    it('should not render the solution link', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {

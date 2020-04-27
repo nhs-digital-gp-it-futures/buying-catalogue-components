@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewExpandableSection',
@@ -7,7 +7,7 @@ const setup = {
 };
 
 describe('view-expandable-section', () => {
-  it('should render title of the expandable section', createTestHarness(setup, (harness) => {
+  it('should render title of the expandable section', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -20,7 +20,7 @@ describe('view-expandable-section', () => {
     });
   }));
 
-  it('should render innerComponent of the expandable section', createTestHarness(setup, (harness) => {
+  it('should render innerComponent of the expandable section', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -34,7 +34,7 @@ describe('view-expandable-section', () => {
     });
   }));
 
-  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
+  it('should add classes provided within the params', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',

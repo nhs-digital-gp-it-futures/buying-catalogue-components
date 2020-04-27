@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewHostingTypeHybrid',
@@ -6,7 +6,7 @@ const setup = {
 };
 
 describe('view-hosting-type-hybrid', () => {
-  it('should render the summary answer', createTestHarness(setup, (harness) => {
+  it('should render the summary answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -31,7 +31,7 @@ describe('view-hosting-type-hybrid', () => {
     });
   }));
 
-  it('should render the link answer', createTestHarness(setup, (harness) => {
+  it('should render the link answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -53,7 +53,7 @@ describe('view-hosting-type-hybrid', () => {
     });
   }));
 
-  it('should not render the summary row if summary and link not provided', createTestHarness(setup, (harness) => {
+  it('should not render the summary row if summary and link not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -68,7 +68,7 @@ describe('view-hosting-type-hybrid', () => {
     });
   }));
 
-  it('should render the hosting model answer', createTestHarness(setup, (harness) => {
+  it('should render the hosting model answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -93,7 +93,7 @@ describe('view-hosting-type-hybrid', () => {
     });
   }));
 
-  it('should not render the hosting model answer if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the hosting model answer if not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -108,7 +108,7 @@ describe('view-hosting-type-hybrid', () => {
     });
   }));
 
-  it('should render the requires HSCN answer', createTestHarness(setup, (harness) => {
+  it('should render the requires HSCN answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -130,7 +130,7 @@ describe('view-hosting-type-hybrid', () => {
     });
   }));
 
-  it('should not render the requires HSCN answer if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the requires HSCN answer if not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {

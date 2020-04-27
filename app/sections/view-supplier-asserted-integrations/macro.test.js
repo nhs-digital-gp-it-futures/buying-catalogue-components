@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewSupplierAssertedIntegrations',
@@ -6,7 +6,7 @@ const setup = {
 };
 
 describe('view-supplier-asserted-integrations', () => {
-  it('should render the supplier asserted integrations answer if provided', createTestHarness(setup, (harness) => {
+  it('should render the supplier asserted integrations answer if provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -25,7 +25,7 @@ describe('view-supplier-asserted-integrations', () => {
     });
   }));
 
-  it('should not render the supplier asserted integrations answer if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the supplier asserted integrations answer if not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -34,7 +34,7 @@ describe('view-supplier-asserted-integrations', () => {
     });
   }));
 
-  it('should render the link answer if provided', createTestHarness(setup, (harness) => {
+  it('should render the link answer if provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -56,7 +56,7 @@ describe('view-supplier-asserted-integrations', () => {
     });
   }));
 
-  it('should render the additional information if supplier asserted integrations data provided', createTestHarness(setup, (harness) => {
+  it('should render the additional information if supplier asserted integrations data provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {

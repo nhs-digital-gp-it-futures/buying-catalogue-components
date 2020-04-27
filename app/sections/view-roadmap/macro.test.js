@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewRoadmap',
@@ -6,7 +6,7 @@ const setup = {
 };
 
 describe('view-roadmap', () => {
-  it('should render the title of the section', createTestHarness(setup, (harness) => {
+  it('should render the title of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {},
@@ -18,7 +18,7 @@ describe('view-roadmap', () => {
     });
   }));
 
-  it('should not render the roadmap section when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the roadmap section when not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -26,7 +26,7 @@ describe('view-roadmap', () => {
     });
   }));
 
-  it('should render the guidance text if the section is provided', createTestHarness(setup, (harness) => {
+  it('should render the guidance text if the section is provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {},
@@ -40,7 +40,7 @@ describe('view-roadmap', () => {
   }));
 
   describe('when there are answers provided for the questions', () => {
-    it('should render the summary data', createTestHarness(setup, (harness) => {
+    it('should render the summary data', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -58,7 +58,7 @@ describe('view-roadmap', () => {
       });
     }));
 
-    it('should render the document link', createTestHarness(setup, (harness) => {
+    it('should render the document link', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -78,7 +78,7 @@ describe('view-roadmap', () => {
   });
 
   describe('when there are no answers provided for the questions', () => {
-    it('should not render the summary data', createTestHarness(setup, (harness) => {
+    it('should not render the summary data', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -95,7 +95,7 @@ describe('view-roadmap', () => {
       });
     }));
 
-    it('should not render the document link', createTestHarness(setup, (harness) => {
+    it('should not render the document link', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {

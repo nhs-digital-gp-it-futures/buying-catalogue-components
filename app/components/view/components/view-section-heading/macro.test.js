@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewSectionHeading',
@@ -7,7 +7,7 @@ const setup = {
 };
 
 describe('view-section-heading', () => {
-  it('should render view-section-heading component', createTestHarness(setup, (harness) => {
+  it('should render view-section-heading component', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -15,7 +15,7 @@ describe('view-section-heading', () => {
     });
   }));
 
-  it('should render the view-section-heading with the correct text', createTestHarness(setup, (harness) => {
+  it('should render the view-section-heading with the correct text', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -28,7 +28,7 @@ describe('view-section-heading', () => {
     });
   }));
 
-  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
+  it('should add classes provided within the params', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',

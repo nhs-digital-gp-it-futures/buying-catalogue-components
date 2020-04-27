@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewDataLink',
@@ -7,7 +7,7 @@ const setup = {
 };
 
 describe('view-data-link', () => {
-  it('should render the link when provided', createTestHarness(setup, (harness) => {
+  it('should render the link when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
@@ -21,7 +21,7 @@ describe('view-data-link', () => {
     });
   }));
 
-  it('should render the link with custom text when provided', createTestHarness(setup, (harness) => {
+  it('should render the link with custom text when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
@@ -36,7 +36,7 @@ describe('view-data-link', () => {
     });
   }));
 
-  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the data when not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
@@ -48,7 +48,7 @@ describe('view-data-link', () => {
     });
   }));
 
-  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
+  it('should add classes provided within the params', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',

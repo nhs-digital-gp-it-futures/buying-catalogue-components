@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewNativeDesktop',
@@ -6,7 +6,7 @@ const setup = {
 };
 
 describe('view-native-desktop', () => {
-  it('should render the operating system information answer', createTestHarness(setup, (harness) => {
+  it('should render the operating system information answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -37,7 +37,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the minimum connection speed required answer', createTestHarness(setup, (harness) => {
+  it('should render the minimum connection speed required answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -68,7 +68,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the minimum memory requirement answer', createTestHarness(setup, (harness) => {
+  it('should render the minimum memory requirement answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -99,7 +99,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the additional storage requirements answer', createTestHarness(setup, (harness) => {
+  it('should render the additional storage requirements answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -130,7 +130,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the minimum cpu answer', createTestHarness(setup, (harness) => {
+  it('should render the minimum cpu answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -161,7 +161,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the recommended resolution answer', createTestHarness(setup, (harness) => {
+  it('should render the recommended resolution answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -192,7 +192,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the third party components answer', createTestHarness(setup, (harness) => {
+  it('should render the third party components answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -223,7 +223,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the device capabilities answer', createTestHarness(setup, (harness) => {
+  it('should render the device capabilities answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -254,7 +254,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the hardware requirements answer', createTestHarness(setup, (harness) => {
+  it('should render the hardware requirements answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -285,7 +285,7 @@ describe('view-native-desktop', () => {
     });
   }));
 
-  it('should render the additional information answer', createTestHarness(setup, (harness) => {
+  it('should render the additional information answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {

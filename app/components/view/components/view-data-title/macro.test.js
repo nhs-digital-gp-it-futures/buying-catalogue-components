@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
   templateName: 'viewDataTitle',
@@ -7,7 +7,7 @@ const setup = {
 };
 
 describe('view-data-title', () => {
-  it('should render the title', createTestHarness(setup, (harness) => {
+  it('should render the title', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',

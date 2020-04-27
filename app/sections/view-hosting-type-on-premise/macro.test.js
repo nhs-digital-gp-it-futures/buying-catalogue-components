@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewHostingTypeOnPremise',
-  templateType: 'section',
+  component: {
+    name: 'viewHostingTypeOnPremise',
+    path: 'sections/view-hosting-type-on-premise/macro.njk',
+  },
 };
 
 describe('view-hosting-type-on-premise', () => {

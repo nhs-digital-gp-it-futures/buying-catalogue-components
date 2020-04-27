@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewBrowserBased',
-  templateType: 'section',
+  component: {
+    name: 'viewBrowserBased',
+    path: 'sections/view-browser-based/macro.njk',
+  },
 };
 
 describe('view-browser-based', () => {

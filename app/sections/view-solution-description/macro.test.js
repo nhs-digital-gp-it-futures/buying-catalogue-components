@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSolutionDescription',
-  templateType: 'section',
+  component: {
+    name: 'viewSolutionDescription',
+    path: 'sections/view-solution-description/macro.njk',
+  },
 };
 
 describe('view-solution-description', () => {

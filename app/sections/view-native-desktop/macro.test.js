@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewNativeDesktop',
-  templateType: 'section',
+  component: {
+    name: 'viewNativeDesktop',
+    path: 'sections/view-native-desktop/macro.njk',
+  },
 };
 
 describe('view-native-desktop', () => {

@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewHostingTypes',
-  templateType: 'section',
+  component: {
+    name: 'viewHostingTypes',
+    path: 'sections/view-hosting-types/macro.njk',
+  },
 };
 
 const context = {

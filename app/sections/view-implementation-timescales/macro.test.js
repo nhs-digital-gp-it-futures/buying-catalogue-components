@@ -1,10 +1,11 @@
 import { componentTester } from '../../testUtils/componentTester';
-
 import * as settingsContext from './settings.json';
 
 const setup = {
-  templateName: 'viewImplementationTimescales',
-  templateType: 'section',
+  component: {
+    name: 'viewImplementationTimescales',
+    path: 'sections/view-implementation-timescales/macro.njk',
+  },
 };
 
 describe('view-implementation-timescales', () => {

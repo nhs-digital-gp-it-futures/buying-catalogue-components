@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewHostingTypePublicCloud',
-  templateType: 'section',
+  component: {
+    name: 'viewHostingTypePublicCloud',
+    path: 'sections/view-hosting-type-public-cloud/macro.njk',
+  },
 };
 
 describe('view-hosting-type-public-cloud', () => {

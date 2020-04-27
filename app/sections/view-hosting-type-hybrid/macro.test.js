@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewHostingTypeHybrid',
-  templateType: 'section',
+  component: {
+    name: 'viewHostingTypeHybrid',
+    path: 'sections/view-hosting-type-hybrid/macro.njk',
+  },
 };
 
 describe('view-hosting-type-hybrid', () => {

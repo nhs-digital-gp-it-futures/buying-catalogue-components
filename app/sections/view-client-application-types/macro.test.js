@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewClientApplicationTypes',
-  templateType: 'section',
+  component: {
+    name: 'viewClientApplicationTypes',
+    path: 'sections/view-client-application-types/macro.njk',
+  },
 };
 
 describe('view-client-application-types', () => {

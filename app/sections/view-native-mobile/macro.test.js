@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewNativeMobile',
-  templateType: 'section',
+  component: {
+    name: 'viewNativeMobile',
+    path: 'sections/view-native-mobile/macro.njk',
+  },
 };
 
 describe('view-native-mobile', () => {

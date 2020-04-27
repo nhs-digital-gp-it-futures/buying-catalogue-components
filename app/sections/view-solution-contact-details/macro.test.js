@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSolutionContactDetails',
-  templateType: 'section',
+  component: {
+    name: 'viewSolutionContactDetails',
+    path: 'sections/view-solution-contact-details/macro.njk',
+  },
 };
 
 describe('view-solution-contact-details', () => {

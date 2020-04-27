@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewAuthorityAssuredIntegrations',
-  templateType: 'section',
+  component: {
+    name: 'viewAuthorityAssuredIntegrations',
+    path: 'sections/view-authority-assured-integrations/macro.njk',
+  },
 };
 
 describe('view-authority-assured-integrations', () => {

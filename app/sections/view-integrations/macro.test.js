@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewIntegrations',
-  templateType: 'section',
+  component: {
+    name: 'viewIntegrations',
+    path: 'sections/view-integrations/macro.njk',
+  },
 };
 
 describe('view-integrations', () => {

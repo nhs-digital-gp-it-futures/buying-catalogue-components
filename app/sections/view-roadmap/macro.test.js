@@ -1,8 +1,10 @@
 import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewRoadmap',
-  templateType: 'section',
+  component: {
+    name: 'viewRoadmap',
+    path: 'sections/view-roadmap/macro.njk',
+  },
 };
 
 describe('view-roadmap', () => {

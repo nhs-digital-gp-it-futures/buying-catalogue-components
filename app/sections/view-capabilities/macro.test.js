@@ -1,12 +1,14 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewCapabilities',
-  templateType: 'section',
+  component: {
+    name: 'viewCapabilities',
+    path: 'sections/view-capabilities/macro.njk',
+  },
 };
 
 describe('view-capabilities', () => {
-  it('should render the title of the section', createTestHarness(setup, (harness) => {
+  it('should render the title of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -27,7 +29,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should render the capability expandable sections if data provided', createTestHarness(setup, (harness) => {
+  it('should render the capability expandable sections if data provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -56,7 +58,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should not render the capability expandable sections if capabilities data not provided', createTestHarness(setup, (harness) => {
+  it('should not render the capability expandable sections if capabilities data not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -74,7 +76,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should render the name and version of the section', createTestHarness(setup, (harness) => {
+  it('should render the name and version of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -95,7 +97,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should render the description of the section', createTestHarness(setup, (harness) => {
+  it('should render the description of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -116,7 +118,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should render the text of the expandable section', createTestHarness(setup, (harness) => {
+  it('should render the text of the expandable section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -137,7 +139,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should render the capability description', createTestHarness(setup, (harness) => {
+  it('should render the capability description', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -166,7 +168,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should render the capability link', createTestHarness(setup, (harness) => {
+  it('should render the capability link', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -192,7 +194,7 @@ describe('view-capabilities', () => {
     });
   }));
 
-  it('should render the capability epic', createTestHarness(setup, (harness) => {
+  it('should render the capability epic', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {

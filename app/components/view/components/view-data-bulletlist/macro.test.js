@@ -1,13 +1,14 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewDataBulletlist',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewDataBulletlist',
+    path: 'components/view/components/view-data-bulletlist/macro.njk',
+  },
 };
 
 describe('view-data-bulletlist', () => {
-  it('should render the data as a list when provided', createTestHarness(setup, (harness) => {
+  it('should render the data as a list when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -25,7 +26,7 @@ describe('view-data-bulletlist', () => {
     });
   }));
 
-  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the data when not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -33,7 +34,7 @@ describe('view-data-bulletlist', () => {
     });
   }));
 
-  it('should not render empty strings when provided', createTestHarness(setup, (harness) => {
+  it('should not render empty strings when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -54,7 +55,7 @@ describe('view-data-bulletlist', () => {
     });
   }));
 
-  it('should not render strings that contain only spaces when provided', createTestHarness(setup, (harness) => {
+  it('should not render strings that contain only spaces when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -75,7 +76,7 @@ describe('view-data-bulletlist', () => {
     });
   }));
 
-  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
+  it('should add classes provided within the params', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',

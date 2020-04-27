@@ -1,8 +1,10 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSolutionHeader',
-  templateType: 'section',
+  component: {
+    name: 'viewSolutionHeader',
+    path: 'sections/view-solution-header/macro.njk',
+  },
 };
 
 const context = {
@@ -16,7 +18,7 @@ const context = {
 };
 
 describe('view-solution-header', () => {
-  it('should not render the foundation tag if provided and set to false', createTestHarness(setup, (harness) => {
+  it('should not render the foundation tag if provided and set to false', componentTester(setup, (harness) => {
     const newContext = {
       params: {
         ...context,
@@ -29,13 +31,13 @@ describe('view-solution-header', () => {
     });
   }));
 
-  it('should render the foundation tag if provided and set to true', createTestHarness(setup, (harness) => {
+  it('should render the foundation tag if provided and set to true', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       expect($('[data-test-id="view-solution-foundation"]').text().trim()).toEqual('Foundation Solution Set');
     });
   }));
 
-  it('should not render the foundation tag if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the foundation tag if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.isFoundation;
 
@@ -44,13 +46,13 @@ describe('view-solution-header', () => {
     });
   }));
 
-  it('should render the solution name if provided', createTestHarness(setup, (harness) => {
+  it('should render the solution name if provided', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       expect($('[data-test-id="view-solution-page-solution-name"]').text().trim()).toEqual('Write on Time');
     });
   }));
 
-  it('should not render the solution name if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the solution name if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.name;
 
@@ -59,13 +61,13 @@ describe('view-solution-header', () => {
     });
   }));
 
-  it('should render the supplier name if provided', createTestHarness(setup, (harness) => {
+  it('should render the supplier name if provided', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       expect($('[data-test-id="view-solution-page-supplier-name"]').text().trim()).toEqual('Aperture Science');
     });
   }));
 
-  it('should not render the supplier name if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the supplier name if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.supplierName;
 
@@ -74,13 +76,13 @@ describe('view-solution-header', () => {
     });
   }));
 
-  it('should render the solution id if provided', createTestHarness(setup, (harness) => {
+  it('should render the solution id if provided', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       expect($('[data-test-id="view-solution-page-solution-id"]').text().trim()).toEqual('Solution ID: 100000-001');
     });
   }));
 
-  it('should not render the solution id if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the solution id if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.id;
 
@@ -89,13 +91,13 @@ describe('view-solution-header', () => {
     });
   }));
 
-  it('should render the last updated date if provided', createTestHarness(setup, (harness) => {
+  it('should render the last updated date if provided', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       expect($('[data-test-id="view-solution-page-last-updated"]').text().trim()).toEqual('Solution information last updated: 15 March 1996');
     });
   }));
 
-  it('should not render the last updated date if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the last updated date if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.lastUpdated;
 
@@ -104,7 +106,7 @@ describe('view-solution-header', () => {
     });
   }));
 
-  it('should not render the component if no data provided', createTestHarness(setup, (harness) => {
+  it('should not render the component if no data provided', componentTester(setup, (harness) => {
     harness.request({}, ($) => {
       expect($('[data-test-id="view-solution-header"]').length).toEqual(0);
     });

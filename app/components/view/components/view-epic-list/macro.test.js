@@ -1,14 +1,15 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewEpicList',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewEpicList',
+    path: 'components/view/components/view-epic-list/macro.njk',
+  },
 };
 
 describe('view-epic-list', () => {
   describe('when type is "met"', () => {
-    it('should render the data when provided', createTestHarness(setup, (harness) => {
+    it('should render the data when provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -36,7 +37,7 @@ describe('view-epic-list', () => {
       });
     }));
 
-    it('should not render the data when not provided', createTestHarness(setup, (harness) => {
+    it('should not render the data when not provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -50,7 +51,7 @@ describe('view-epic-list', () => {
       });
     }));
 
-    it('should render the tick icon for met types', createTestHarness(setup, (harness) => {
+    it('should render the tick icon for met types', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -72,7 +73,7 @@ describe('view-epic-list', () => {
   });
 
   describe('when type is "not-met"', () => {
-    it('should render the data when provided', createTestHarness(setup, (harness) => {
+    it('should render the data when provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -100,7 +101,7 @@ describe('view-epic-list', () => {
       });
     }));
 
-    it('should not render the data when not provided', createTestHarness(setup, (harness) => {
+    it('should not render the data when not provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -114,7 +115,7 @@ describe('view-epic-list', () => {
       });
     }));
 
-    it('should render the cross icon for not-met types', createTestHarness(setup, (harness) => {
+    it('should render the cross icon for not-met types', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -135,7 +136,7 @@ describe('view-epic-list', () => {
     }));
   });
 
-  it('should not render the data when no type provided', createTestHarness(setup, (harness) => {
+  it('should not render the data when no type provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -153,7 +154,7 @@ describe('view-epic-list', () => {
     });
   }));
 
-  it('should not render the data when invalid type provided', createTestHarness(setup, (harness) => {
+  it('should not render the data when invalid type provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -172,7 +173,7 @@ describe('view-epic-list', () => {
     });
   }));
 
-  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the data when not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -180,7 +181,7 @@ describe('view-epic-list', () => {
     });
   }));
 
-  it('should render the epic name and id', createTestHarness(setup, (harness) => {
+  it('should render the epic name and id', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -199,7 +200,7 @@ describe('view-epic-list', () => {
     });
   }));
 
-  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
+  it('should add classes provided within the params', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',

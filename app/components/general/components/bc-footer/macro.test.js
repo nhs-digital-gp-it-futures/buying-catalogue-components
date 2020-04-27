@@ -1,9 +1,10 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'bcFooter',
-  templateType: 'component',
-  componentType: 'general',
+  component: {
+    name: 'bcFooter',
+    path: 'components/general/components/bc-footer/macro.njk',
+  },
 };
 
 const footerLinks = [
@@ -30,7 +31,7 @@ const footerLinks = [
 ];
 
 describe('bc-footer', () => {
-  it('should render the footer panel with correct links', createTestHarness(setup, (harness) => {
+  it('should render the footer panel with correct links', componentTester(setup, (harness) => {
     const context = { params: { footerLinks } };
 
     harness.request(context, ($) => {
@@ -46,7 +47,7 @@ describe('bc-footer', () => {
     });
   }));
 
-  it('should render the footer legal panel if showLegalPanel is true', createTestHarness(setup, (harness) => {
+  it('should render the footer legal panel if showLegalPanel is true', componentTester(setup, (harness) => {
     const context = { params: { showLegalPanel: true } };
 
     harness.request(context, ($) => {
@@ -60,7 +61,7 @@ describe('bc-footer', () => {
     });
   }));
 
-  it('should not render the footer legal panel if showLegalPanel is false', createTestHarness(setup, (harness) => {
+  it('should not render the footer legal panel if showLegalPanel is false', componentTester(setup, (harness) => {
     const context = { params: { showLegalPanel: false } };
 
     harness.request(context, ($) => {

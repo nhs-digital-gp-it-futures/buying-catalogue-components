@@ -1,12 +1,14 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewAuthorityAssuredIntegrations',
-  templateType: 'section',
+  component: {
+    name: 'viewAuthorityAssuredIntegrations',
+    path: 'sections/view-authority-assured-integrations/macro.njk',
+  },
 };
 
 describe('view-authority-assured-integrations', () => {
-  it('should render the authority assured integrations section if link answer is provided', createTestHarness(setup, (harness) => {
+  it('should render the authority assured integrations section if link answer is provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -35,7 +37,7 @@ describe('view-authority-assured-integrations', () => {
     });
   }));
 
-  it('should not render the authority assured integrations section if link answer is not provided', createTestHarness(setup, (harness) => {
+  it('should not render the authority assured integrations section if link answer is not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {

@@ -1,12 +1,14 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewClientApplicationTypes',
-  templateType: 'section',
+  component: {
+    name: 'viewClientApplicationTypes',
+    path: 'sections/view-client-application-types/macro.njk',
+  },
 };
 
 describe('view-client-application-types', () => {
-  it('should render the title of the section', createTestHarness(setup, (harness) => {
+  it('should render the title of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {},
@@ -18,7 +20,7 @@ describe('view-client-application-types', () => {
     });
   }));
 
-  it('should not render the client-application-types section when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the client-application-types section when not provided', componentTester(setup, (harness) => {
     const context = {
       params: {},
     };
@@ -29,7 +31,7 @@ describe('view-client-application-types', () => {
   }));
 
   describe('when a sub section exists for an application type', () => {
-    it('should render the browsed based application type', createTestHarness(setup, (harness) => {
+    it('should render the browsed based application type', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -49,7 +51,7 @@ describe('view-client-application-types', () => {
       });
     }));
 
-    it('should render the native mobile application type', createTestHarness(setup, (harness) => {
+    it('should render the native mobile application type', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -69,7 +71,7 @@ describe('view-client-application-types', () => {
       });
     }));
 
-    it('should render the native desktop application type', createTestHarness(setup, (harness) => {
+    it('should render the native desktop application type', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -91,7 +93,7 @@ describe('view-client-application-types', () => {
   });
 
   describe('when a sub section does not exist for an application type', () => {
-    it('should not render the browsed based application type', createTestHarness(setup, (harness) => {
+    it('should not render the browsed based application type', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -112,7 +114,7 @@ describe('view-client-application-types', () => {
       });
     }));
 
-    it('should not render the native mobile application type', createTestHarness(setup, (harness) => {
+    it('should not render the native mobile application type', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -133,7 +135,7 @@ describe('view-client-application-types', () => {
       });
     }));
 
-    it('should not render the native desktop application type', createTestHarness(setup, (harness) => {
+    it('should not render the native desktop application type', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {

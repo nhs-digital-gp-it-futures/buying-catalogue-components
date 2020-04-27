@@ -1,13 +1,15 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'bcErrorSummary',
-  templateType: 'component',
-  componentType: 'general',
+  component: {
+    name: 'bcErrorSummary',
+    path: 'components/general/components/bc-error-summary/macro.njk',
+  },
 };
 
+
 describe('bcErrorSummary', () => {
-  it('should render the error summary title', createTestHarness(setup, (harness) => {
+  it('should render the error summary title', componentTester(setup, (harness) => {
     const context = {
       params: {
         errors: [],
@@ -19,7 +21,7 @@ describe('bcErrorSummary', () => {
     });
   }));
 
-  it('should render the one error if the context only contains a single error', createTestHarness(setup, (harness) => {
+  it('should render the one error if the context only contains a single error', componentTester(setup, (harness) => {
     const context = {
       params: {
         errors: [
@@ -37,7 +39,7 @@ describe('bcErrorSummary', () => {
     });
   }));
 
-  it('should render multiple errors if the context contains multiple errors', createTestHarness(setup, (harness) => {
+  it('should render multiple errors if the context contains multiple errors', componentTester(setup, (harness) => {
     const context = {
       params: {
         errors: [

@@ -1,12 +1,14 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSolutionCapabilities',
-  templateType: 'section',
+  component: {
+    name: 'viewSolutionCapabilities',
+    path: 'sections/view-solution-capabilities/macro.njk',
+  },
 };
 
 describe('view-solution-capabilities', () => {
-  it('should render the title of the section', createTestHarness(setup, (harness) => {
+  it('should render the title of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {},
@@ -18,7 +20,7 @@ describe('view-solution-capabilities', () => {
     });
   }));
 
-  it('should not render the solution capabilities section when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the solution capabilities section when not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -26,7 +28,7 @@ describe('view-solution-capabilities', () => {
     });
   }));
 
-  it('should render the bullet list for each capability', createTestHarness(setup, (harness) => {
+  it('should render the bullet list for each capability', componentTester(setup, (harness) => {
     const capabilitiesMet = ['capability 1', 'capability 2', 'capability 3'];
     const context = {
       params: {
@@ -44,7 +46,7 @@ describe('view-solution-capabilities', () => {
     });
   }));
 
-  it('should render capabilities description if provided', createTestHarness(setup, (harness) => {
+  it('should render capabilities description if provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         description: 'description',
@@ -57,7 +59,7 @@ describe('view-solution-capabilities', () => {
     });
   }));
 
-  it('should not render capabilities description if not provided', createTestHarness(setup, (harness) => {
+  it('should not render capabilities description if not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {

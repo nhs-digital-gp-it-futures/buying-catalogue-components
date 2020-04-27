@@ -1,12 +1,14 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewBrowserBased',
-  templateType: 'section',
+  component: {
+    name: 'viewBrowserBased',
+    path: 'sections/view-browser-based/macro.njk',
+  },
 };
 
 describe('view-browser-based', () => {
-  it('should render the supported browsers answer', createTestHarness(setup, (harness) => {
+  it('should render the supported browsers answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -37,7 +39,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should render the mobile responsive answer', createTestHarness(setup, (harness) => {
+  it('should render the mobile responsive answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -68,7 +70,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should render the mobile first design answer', createTestHarness(setup, (harness) => {
+  it('should render the mobile first design answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -99,7 +101,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should render the plugins required answer', createTestHarness(setup, (harness) => {
+  it('should render the plugins required answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -130,7 +132,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should render the plugins detail answer', createTestHarness(setup, (harness) => {
+  it('should render the plugins detail answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -161,7 +163,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should render the minimum connection speed answer', createTestHarness(setup, (harness) => {
+  it('should render the minimum connection speed answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -192,7 +194,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should render the minimum desktop resolution answer', createTestHarness(setup, (harness) => {
+  it('should render the minimum desktop resolution answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -223,7 +225,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should render the hardware requirement answer', createTestHarness(setup, (harness) => {
+  it('should render the hardware requirement answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -254,7 +256,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should render the additional information answer', createTestHarness(setup, (harness) => {
+  it('should render the additional information answer', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -285,7 +287,7 @@ describe('view-browser-based', () => {
     });
   }));
 
-  it('should only render the section and answers provided in the context', createTestHarness(setup, (harness) => {
+  it('should only render the section and answers provided in the context', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {

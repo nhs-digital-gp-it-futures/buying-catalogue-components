@@ -1,13 +1,15 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewDataText',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewDataText',
+    path: 'components/view/components/view-data-text/macro.njk',
+  },
 };
 
+
 describe('view-data-text', () => {
-  it('should render the data when provided', createTestHarness(setup, (harness) => {
+  it('should render the data when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',
@@ -20,7 +22,7 @@ describe('view-data-text', () => {
     });
   }));
 
-  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the data when not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-test-identifier',

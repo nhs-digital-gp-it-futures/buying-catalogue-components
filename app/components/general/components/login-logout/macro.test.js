@@ -1,13 +1,15 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'loginLogout',
-  templateType: 'component',
-  componentType: 'general',
+  component: {
+    name: 'loginLogout',
+    path: 'components/general/components/login-logout/macro.njk',
+  },
 };
 
+
 describe('login-logout', () => {
-  it('should render the login/logout component with the correct data-test-id', createTestHarness(setup, (harness) => {
+  it('should render the login/logout component with the correct data-test-id', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -19,7 +21,7 @@ describe('login-logout', () => {
     });
   }));
 
-  it('should render the logged in text if username provided', createTestHarness(setup, (harness) => {
+  it('should render the logged in text if username provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -34,7 +36,7 @@ describe('login-logout', () => {
     });
   }));
 
-  it('should render the logout link if username provided', createTestHarness(setup, (harness) => {
+  it('should render the logout link if username provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -47,7 +49,7 @@ describe('login-logout', () => {
     });
   }));
 
-  it('should render the login link if username not provided', createTestHarness(setup, (harness) => {
+  it('should render the login link if username not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -59,7 +61,7 @@ describe('login-logout', () => {
     });
   }));
 
-  it('should render the login link with the loginUrl provided', createTestHarness(setup, (harness) => {
+  it('should render the login link with the loginUrl provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -72,7 +74,7 @@ describe('login-logout', () => {
     });
   }));
 
-  it('should render the logout link with the logoutUrl provided', createTestHarness(setup, (harness) => {
+  it('should render the logout link with the logoutUrl provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -86,7 +88,7 @@ describe('login-logout', () => {
     });
   }));
 
-  it('should render the login/logout component with the correct classes', createTestHarness(setup, (harness) => {
+  it('should render the login/logout component with the correct classes', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',

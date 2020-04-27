@@ -1,12 +1,14 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewFeatures',
-  templateType: 'section',
+  component: {
+    name: 'viewFeatures',
+    path: 'sections/view-features/macro.njk',
+  },
 };
 
 describe('view-features', () => {
-  it('should render the title of the features section', createTestHarness(setup, (harness) => {
+  it('should render the title of the features section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {},
@@ -18,7 +20,7 @@ describe('view-features', () => {
     });
   }));
 
-  it('should not render the features section when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the features section when not provided', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -27,7 +29,7 @@ describe('view-features', () => {
   }));
 
   describe('when there are answers provided for the questions', () => {
-    it('should render the listings', createTestHarness(setup, (harness) => {
+    it('should render the listings', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {
@@ -51,7 +53,7 @@ describe('view-features', () => {
   });
 
   describe('when there are no answers provided for the questions', () => {
-    it('should not render the listings', createTestHarness(setup, (harness) => {
+    it('should not render the listings', componentTester(setup, (harness) => {
       const context = {
         params: {
           section: {

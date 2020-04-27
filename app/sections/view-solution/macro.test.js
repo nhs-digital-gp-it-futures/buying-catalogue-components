@@ -1,12 +1,14 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSolution',
-  templateType: 'section',
+  component: {
+    name: 'viewSolution',
+    path: 'sections/view-solution/macro.njk',
+  },
 };
 
 describe('viewSolution component', () => {
-  it('should render the solutionHeader component', createTestHarness(setup, (harness) => {
+  it('should render the solutionHeader component', componentTester(setup, (harness) => {
     const context = {
       params: {
         solutionHeader: {
@@ -25,7 +27,7 @@ describe('viewSolution component', () => {
     });
   }));
 
-  it('should render the solutions-description section when provided', createTestHarness(setup, (harness) => {
+  it('should render the solutions-description section when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         sections: {
@@ -39,7 +41,7 @@ describe('viewSolution component', () => {
     });
   }));
 
-  it('should render the features section when provided', createTestHarness(setup, (harness) => {
+  it('should render the features section when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         sections: {
@@ -54,7 +56,7 @@ describe('viewSolution component', () => {
   }));
 
   describe('integrations', () => {
-    it('should render the integrations section if link is provided', createTestHarness(setup, (harness) => {
+    it('should render the integrations section if link is provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           sections: {
@@ -73,7 +75,7 @@ describe('viewSolution component', () => {
       });
     }));
 
-    it('should render the integrations section document-link is provided', createTestHarness(setup, (harness) => {
+    it('should render the integrations section document-link is provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           sections: {
@@ -93,7 +95,7 @@ describe('viewSolution component', () => {
     }));
   });
 
-  it('should render the client application types section when provided', createTestHarness(setup, (harness) => {
+  it('should render the client application types section when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         sections: {
@@ -107,7 +109,7 @@ describe('viewSolution component', () => {
     });
   }));
 
-  it('should render the hosting types section when one of the sections is provided', createTestHarness(setup, (harness) => {
+  it('should render the hosting types section when one of the sections is provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         sections: {
@@ -121,7 +123,7 @@ describe('viewSolution component', () => {
     });
   }));
 
-  it('should render the capabilities section when provided', createTestHarness(setup, (harness) => {
+  it('should render the capabilities section when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         sections: {
@@ -144,7 +146,7 @@ describe('viewSolution component', () => {
     });
   }));
 
-  it('should render the learn-more section when provided', createTestHarness(setup, (harness) => {
+  it('should render the learn-more section when provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         sections: {
@@ -162,7 +164,7 @@ describe('viewSolution component', () => {
     });
   }));
 
-  it('should render the back to top link', createTestHarness(setup, (harness) => {
+  it('should render the back to top link', componentTester(setup, (harness) => {
     const context = {
       params: {
         sections: {},

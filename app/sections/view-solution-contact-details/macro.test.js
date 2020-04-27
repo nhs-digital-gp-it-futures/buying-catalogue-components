@@ -1,12 +1,14 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSolutionContactDetails',
-  templateType: 'section',
+  component: {
+    name: 'viewSolutionContactDetails',
+    path: 'sections/view-solution-contact-details/macro.njk',
+  },
 };
 
 describe('view-solution-contact-details', () => {
-  it('should render the title of the section', createTestHarness(setup, (harness) => {
+  it('should render the title of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {},
@@ -18,7 +20,7 @@ describe('view-solution-contact-details', () => {
     });
   }));
 
-  it('should not render the solution-contact-details section when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the solution-contact-details section when not provided', componentTester(setup, (harness) => {
     const context = {
     };
 
@@ -27,7 +29,7 @@ describe('view-solution-contact-details', () => {
     });
   }));
 
-  it('should render the contact 1 details', createTestHarness(setup, (harness) => {
+  it('should render the contact 1 details', componentTester(setup, (harness) => {
     const contact1 = {
       'contact-name': 'jim jones',
       'department-name': 'a contact dept',
@@ -54,7 +56,7 @@ describe('view-solution-contact-details', () => {
     });
   }));
 
-  it('should render the contact 2 details', createTestHarness(setup, (harness) => {
+  it('should render the contact 2 details', componentTester(setup, (harness) => {
     const contact2 = {
       'contact-name': 'jim jones jr',
       'department-name': 'a second contact dept',

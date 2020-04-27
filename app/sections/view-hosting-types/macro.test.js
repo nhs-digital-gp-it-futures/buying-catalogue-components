@@ -1,8 +1,10 @@
-import { createTestHarness } from '../../testUtils/testHarness';
+import { componentTester } from '../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewHostingTypes',
-  templateType: 'section',
+  component: {
+    name: 'viewHostingTypes',
+    path: 'sections/view-hosting-types/macro.njk',
+  },
 };
 
 const context = {
@@ -12,7 +14,7 @@ const context = {
 };
 
 describe('view-hosting-types', () => {
-  it('should render the title of the section if the public cloud section is provided', createTestHarness(setup, (harness) => {
+  it('should render the title of the section if the public cloud section is provided', componentTester(setup, (harness) => {
     const modifiedContext = { ...context };
     modifiedContext.params.sections = { 'hosting-type-public-cloud': {} };
     harness.request(modifiedContext, ($) => {
@@ -20,7 +22,7 @@ describe('view-hosting-types', () => {
     });
   }));
 
-  it('should render the title of the section if the private section is provided', createTestHarness(setup, (harness) => {
+  it('should render the title of the section if the private section is provided', componentTester(setup, (harness) => {
     const modifiedContext = { ...context };
     modifiedContext.params.sections = { 'hosting-type-private-cloud': {} };
 
@@ -29,7 +31,7 @@ describe('view-hosting-types', () => {
     });
   }));
 
-  it('should render the title of the section if the hybrid section is provided', createTestHarness(setup, (harness) => {
+  it('should render the title of the section if the hybrid section is provided', componentTester(setup, (harness) => {
     const modifiedContext = { ...context };
     modifiedContext.params.sections = { 'hosting-type-hybrid': {} };
 
@@ -38,7 +40,7 @@ describe('view-hosting-types', () => {
     });
   }));
 
-  it('should render the title of the section if the on-premise section is provided', createTestHarness(setup, (harness) => {
+  it('should render the title of the section if the on-premise section is provided', componentTester(setup, (harness) => {
     const modifiedContext = { ...context };
     modifiedContext.params.sections = { 'hosting-type-on-premise': {} };
 
@@ -47,7 +49,7 @@ describe('view-hosting-types', () => {
     });
   }));
 
-  it('should not render the hosting-types section when none of the hosting sections are provided', createTestHarness(setup, (harness) => {
+  it('should not render the hosting-types section when none of the hosting sections are provided', componentTester(setup, (harness) => {
     const modifiedContext = { ...context };
     modifiedContext.params.sections = {};
 
@@ -57,7 +59,7 @@ describe('view-hosting-types', () => {
   }));
 
   describe('when a sub section exists for a hosting type', () => {
-    it('should render the public cloud hosting type', createTestHarness(setup, (harness) => {
+    it('should render the public cloud hosting type', componentTester(setup, (harness) => {
       const modifiedContext = { ...context };
       modifiedContext.params.sections = { 'hosting-type-public-cloud': {} };
       harness.request(modifiedContext, ($) => {
@@ -69,7 +71,7 @@ describe('view-hosting-types', () => {
       });
     }));
 
-    it('should render the private cloud hosting type', createTestHarness(setup, (harness) => {
+    it('should render the private cloud hosting type', componentTester(setup, (harness) => {
       const modifiedContext = { ...context };
       modifiedContext.params.sections = { 'hosting-type-private-cloud': {} };
 
@@ -82,7 +84,7 @@ describe('view-hosting-types', () => {
       });
     }));
 
-    it('should render the hybrid hosting type', createTestHarness(setup, (harness) => {
+    it('should render the hybrid hosting type', componentTester(setup, (harness) => {
       const modifiedContext = { ...context };
       modifiedContext.params.sections = { 'hosting-type-hybrid': {} };
 
@@ -95,7 +97,7 @@ describe('view-hosting-types', () => {
       });
     }));
 
-    it('should render the on premise hosting type', createTestHarness(setup, (harness) => {
+    it('should render the on premise hosting type', componentTester(setup, (harness) => {
       const modifiedContext = { ...context };
       modifiedContext.params.sections = { 'hosting-type-on-premise': {} };
 
@@ -121,28 +123,28 @@ describe('view-hosting-types', () => {
       };
     });
 
-    it('should not render the public cloud hosting type', createTestHarness(setup, (harness) => {
+    it('should not render the public cloud hosting type', componentTester(setup, (harness) => {
       harness.request(modifiedContext, ($) => {
         const publicCloudExpandableSection = $('[data-test-id="view-section-hosting-type-public-cloud"]');
         expect(publicCloudExpandableSection.length).toEqual(0);
       });
     }));
 
-    it('should not render the private cloud hosting type', createTestHarness(setup, (harness) => {
+    it('should not render the private cloud hosting type', componentTester(setup, (harness) => {
       harness.request(modifiedContext, ($) => {
         const privateCloudExpandableSection = $('[data-test-id="view-section-hosting-type-private-cloud"]');
         expect(privateCloudExpandableSection.length).toEqual(0);
       });
     }));
 
-    it('should not render the hybrid hosting type', createTestHarness(setup, (harness) => {
+    it('should not render the hybrid hosting type', componentTester(setup, (harness) => {
       harness.request(modifiedContext, ($) => {
         const hybridExpandableSection = $('[data-test-id="view-section-hosting-type-hybrid"]');
         expect(hybridExpandableSection.length).toEqual(0);
       });
     }));
 
-    it('should not render the on premise hosting type', createTestHarness(setup, (harness) => {
+    it('should not render the on premise hosting type', componentTester(setup, (harness) => {
       harness.request(modifiedContext, ($) => {
         const onPremiseExpandableSection = $('[data-test-id="view-section-hosting-type-on-premise"]');
         expect(onPremiseExpandableSection.length).toEqual(0);

@@ -1,13 +1,14 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'backToTop',
-  templateType: 'component',
-  componentType: 'general',
+  component: {
+    name: 'backToTop',
+    path: 'components/general/components/back-to-top/macro.njk',
+  },
 };
 
 describe('back-to-top', () => {
-  it('should render the back to top component with the correct data-test-id', createTestHarness(setup, (harness) => {
+  it('should render the back to top component with the correct data-test-id', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'back-to-top',
@@ -19,7 +20,7 @@ describe('back-to-top', () => {
     });
   }));
 
-  it('should render the back to top component with the text provided', createTestHarness(setup, (harness) => {
+  it('should render the back to top component with the text provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'back-to-top',
@@ -32,7 +33,7 @@ describe('back-to-top', () => {
     });
   }));
 
-  it('should render the back to top component with the default text if none provided', createTestHarness(setup, (harness) => {
+  it('should render the back to top component with the default text if none provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'back-to-top',
@@ -44,7 +45,7 @@ describe('back-to-top', () => {
     });
   }));
 
-  it('should render the back to top component with the correct anchor link', createTestHarness(setup, (harness) => {
+  it('should render the back to top component with the correct anchor link', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'back-to-top',
@@ -56,7 +57,7 @@ describe('back-to-top', () => {
     });
   }));
 
-  it('should render the back to top component svg', createTestHarness(setup, (harness) => {
+  it('should render the back to top component svg', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'back-to-top',
@@ -68,7 +69,7 @@ describe('back-to-top', () => {
     });
   }));
 
-  it('should render the back to top component with the correct classes', createTestHarness(setup, (harness) => {
+  it('should render the back to top component with the correct classes', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'back-to-top',

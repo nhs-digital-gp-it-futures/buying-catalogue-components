@@ -1,14 +1,15 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewEpics',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewEpics',
+    path: 'components/view/components/view-epics/macro.njk',
+  },
 };
 
 describe('view-epics', () => {
   describe('for must epics', () => {
-    it('should render the tag if data provided', createTestHarness(setup, (harness) => {
+    it('should render the tag if data provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -36,7 +37,7 @@ describe('view-epics', () => {
       });
     }));
 
-    it('should render the data if provided', createTestHarness(setup, (harness) => {
+    it('should render the data if provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -72,7 +73,7 @@ describe('view-epics', () => {
       });
     }));
 
-    it('should not render the data if not provided', createTestHarness(setup, (harness) => {
+    it('should not render the data if not provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -87,7 +88,7 @@ describe('view-epics', () => {
     }));
 
     describe('with met type', () => {
-      it('should render the viewEpicList component when provided with epics that are must and met', createTestHarness(setup, (harness) => {
+      it('should render the viewEpicList component when provided with epics that are must and met', componentTester(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -113,7 +114,7 @@ describe('view-epics', () => {
         });
       }));
 
-      it('should not render the viewEpicList component when not provided with epics that are must and met', createTestHarness(setup, (harness) => {
+      it('should not render the viewEpicList component when not provided with epics that are must and met', componentTester(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -132,7 +133,7 @@ describe('view-epics', () => {
     });
 
     describe('with not-met type', () => {
-      it('should render the viewEpicList component when provided with epics that are must and not-met', createTestHarness(setup, (harness) => {
+      it('should render the viewEpicList component when provided with epics that are must and not-met', componentTester(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -158,7 +159,7 @@ describe('view-epics', () => {
         });
       }));
 
-      it('should not render the viewEpicList component when not provided with epics that are must and not-met', createTestHarness(setup, (harness) => {
+      it('should not render the viewEpicList component when not provided with epics that are must and not-met', componentTester(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -178,7 +179,7 @@ describe('view-epics', () => {
   });
 
   describe('for may epics', () => {
-    it('should render the tag if data provided', createTestHarness(setup, (harness) => {
+    it('should render the tag if data provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -206,7 +207,7 @@ describe('view-epics', () => {
       });
     }));
 
-    it('should render the data if provided', createTestHarness(setup, (harness) => {
+    it('should render the data if provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -242,7 +243,7 @@ describe('view-epics', () => {
       });
     }));
 
-    it('should not render the data if not provided', createTestHarness(setup, (harness) => {
+    it('should not render the data if not provided', componentTester(setup, (harness) => {
       const context = {
         params: {
           dataTestId: 'some-data-identifier',
@@ -256,7 +257,7 @@ describe('view-epics', () => {
     }));
 
     describe('with met type', () => {
-      it('should render the viewEpicList component when provided with epics that are may and met', createTestHarness(setup, (harness) => {
+      it('should render the viewEpicList component when provided with epics that are may and met', componentTester(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -282,7 +283,7 @@ describe('view-epics', () => {
         });
       }));
 
-      it('should not render the viewEpicList component when not provided with epics that are may and met', createTestHarness(setup, (harness) => {
+      it('should not render the viewEpicList component when not provided with epics that are may and met', componentTester(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -299,7 +300,7 @@ describe('view-epics', () => {
     });
 
     describe('with not-met type', () => {
-      it('should render the viewEpicList component when provided with epics that are may and not-met', createTestHarness(setup, (harness) => {
+      it('should render the viewEpicList component when provided with epics that are may and not-met', componentTester(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -325,7 +326,7 @@ describe('view-epics', () => {
         });
       }));
 
-      it('should not render the viewEpicList component when not provided with epics that are may and not-met', createTestHarness(setup, (harness) => {
+      it('should not render the viewEpicList component when not provided with epics that are may and not-met', componentTester(setup, (harness) => {
         const context = {
           params: {
             dataTestId: 'some-data-identifier',
@@ -342,7 +343,7 @@ describe('view-epics', () => {
     });
   });
 
-  it('should not render the data when not provided', createTestHarness(setup, (harness) => {
+  it('should not render the data when not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',
@@ -354,7 +355,7 @@ describe('view-epics', () => {
     });
   }));
 
-  it('should add classes provided within the params', createTestHarness(setup, (harness) => {
+  it('should add classes provided within the params', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-data-identifier',

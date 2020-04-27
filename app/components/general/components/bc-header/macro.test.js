@@ -1,13 +1,15 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'bcHeader',
-  templateType: 'component',
-  componentType: 'general',
+  component: {
+    name: 'bcHeader',
+    path: 'components/general/components/bc-header/macro.njk',
+  },
 };
 
+
 describe('bc-header', () => {
-  it('should render the header component with the correct data-test-id', createTestHarness(setup, (harness) => {
+  it('should render the header component with the correct data-test-id', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-header',
@@ -19,7 +21,7 @@ describe('bc-header', () => {
     });
   }));
 
-  it('should render the nhs digital svg', createTestHarness(setup, (harness) => {
+  it('should render the nhs digital svg', componentTester(setup, (harness) => {
     const context = {
       params: {},
     };
@@ -29,7 +31,7 @@ describe('bc-header', () => {
     });
   }));
 
-  it('should render the innerComponent if provided', createTestHarness(setup, (harness) => {
+  it('should render the innerComponent if provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-header',
@@ -42,7 +44,7 @@ describe('bc-header', () => {
     });
   }));
 
-  it('should not render the innerComponent if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the innerComponent if not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-header',
@@ -54,7 +56,7 @@ describe('bc-header', () => {
     });
   }));
 
-  it('should render the header component with the correct classes', createTestHarness(setup, (harness) => {
+  it('should render the header component with the correct classes', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-header',

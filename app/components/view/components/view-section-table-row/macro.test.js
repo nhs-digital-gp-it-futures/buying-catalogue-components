@@ -1,13 +1,14 @@
-import { createTestHarness } from '../../../../testUtils/testHarness';
+import { componentTester } from '../../../../testUtils/componentTester';
 
 const setup = {
-  templateName: 'viewSectionTableRow',
-  templateType: 'component',
-  componentType: 'view',
+  component: {
+    name: 'viewSectionTableRow',
+    path: 'components/view/components/view-section-table-row/macro.njk',
+  },
 };
 
 describe('view-section-table-row', () => {
-  it('should render title of the row', createTestHarness(setup, (harness) => {
+  it('should render title of the row', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -22,7 +23,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should not render title of the row when not provided', createTestHarness(setup, (harness) => {
+  it('should not render title of the row when not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -36,7 +37,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should render innerComponent of the value of the row as an inner component', createTestHarness(setup, (harness) => {
+  it('should render innerComponent of the value of the row as an inner component', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -50,7 +51,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should not render the row if inner component is not provided', createTestHarness(setup, (harness) => {
+  it('should not render the row if inner component is not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -62,7 +63,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should render a horizontal row if layout is not provided', createTestHarness(setup, (harness) => {
+  it('should render a horizontal row if layout is not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -75,7 +76,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should render a horizontal row if layout is set to "horizontal"', createTestHarness(setup, (harness) => {
+  it('should render a horizontal row if layout is set to "horizontal"', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -89,7 +90,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should render a vertical row if layout is set to "vertical"', createTestHarness(setup, (harness) => {
+  it('should render a vertical row if layout is set to "vertical"', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -103,7 +104,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should render a vertical row if layout is set to "VERTICAL"', createTestHarness(setup, (harness) => {
+  it('should render a vertical row if layout is set to "VERTICAL"', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -117,7 +118,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should not render component if layout is set to "unknown"', createTestHarness(setup, (harness) => {
+  it('should not render component if layout is set to "unknown"', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',
@@ -131,7 +132,7 @@ describe('view-section-table-row', () => {
     });
   }));
 
-  it('should add classes if classes are provided', createTestHarness(setup, (harness) => {
+  it('should add classes if classes are provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         questionId: 'some-question-id',

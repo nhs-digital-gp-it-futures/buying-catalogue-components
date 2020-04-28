@@ -3,6 +3,10 @@
   "params": {
     "dataTestId": "some-test-identifier",
     "innerComponent": "<span>Inner component</span>",
-    "classes": "example-class"
+    "classes": "example-class",
+    "logoLink": {
+      "href": "/",
+      "ariaLabel": "Buying Catalogue Homepage"
+    }
   }
 }

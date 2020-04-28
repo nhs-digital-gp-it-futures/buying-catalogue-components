@@ -69,4 +69,22 @@ describe('bc-header', () => {
       expect($('header[data-test-id="qa-identifier-header"]').hasClass('extra-class')).toEqual(true);
     });
   }));
+
+  it('should add the correct href and aria-label to the logo link if provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'qa-identifier-header',
+        logoLink: {
+          href: '/',
+          ariaLabel: 'Buying Catalogue Homepage',
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('header[data-test-id="qa-identifier-header"] a').length).toEqual(1);
+      expect($('header[data-test-id="qa-identifier-header"] a').attr('href')).toEqual('/');
+      expect($('header[data-test-id="qa-identifier-header"] a').attr('aria-label')).toEqual('Buying Catalogue Homepage');
+    });
+  }));
 });

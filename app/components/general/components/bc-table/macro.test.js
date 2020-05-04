@@ -75,8 +75,8 @@ describe('table', () => {
       params: {
         ...mockContext.params,
         data: [
-          [{ data: 'Greater Manchester CCG' }, { data: 'X01' }],
-          [{ data: 'Hampshire CCG' }, { data: 'X02' }],
+          [{ data: 'data point 1a' }, { data: 'data point 1b' }],
+          [{ data: 'data point 2a' }, { data: 'data point 2b' }],
         ],
       },
     };

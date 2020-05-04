@@ -1,0 +1,14 @@
+{
+  "componentName": "bcTable",
+  "params": {
+    "columnInfo": [
+      { "data": "Organisation name" },
+      { "data": "ODS code" }
+    ],
+    "data": [
+      [{ "data": "Greater Manchester CCG" }, { "data": "X01" }],
+      [{ "data": "Hampshire CCG" }, { "data": "X02" }]
+    ],
+    "columnClass": "nhsuk-grid-column-one-half"
+  }
+}

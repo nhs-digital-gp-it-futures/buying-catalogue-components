@@ -9,16 +9,16 @@ const setup = {
 
 const mockContext = {
   params: {
-    title: 'Manage organisations and users',
-    description: 'Edit existing account information or add new user to an organisation.',
+    title: 'A title',
+    description: 'A description',
     columnInfo: [
-      { data: 'Organisation name' },
-      { data: 'ODS code' },
+      { data: 'column 1 heading' },
+      { data: 'column 2 heding' },
     ],
     columnClass: 'nhsuk-grid-column-one-half',
     data: [
-      [{ data: 'Greater Manchester CCG' }, { data: 'X01' }],
-      [{ data: 'Hampshire CCG' }, { data: 'X02' }]],
+      [{ data: 'data point 1a' }, { data: 'data point 1b' }],
+      [{ data: 'data point 2a' }, { data: 'data point 2b' }]],
   },
 };
 
@@ -99,12 +99,12 @@ describe('table', () => {
         ...mockContext.params,
         data: [
           [
-            { data: 'Greater Manchester CCG', href: 'organisations/org1' },
-            { data: 'X01', href: 'ods/X01' },
+            { data: 'data point 1a', href: 'data/1a' },
+            { data: 'data point 1b', href: 'data/1b' },
           ],
           [
-            { data: 'Hampshire CCG', href: 'organisations/org2' },
-            { data: 'X02', href: 'ods/X02' },
+            { data: 'data point 2a', href: 'data/2a' },
+            { data: 'data point 2b', href: 'data/2b' },
           ],
         ],
       },

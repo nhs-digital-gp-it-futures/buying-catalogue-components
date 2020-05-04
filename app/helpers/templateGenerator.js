@@ -202,7 +202,7 @@ const generateTemplate = ({
       <h1>${componentName} ${templateType}</h1>
 
       <div>
-        <form method="post" action="/${templateType}/${componentType ? `${componentType}/components/` : ''}${name}" id="try-params" class="nhsuk-u-clear">
+        <form method="post" action="/${templateType}s/${componentType ? `${componentType}/` : ''}${name}" id="try-params" class="nhsuk-u-clear">
           <h3 class="bcc-c-code-title">To use the ${templateType} <button type="submit" form="try-params" class="nhsuk-u-font-size-16 bcc-c-try-button">Try it out</button></h3>
           <div class="bcc-c-code-block">
             {% verbatim %}

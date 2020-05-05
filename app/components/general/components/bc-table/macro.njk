@@ -2,6 +2,7 @@
 {% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
 {% from 'components/input/components/text-field/macro.njk' import textField %}
 {% from 'components/view/components/view-expandable-section/macro.njk' import viewExpandableSection %}
+{% from 'components/checkboxes/macro.njk' import checkboxes %}
 
 {% macro bcTable(params) %}
   <div data-test-id="table">
@@ -34,6 +35,12 @@
                   {{ viewExpandableSection(dataPoint.expandableSection) }}
                 </div>
               {% endif %}
+            </div>
+          {% elif dataPoint.question and dataPoint.question.type == 'checkbox' %}
+            <div data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-left-0 {{params.columnClass}}">
+              {{ checkboxes({
+                items: [dataPoint.question]
+              }) }}
             </div>
           {% else %}
             {{ viewDataText({

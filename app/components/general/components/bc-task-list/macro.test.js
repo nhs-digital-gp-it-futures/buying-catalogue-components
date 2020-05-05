@@ -61,7 +61,6 @@ describe('task list', () => {
       expect($('li[data-test-id="task-1"] a[data-test-id="item-1-description"]').length).toEqual(1);
       expect($('li[data-test-id="task-1"] a[data-test-id="item-1-description"]').text().trim()).toEqual(mockContext.params.taskList[1].items[1].description);
     });
-    // item-{{itemLoop.index0}}-description
   }));
 
   it('should render a div if item in items array has no href', componentTester(setup, (harness) => {

@@ -123,7 +123,7 @@ describe('table', () => {
     });
   }));
 
-  it('should render tag component for columns with tag property', componentTester(setup, (harness) => {
+  it('should render tag component for data with tag property', componentTester(setup, (harness) => {
     const context = {
       params: {
         ...mockContext.params,
@@ -146,4 +146,85 @@ describe('table', () => {
       expect($('[data-test-id="a-tag-id-1"]').hasClass(context.params.data[0][0].tag.classes)).toEqual(true);
     });
   }));
+
+  describe('input', () => {
+    it('should render input component for data when question property of type: input', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          ...mockContext.params,
+          data: [
+            [
+              {
+                question: {
+                  type: 'input',
+                  id: 'some-id',
+                  data: 'The data goes here',
+                },
+              },
+            ],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const input = $('[data-test-id="question-some-id"] input');
+        expect(input.val()).toEqual(context.params.data[0][0].question.data);
+      });
+    }));
+
+    it('should render error in input component for data when question property of type: input and there is error', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          ...mockContext.params,
+          data: [
+            [
+              {
+                question: {
+                  type: 'input',
+                  id: 'some-id',
+                  data: 'The data goes here',
+                  error: { message: 'error message' },
+                },
+              },
+            ],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const inputError = $('[data-test-id="question-some-id"]  .nhsuk-error-message');
+        expect(inputError.text().trim()).toEqual('Error: error message');
+      });
+    }));
+
+    it('should render expandableSection component for data when question has property expandableSection', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          ...mockContext.params,
+          data: [
+            [
+              {
+                question: {
+                  type: 'input',
+                  id: 'some-id',
+                  data: 'The data goes here',
+                },
+                expandableSection: {
+                  dataTestId: 'some-expandableSection-id',
+                  title: 'ExpandableSection title',
+                  innerComponent: 'Some inner component',
+                },
+              },
+            ],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const expandableSection = $('[data-test-id="some-expandableSection-id"]');
+        expect(expandableSection.find('span').text().trim()).toEqual('ExpandableSection title');
+        expect(expandableSection.find('.nhsuk-details__text').text().trim()).toEqual('Some inner component');
+      });
+    }));
+  });
 });

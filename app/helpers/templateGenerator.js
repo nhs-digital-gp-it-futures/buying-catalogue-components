@@ -191,7 +191,7 @@ const generateTemplate = ({
     template: `
       {% extends 'views/includes/layout.njk' %}
       {% from 'components/back-link/macro.njk' import backLink %}
-      {% from '${templateType}s/${componentType ? `${componentType}/components/` : ''}${name}/macro.njk' import ${componentName} %}
+      {% from '${templateType}s/${componentType ? `${componentType}/components/` : '/'}${name}/macro.njk' import ${componentName} %}
 
       {% block body %}
         {{ backLink({

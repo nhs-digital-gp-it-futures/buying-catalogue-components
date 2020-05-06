@@ -1,0 +1,21 @@
+{
+  "componentName": "bcTaskList",
+  "params": {
+    "taskList": [
+      {
+        "taskName": "Task 1",
+        "items": [
+          { "description": "item 1 description", "href": "/item/1", "complete": true },
+          { "description": "item 2 description", "href": "/item/2"  }
+        ]
+      },
+      {
+        "taskName": "Task 2",
+        "items": [
+          { "description": "item 3 description"  },
+          { "description": "item 4 description", "href": "/item/4", "complete": true  }
+          ]
+      }
+    ]
+  }
+}

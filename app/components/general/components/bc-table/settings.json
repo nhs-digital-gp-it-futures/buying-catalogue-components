@@ -2,15 +2,14 @@
   "componentName": "bcTable",
   "params": {
     "columnInfo": [
-      { "data": "Link column" },
-      { "data": "Text column" },
+      { "data": "Text/Link column" },
       { "data": "Tag column" },
-      { "data": "Input column" }
+      { "data": "Input column" },
+      { "data": "Checkbox column" }
     ],
     "data": [
       [
         { "data": "Some text as link", "href": "#" },
-        { "data": "plain text" },
         { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
         {
           "question": {
@@ -23,26 +22,44 @@
             "title": "ExpandableSection title 1",
             "innerComponent": "Some inner text (could be html)"
           }
+        },
+      { 
+        "question": {
+          "type": "checkbox",
+          "id": "someId1",
+          "name": "checkboxName1",
+          "value": "checkBoxValueSentInForm1",
+          "text": "some text here"
         }
+      }
       ],
       [
-        { "data": "Some more text as link", "href": "#" },
-        { "data": "more plain text" },
+        { "data": "some plain text" },
         { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
-        { 
+        {
           "question": {
             "type": "input",
             "id": "someId",
             "data":"The data goes here",
-            "error": {
-              "message": "error message"
-            }
+            "error": { "message": "error message" }
           },
           "expandableSection": {
             "dataTestId": "view-section-some-section-id",
-            "title": "ExpandableSection title 2",
-            "innerComponent": "Another inner text section"
-          }
+            "title": "ExpandableSection title 1",
+            "innerComponent": "Some inner text (could be html)"
+          },
+          "dataTestId": "input-question-id"
+        },
+        { 
+          "question": {
+            "type": "checkbox",
+            "id": "someId2",
+            "name": "checkboxName2",
+            "value": "checkBoxValueSentInForm2",
+            "text": "some other text here",
+            "checked": true
+          },
+          "dataTestId": "checkbox-question-id"
         }
       ]
     ],

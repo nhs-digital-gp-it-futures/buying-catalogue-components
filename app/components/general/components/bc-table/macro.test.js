@@ -227,4 +227,37 @@ describe('table', () => {
       });
     }));
   });
+
+  it('should render checkboxes component for data when question property of type: checkbox', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        ...mockContext.params,
+        data: [
+          [
+            {
+              question: {
+                type: 'checkbox',
+                id: 'someId',
+                name: 'checkboxName',
+                value: 'checkBoxValueSentInForm',
+                text: 'some other text here',
+                checked: true,
+              },
+              dataTestId: 'checkbox-question-id',
+            },
+          ],
+        ],
+      },
+    };
+
+    harness.request(context, ($) => {
+      const checkboxInput = $('[data-test-id="checkbox-question-id"] input');
+      expect(checkboxInput.length).toEqual(1);
+      expect(checkboxInput.attr('id')).toEqual('someId');
+      expect(checkboxInput.attr('name')).toEqual('checkboxName');
+      expect(checkboxInput.attr('type')).toEqual('checkbox');
+      expect(checkboxInput.attr('checked')).toEqual('checked');
+      expect(checkboxInput.attr('value')).toEqual('checkBoxValueSentInForm');
+    });
+  }));
 });

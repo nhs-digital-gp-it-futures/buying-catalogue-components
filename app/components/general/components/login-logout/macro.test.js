@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('login-logout', () => {
   it('should render the login/logout component with the correct data-test-id', componentTester(setup, (harness) => {
     const context = {
@@ -25,14 +24,32 @@ describe('login-logout', () => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
-        username: 'NHS Digital',
+        username: 'John Smith',
       },
     };
 
     harness.request(context, ($) => {
-      const text = $('div[data-test-id="qa-identifier-login-logout"] span').text().trim().split(/\s\s+/);
-      expect(text[0]).toEqual('Logged in as: NHS Digital');
-      expect(text[1]).toEqual('Log out');
+      const loggedIn = $('span[data-test-id="logged-in"]');
+      const loggedInText = loggedIn.find('[data-test-id="logged-in-text"]').text().trim();
+
+      expect(loggedInText).toEqual('Logged in as: John Smith');
+    });
+  }));
+
+  it('should render the logged in text with organisation if username and organisation provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'qa-identifier-login-logout',
+        username: 'John Smith',
+        organisation: 'NHS Digital',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const loggedIn = $('span[data-test-id="logged-in"]');
+      const loggedInText = loggedIn.find('[data-test-id="logged-in-text"]').text().trim();
+
+      expect(loggedInText).toEqual('Logged in as: John Smith for NHS Digital');
     });
   }));
 
@@ -40,16 +57,21 @@ describe('login-logout', () => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
-        username: 'NHS Digital',
+        username: 'John Smith',
       },
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="qa-identifier-login-logout"] a').text().trim()).toEqual('Log out');
+      const loggedIn = $('span[data-test-id="logged-in"]');
+      const loggedOut = $('span[data-test-id="logged-out"]');
+      const logoutLink = loggedIn.find('[data-test-id="logout-link"]');
+
+      expect(loggedOut.length).toEqual(0);
+      expect(logoutLink.text().trim()).toEqual('Log out');
     });
   }));
 
-  it('should render the login link if username not provided', componentTester(setup, (harness) => {
+  it('should render the login link if username provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
@@ -57,7 +79,12 @@ describe('login-logout', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="qa-identifier-login-logout"] a').text().trim()).toEqual('Log in');
+      const loggedIn = $('span[data-test-id="logged-in"]');
+      const loggedOut = $('span[data-test-id="logged-out"]');
+      const loginLink = loggedOut.find('[data-test-id="login-link"]');
+
+      expect(loggedIn.length).toEqual(0);
+      expect(loginLink.text().trim()).toEqual('Log in');
     });
   }));
 
@@ -70,7 +97,12 @@ describe('login-logout', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="qa-identifier-login-logout"] a').attr('href')).toEqual('/some-login-url');
+      const loggedIn = $('span[data-test-id="logged-in"]');
+      const loggedOut = $('span[data-test-id="logged-out"]');
+      const loginLink = loggedOut.find('[data-test-id="login-link"]');
+
+      expect(loggedIn.length).toEqual(0);
+      expect(loginLink.attr('href')).toEqual('/some-login-url');
     });
   }));
 
@@ -78,13 +110,18 @@ describe('login-logout', () => {
     const context = {
       params: {
         dataTestId: 'qa-identifier-login-logout',
-        username: 'NHS Digital',
+        username: 'John Smith',
         logoutUrl: '/some-logout-url',
       },
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="qa-identifier-login-logout"] a').attr('href')).toEqual('/some-logout-url');
+      const loggedIn = $('span[data-test-id="logged-in"]');
+      const loggedOut = $('span[data-test-id="logged-out"]');
+      const logoutLink = loggedIn.find('[data-test-id="logout-link"]');
+
+      expect(loggedOut.length).toEqual(0);
+      expect(logoutLink.attr('href')).toEqual('/some-logout-url');
     });
   }));
 

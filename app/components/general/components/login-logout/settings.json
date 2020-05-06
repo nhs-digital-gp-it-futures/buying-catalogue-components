@@ -2,7 +2,8 @@
   "componentName": "loginLogout",
   "params": {
     "dataTestId": "some-test-identifier",
-    "username": "NHS Digital",
+    "username": "John Smith",
+    "organisation": "NHS Digital",
     "classes": "example-class"
   }
 }

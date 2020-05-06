@@ -1,9 +1,9 @@
 .bc-grid-column-one-fifth {
   box-sizing: border-box;
-  width: 100%;
   padding: 0 15px;
+  width: 100%;
   @media (min-width: 40.0625em) {
-      width: 20%;
-      float: left;
+    float: left;
+    width: 20%;
   };
 }

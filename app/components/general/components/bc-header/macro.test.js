@@ -9,6 +9,30 @@ const setup = {
 
 
 describe('bc-header', () => {
+  it('should render the betaBanner component if showBetaBanner is set', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        showBetaBanner: true,
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('span[data-test-id="beta-banner"]').length).toEqual(1);
+      expect($('div[data-test-id="beta-tag"]').length).toEqual(1);
+      expect($('div[data-test-id="beta-banner-text"]').length).toEqual(1);
+    });
+  }));
+
+  it('should not render the betaBanner component if showBetaBanner is not set', componentTester(setup, (harness) => {
+    const context = {};
+
+    harness.request(context, ($) => {
+      expect($('span[data-test-id="beta-banner"]').length).toEqual(0);
+      expect($('div[data-test-id="beta-tag"]').length).toEqual(0);
+      expect($('div[data-test-id="beta-banner-text"]').length).toEqual(0);
+    });
+  }));
+
   it('should render the header component with the correct data-test-id', componentTester(setup, (harness) => {
     const context = {
       params: {

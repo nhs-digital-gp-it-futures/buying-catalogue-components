@@ -20,12 +20,16 @@ describe('beta-banner', () => {
   }));
 
   it('should render the betaBanner text', componentTester(setup, (harness) => {
-    const context = {};
+    const context = {
+      params: {
+        blobstoreHost: 'blob/store/host',
+      },
+    };
 
     harness.request(context, ($) => {
       expect($('div[data-test-id="beta-banner-text"]').text().trim()).toEqual('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
       expect($('div[data-test-id="beta-banner-text"] a').text().trim()).toEqual('downloading this PDF');
-      expect($('div[data-test-id="beta-banner-text"] a').attr('href')).toEqual('/$web/content/terms-of-use.pdf');
+      expect($('div[data-test-id="beta-banner-text"] a').attr('href')).toEqual(`${context.params.blobstoreHost}/$web/content/terms-of-use.pdf`);
     });
   }));
 });

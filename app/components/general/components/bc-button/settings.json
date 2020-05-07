@@ -1,0 +1,10 @@
+{
+  "componentName": "bcButton",
+  "params": {
+    "dataTestId": "some-test-identifier",
+    "text": "Name of button",
+    "classes": "another-class",
+    "href": "/some-link",
+    "disabled": "true"
+  }
+}

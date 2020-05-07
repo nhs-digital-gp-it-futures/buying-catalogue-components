@@ -1,17 +1,23 @@
 {% from 'components/button/macro.njk' import button %}
 
 {% macro bcButton(params) %}
+  <div data-test-id="{{ params.dataTestId }}">
   {% if params.href %}
+    <div data-test-id="bc-button">
       {{ button({
         text: params.text,
         classes: params.classes,
         href: params.href
       }) }}
+    </div>
   {% else %}
+    <div data-test-id="bc-button-disabled">
       {{ button({
         text: params.text,
         classes: params.classes,
         disabled: true
       }) }}
+    </div>
   {% endif %}
+  </div>
 {% endmacro %}

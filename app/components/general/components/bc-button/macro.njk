@@ -1,0 +1,17 @@
+{% from 'components/button/macro.njk' import button %}
+
+{% macro bcButton(params) %}
+  {% if params.href %}
+      {{ button({
+        text: params.text,
+        classes: params.classes,
+        href: params.href
+      }) }}
+  {% else %}
+      {{ button({
+        text: params.text,
+        classes: params.classes,
+        disabled: true
+      }) }}
+  {% endif %}
+{% endmacro %}

@@ -61,10 +61,11 @@ describe('bcButton', () => {
     });
   }));
 
-  it('should not render the button as disabled if "disabled" flag is not provided', componentTester(setup, (harness) => {
+  it('should not render the button as disabled if "enabled" flag is provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-button-identifier',
+        enabled: true,
       },
     };
 
@@ -73,11 +74,10 @@ describe('bcButton', () => {
     });
   }));
 
-  it('should render the button as disabled if "disabled" flag is provided', componentTester(setup, (harness) => {
+  it('should render the button as disabled if "enabled" flag is not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-button-identifier',
-        disabled: true,
       },
     };
 

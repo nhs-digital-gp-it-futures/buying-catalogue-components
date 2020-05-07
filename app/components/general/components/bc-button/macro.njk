@@ -2,8 +2,9 @@
 
 {% macro bcButton(params) %}
 
-  {% if params.disabled and params.disabled === "true" or params.disabled === true %}
-    {% set disableButton = true %}
+  {% set disableButton = true %}
+  {% if params.enabled and params.enabled === "true" or params.enabled === true %}
+    {% set disableButton = false %}
   {% endif %}
 
   <div data-test-id="{{ params.dataTestId }}">

@@ -21,6 +21,12 @@
   }
 }
 
+.bc-u-float-right {
+  @media (min-width: 641px) {
+    float: right;
+  }
+}
+
 .bc-u-max-width-full {
   max-width: 100%;
 }

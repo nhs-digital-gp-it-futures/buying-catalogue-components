@@ -7,7 +7,12 @@
     {% set disableButton = false %}
   {% endif %}
 
-  <div data-test-id="{{ params.dataTestId }}" aria-label="{{ params.altText }}">
+  {% set altText = params.text %}
+  {% if params.altText %}
+    {% set altText = params.altText %}
+  {% endif %}
+
+  <div data-test-id="{{ params.dataTestId }}" aria-label="{{ altText }}">
     {{ button({
       text: params.text,
       classes: params.classes,

@@ -4,7 +4,14 @@ A library of components specifically for Buying Catalogue
 # Run
 `npm run start`
 
-# To publish to npm
+# To locally link this library
+Steps:
+1. Go to buying-catalogue-components root and run `npm link`
+2. Go to another app e.g. PB and run `npm link buying-catalogue-components`
 
-* `npm login`
-* `npm publish`
+# To locally unlink this library
+
+Steps:
+1. Go to the other app e.g. PB and run `npm unlink --no-save buying-catalogue-components`
+2. Still in that app run `npm i`
+3. Go to buying-catalogue-components root and run `npm unlink`

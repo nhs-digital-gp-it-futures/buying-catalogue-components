@@ -2,9 +2,9 @@
 
 {% macro bcButton(params) %}
 
-  {% set disableButton = true %}
-  {% if params.enabled and params.enabled === "true" or params.enabled === true %}
-    {% set disableButton = false %}
+  {% set disableButton = false %}
+  {% if params.disabled and params.disabled === "true" or params.disabled === true %}
+    {% set disableButton = true %}
   {% endif %}
 
   {% set altText = params.text %}

@@ -33,6 +33,19 @@ describe('bcButton', () => {
     });
   }));
 
+  it('should render with the button text provided as an aria-label if altText is not provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'some-button-identifier',
+        text: 'some button text',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="some-button-identifier"]').attr('aria-label')).toEqual('some button text');
+    });
+  }));
+
   it('should render the name of the button with the text provided', componentTester(setup, (harness) => {
     const context = {
       params: {

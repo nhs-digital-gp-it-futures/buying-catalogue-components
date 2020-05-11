@@ -6,6 +6,6 @@
     "altText": "some alt text",
     "classes": "another-class",
     "href": "/some-link",
-    "enabled": "false"
+    "disabled": "false"
   }
 }

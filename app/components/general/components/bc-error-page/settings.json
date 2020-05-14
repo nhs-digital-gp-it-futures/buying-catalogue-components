@@ -1,0 +1,14 @@
+{
+  "componentName": "bcErrorPage",
+  "params": {
+    "dataTestId": "some-test-identifier",
+    "backLink": {
+      "href": "/",
+      "text": "Back to homepage"
+    },
+    "error": {
+      "title": "Error",
+      "description": "Something went wrong"
+    }
+  }
+}

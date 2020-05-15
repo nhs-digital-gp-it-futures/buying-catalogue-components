@@ -75,7 +75,6 @@ describe('textarea', () => {
     });
   }));
 
-
   it('should render the text area with the data populated', componentTester(setup, (harness) => {
     const context = {
       params: {

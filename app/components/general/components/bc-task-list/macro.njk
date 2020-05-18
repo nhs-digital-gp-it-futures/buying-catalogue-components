@@ -13,9 +13,9 @@
             <li data-test-id="task-{{taskLoop.index0}}-item-{{itemLoop.index0}}" class="bc-c-task-list__item nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-3">
               <span class="bc-c-task-list__task-name">
                 {% if item.href %}
-                  <a data-test-id="item-{{itemLoop.index0}}-description" href="{{item.href}}">{{item.description}}</a>
+                  <a data-test-id="task-{{taskLoop.index0}}-item-{{itemLoop.index0}}-description" href="{{item.href}}">{{item.description}}</a>
                 {% else %}
-                  <div data-test-id="item-{{itemLoop.index0}}-description">{{item.description}}</div>
+                  <div data-test-id="task-{{taskLoop.index0}}-item-{{itemLoop.index0}}-description">{{item.description}}</div>
                 {% endif %}
               </span>
               {% if item.complete %}

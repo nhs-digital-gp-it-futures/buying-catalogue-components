@@ -54,23 +54,23 @@ describe('task list', () => {
 
   it('should render a link if item in items array has href', componentTester(setup, (harness) => {
     harness.request(mockContext, ($) => {
-      expect($('li[data-test-id="task-0"] a[data-test-id="item-0-description"]').length).toEqual(1);
-      expect($('li[data-test-id="task-0"] a[data-test-id="item-0-description"]').text().trim()).toEqual(mockContext.params.taskList[0].items[0].description);
-      expect($('li[data-test-id="task-0"] a[data-test-id="item-1-description"]').length).toEqual(0);
-      expect($('li[data-test-id="task-1"] a[data-test-id="item-0-description"]').length).toEqual(0);
-      expect($('li[data-test-id="task-1"] a[data-test-id="item-1-description"]').length).toEqual(1);
-      expect($('li[data-test-id="task-1"] a[data-test-id="item-1-description"]').text().trim()).toEqual(mockContext.params.taskList[1].items[1].description);
+      expect($('li[data-test-id="task-0"] a[data-test-id="task-0-item-0-description"]').length).toEqual(1);
+      expect($('li[data-test-id="task-0"] a[data-test-id="task-0-item-0-description"]').text().trim()).toEqual(mockContext.params.taskList[0].items[0].description);
+      expect($('li[data-test-id="task-0"] a[data-test-id="task-0-item-1-description"]').length).toEqual(0);
+      expect($('li[data-test-id="task-1"] a[data-test-id="task-1-item-0-description"]').length).toEqual(0);
+      expect($('li[data-test-id="task-1"] a[data-test-id="task-1-item-1-description"]').length).toEqual(1);
+      expect($('li[data-test-id="task-1"] a[data-test-id="task-1-item-1-description"]').text().trim()).toEqual(mockContext.params.taskList[1].items[1].description);
     });
   }));
 
   it('should render a div if item in items array has no href', componentTester(setup, (harness) => {
     harness.request(mockContext, ($) => {
-      expect($('li[data-test-id="task-0"] div[data-test-id="item-0-description"]').length).toEqual(0);
-      expect($('li[data-test-id="task-0"] div[data-test-id="item-1-description"]').length).toEqual(1);
-      expect($('li[data-test-id="task-0"] div[data-test-id="item-1-description"]').text().trim()).toEqual(mockContext.params.taskList[0].items[1].description);
-      expect($('li[data-test-id="task-1"] div[data-test-id="item-0-description"]').length).toEqual(1);
-      expect($('li[data-test-id="task-1"] div[data-test-id="item-0-description"]').text().trim()).toEqual(mockContext.params.taskList[1].items[0].description);
-      expect($('li[data-test-id="task-1"] div[data-test-id="item-1-description"]').length).toEqual(0);
+      expect($('li[data-test-id="task-0"] div[data-test-id="task-0-item-0-description"]').length).toEqual(0);
+      expect($('li[data-test-id="task-0"] div[data-test-id="task-0-item-1-description"]').length).toEqual(1);
+      expect($('li[data-test-id="task-0"] div[data-test-id="task-0-item-1-description"]').text().trim()).toEqual(mockContext.params.taskList[0].items[1].description);
+      expect($('li[data-test-id="task-1"] div[data-test-id="task-1-item-0-description"]').length).toEqual(1);
+      expect($('li[data-test-id="task-1"] div[data-test-id="task-1-item-0-description"]').text().trim()).toEqual(mockContext.params.taskList[1].items[0].description);
+      expect($('li[data-test-id="task-1"] div[data-test-id="task-1-item-1-description"]').length).toEqual(0);
     });
   }));
 

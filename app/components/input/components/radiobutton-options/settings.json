@@ -1,0 +1,25 @@
+{
+  "componentName": "radiobuttonOptions",
+  "params": {
+    "isMultiQuestion": true,
+    "question": {
+      "id": "question-id",
+      "mainAdvice": "Some main advice",
+      "additionalAdvice": "Some additional advice",
+      "options": [
+        {
+          "value": "first-option",
+          "text": "First Option"
+        },
+        {
+          "value": "second-option",
+          "text": "Second Option",
+          "checked": true
+        }
+      ],
+      "error": {
+        "message": "The error message"
+      }
+    }
+  }
+}

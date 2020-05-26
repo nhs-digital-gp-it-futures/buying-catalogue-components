@@ -93,6 +93,7 @@ describe('dateField', () => {
           mainAdvice: 'Some really important main advice',
           additionalAdvice: 'Some not so important additional advice',
           error: {
+            fields: ['day'],
             message: 'Some error message',
           },
         },
@@ -105,6 +106,96 @@ describe('dateField', () => {
 
       expect(inputError.length).toEqual(1);
       expect(inputError.text().trim()).toEqual('Error: Some error message');
+    });
+  }));
+
+  it('should add error class to day field if "day" is in the error fields array', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        question: {
+          id: 'fieldId',
+          mainAdvice: 'Some really important main advice',
+          additionalAdvice: 'Some not so important additional advice',
+          error: {
+            fields: ['day'],
+            message: 'Some error message',
+          },
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const dayInput = $('#fieldId-day');
+      expect(dayInput.length).toEqual(1);
+      expect(dayInput.hasClass('nhsuk-input--error')).toBeTruthy();
+
+      const monthInput = $('#fieldId-month');
+      expect(monthInput.length).toEqual(1);
+      expect(monthInput.hasClass('nhsuk-input--error')).toBeFalsy();
+
+      const yearInput = $('#fieldId-year');
+      expect(yearInput.length).toEqual(1);
+      expect(yearInput.hasClass('nhsuk-input--error')).toBeFalsy();
+    });
+  }));
+
+  it('should add error class to month field if "month" is in the error fields array', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        question: {
+          id: 'fieldId',
+          mainAdvice: 'Some really important main advice',
+          additionalAdvice: 'Some not so important additional advice',
+          error: {
+            fields: ['month'],
+            message: 'Some error message',
+          },
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const dayInput = $('#fieldId-day');
+      expect(dayInput.length).toEqual(1);
+      expect(dayInput.hasClass('nhsuk-input--error')).toBeFalsy();
+
+      const monthInput = $('#fieldId-month');
+      expect(monthInput.length).toEqual(1);
+      expect(monthInput.hasClass('nhsuk-input--error')).toBeTruthy();
+
+      const yearInput = $('#fieldId-year');
+      expect(yearInput.length).toEqual(1);
+      expect(yearInput.hasClass('nhsuk-input--error')).toBeFalsy();
+    });
+  }));
+
+  it('should add error class to year field if "year" is in the error fields array', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        question: {
+          id: 'fieldId',
+          mainAdvice: 'Some really important main advice',
+          additionalAdvice: 'Some not so important additional advice',
+          error: {
+            fields: ['year'],
+            message: 'Some error message',
+          },
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const dayInput = $('#fieldId-day');
+      expect(dayInput.length).toEqual(1);
+      expect(dayInput.hasClass('nhsuk-input--error')).toBeFalsy();
+
+      const monthInput = $('#fieldId-month');
+      expect(monthInput.length).toEqual(1);
+      expect(monthInput.hasClass('nhsuk-input--error')).toBeFalsy();
+
+      const yearInput = $('#fieldId-year');
+      expect(yearInput.length).toEqual(1);
+      expect(yearInput.hasClass('nhsuk-input--error')).toBeTruthy();
     });
   }));
 

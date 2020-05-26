@@ -13,6 +13,7 @@
       },
       "footerAdvice": "Some footer advice",
       "error": {
+        "fields": ["year"],
         "message": "The error message"
       }
     }

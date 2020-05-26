@@ -18,41 +18,47 @@
     } %}
   {% endif %}
 
-  {% set items = [
-    {
+  {% if params.question.error and "day" in params.question.error.fields %}
+    {% set day = {
+      "name": "day",
+      "classes": "nhsuk-input--width-2 nhsuk-input--error",
+      "value": params.question.data.day
+    } %}
+  {% else %}
+    {% set day = {
       "name": "day",
       "classes": "nhsuk-input--width-2",
       "value": params.question.data.day
-    },
-    {
-      "name": "month",
-      "classes": "nhsuk-input--width-2",
-      "value": params.question.data.month
-    },
-    {
-      "name": "year",
-      "classes": "nhsuk-input--width-4",
-      "value": params.question.data.year
-    }
-  ] %}
+    } %}
+  {% endif %}
 
-  {% set errorItems = [
-    {
-      "name": "day",
-      "classes": "nhsuk-input--width-2 nhsuk-input--error",
-      "value": params.question.data.day
-    },
-    {
+  {% if params.question.error and "month" in params.question.error.fields %}
+    {% set month = {
       "name": "month",
       "classes": "nhsuk-input--width-2 nhsuk-input--error",
       "value": params.question.data.month
-    },
-    {
+    } %}
+  {% else %}
+    {% set month = {
+      "name": "month",
+      "classes": "nhsuk-input--width-2",
+      "value": params.question.data.month
+    } %}
+  {% endif %}
+
+  {% if params.question.error and "year" in params.question.error.fields %}
+    {% set year = {
       "name": "year",
       "classes": "nhsuk-input--width-4 nhsuk-input--error",
       "value": params.question.data.year
-    }
-  ] %}
+    } %}
+  {% else %}
+    {% set year = {
+      "name": "year",
+      "classes": "nhsuk-input--width-4",
+      "value": params.question.data.year
+    } %}
+  {% endif %}
 
   <div data-test-id="question-{{ params.question.id }}">
     {% if (params.question.error) %}
@@ -67,7 +73,7 @@
             }
           },
           "hint": errorHint,
-          "items": errorItems,
+          "items": [day, month, year],
           "errorMessage": {
             "text": params.question.error.message
           },
@@ -88,7 +94,7 @@
             }
           },
           "hint": hint,
-          "items": items,
+          "items": [day, month, year],
           "formGroup": {
             "classes": "nhsuk-u-margin-bottom-2"
           }

@@ -49,6 +49,30 @@ describe('table', () => {
     });
   }));
 
+  it('should render expandableSection component when table heading has property expandableSection', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        columnInfo: [
+          { data: 'column 1 heading' },
+          {
+            data: 'Column 2 heading',
+            expandableSection: {
+              dataTestId: 'some-expandableSection-heading-id',
+              title: 'ExpandableSection heading title',
+              innerComponent: 'Some inner component',
+            },
+          },
+        ],
+      },
+    };
+
+    harness.request(context, ($) => {
+      const expandableSection = $('[data-test-id="some-expandableSection-heading-id"]');
+      expect(expandableSection.find('span').text().trim()).toEqual('ExpandableSection heading title');
+      expect(expandableSection.find('.nhsuk-details__text').text().trim()).toEqual('Some inner component');
+    });
+  }));
+
   it('should render the table rows with text and classes if data is passed in', componentTester(setup, (harness) => {
     const context = { params: { ...mockContext.params } };
     harness.request(context, ($) => {

@@ -22,6 +22,13 @@ const mockContext = {
   },
 };
 
+const mockContextWithColumnClassArray = {
+  params: {
+    ...mockContext.params,
+    columnClass: ['nhsuk-grid-column-one-half', 'nhsuk-grid-column-one-quarter'],
+  },
+};
+
 describe('table', () => {
   it('should render the table', componentTester(setup, (harness) => {
     harness.request(mockContext, ($) => {
@@ -29,12 +36,22 @@ describe('table', () => {
     });
   }));
 
-  it('should render the table headings with correct classes if columnInfo is passed in', componentTester(setup, (harness) => {
+  it('should render the table headings with correct classes if columnInfo is passed in as string', componentTester(setup, (harness) => {
     harness.request(mockContext, ($) => {
       expect($('[data-test-id="table-headings"]').length).toEqual(1);
       mockContext.params.columnInfo.forEach((heading, i) => {
         expect($(`[data-test-id="column-heading-${i}"]`).text().trim()).toEqual(heading.data);
         expect($(`[data-test-id="column-heading-${i}"]`).hasClass(mockContext.params.columnClass)).toEqual(true);
+      });
+    });
+  }));
+
+  it('should render the table headings with correct classes if columnInfo is passed in as string', componentTester(setup, (harness) => {
+    harness.request(mockContextWithColumnClassArray, ($) => {
+      expect($('[data-test-id="table-headings"]').length).toEqual(1);
+      mockContext.params.columnInfo.forEach((heading, i) => {
+        expect($(`[data-test-id="column-heading-${i}"]`).text().trim()).toEqual(heading.data);
+        expect($(`[data-test-id="column-heading-${i}"]`).hasClass(mockContextWithColumnClassArray.params.columnClass[i])).toEqual(true);
       });
     });
   }));
@@ -49,13 +66,24 @@ describe('table', () => {
     });
   }));
 
-  it('should render the table rows with text and classes if data is passed in', componentTester(setup, (harness) => {
+  it('should render the table rows with text and classes (string) if data is passed in', componentTester(setup, (harness) => {
     const context = { params: { ...mockContext.params } };
     harness.request(context, ($) => {
       context.params.data.forEach((row, rowIndex) => {
         row.forEach((dataPoint, i) => {
           expect($(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`).text().trim()).toEqual(dataPoint.data);
           expect($(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`).hasClass(mockContext.params.columnClass)).toEqual(true);
+        });
+      });
+    });
+  }));
+
+  it('should render the table rows with text and classes (array) if data is passed in', componentTester(setup, (harness) => {
+    harness.request(mockContextWithColumnClassArray, ($) => {
+      mockContextWithColumnClassArray.params.data.forEach((row, rowIndex) => {
+        row.forEach((dataPoint, i) => {
+          expect($(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`).text().trim()).toEqual(dataPoint.data);
+          expect($(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`).hasClass(mockContextWithColumnClassArray.params.columnClass[rowIndex])).toEqual(true);
         });
       });
     });

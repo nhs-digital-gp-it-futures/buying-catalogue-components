@@ -9,16 +9,16 @@
     {% if params.columnInfo %}
       <div data-test-id="table-headings" class="nhsuk-u-font-size-19 nhsuk-grid-row nhsuk-u-margin-1 bc-t-border-bottom--grey-3">
         {% for column in params.columnInfo %}
-          <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-1 nhsuk-u-font-weight-bold {{ params.columnClass }}">{{ column.data }}</div>
-        {% endfor %}
-        {% for column in params.columnInfo %}
-          {% if column.expandableSection %}
-            <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-1 nhsuk-u-font-weight-bold {{ params.columnClass }}">
-              {{ viewExpandableSection(column.expandableSection) }}
-            </div>
-          {% else %}
-            <div class="nhsuk-u-padding-1 {{ params.columnClass }}"> </div>
-          {% endif %}
+          <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-1 {{ params.columnClass }}">
+            <div data-test-id="column-heading-{{ loop.index0 }}-data" class="nhsuk-u-font-weight-bold">{{ column.data }}</div>
+            {% if column.expandableSection %}
+              <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-margin-top-2 nhsuk-u-font-weight-bold ">
+                {{ viewExpandableSection(column.expandableSection) }}
+              </div>
+            {% else %}
+              <div> </div>
+            {% endif %}
+          </div>
         {% endfor %}
       </div>
     {% endif %}

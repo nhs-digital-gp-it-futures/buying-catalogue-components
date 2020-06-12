@@ -33,8 +33,8 @@ describe('table', () => {
     harness.request(mockContext, ($) => {
       expect($('[data-test-id="table-headings"]').length).toEqual(1);
       mockContext.params.columnInfo.forEach((heading, i) => {
-        expect($(`[data-test-id="column-heading-${i}"]`).text().trim()).toEqual(heading.data);
         expect($(`[data-test-id="column-heading-${i}"]`).hasClass(mockContext.params.columnClass)).toEqual(true);
+        expect($(`[data-test-id="column-heading-${i}-data"]`).text().trim()).toEqual(heading.data);
       });
     });
   }));

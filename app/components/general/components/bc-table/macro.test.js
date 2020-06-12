@@ -40,8 +40,8 @@ describe('table', () => {
     harness.request(mockContext, ($) => {
       expect($('[data-test-id="table-headings"]').length).toEqual(1);
       mockContext.params.columnInfo.forEach((heading, i) => {
-        expect($(`[data-test-id="column-heading-${i}"]`).text().trim()).toEqual(heading.data);
         expect($(`[data-test-id="column-heading-${i}"]`).hasClass(mockContext.params.columnClass)).toEqual(true);
+        expect($(`[data-test-id="column-heading-${i}-data"]`).text().trim()).toEqual(heading.data);
       });
     });
   }));
@@ -50,7 +50,7 @@ describe('table', () => {
     harness.request(mockContextWithColumnClassArray, ($) => {
       expect($('[data-test-id="table-headings"]').length).toEqual(1);
       mockContext.params.columnInfo.forEach((heading, i) => {
-        expect($(`[data-test-id="column-heading-${i}"]`).text().trim()).toEqual(heading.data);
+        expect($(`[data-test-id="column-heading-${i}-data"]`).text().trim()).toEqual(heading.data);
         expect($(`[data-test-id="column-heading-${i}"]`).hasClass(mockContextWithColumnClassArray.params.columnClass[i])).toEqual(true);
       });
     });
@@ -63,6 +63,30 @@ describe('table', () => {
     harness.request(context, ($) => {
       expect($('[data-test-id="table-headings"]').length).toEqual(0);
       expect($('[data-test-id="column-heading"]').length).toEqual(0);
+    });
+  }));
+
+  it('should render expandableSection component when table heading has property expandableSection', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        columnInfo: [
+          { data: 'column 1 heading' },
+          {
+            data: 'Column 2 heading',
+            expandableSection: {
+              dataTestId: 'some-expandableSection-heading-id',
+              title: 'ExpandableSection heading title',
+              innerComponent: 'Some inner component',
+            },
+          },
+        ],
+      },
+    };
+
+    harness.request(context, ($) => {
+      const expandableSection = $('[data-test-id="some-expandableSection-heading-id"]');
+      expect(expandableSection.find('span').text().trim()).toEqual('ExpandableSection heading title');
+      expect(expandableSection.find('.nhsuk-details__text').text().trim()).toEqual('Some inner component');
     });
   }));
 

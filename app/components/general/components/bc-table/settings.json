@@ -4,7 +4,12 @@
     "columnInfo": [
       { "data": "Text/Link column" },
       { "data": "Tag column" },
-      { "data": "Input column" },
+      { "data": "Input column",
+        "expandableSection": {
+        "dataTestId": "view-section-some-section-id",
+        "title": "ExpandableSection title 1",
+        "innerComponent": "Some inner text (could be html)"
+      }},
       { "data": "Checkbox column" }
     ],
     "data": [

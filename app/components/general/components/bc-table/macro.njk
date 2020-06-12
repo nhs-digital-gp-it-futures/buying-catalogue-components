@@ -10,7 +10,7 @@
       <div data-test-id="table-headings" class="nhsuk-u-font-size-19 nhsuk-grid-row nhsuk-u-margin-1 bc-t-border-bottom--grey-3">
         {% for column in params.columnInfo %}
           {% set columnClass = params.columnClass[loop.index0] if ((params.columnClass[loop.index0] | length) > 1) else params.columnClass %}
-          <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-1 {{ params.columnClass }}">
+          <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-1 {{ columnClass }}">
             <div data-test-id="column-heading-{{ loop.index0 }}-data" class="nhsuk-u-font-weight-bold">{{ column.data }}</div>
             {% if column.expandableSection %}
               <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-margin-top-2 nhsuk-u-font-weight-bold ">

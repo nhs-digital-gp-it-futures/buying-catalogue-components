@@ -9,6 +9,7 @@
     {% if params.columnInfo %}
       <div data-test-id="table-headings" class="nhsuk-u-font-size-19 nhsuk-grid-row nhsuk-u-margin-1 bc-t-border-bottom--grey-3">
         {% for column in params.columnInfo %}
+          {% set columnClass = params.columnClass[loop.index0] if ((params.columnClass[loop.index0] | length) > 1) else params.columnClass %}
           <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-1 {{ params.columnClass }}">
             <div data-test-id="column-heading-{{ loop.index0 }}-data" class="nhsuk-u-font-weight-bold">{{ column.data }}</div>
             {% if column.expandableSection %}
@@ -24,12 +25,13 @@
     {% endif %}
 
     {% for row in params.data %}
+      {% set columnClass = params.columnClass[loop.index0] if ((params.columnClass[loop.index0] | length) > 1) else params.columnClass %}
       <div data-test-id="table-row-{{ loop.index0 }}" class="nhsuk-grid-row nhsuk-u-margin-1 nhsuk-u-padding-top-3 bc-t-border-bottom--grey-3">
         {% for dataPoint in row %}
           {% if dataPoint.href %}
-            <a data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-1  nhsuk-u-padding-bottom-3 {{ params.columnClass }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
+            <a data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-1  nhsuk-u-padding-bottom-3 {{ columnClass }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
           {% elif dataPoint.tag %}
-            <div class="nhsuk-u-padding-bottom-3 nhsuk-u-padding-left-0 {{params.columnClass}}">
+            <div class="nhsuk-u-padding-bottom-3 nhsuk-u-padding-left-0 {{ columnClass }}">
               {{ tag({
                 dataTestId: dataPoint.tag.dataTestId,
                 text: dataPoint.tag.text,
@@ -37,7 +39,7 @@
               }) }}
             </div>
           {% elif dataPoint.question and dataPoint.question.type == 'input' %}
-            <div class="nhsuk-u-padding-left-0 {{params.columnClass}}">
+            <div class="nhsuk-u-padding-left-0 {{ columnClass }}">
               {{ textField(dataPoint) }}
               {% if dataPoint.expandableSection %}
                 <div class="nhsuk-u-margin-top-4">
@@ -46,7 +48,7 @@
               {% endif %}
             </div>
           {% elif dataPoint.question and dataPoint.question.type == 'checkbox' %}
-            <div data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-left-0 {{params.columnClass}}">
+            <div data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-left-0 {{ columnClass }}">
               {{ checkboxes({
                 items: [dataPoint.question]
               }) }}
@@ -54,7 +56,7 @@
           {% else %}
             {{ viewDataText({
               dataTestId: dataPoint.dataTestId,
-              classes: "nhsuk-u-padding-1  nhsuk-u-padding-bottom-3 "+ params.columnClass,
+              classes: "nhsuk-u-padding-1  nhsuk-u-padding-bottom-3 "+ columnClass,
               data: dataPoint.data
             }) }}
           {% endif %}

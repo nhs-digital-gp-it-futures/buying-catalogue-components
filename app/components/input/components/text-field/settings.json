@@ -11,6 +11,7 @@
       "error": {
         "message": "The error message"
       }
-    }
+    },
+    "classes": "nhsuk-u-width-one-half"
   }
 }

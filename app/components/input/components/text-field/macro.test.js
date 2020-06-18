@@ -172,4 +172,21 @@ describe('textField', () => {
       expect($('div[data-test-id="text-field-input"] .nhsuk-hint').length).toEqual(0);
     });
   }));
+
+  it('should render any additional classes provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        question: {
+          id: 'fieldId',
+        },
+        classes: 'some-other-class',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const textFieldInput = $('div[data-test-id="text-field-input"] input');
+
+      expect(textFieldInput.hasClass('some-other-class')).toEqual(true);
+    });
+  }));
 });

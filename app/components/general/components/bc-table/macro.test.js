@@ -342,7 +342,7 @@ describe('table', () => {
   }));
 
   describe('multiLine', () => {
-    it('should render the table rows with multiLine text  passed in', componentTester(setup, (harness) => {
+    it('should render the table rows with multiLine text passed in', componentTester(setup, (harness) => {
       const context = {
         params: {
           columnInfo: [

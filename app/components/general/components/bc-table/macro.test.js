@@ -221,7 +221,7 @@ describe('table', () => {
       harness.request(context, ($) => {
         const input = $('[data-test-id="question-some-id"] input');
         expect(input.val()).toEqual(context.params.data[0][0].question.data);
-        expect(input.hasClass(context.params.data[0][0].question.classes)).toEqual(false);
+        expect(input.hasClass('nhsuk-input this is a class')).toEqual(false);
       });
     }));
 
@@ -291,18 +291,19 @@ describe('table', () => {
                   type: 'input',
                   id: 'some-id',
                   data: 'The data goes here',
-                  classes: 'this is a class',
                 },
+                classes: 'this is a class',
               },
             ],
           ],
         },
       };
 
+
       harness.request(context, ($) => {
         const input = $('[data-test-id="question-some-id"] input');
         expect(input.val()).toEqual(context.params.data[0][0].question.data);
-        expect(input.hasClass(context.params.data[0][0].question.classes)).toEqual(true);
+        expect(input.hasClass('nhsuk-input this is a class')).toEqual(true);
       });
     }));
   });

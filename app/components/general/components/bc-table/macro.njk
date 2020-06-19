@@ -40,11 +40,7 @@
             </div>
           {% elif dataPoint.question and dataPoint.question.type == 'input' %}
             <div class="nhsuk-u-padding-left-0 {{ columnClass }}">
-              {% if dataPoint.question.classes %}
-                {{ textField(dataPoint) classes: dataPoint.question.classes }}
-              {% else %}
                 {{ textField(dataPoint) }}
-              {% endif %}
               {% if dataPoint.expandableSection %}
                 <div class="nhsuk-u-margin-top-4">
                   {{ viewExpandableSection(dataPoint.expandableSection) }}

@@ -20,7 +20,8 @@
           "question": {
             "type": "input",
             "id": "someId",
-            "data":"The data goes here"
+            "data":"The data goes here",
+            "classes": "The classes go here"
           },
           "expandableSection": {
             "dataTestId": "view-section-some-section-id",

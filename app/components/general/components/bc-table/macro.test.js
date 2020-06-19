@@ -221,6 +221,7 @@ describe('table', () => {
       harness.request(context, ($) => {
         const input = $('[data-test-id="question-some-id"] input');
         expect(input.val()).toEqual(context.params.data[0][0].question.data);
+        expect(input.hasClass(context.params.data[0][0].question.classes)).toEqual(false);
       });
     }));
 
@@ -276,6 +277,32 @@ describe('table', () => {
         const expandableSection = $('[data-test-id="some-expandableSection-id"]');
         expect(expandableSection.find('span').text().trim()).toEqual('ExpandableSection title');
         expect(expandableSection.find('.nhsuk-details__text').text().trim()).toEqual('Some inner component');
+      });
+    }));
+
+    it('should render the input component with correct classes if columnInfo is passed in as string', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          ...mockContext.params,
+          data: [
+            [
+              {
+                question: {
+                  type: 'input',
+                  id: 'some-id',
+                  data: 'The data goes here',
+                  classes: 'this is a class',
+                },
+              },
+            ],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const input = $('[data-test-id="question-some-id"] input');
+        expect(input.val()).toEqual(context.params.data[0][0].question.data);
+        expect(input.hasClass(context.params.data[0][0].question.classes)).toEqual(true);
       });
     }));
   });

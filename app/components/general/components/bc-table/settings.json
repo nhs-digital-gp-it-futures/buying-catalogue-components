@@ -67,6 +67,40 @@
           },
           "dataTestId": "checkbox-question-id"
         }
+      ],
+      [
+        { 
+          "multiLine": { 
+            "data": ["some plain text", "and another", "", "with a blank line"],
+            "dataTestId": "multiLine-id-1"
+          }
+        },
+        { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
+        {
+          "question": {
+            "type": "input",
+            "id": "someId",
+            "data":"The data goes here",
+            "error": { "message": "error message" }
+          },
+          "expandableSection": {
+            "dataTestId": "view-section-some-section-id",
+            "title": "ExpandableSection title 1",
+            "innerComponent": "Some inner text (could be html)"
+          },
+          "dataTestId": "input-question-id"
+        },
+        { 
+          "question": {
+            "type": "checkbox",
+            "id": "someId2",
+            "name": "checkboxName2",
+            "value": "checkBoxValueSentInForm2",
+            "text": "some other text here",
+            "checked": true
+          },
+          "dataTestId": "checkbox-question-id"
+        }
       ]
     ],
     "columnClass": "nhsuk-grid-column-one-quarter nhsuk-u-font-size-19"

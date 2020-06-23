@@ -340,4 +340,29 @@ describe('table', () => {
       expect(checkboxInput.attr('value')).toEqual('checkBoxValueSentInForm');
     });
   }));
+
+  describe('multiLine', () => {
+    it('should render the table rows with multiLine text passed in', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          columnInfo: [
+            { data: 'column 1 heading' },
+          ],
+          data: [
+            [{ multiLine: { data: ['first line', 'second line', '', 'blank line'], dataTestId: 'some-id' } }],
+          ],
+        },
+      };
+      harness.request(context, ($) => {
+        const multiLineDiv = $('[data-test-id="some-id"]');
+
+        expect(multiLineDiv.length).toEqual(1);
+        expect(multiLineDiv.find('div').length).toEqual(4);
+        expect(multiLineDiv.find('div:nth-child(1)').text().trim()).toEqual('first line');
+        expect(multiLineDiv.find('div:nth-child(2)').text().trim()).toEqual('second line');
+        expect(multiLineDiv.find('div:nth-child(3)').text().trim()).toEqual('');
+        expect(multiLineDiv.find('div:nth-child(4)').text().trim()).toEqual('blank line');
+      });
+    }));
+  });
 });

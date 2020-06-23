@@ -29,7 +29,7 @@
       <div data-test-id="table-row-{{ loop.index0 }}" class="nhsuk-grid-row nhsuk-u-margin-1 nhsuk-u-padding-top-3 bc-t-border-bottom--grey-3">
         {% for dataPoint in row %}
           {% if dataPoint.href %}
-            <a data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-1  nhsuk-u-padding-bottom-3 {{ columnClass }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
+            <a data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-1 nhsuk-u-padding-bottom-3 {{ columnClass }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
           {% elif dataPoint.tag %}
             <div class="nhsuk-u-padding-bottom-3 nhsuk-u-padding-left-0 {{ columnClass }}">
               {{ tag({
@@ -37,6 +37,18 @@
                 text: dataPoint.tag.text,
                 classes: dataPoint.tag.classes
               }) }}
+            </div>
+          {% elif dataPoint.multiLine %}
+            <div data-test-id="{{ dataPoint.multiLine.dataTestId }}" class="nhsuk-u-padding-1 {{ columnClass }}">
+              {% for line in dataPoint.multiLine.data %}
+                <div class="dataPoint.multiLine.classes">
+                  {% if line == '' %}
+                    &nbsp;
+                  {% else %}
+                    {{ line }}
+                  {% endif %}
+                </div>
+              {% endfor %}
             </div>
           {% elif dataPoint.question and dataPoint.question.type == 'input' %}
             <div class="nhsuk-u-padding-left-0 {{ columnClass }}">
@@ -56,7 +68,7 @@
           {% else %}
             {{ viewDataText({
               dataTestId: dataPoint.dataTestId,
-              classes: "nhsuk-u-padding-1  nhsuk-u-padding-bottom-3 "+ columnClass,
+              classes: "nhsuk-u-padding-1 nhsuk-u-padding-bottom-3 "+ columnClass,
               data: dataPoint.data
             }) }}
           {% endif %}

@@ -286,5 +286,57 @@ describe('table', () => {
         expect(tableTextCell.hasClass('some-text-classes')).toEqual(true);
       });
     }));
+
+    it('should render an expandable section to a cell if provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{
+              data: 'some text',
+              dataTestId: 'text-cell',
+              classes: 'some-text-classes',
+              expandableSection: {
+                dataTestId: 'some-expandableSection-id',
+                title: 'ExpandableSection title',
+                innerComponent: 'Some inner component',
+              },
+            }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableRow = $('[data-test-id="table-row-0"]');
+        const tableCell = tableRow.find('td');
+        const expandableSection = tableCell.find('[data-test-id="some-expandableSection-id"]');
+
+        expect(expandableSection.find('span').text().trim()).toEqual('ExpandableSection title');
+        expect(expandableSection.find('.nhsuk-details__text').text().trim()).toEqual('Some inner component');
+      });
+    }));
+
+    it('should render a multiple rows and columns', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{}, {}, {}],
+            [{}, {}, {}],
+            [{}, {}, {}],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableRows = $('tr');
+        const tableRow1 = $('tr[data-test-id="table-row-0"]');
+        const tableRow2 = $('tr[data-test-id="table-row-1"]');
+        const tableRow3 = $('tr[data-test-id="table-row-2"]');
+
+        expect(tableRows.length).toEqual(3);
+        expect(tableRow1.find('td').length).toEqual(3);
+        expect(tableRow2.find('td').length).toEqual(3);
+        expect(tableRow3.find('td').length).toEqual(3);
+      });
+    }));
   });
 });

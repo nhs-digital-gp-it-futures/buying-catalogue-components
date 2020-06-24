@@ -50,7 +50,7 @@
                 {% endfor %}
               </div>
             {% elif dataPoint.question and dataPoint.question.type == 'input' %}
-              <div>
+              <div data-test-id="{{ dataPoint.dataTestId }}">
                 {{ textField(dataPoint) }}
               </div>
             {% elif dataPoint.question and dataPoint.question.type == 'checkbox' %}

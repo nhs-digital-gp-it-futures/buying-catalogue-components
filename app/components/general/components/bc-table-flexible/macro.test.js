@@ -197,6 +197,7 @@ describe('table', () => {
                   type: 'input', data: 'some inputted data', id: 'some-question-id',
                 },
                 classes: 'some-input-class',
+                dataTestId: 'input-cell',
               },
             ],
           ],
@@ -205,7 +206,7 @@ describe('table', () => {
 
       it('should render the cell as a text input if a question property is provided of type: input', componentTester(setup, (harness) => {
         harness.request(context, ($) => {
-          const tableInputCell = $('[data-test-id="text-field-input"]');
+          const tableInputCell = $('[data-test-id="input-cell"]');
 
           expect(tableInputCell.find('input').length).toEqual(1);
         });
@@ -213,7 +214,7 @@ describe('table', () => {
 
       it('should render the input field with the data populated', componentTester(setup, (harness) => {
         harness.request(context, ($) => {
-          const tableInputCell = $('[data-test-id="text-field-input"]');
+          const tableInputCell = $('[data-test-id="input-cell"]');
 
           expect(tableInputCell.find('input').val()).toEqual('some inputted data');
         });
@@ -221,9 +222,50 @@ describe('table', () => {
 
       it('should render the input field with any additional classes provided', componentTester(setup, (harness) => {
         harness.request(context, ($) => {
-          const tableInputCell = $('[data-test-id="text-field-input"]');
+          const tableInputCell = $('[data-test-id="input-cell"]');
 
           expect(tableInputCell.find('input').hasClass('some-input-class')).toEqual(true);
+        });
+      }));
+    });
+
+    describe('checkbox', () => {
+      const context = {
+        params: {
+          data: [
+            [
+              {
+                question: {
+                  type: 'checkbox', text: 'checkbox text', value: 'checkbox-value', id: 'some-question-id', checked: true,
+                },
+                dataTestId: 'checkbox-cell',
+              },
+            ],
+          ],
+        },
+      };
+
+      it('should render the cell as a checkbox input if a question property is provided of type: checkbox', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableCheckboxCell = $('[data-test-id="checkbox-cell"]');
+
+          expect(tableCheckboxCell.find('input').attr('type')).toEqual('checkbox');
+        });
+      }));
+
+      it('should render the checkbox as checked', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableCheckboxCell = $('[data-test-id="checkbox-cell"]');
+
+          expect(tableCheckboxCell.find('input:checked').length).toEqual(1);
+        });
+      }));
+
+      it('should render the label of the checkbox', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableCheckboxCell = $('[data-test-id="checkbox-cell"]');
+
+          expect(tableCheckboxCell.find('label').text().trim()).toEqual('checkbox text');
         });
       }));
     });

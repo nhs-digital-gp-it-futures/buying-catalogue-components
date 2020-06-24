@@ -114,4 +114,77 @@ describe('table', () => {
       });
     }));
   });
+
+  describe('table data', () => {
+    it('should render a single row and column', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{}],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableRow = $('tr[data-test-id="table-row-0"]');
+
+        expect(tableRow.length).toEqual(1);
+        expect(tableRow.find('td').length).toEqual(1);
+      });
+    }));
+
+    it('should render the cell as a link if a href property is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ data: 'some link', href: '/some-link', dataTestId: 'link-cell' }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableLinkCell = $('[data-test-id="link-cell"]');
+
+        expect(tableLinkCell.text().trim()).toEqual('some link');
+        expect(tableLinkCell.attr('href')).toEqual('/some-link');
+      });
+    }));
+
+    it('should render the cell as a tag component if a tag property is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ tag: { dataTestId: 'tag-cell', text: 'tag text', classes: 'bc-c-tag-outline' } }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableTagCell = $('[data-test-id="tag-cell"]');
+
+        expect(tableTagCell.text().trim()).toEqual('tag text');
+        expect(tableTagCell.hasClass('bc-c-tag-outline')).toEqual(true);
+      });
+    }));
+
+    it('should render the table rows with multiLine text passed in', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ multiLine: { data: ['first line', 'second line', '', 'blank line'], dataTestId: 'multiLine-cell' } }],
+          ],
+        },
+      };
+      harness.request(context, ($) => {
+        const tableMultiLineCell = $('[data-test-id="multiLine-cell"]');
+
+        expect(tableMultiLineCell.length).toEqual(1);
+        expect(tableMultiLineCell.find('div').length).toEqual(4);
+        expect(tableMultiLineCell.find('div:nth-child(1)').text().trim()).toEqual('first line');
+        expect(tableMultiLineCell.find('div:nth-child(2)').text().trim()).toEqual('second line');
+        expect(tableMultiLineCell.find('div:nth-child(3)').text().trim()).toEqual('');
+        expect(tableMultiLineCell.find('div:nth-child(4)').text().trim()).toEqual('blank line');
+      });
+    }));
+  });
 });

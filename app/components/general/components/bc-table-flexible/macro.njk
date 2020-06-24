@@ -25,7 +25,7 @@
     {% for row in params.data %}
       <tr data-test-id="table-row-{{ loop.index0 }}">
         {% for dataPoint in row %}
-          <td  class="nhsuk-u-padding-bottom-0">
+          <td class="nhsuk-u-padding-bottom-0">
             {% if dataPoint.href %}
               <a data-test-id="{{ dataPoint.dataTestId }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
             {% elif dataPoint.tag %}

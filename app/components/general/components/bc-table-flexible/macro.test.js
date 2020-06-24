@@ -113,6 +113,5 @@ describe('table', () => {
         expect($('th').length).toEqual(5);
       });
     }));
-
   });
 });

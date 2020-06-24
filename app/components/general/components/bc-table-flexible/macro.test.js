@@ -269,5 +269,22 @@ describe('table', () => {
         });
       }));
     });
+
+    it('should render the cell as a just text if only data property is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ data: 'some text', dataTestId: 'text-cell', classes: 'some-text-classes' }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableTextCell = $('[data-test-id="text-cell"]');
+
+        expect(tableTextCell.text().trim()).toEqual('some text');
+        expect(tableTextCell.hasClass('some-text-classes')).toEqual(true);
+      });
+    }));
   });
 });

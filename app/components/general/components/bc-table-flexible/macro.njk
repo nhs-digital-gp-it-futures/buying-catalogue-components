@@ -1,0 +1,78 @@
+{% from 'components/general/components/tag/macro.njk' import tag %}
+{% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/input/components/text-field/macro.njk' import textField %}
+{% from 'components/view/components/view-expandable-section/macro.njk' import viewExpandableSection %}
+{% from 'components/checkboxes/macro.njk' import checkboxes %}
+
+{% macro bcTableFlexible(params) %}
+  <table data-test-id="table" class="{{ param.classes }}">
+
+    {% if params.columnInfo %}
+      <tr data-test-id="table-headings">
+        {% for column in params.columnInfo %}
+          <th data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-bottom-0 {{ column.classes }}" style="width:{{ column.width }}">
+            <div data-test-id="column-heading-{{ loop.index0 }}-data" class="nhsuk-u-font-weight-bold">{{ column.data }}</div>
+            {% if column.expandableSection %}
+              <div data-test-id="column-heading-{{ loop.index0 }}-expandable" class="nhsuk-u-margin-top-2 nhsuk-u-font-weight-bold ">
+                {{ viewExpandableSection(column.expandableSection) }}
+              </div>
+            {% endif %}
+          </th>
+        {% endfor %}
+      </tr>
+    {% endif %}
+
+    {% for row in params.data %}
+      <tr data-test-id="table-row-{{ loop.index0 }}">
+        {% for dataPoint in row %}
+          <td  class="nhsuk-u-padding-bottom-0">
+            {% if dataPoint.href %}
+              <a data-test-id="{{ dataPoint.dataTestId }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
+            {% elif dataPoint.tag %}
+              <div>
+                {{ tag({
+                  dataTestId: dataPoint.tag.dataTestId,
+                  text: dataPoint.tag.text,
+                  classes: dataPoint.tag.classes
+                }) }}
+              </div>
+            {% elif dataPoint.multiLine %}
+              <div data-test-id="{{ dataPoint.multiLine.dataTestId }}">
+                {% for line in dataPoint.multiLine.data %}
+                  <div class="dataPoint.multiLine.classes">
+                    {% if line == '' %}
+                      &nbsp;
+                    {% else %}
+                      {{ line }}
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            {% elif dataPoint.question and dataPoint.question.type == 'input' %}
+              <div>
+                {{ textField(dataPoint) }}
+                {% if dataPoint.expandableSection %}
+                  <div>
+                    {{ viewExpandableSection(dataPoint.expandableSection) }}
+                  </div>
+                {% endif %}
+              </div>
+            {% elif dataPoint.question and dataPoint.question.type == 'checkbox' %}
+              <div data-test-id="{{ dataPoint.dataTestId }}">
+                {{ checkboxes({
+                  items: [dataPoint.question]
+                }) }}
+              </div>
+            {% else %}
+              {{ viewDataText({
+                dataTestId: dataPoint.dataTestId,
+                classes: dataPoint.classes,
+                data: dataPoint.data
+              }) }}
+            {% endif %}
+          </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </div>
+{% endmacro %}

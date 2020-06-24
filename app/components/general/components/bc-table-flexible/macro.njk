@@ -26,6 +26,7 @@
       <tr data-test-id="table-row-{{ loop.index0 }}">
         {% for dataPoint in row %}
           <td class="nhsuk-u-padding-bottom-0">
+
             {% if dataPoint.href %}
               <a data-test-id="{{ dataPoint.dataTestId }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
             {% elif dataPoint.tag %}
@@ -51,11 +52,6 @@
             {% elif dataPoint.question and dataPoint.question.type == 'input' %}
               <div>
                 {{ textField(dataPoint) }}
-                {% if dataPoint.expandableSection %}
-                  <div>
-                    {{ viewExpandableSection(dataPoint.expandableSection) }}
-                  </div>
-                {% endif %}
               </div>
             {% elif dataPoint.question and dataPoint.question.type == 'checkbox' %}
               <div data-test-id="{{ dataPoint.dataTestId }}">
@@ -69,6 +65,12 @@
                 classes: dataPoint.classes,
                 data: dataPoint.data
               }) }}
+            {% endif %}
+
+            {% if dataPoint.expandableSection %}
+              <div>
+                {{ viewExpandableSection(dataPoint.expandableSection) }}
+              </div>
             {% endif %}
           </td>
         {% endfor %}

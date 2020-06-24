@@ -186,5 +186,46 @@ describe('table', () => {
         expect(tableMultiLineCell.find('div:nth-child(4)').text().trim()).toEqual('blank line');
       });
     }));
+
+    describe('input', () => {
+      const context = {
+        params: {
+          data: [
+            [
+              {
+                question: {
+                  type: 'input', data: 'some inputted data', id: 'some-question-id',
+                },
+                classes: 'some-input-class',
+              },
+            ],
+          ],
+        },
+      };
+
+      it('should render the cell as a text input if a question property is provided of type: input', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableInputCell = $('[data-test-id="text-field-input"]');
+
+          expect(tableInputCell.find('input').length).toEqual(1);
+        });
+      }));
+
+      it('should render the input field with the data populated', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableInputCell = $('[data-test-id="text-field-input"]');
+
+          expect(tableInputCell.find('input').val()).toEqual('some inputted data');
+        });
+      }));
+
+      it('should render the input field with any additional classes provided', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableInputCell = $('[data-test-id="text-field-input"]');
+
+          expect(tableInputCell.find('input').hasClass('some-input-class')).toEqual(true);
+        });
+      }));
+    });
   });
 });

@@ -10,7 +10,7 @@
       { 
         "data": "Tag column",
         "classes": "some-column2-class",
-        "width": "15%"
+        "width": "20%"
       },
       { 
         "data": "Input column",
@@ -25,12 +25,18 @@
       { 
         "data": "Checkbox column",
         "classes": "some-column4-class",
-        "width": "25%"
+        "width": "20%"
       }
     ],
     "data": [
       [
-        { "data": "Some text as link", "href": "#" },
+        { "data": "Some text as link", "href": "#",
+          "expandableSection": {
+            "dataTestId": "view-section-some-section-id",
+            "title": "ExpandableSection title 1",
+            "innerComponent": "Some inner text (could be html)"
+          }
+        },
         { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
         {
           "question": {
@@ -38,12 +44,7 @@
             "id": "someId",
             "data":"The data goes here"
           },
-          "classes": "The classes go here",
-          "expandableSection": {
-            "dataTestId": "view-section-some-section-id",
-            "title": "ExpandableSection title 1",
-            "innerComponent": "Some inner text (could be html)"
-          }
+          "classes": "input-classes"
         },
       { 
         "question": {

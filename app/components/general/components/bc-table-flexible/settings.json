@@ -35,7 +35,8 @@
             "dataTestId": "view-section-some-section-id",
             "title": "ExpandableSection title 1",
             "innerComponent": "Some inner text (could be html)"
-          }
+          },
+          "hideSeperator": true
         },
         { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
         {

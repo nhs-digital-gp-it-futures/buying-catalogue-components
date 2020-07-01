@@ -133,6 +133,34 @@ describe('table', () => {
       });
     }));
 
+    it('should render the cell without a border bottom if the hideSeperator is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ hideSeperator: true }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        expect($('td').attr('style')).toEqual('border-bottom-style: none');
+      });
+    }));
+
+    it('should render the cell with a border bottom if the hideSeperator is not provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{}],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        expect($('td').attr('style')).toEqual('border-bottom-style: solid');
+      });
+    }));
+
     it('should render the cell as a link if a href property is provided', componentTester(setup, (harness) => {
       const context = {
         params: {

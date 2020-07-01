@@ -25,7 +25,8 @@
     {% for row in params.data %}
       <tr data-test-id="table-row-{{ loop.index0 }}">
         {% for dataPoint in row %}
-          <td class="nhsuk-u-padding-bottom-0">
+          {% set borderBottom = "none" if (dataPoint.hideSeperator) else "solid" %}
+          <td class="nhsuk-u-padding-bottom-0" style="border-bottom-style: {{ borderBottom  }}">
 
             {% if dataPoint.href %}
               <a data-test-id="{{ dataPoint.dataTestId }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>

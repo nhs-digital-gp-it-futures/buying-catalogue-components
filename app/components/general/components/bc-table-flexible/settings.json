@@ -3,16 +3,19 @@
   "params": {
     "columnInfo": [
       {
+        "id": "column1",
         "data": "Text/Link column",
         "classes": "some-column1-class",
         "width": "20%"
       },
-      { 
+      {
+        "id": "column2",
         "data": "Tag column",
         "classes": "some-column2-class",
         "width": "20%"
       },
-      { 
+      {
+        "id": "column3",
         "data": "Input column",
         "classes": "some-column3-class",
         "width": "40%",
@@ -22,7 +25,8 @@
           "innerComponent": "Some inner text (could be html)"
         }
       },
-      { 
+      {
+        "id": "column4",
         "data": "Checkbox column",
         "classes": "some-column4-class",
         "width": "20%"
@@ -30,7 +34,9 @@
     ],
     "data": [
       [
-        { "data": "Some text as link", "href": "#",
+        { 
+          "headerId": "column1",
+          "data": "Some text as link", "href": "#",
           "expandableSection": {
             "dataTestId": "view-section-some-section-id",
             "title": "ExpandableSection title 1",
@@ -38,8 +44,12 @@
           },
           "hideSeperator": true
         },
-        { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
         {
+          "headerId": "column2",
+          "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" }
+        },
+        {
+          "headerId": "column3",
           "question": {
             "type": "input",
             "id": "someId",
@@ -47,7 +57,8 @@
           },
           "classes": "input-classes"
         },
-      { 
+      {
+        "headerId": "column4",
         "question": {
           "type": "checkbox",
           "id": "someId1",
@@ -58,9 +69,16 @@
       }
       ],
       [
-        { "data": "some plain text" },
-        { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
         {
+          "headerId": "column1",
+          "data": "some plain text"
+        },
+        {
+          "headerId": "column2",
+          "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" }
+        },
+        {
+          "headerId": "column3",
           "question": {
             "type": "input",
             "id": "someId",
@@ -75,6 +93,7 @@
           "dataTestId": "input-question-id"
         },
         { 
+          "headerId": "column4",
           "question": {
             "type": "checkbox",
             "id": "someId2",
@@ -87,14 +106,19 @@
         }
       ],
       [
-        { 
+        {
+          "headerId": "column1",
           "multiLine": { 
             "data": ["some plain text", "and another", "", "with a blank line"],
             "dataTestId": "multiLine-id-1"
           }
         },
-        { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
         {
+          "headerId": "column2",
+          "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" }
+        },
+        {
+          "headerId": "column3",
           "question": {
             "type": "input",
             "id": "someId",
@@ -108,7 +132,8 @@
           },
           "dataTestId": "input-question-id"
         },
-        { 
+        {
+          "headerId": "column4",
           "question": {
             "type": "checkbox",
             "id": "someId2",

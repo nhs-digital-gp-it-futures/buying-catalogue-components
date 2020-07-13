@@ -10,7 +10,7 @@
     {% if params.columnInfo %}
       <tr data-test-id="table-headings">
         {% for column in params.columnInfo %}
-          <th data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-bottom-0 {{ column.classes }}" style="width:{{ column.width }}">
+          <th id="{{ column.id }}" data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-bottom-0 {{ column.classes }}" style="width:{{ column.width }}">
             <div data-test-id="column-heading-{{ loop.index0 }}-data" class="nhsuk-u-font-weight-bold">{{ column.data }}</div>
             {% if column.expandableSection %}
               <div data-test-id="column-heading-{{ loop.index0 }}-expandable" class="nhsuk-u-margin-top-2 nhsuk-u-font-weight-bold ">
@@ -26,7 +26,7 @@
       <tr data-test-id="table-row-{{ loop.index0 }}">
         {% for dataPoint in row %}
           {% set borderBottom = "none" if (dataPoint.hideSeperator) else "solid" %}
-          <td class="nhsuk-u-padding-bottom-0" style="border-bottom-style: {{ borderBottom  }}">
+          <td class="nhsuk-u-padding-bottom-0" style="border-bottom-style: {{ borderBottom  }}" headers="{{ dataPoint.headerId }}">
 
             {% if dataPoint.href %}
               <a data-test-id="{{ dataPoint.dataTestId }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>

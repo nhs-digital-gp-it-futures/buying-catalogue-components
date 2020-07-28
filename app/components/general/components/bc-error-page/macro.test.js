@@ -57,4 +57,55 @@ describe('bc-error-page', () => {
       expect(errorDescription.text().trim()).toEqual(context.params.error.description);
     });
   }));
+
+  it('should not render the stack trace heading when there is no stack trace', componentTester(setup, (harness) => {
+    const context = { params: { error: {} } };
+
+    harness.request(context, ($) => {
+      const stackTraceHeading = $('[data-test-id="stackTrace-heading"]');
+      expect(stackTraceHeading.length).toEqual(0);
+    });
+  }));
+
+  it('should render the stack trace heading when a stack trace is present', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        error: {
+          stackTrace: 'This is a stack trace...',
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const stackTraceHeading = $('[data-test-id="stackTrace-heading"]');
+      expect(stackTraceHeading.length).toEqual(1);
+      expect(stackTraceHeading.text().trim()).toEqual('Stack Trace');
+    });
+  }));
+
+  it('should not render the stack trace when there is no stack trace', componentTester(setup, (harness) => {
+    const context = { params: { error: {} } };
+
+    harness.request(context, ($) => {
+      const stackTrace = $('[data-test-id="error-stackTrace"]');
+      expect(stackTrace.length).toEqual(0);
+    });
+  }));
+
+  it('should render the stack trace when a stack trace is present', componentTester(setup, (harness) => {
+    const stackTrace = 'This is a stack trace...';
+    const context = {
+      params: {
+        error: {
+          stackTrace,
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const stackTraceContent = $('[data-test-id="error-stackTrace"]');
+      expect(stackTraceContent.length).toEqual(1);
+      expect(stackTraceContent.text().trim()).toEqual(stackTrace);
+    });
+  }));
 });

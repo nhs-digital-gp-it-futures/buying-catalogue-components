@@ -5,10 +5,10 @@
 {% from 'components/checkboxes/macro.njk' import checkboxes %}
 
 {% macro bcTableFlexible(params) %}
-  <table data-test-id="table" class="{{ param.classes }}">
+  <table data-test-id="table" class="{{ param.classes }}" style="page-break-inside:auto">
 
     {% if params.columnInfo %}
-      <tr data-test-id="table-headings">
+      <thead data-test-id="table-headings" style="display:table-header-group;">
         {% for column in params.columnInfo %}
           <th data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-bottom-0 {{ column.classes }}" style="width:{{ column.width }}">
             <div data-test-id="column-heading-{{ loop.index0 }}-data" class="nhsuk-u-font-weight-bold">{{ column.data }}</div>
@@ -19,11 +19,12 @@
             {% endif %}
           </th>
         {% endfor %}
-      </tr>
+      </thead>
     {% endif %}
 
+    <tbody>
     {% for row in params.data %}
-      <tr data-test-id="table-row-{{ loop.index0 }}">
+      <tr data-test-id="table-row-{{ loop.index0 }}" style="page-break-inside:avoid; page-break-after:auto">
         {% for dataPoint in row %}
           {% set borderBottom = "none" if (dataPoint.hideSeperator) else "solid" %}
           <td class="nhsuk-u-padding-bottom-0" style="border-bottom-style: {{ borderBottom  }}">
@@ -77,5 +78,6 @@
         {% endfor %}
       </tr>
     {% endfor %}
+    </tbody>
   </table>
 {% endmacro %}

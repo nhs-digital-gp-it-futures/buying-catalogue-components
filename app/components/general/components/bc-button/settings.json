@@ -5,7 +5,8 @@
     "text": "Name of button",
     "altText": "some alt text",
     "classes": "another-class",
-    "href": "/some-link",
-    "disabled": "false"
+    "href": "http://www.open-in-new-tab.com",
+    "disabled": "false",
+    "attributes": { "target": "_blank" }
   }
 }

@@ -27,8 +27,8 @@ describe('beta-banner', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="beta-banner-text"]').text().trim()).toEqual('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
-      expect($('div[data-test-id="beta-banner-text"] a').text().trim()).toEqual('downloading this PDF');
+      expect($('div[data-test-id="beta-banner-text"]').text().trim()).toEqual('This is a new service - your feedback will help us improve it.');
+      expect($('div[data-test-id="beta-banner-text"] a').text().trim()).toEqual('feedback');
       expect($('div[data-test-id="beta-banner-text"] a').attr('href')).toEqual(context.params.termsHref);
     });
   }));

@@ -9,12 +9,12 @@ const setup = {
 
 
 describe('bc-error-wrapper', () => {
-  it('should wrap the provided innerComponet as an error is an errorMessage is provided', componentTester(setup, (harness) => {
+  it('should wrap the provided innerComponent as an error is an errorMessage is provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-component',
         errorMessage: 'some error message',
-        innerComponet: '<span data-test-id="inner-component">the inner component</span>',
+        innerComponent: '<span data-test-id="inner-component">the inner component</span>',
       },
     };
 
@@ -26,11 +26,11 @@ describe('bc-error-wrapper', () => {
     });
   }));
 
-  it('should not wrap the provided innerComponet as an error when errorMessage is not provided', componentTester(setup, (harness) => {
+  it('should not wrap the provided innerComponent as an error when errorMessage is not provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-component',
-        innerComponet: '<span data-test-id="inner-component">the inner component</span>',
+        innerComponent: '<span data-test-id="inner-component">the inner component</span>',
       },
     };
 

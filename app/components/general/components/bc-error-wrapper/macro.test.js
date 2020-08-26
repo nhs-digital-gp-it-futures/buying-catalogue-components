@@ -1,0 +1,43 @@
+import { componentTester } from '../../../../testUtils/componentTester';
+
+const setup = {
+  component: {
+    name: 'bcErrorWrapper',
+    path: 'components/general/components/bc-error-wrapper/macro.njk',
+  },
+};
+
+
+describe('bc-error-wrapper', () => {
+  it('should wrap the provided innerComponet as an error is an errorMessage is provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'some-component',
+        errorMessage: 'some error message',
+        innerComponet: '<span data-test-id="inner-component">the inner component</span>',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-component"]').length).toEqual(1);
+      expect($('[data-test-id="some-component-error"]').length).toEqual(1);
+      expect($('[data-test-id="some-component-error"]').text().trim()).toEqual('some error message');
+      expect($('[data-test-id="inner-component"]').length).toEqual(1);
+    });
+  }));
+
+  it('should not wrap the provided innerComponet as an error when errorMessage is not provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'some-component',
+        innerComponet: '<span data-test-id="inner-component">the inner component</span>',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-component"]').length).toEqual(1);
+      expect($('[data-test-id="some-component-error"]').length).toEqual(0);
+      expect($('[data-test-id="inner-component"]').length).toEqual(1);
+    });
+  }));
+});

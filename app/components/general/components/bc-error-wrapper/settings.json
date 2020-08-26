@@ -1,0 +1,8 @@
+{
+  "componentName": "bcErrorWrapper",
+  "params": {
+    "dataTestId": "some-error-component",
+    "errorMessage": "some error",
+    "innerComponent": "<table><thead><th>column A</th><th>column B</th></thead><tbody><td>Data A</td><td>Data B</td></tbody></table>"
+  }
+}

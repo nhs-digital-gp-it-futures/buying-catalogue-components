@@ -1,6 +1,6 @@
 
 {% macro bcErrorWrapper(params) %}
-  <div id="{{ params.dataTestId }}" data-test-id="{{ params.dataTestId }}">
+  <div id="{{ params.id }}" data-test-id="{{ params.dataTestId }}" class="{{ param.classes }}">
 
     {% if params.errorMessage %}
     <div class=" nhsuk-u-margin-top-0 nhsuk-form-group nhsuk-form-group--error">

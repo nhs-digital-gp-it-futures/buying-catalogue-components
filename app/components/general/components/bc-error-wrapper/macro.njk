@@ -1,0 +1,17 @@
+
+{% macro bcErrorWrapper(params) %}
+  <div id="{{ params.id }}" data-test-id="{{ params.dataTestId }}" class="{{ param.classes }}">
+
+    {% if params.errorMessage %}
+    <div class=" nhsuk-u-margin-top-0 nhsuk-form-group nhsuk-form-group--error">
+      <span data-test-id="{{ params.dataTestId }}-error" class="nhsuk-error-message">
+        {{ params.errorMessage }}
+      </span>
+      {{- params.innerComponent | safe | trim }}
+    </div>
+    {% else %}
+      {{- params.innerComponent | safe | trim }}
+    {% endif %}
+
+  </div>
+{% endmacro %}

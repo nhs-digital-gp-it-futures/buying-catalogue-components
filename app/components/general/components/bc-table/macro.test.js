@@ -7,361 +7,363 @@ const setup = {
   },
 };
 
-const mockContext = {
-  params: {
-    title: 'A title',
-    description: 'A description',
-    columnInfo: [
-      { data: 'column 1 heading' },
-      { data: 'column 2 heding' },
-    ],
-    columnClass: 'nhsuk-grid-column-one-half',
-    data: [
-      [{ data: 'data point 1a' }, { data: 'data point 1b' }],
-      [{ data: 'data point 2a' }, { data: 'data point 2b' }]],
-  },
-};
-
-const mockContextWithColumnClassArray = {
-  params: {
-    ...mockContext.params,
-    columnClass: ['nhsuk-grid-column-one-half', 'nhsuk-grid-column-one-quarter'],
-  },
-};
-
 describe('table', () => {
   it('should render the table', componentTester(setup, (harness) => {
-    harness.request(mockContext, ($) => {
+    const context = {};
+
+    harness.request(context, ($) => {
       expect($('[data-test-id="table"]').length).toEqual(1);
     });
   }));
 
-  it('should render the table headings with correct classes if columnInfo is passed in as string', componentTester(setup, (harness) => {
-    harness.request(mockContext, ($) => {
-      expect($('[data-test-id="table-headings"]').length).toEqual(1);
-      mockContext.params.columnInfo.forEach((heading, i) => {
-        expect($(`[data-test-id="column-heading-${i}"]`).hasClass(mockContext.params.columnClass)).toEqual(true);
-        expect($(`[data-test-id="column-heading-${i}-data"]`).text().trim()).toEqual(heading.data);
+  describe('column headings', () => {
+    it('should render a single column heading if only one column is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          columnInfo: [{}],
+        },
+      };
+
+      harness.request(context, ($) => {
+        expect($('[data-test-id="table-headings"]').length).toEqual(1);
+        expect($('th').length).toEqual(1);
       });
-    });
-  }));
+    }));
 
-  it('should render the table headings with correct classes if columnInfo is passed in as string', componentTester(setup, (harness) => {
-    harness.request(mockContextWithColumnClassArray, ($) => {
-      expect($('[data-test-id="table-headings"]').length).toEqual(1);
-      mockContext.params.columnInfo.forEach((heading, i) => {
-        expect($(`[data-test-id="column-heading-${i}-data"]`).text().trim()).toEqual(heading.data);
-        expect($(`[data-test-id="column-heading-${i}"]`).hasClass(mockContextWithColumnClassArray.params.columnClass[i])).toEqual(true);
+    it('should render the heading of the column', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          columnInfo: [{
+            data: 'column 1 header',
+          }],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const column1Heading = $('[data-test-id="column-heading-0-data"]');
+
+        expect(column1Heading.text().trim()).toEqual('column 1 header');
       });
-    });
-  }));
+    }));
 
-  it('should not render the table headings if no data is passed in', componentTester(setup, (harness) => {
-    const context = { params: { ...mockContext.params } };
-    delete context.params.columnInfo;
-
-    harness.request(context, ($) => {
-      expect($('[data-test-id="table-headings"]').length).toEqual(0);
-      expect($('[data-test-id="column-heading"]').length).toEqual(0);
-    });
-  }));
-
-  it('should render expandableSection component when table heading has property expandableSection', componentTester(setup, (harness) => {
-    const context = {
-      params: {
-        columnInfo: [
-          { data: 'column 1 heading' },
-          {
-            data: 'Column 2 heading',
+    it('should render the expandable section of the column', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          columnInfo: [{
+            data: 'column 1 header',
             expandableSection: {
-              dataTestId: 'some-expandableSection-heading-id',
-              title: 'ExpandableSection heading title',
-              innerComponent: 'Some inner component',
+              dataTestId: 'view-section-some-section-id',
+              title: 'ExpandableSection title 1',
+              innerComponent: 'Some inner text',
             },
-          },
-        ],
-      },
-    };
-
-    harness.request(context, ($) => {
-      const expandableSection = $('[data-test-id="some-expandableSection-heading-id"]');
-      expect(expandableSection.find('span').text().trim()).toEqual('ExpandableSection heading title');
-      expect(expandableSection.find('.nhsuk-details__text').text().trim()).toEqual('Some inner component');
-    });
-  }));
-
-  it('should render the table rows with text and classes (string) if data is passed in', componentTester(setup, (harness) => {
-    const context = { params: { ...mockContext.params } };
-    harness.request(context, ($) => {
-      context.params.data.forEach((row, rowIndex) => {
-        row.forEach((dataPoint, i) => {
-          expect($(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`).text().trim()).toEqual(dataPoint.data);
-          expect($(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`).hasClass(mockContext.params.columnClass)).toEqual(true);
-        });
-      });
-    });
-  }));
-
-  it('should render the table rows with text and classes (array) if data is passed in', componentTester(setup, (harness) => {
-    harness.request(mockContextWithColumnClassArray, ($) => {
-      mockContextWithColumnClassArray.params.data.forEach((row, rowIndex) => {
-        row.forEach((dataPoint, i) => {
-          expect($(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`).text().trim()).toEqual(dataPoint.data);
-          expect($(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`).hasClass(mockContextWithColumnClassArray.params.columnClass[rowIndex])).toEqual(true);
-        });
-      });
-    });
-  }));
-
-  it('should not render the table rows if no data is passed in', componentTester(setup, (harness) => {
-    const context = { params: { ...mockContext.params } };
-    delete context.params.data;
-
-    harness.request(context, ($) => {
-      expect($('[data-test-id="table-rows"]').length).toEqual(0);
-    });
-  }));
-
-  it('should render <div> for data with no href property', componentTester(setup, (harness) => {
-    const context = {
-      params: {
-        ...mockContext.params,
-        data: [
-          [{ data: 'data point 1a' }, { data: 'data point 1b' }],
-          [{ data: 'data point 2a' }, { data: 'data point 2b' }],
-        ],
-      },
-    };
-
-    harness.request(context, ($) => {
-      context.params.data.forEach((row, rowIndex) => {
-        row.forEach((dataPoint, i) => {
-          const divTag = $(`[data-test-id="table-row-${rowIndex}"] div:nth-child(${i + 1})`);
-          expect(divTag.text().trim()).toEqual(dataPoint.data);
-          expect(divTag.hasClass(mockContext.params.columnClass)).toEqual(true);
-          expect($(`[data-test-id="table-row-${rowIndex}"] a`).length).toEqual(0);
-        });
-      });
-    });
-  }));
-
-  it('should render <a> for data with href property', componentTester(setup, (harness) => {
-    const context = {
-      params: {
-        ...mockContext.params,
-        data: [
-          [
-            { data: 'data point 1a', href: 'data/1a' },
-            { data: 'data point 1b', href: 'data/1b' },
-          ],
-          [
-            { data: 'data point 2a', href: 'data/2a' },
-            { data: 'data point 2b', href: 'data/2b' },
-          ],
-        ],
-      },
-    };
-
-    harness.request(context, ($) => {
-      context.params.data.forEach((row, rowIndex) => {
-        row.forEach((dataPoint, i) => {
-          const aTag = $(`[data-test-id="table-row-${rowIndex}"] a:nth-child(${i + 1})`);
-          expect(aTag.text().trim()).toEqual(dataPoint.data);
-          expect(aTag.hasClass(mockContext.params.columnClass)).toEqual(true);
-          expect(aTag.attr('href')).toEqual(dataPoint.href);
-          expect($(`[data-test-id="table-row-${rowIndex}"] div`).length).toEqual(0);
-        });
-      });
-    });
-  }));
-
-  it('should render tag component for data with tag property', componentTester(setup, (harness) => {
-    const context = {
-      params: {
-        ...mockContext.params,
-        data: [
-          [
-            {
-              tag: {
-                dataTestId: 'a-tag-id-1',
-                text: 'tag text',
-                classes: 'a-class',
-              },
-            },
-          ],
-        ],
-      },
-    };
-
-    harness.request(context, ($) => {
-      expect($('[data-test-id="a-tag-id-1"]').text().trim()).toEqual(context.params.data[0][0].tag.text);
-      expect($('[data-test-id="a-tag-id-1"]').hasClass(context.params.data[0][0].tag.classes)).toEqual(true);
-    });
-  }));
-
-  describe('input', () => {
-    it('should render input component for data when question property of type: input', componentTester(setup, (harness) => {
-      const context = {
-        params: {
-          ...mockContext.params,
-          data: [
-            [
-              {
-                question: {
-                  type: 'input',
-                  id: 'some-id',
-                  data: 'The data goes here',
-                },
-              },
-            ],
-          ],
+          }],
         },
       };
 
       harness.request(context, ($) => {
-        const input = $('[data-test-id="question-some-id"] input');
-        expect(input.val()).toEqual(context.params.data[0][0].question.data);
-        expect(input.hasClass('nhsuk-input this is a class')).toEqual(false);
+        const column1ExpandableHeading = $('[data-test-id="column-heading-0-expandable"]');
+
+        expect(column1ExpandableHeading.length).toEqual(1);
+        expect(column1ExpandableHeading.find('span').text().trim()).toEqual('ExpandableSection title 1');
+        expect(column1ExpandableHeading.find('.nhsuk-details__text').text().trim()).toEqual('Some inner text');
       });
     }));
 
-    it('should render error in input component for data when question property of type: input and there is error', componentTester(setup, (harness) => {
+    it('should render any additional classes to the column heading', componentTester(setup, (harness) => {
       const context = {
         params: {
-          ...mockContext.params,
-          data: [
-            [
-              {
-                question: {
-                  type: 'input',
-                  id: 'some-id',
-                  data: 'The data goes here',
-                  error: { message: 'error message' },
-                },
-              },
-            ],
-          ],
+          columnInfo: [{
+            classes: 'some-extra-class',
+          }],
         },
       };
 
       harness.request(context, ($) => {
-        const inputError = $('[data-test-id="question-some-id"]  .nhsuk-error-message');
-        expect(inputError.text().trim()).toEqual('Error: error message');
+        const column1Heading = $('[data-test-id="column-heading-0"]');
+
+        expect(column1Heading.attr('class')).toContain('some-extra-class');
       });
     }));
 
-    it('should render expandableSection component for data when question has property expandableSection', componentTester(setup, (harness) => {
+    it('should render the column to the width provided', componentTester(setup, (harness) => {
       const context = {
         params: {
-          ...mockContext.params,
+          columnInfo: [{
+            width: '30%',
+          }],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const column1Heading = $('[data-test-id="column-heading-0"]');
+
+        expect(column1Heading.attr('style')).toContain('width:30%');
+      });
+    }));
+
+    it('should render a multiple column heading if multiple columns are provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          columnInfo: [{}, {}, {}, {}, {}],
+        },
+      };
+
+      harness.request(context, ($) => {
+        expect($('[data-test-id="table-headings"]').length).toEqual(1);
+        expect($('th').length).toEqual(5);
+      });
+    }));
+  });
+
+  describe('table data', () => {
+    it('should render a single row and column', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{}],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableRow = $('tr[data-test-id="table-row-0"]');
+
+        expect(tableRow.length).toEqual(1);
+        expect(tableRow.find('td').length).toEqual(1);
+      });
+    }));
+
+    it('should render the cell without a border bottom if the hideSeperator is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ hideSeperator: true }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        expect($('td').attr('style')).toEqual('border-bottom-style: none');
+      });
+    }));
+
+    it('should render the cell with a border bottom if the hideSeperator is not provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{}],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        expect($('td').attr('style')).toEqual('border-bottom-style: solid');
+      });
+    }));
+
+    it('should render the cell as a link if a href property is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ data: 'some link', href: '/some-link', dataTestId: 'link-cell' }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableLinkCell = $('[data-test-id="link-cell"]');
+
+        expect(tableLinkCell.text().trim()).toEqual('some link');
+        expect(tableLinkCell.attr('href')).toEqual('/some-link');
+      });
+    }));
+
+    it('should render the cell as a tag component if a tag property is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ tag: { dataTestId: 'tag-cell', text: 'tag text', classes: 'bc-c-tag-outline' } }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableTagCell = $('[data-test-id="tag-cell"]');
+
+        expect(tableTagCell.text().trim()).toEqual('tag text');
+        expect(tableTagCell.hasClass('bc-c-tag-outline')).toEqual(true);
+      });
+    }));
+
+    it('should render the table rows with multiLine text passed in', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ multiLine: { data: ['first line', 'second line', '', 'blank line'], dataTestId: 'multiLine-cell' } }],
+          ],
+        },
+      };
+      harness.request(context, ($) => {
+        const tableMultiLineCell = $('[data-test-id="multiLine-cell"]');
+
+        expect(tableMultiLineCell.length).toEqual(1);
+        expect(tableMultiLineCell.find('div').length).toEqual(4);
+        expect(tableMultiLineCell.find('div:nth-child(1)').text().trim()).toEqual('first line');
+        expect(tableMultiLineCell.find('div:nth-child(2)').text().trim()).toEqual('second line');
+        expect(tableMultiLineCell.find('div:nth-child(3)').text().trim()).toEqual('');
+        expect(tableMultiLineCell.find('div:nth-child(4)').text().trim()).toEqual('blank line');
+      });
+    }));
+
+    describe('input', () => {
+      const context = {
+        params: {
           data: [
             [
               {
                 question: {
-                  type: 'input',
-                  id: 'some-id',
-                  data: 'The data goes here',
+                  type: 'input', data: 'some inputted data', id: 'some-question-id',
                 },
-                expandableSection: {
-                  dataTestId: 'some-expandableSection-id',
-                  title: 'ExpandableSection title',
-                  innerComponent: 'Some inner component',
-                },
+                classes: 'some-input-class',
+                dataTestId: 'input-cell',
               },
             ],
           ],
         },
       };
 
+      it('should render the cell as a text input if a question property is provided of type: input', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableInputCell = $('[data-test-id="input-cell"]');
+
+          expect(tableInputCell.find('input').length).toEqual(1);
+        });
+      }));
+
+      it('should render the input field with the data populated', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableInputCell = $('[data-test-id="input-cell"]');
+
+          expect(tableInputCell.find('input').val()).toEqual('some inputted data');
+        });
+      }));
+
+      it('should render the input field with any additional classes provided', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableInputCell = $('[data-test-id="input-cell"]');
+
+          expect(tableInputCell.find('input').hasClass('some-input-class')).toEqual(true);
+        });
+      }));
+    });
+
+    describe('checkbox', () => {
+      const context = {
+        params: {
+          data: [
+            [
+              {
+                question: {
+                  type: 'checkbox', text: 'checkbox text', value: 'checkbox-value', id: 'some-question-id', checked: true,
+                },
+                dataTestId: 'checkbox-cell',
+              },
+            ],
+          ],
+        },
+      };
+
+      it('should render the cell as a checkbox input if a question property is provided of type: checkbox', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableCheckboxCell = $('[data-test-id="checkbox-cell"]');
+
+          expect(tableCheckboxCell.find('input').attr('type')).toEqual('checkbox');
+        });
+      }));
+
+      it('should render the checkbox as checked', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableCheckboxCell = $('[data-test-id="checkbox-cell"]');
+
+          expect(tableCheckboxCell.find('input:checked').length).toEqual(1);
+        });
+      }));
+
+      it('should render the label of the checkbox', componentTester(setup, (harness) => {
+        harness.request(context, ($) => {
+          const tableCheckboxCell = $('[data-test-id="checkbox-cell"]');
+
+          expect(tableCheckboxCell.find('label').text().trim()).toEqual('checkbox text');
+        });
+      }));
+    });
+
+    it('should render the cell as a just text if only data property is provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{ data: 'some text', dataTestId: 'text-cell', classes: 'some-text-classes' }],
+          ],
+        },
+      };
+
       harness.request(context, ($) => {
-        const expandableSection = $('[data-test-id="some-expandableSection-id"]');
+        const tableTextCell = $('[data-test-id="text-cell"]');
+
+        expect(tableTextCell.text().trim()).toEqual('some text');
+        expect(tableTextCell.hasClass('some-text-classes')).toEqual(true);
+      });
+    }));
+
+    it('should render an expandable section to a cell if provided', componentTester(setup, (harness) => {
+      const context = {
+        params: {
+          data: [
+            [{
+              data: 'some text',
+              dataTestId: 'text-cell',
+              classes: 'some-text-classes',
+              expandableSection: {
+                dataTestId: 'some-expandableSection-id',
+                title: 'ExpandableSection title',
+                innerComponent: 'Some inner component',
+              },
+            }],
+          ],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const tableRow = $('[data-test-id="table-row-0"]');
+        const tableCell = tableRow.find('td');
+        const expandableSection = tableCell.find('[data-test-id="some-expandableSection-id"]');
+
         expect(expandableSection.find('span').text().trim()).toEqual('ExpandableSection title');
         expect(expandableSection.find('.nhsuk-details__text').text().trim()).toEqual('Some inner component');
       });
     }));
 
-    it('should render the input component with correct classes if columnInfo is passed in as string', componentTester(setup, (harness) => {
+    it('should render a multiple rows and columns', componentTester(setup, (harness) => {
       const context = {
         params: {
-          ...mockContext.params,
           data: [
-            [
-              {
-                question: {
-                  type: 'input',
-                  id: 'some-id',
-                  data: 'The data goes here',
-                },
-                classes: 'this is a class',
-              },
-            ],
+            [{}, {}, {}],
+            [{}, {}, {}],
+            [{}, {}, {}],
           ],
         },
       };
 
-
       harness.request(context, ($) => {
-        const input = $('[data-test-id="question-some-id"] input');
-        expect(input.val()).toEqual(context.params.data[0][0].question.data);
-        expect(input.hasClass('nhsuk-input this is a class')).toEqual(true);
-      });
-    }));
-  });
+        const tableRows = $('tr');
+        const tableRow1 = $('tr[data-test-id="table-row-0"]');
+        const tableRow2 = $('tr[data-test-id="table-row-1"]');
+        const tableRow3 = $('tr[data-test-id="table-row-2"]');
 
-  it('should render checkboxes component for data when question property of type: checkbox', componentTester(setup, (harness) => {
-    const context = {
-      params: {
-        ...mockContext.params,
-        data: [
-          [
-            {
-              question: {
-                type: 'checkbox',
-                id: 'someId',
-                name: 'checkboxName',
-                value: 'checkBoxValueSentInForm',
-                text: 'some other text here',
-                checked: true,
-              },
-              dataTestId: 'checkbox-question-id',
-            },
-          ],
-        ],
-      },
-    };
-
-    harness.request(context, ($) => {
-      const checkboxInput = $('[data-test-id="checkbox-question-id"] input');
-      expect(checkboxInput.length).toEqual(1);
-      expect(checkboxInput.attr('id')).toEqual('someId');
-      expect(checkboxInput.attr('name')).toEqual('checkboxName');
-      expect(checkboxInput.attr('type')).toEqual('checkbox');
-      expect(checkboxInput.attr('checked')).toEqual('checked');
-      expect(checkboxInput.attr('value')).toEqual('checkBoxValueSentInForm');
-    });
-  }));
-
-  describe('multiLine', () => {
-    it('should render the table rows with multiLine text passed in', componentTester(setup, (harness) => {
-      const context = {
-        params: {
-          columnInfo: [
-            { data: 'column 1 heading' },
-          ],
-          data: [
-            [{ multiLine: { data: ['first line', 'second line', '', 'blank line'], dataTestId: 'some-id' } }],
-          ],
-        },
-      };
-      harness.request(context, ($) => {
-        const multiLineDiv = $('[data-test-id="some-id"]');
-
-        expect(multiLineDiv.length).toEqual(1);
-        expect(multiLineDiv.find('div').length).toEqual(4);
-        expect(multiLineDiv.find('div:nth-child(1)').text().trim()).toEqual('first line');
-        expect(multiLineDiv.find('div:nth-child(2)').text().trim()).toEqual('second line');
-        expect(multiLineDiv.find('div:nth-child(3)').text().trim()).toEqual('');
-        expect(multiLineDiv.find('div:nth-child(4)').text().trim()).toEqual('blank line');
+        expect(tableRows.length).toEqual(3);
+        expect(tableRow1.find('td').length).toEqual(3);
+        expect(tableRow2.find('td').length).toEqual(3);
+        expect(tableRow3.find('td').length).toEqual(3);
       });
     }));
   });

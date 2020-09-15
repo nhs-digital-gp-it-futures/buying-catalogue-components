@@ -5,75 +5,79 @@
 {% from 'components/checkboxes/macro.njk' import checkboxes %}
 
 {% macro bcTable(params) %}
-  <div data-test-id="table">
+  <table data-test-id="table" class="{{ param.classes }}" style="page-break-inside:auto">
+
     {% if params.columnInfo %}
-      <div data-test-id="table-headings" class="nhsuk-u-font-size-19 nhsuk-grid-row nhsuk-u-margin-1 bc-t-border-bottom--grey-3">
+      <thead data-test-id="table-headings" style="display:table-header-group;">
         {% for column in params.columnInfo %}
-          {% set columnClass = params.columnClass[loop.index0] if ((params.columnClass[loop.index0] | length) > 1) else params.columnClass %}
-          <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-1 {{ columnClass }}">
+          <th data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-padding-bottom-0 {{ column.classes }}" style="width:{{ column.width }}">
             <div data-test-id="column-heading-{{ loop.index0 }}-data" class="nhsuk-u-font-weight-bold">{{ column.data }}</div>
             {% if column.expandableSection %}
-              <div data-test-id="column-heading-{{ loop.index0 }}" class="nhsuk-u-margin-top-2 nhsuk-u-font-weight-bold ">
+              <div data-test-id="column-heading-{{ loop.index0 }}-expandable" class="nhsuk-u-margin-top-2 nhsuk-u-font-weight-bold ">
                 {{ viewExpandableSection(column.expandableSection) }}
               </div>
-            {% else %}
-              <div> </div>
             {% endif %}
-          </div>
+          </th>
         {% endfor %}
-      </div>
+      </thead>
     {% endif %}
 
+    <tbody>
     {% for row in params.data %}
-      {% set columnClass = params.columnClass[loop.index0] if ((params.columnClass[loop.index0] | length) > 1) else params.columnClass %}
-      <div data-test-id="table-row-{{ loop.index0 }}" class="nhsuk-grid-row nhsuk-u-margin-1 nhsuk-u-padding-top-3 bc-t-border-bottom--grey-3">
+      <tr data-test-id="table-row-{{ loop.index0 }}" style="page-break-inside:avoid; page-break-after:auto">
         {% for dataPoint in row %}
-          {% if dataPoint.href %}
-            <a data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-1 nhsuk-u-padding-bottom-3 {{ columnClass }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
-          {% elif dataPoint.tag %}
-            <div class="nhsuk-u-padding-bottom-3 nhsuk-u-padding-left-0 {{ columnClass }}">
-              {{ tag({
-                dataTestId: dataPoint.tag.dataTestId,
-                text: dataPoint.tag.text,
-                classes: dataPoint.tag.classes
+          {% set borderBottom = "none" if (dataPoint.hideSeperator) else "solid" %}
+          <td class="nhsuk-u-padding-bottom-0" style="border-bottom-style: {{ borderBottom  }}">
+
+            {% if dataPoint.href %}
+              <a data-test-id="{{ dataPoint.dataTestId }}" href="{{ dataPoint.href }}">{{ dataPoint.data }}</a>
+            {% elif dataPoint.tag %}
+              <div>
+                {{ tag({
+                  dataTestId: dataPoint.tag.dataTestId,
+                  text: dataPoint.tag.text,
+                  classes: dataPoint.tag.classes
+                }) }}
+              </div>
+            {% elif dataPoint.multiLine %}
+              <div data-test-id="{{ dataPoint.multiLine.dataTestId }}">
+                {% for line in dataPoint.multiLine.data %}
+                  <div class="dataPoint.multiLine.classes">
+                    {% if line == '' %}
+                      &nbsp;
+                    {% else %}
+                      {{ line }}
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            {% elif dataPoint.question and dataPoint.question.type == 'input' %}
+              <div data-test-id="{{ dataPoint.dataTestId }}">
+                {{ textField(dataPoint) }}
+              </div>
+            {% elif dataPoint.question and dataPoint.question.type == 'checkbox' %}
+              <div data-test-id="{{ dataPoint.dataTestId }}">
+                {{ checkboxes({
+                  items: [dataPoint.question]
+                }) }}
+              </div>
+            {% else %}
+              {{ viewDataText({
+                dataTestId: dataPoint.dataTestId,
+                classes: dataPoint.classes,
+                data: dataPoint.data
               }) }}
-            </div>
-          {% elif dataPoint.multiLine %}
-            <div data-test-id="{{ dataPoint.multiLine.dataTestId }}" class="nhsuk-u-padding-1 {{ columnClass }}">
-              {% for line in dataPoint.multiLine.data %}
-                <div class="dataPoint.multiLine.classes">
-                  {% if line == '' %}
-                    &nbsp;
-                  {% else %}
-                    {{ line }}
-                  {% endif %}
-                </div>
-              {% endfor %}
-            </div>
-          {% elif dataPoint.question and dataPoint.question.type == 'input' %}
-            <div class="nhsuk-u-padding-left-0 {{ columnClass }}">
-              {{ textField(dataPoint) }}
-              {% if dataPoint.expandableSection %}
-                <div class="nhsuk-u-margin-top-4">
-                  {{ viewExpandableSection(dataPoint.expandableSection) }}
-                </div>
-              {% endif %}
-            </div>
-          {% elif dataPoint.question and dataPoint.question.type == 'checkbox' %}
-            <div data-test-id="{{ dataPoint.dataTestId }}" class="nhsuk-u-padding-left-0 {{ columnClass }}">
-              {{ checkboxes({
-                items: [dataPoint.question]
-              }) }}
-            </div>
-          {% else %}
-            {{ viewDataText({
-              dataTestId: dataPoint.dataTestId,
-              classes: "nhsuk-u-padding-1 nhsuk-u-padding-bottom-3 "+ columnClass,
-              data: dataPoint.data
-            }) }}
-          {% endif %}
+            {% endif %}
+
+            {% if dataPoint.expandableSection %}
+              <div>
+                {{ viewExpandableSection(dataPoint.expandableSection) }}
+              </div>
+            {% endif %}
+          </td>
         {% endfor %}
-      </div>
+      </tr>
     {% endfor %}
-  </div>
+    </tbody>
+  </table>
 {% endmacro %}

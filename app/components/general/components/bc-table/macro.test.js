@@ -72,6 +72,25 @@ describe('table', () => {
       });
     }));
 
+    it('should render the hint section of the column', componentTester(setup, (harness) => {
+      const additionalAdvice = 'For example 14 01 2020';
+      const context = {
+        params: {
+          columnInfo: [{
+            data: 'column 1 header',
+            additionalAdvice,
+          }],
+        },
+      };
+
+      harness.request(context, ($) => {
+        const column1HintHeading = $('[data-test-id="column-heading-0-hint"]');
+
+        expect(column1HintHeading.length).toEqual(1);
+        expect(column1HintHeading.text().trim()).toEqual(additionalAdvice);
+      });
+    }));
+
     it('should render any additional classes to the column heading', componentTester(setup, (harness) => {
       const classes = 'some-extra-class';
       const context = {
@@ -314,6 +333,259 @@ describe('table', () => {
           const tableCheckboxCell = $(`[data-test-id="${dataTestId}"]`);
 
           expect(tableCheckboxCell.find('label').text().trim()).toEqual(text);
+        });
+      }));
+    });
+
+    describe('date', () => {
+      it('should render the input fields', componentTester(setup, (harness) => {
+        const context = {
+          params: {
+            data: [
+              [
+                {
+                  question: {
+                    type: 'date',
+                    id: 'fieldId',
+                    mainAdvice: 'Some really important main advice',
+                    additionalAdvice: 'Some not so important additional advice',
+                  },
+                },
+              ],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const question = $('div[data-test-id="question-fieldId"]');
+          expect(question.find('#fieldId-day').length).toEqual(1);
+          expect(question.find('#fieldId-month').length).toEqual(1);
+          expect(question.find('#fieldId-year').length).toEqual(1);
+        });
+      }));
+
+      it('should render the input fields with the data populated', componentTester(setup, (harness) => {
+        const context = {
+          params: {
+            data: [
+              [
+                {
+                  question: {
+                    id: 'fieldId',
+                    type: 'date',
+                    mainAdvice: 'Some really important main advice',
+                    additionalAdvice: 'Some not so important additional advice',
+                    data: {
+                      day: '15',
+                      month: '03',
+                      year: '1996',
+                    },
+                  },
+                },
+              ],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const question = $('div[data-test-id="question-fieldId"]');
+          expect(question.find('#fieldId-day').val()).toEqual('15');
+          expect(question.find('#fieldId-month').val()).toEqual('03');
+          expect(question.find('#fieldId-year').val()).toEqual('1996');
+        });
+      }));
+
+      it('should render the date field as an error if the context provided contains an error', componentTester(setup, (harness) => {
+        const context = {
+          params: {
+            data: [
+              [
+                {
+                  question: {
+                    id: 'fieldId',
+                    type: 'date',
+                    mainAdvice: 'Some really important main advice',
+                    additionalAdvice: 'Some not so important additional advice',
+                    error: {
+                      fields: ['day'],
+                      message: 'Some error message',
+                    },
+                  },
+                },
+              ],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const question = $('div[data-test-id="question-fieldId"]');
+          const inputError = question.find('div[data-test-id="date-field-input-error"] .nhsuk-error-message');
+
+          expect(inputError.length).toEqual(1);
+          expect(inputError.text().trim()).toEqual('Error: Some error message');
+        });
+      }));
+
+      it('should add error class to day field if "day" is in the error fields array', componentTester(setup, (harness) => {
+        const context = {
+          params: {
+            data: [
+              [
+                {
+                  question: {
+                    id: 'fieldId',
+                    type: 'date',
+                    mainAdvice: 'Some really important main advice',
+                    additionalAdvice: 'Some not so important additional advice',
+                    error: {
+                      fields: ['day'],
+                      message: 'Some error message',
+                    },
+                  },
+                },
+              ],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const dayInput = $('#fieldId-day');
+          expect(dayInput.length).toEqual(1);
+          expect(dayInput.hasClass('nhsuk-input--error')).toBeTruthy();
+
+          const monthInput = $('#fieldId-month');
+          expect(monthInput.length).toEqual(1);
+          expect(monthInput.hasClass('nhsuk-input--error')).toBeFalsy();
+
+          const yearInput = $('#fieldId-year');
+          expect(yearInput.length).toEqual(1);
+          expect(yearInput.hasClass('nhsuk-input--error')).toBeFalsy();
+        });
+      }));
+
+      it('should add error class to month field if "month" is in the error fields array', componentTester(setup, (harness) => {
+        const context = {
+          params: {
+            data: [
+              [
+                {
+                  question: {
+                    id: 'fieldId',
+                    type: 'date',
+                    mainAdvice: 'Some really important main advice',
+                    additionalAdvice: 'Some not so important additional advice',
+                    error: {
+                      fields: ['month'],
+                      message: 'Some error message',
+                    },
+                  },
+                },
+              ],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const dayInput = $('#fieldId-day');
+          expect(dayInput.length).toEqual(1);
+          expect(dayInput.hasClass('nhsuk-input--error')).toBeFalsy();
+
+          const monthInput = $('#fieldId-month');
+          expect(monthInput.length).toEqual(1);
+          expect(monthInput.hasClass('nhsuk-input--error')).toBeTruthy();
+
+          const yearInput = $('#fieldId-year');
+          expect(yearInput.length).toEqual(1);
+          expect(yearInput.hasClass('nhsuk-input--error')).toBeFalsy();
+        });
+      }));
+
+      it('should add error class to year field if "year" is in the error fields array', componentTester(setup, (harness) => {
+        const context = {
+          params: {
+            data: [
+              [
+                {
+                  question: {
+                    id: 'fieldId',
+                    type: 'date',
+                    mainAdvice: 'Some really important main advice',
+                    additionalAdvice: 'Some not so important additional advice',
+                    error: {
+                      fields: ['year'],
+                      message: 'Some error message',
+                    },
+                  },
+                },
+              ],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const dayInput = $('#fieldId-day');
+          expect(dayInput.length).toEqual(1);
+          expect(dayInput.hasClass('nhsuk-input--error')).toBeFalsy();
+
+          const monthInput = $('#fieldId-month');
+          expect(monthInput.length).toEqual(1);
+          expect(monthInput.hasClass('nhsuk-input--error')).toBeFalsy();
+
+          const yearInput = $('#fieldId-year');
+          expect(yearInput.length).toEqual(1);
+          expect(yearInput.hasClass('nhsuk-input--error')).toBeTruthy();
+        });
+      }));
+
+      it('should render the footer advice', componentTester(setup, (harness) => {
+        const context = {
+          params: {
+            data: [
+              [
+                {
+                  question: {
+                    id: 'fieldId',
+                    type: 'date',
+                    mainAdvice: 'Some really important main advice',
+                    additionalAdvice: 'Some not so important additional advice',
+                    footerAdvice: 'Some footer based advice',
+                  },
+                },
+              ],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const question = $('div[data-test-id="question-fieldId"]');
+          expect(question.find('[data-test-id="date-field-footer"]').text().trim()).toEqual('Some footer based advice');
+        });
+      }));
+
+      it('should render the correct label classes', componentTester(setup, (harness) => {
+        const context = {
+          params: {
+            data: [
+              [
+                {
+                  question: {
+                    id: 'fieldId',
+                    type: 'date',
+                    mainAdvice: 'Some really important main advice',
+                    additionalAdvice: 'Some not so important additional advice',
+                  },
+                },
+              ],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const mainAdviceLabel = $('div[data-test-id="date-field-input"] legend.nhsuk-fieldset__legend');
+
+          expect(mainAdviceLabel.hasClass('nhsuk-u-font-size-24')).toEqual(true);
+          expect(mainAdviceLabel.hasClass('nhsuk-u-font-weight-bold')).toEqual(true);
+          expect(mainAdviceLabel.hasClass('nhsuk-u-margin-bottom-2')).toEqual(true);
         });
       }));
     });

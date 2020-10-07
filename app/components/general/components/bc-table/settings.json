@@ -16,11 +16,7 @@
         "data": "Input column",
         "classes": "some-column3-class",
         "width": "40%",
-        "expandableSection": {
-          "dataTestId": "view-section-some-section-id",
-          "title": "ExpandableSection title 1",
-          "innerComponent": "Some inner text (could be html)"
-        }
+        "additionalAdvice": "For example 14 01 2020"
       },
       { 
         "data": "Checkbox column",
@@ -41,8 +37,8 @@
         { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
         {
           "question": {
-            "type": "input",
-            "id": "someId",
+            "type": "date",
+            "id": "someId-1",
             "data":"The data goes here"
           },
           "classes": "input-classes"
@@ -62,15 +58,9 @@
         { "tag": { "dataTestId": "a-tag-id-1", "text": "tag text", "classes": "bc-c-tag-outline" } },
         {
           "question": {
-            "type": "input",
-            "id": "someId",
-            "data":"The data goes here",
-            "error": { "message": "error message" }
-          },
-          "expandableSection": {
-            "dataTestId": "view-section-some-section-id",
-            "title": "ExpandableSection title 1",
-            "innerComponent": "Some inner text (could be html)"
+            "type": "date",
+            "id": "someId-2",
+            "data":"The data goes here"
           },
           "dataTestId": "input-question-id"
         },

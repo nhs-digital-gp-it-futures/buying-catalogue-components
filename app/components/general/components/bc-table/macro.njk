@@ -1,6 +1,7 @@
 {% from 'components/general/components/tag/macro.njk' import tag %}
 {% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
 {% from 'components/input/components/text-field/macro.njk' import textField %}
+{% from 'components/input/components/date-field/macro.njk' import dateField %}
 {% from 'components/view/components/view-expandable-section/macro.njk' import viewExpandableSection %}
 {% from 'components/checkboxes/macro.njk' import checkboxes %}
 
@@ -16,6 +17,9 @@
               <div data-test-id="column-heading-{{ loop.index0 }}-expandable" class="nhsuk-u-margin-top-2 nhsuk-u-font-weight-bold ">
                 {{ viewExpandableSection(column.expandableSection) }}
               </div>
+            {% endif %}
+            {% if column.additionalAdvice %}
+              <span data-test-id="column-heading-{{ loop.index0 }}-hint" class="nhsuk-hint">{{ column.additionalAdvice }}</span>
             {% endif %}
           </th>
         {% endfor %}
@@ -60,6 +64,10 @@
                 {{ checkboxes({
                   items: [dataPoint.question]
                 }) }}
+              </div>
+            {% elif dataPoint.question and dataPoint.question.type == 'date' %}
+              <div data-test-id="{{ dataPoint.dataTestId }}">
+                {{ dateField({ question: dataPoint.question }) }}
               </div>
             {% else %}
               {{ viewDataText({

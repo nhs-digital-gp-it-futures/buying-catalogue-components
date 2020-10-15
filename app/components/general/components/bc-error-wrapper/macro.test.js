@@ -13,7 +13,7 @@ describe('bc-error-wrapper', () => {
     const context = {
       params: {
         dataTestId: 'some-component',
-        errorMessage: 'some error message',
+        errorMessages: ['some error message'],
         innerComponent: '<span data-test-id="inner-component">the inner component</span>',
       },
     };

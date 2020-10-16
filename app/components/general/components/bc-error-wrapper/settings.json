@@ -2,7 +2,7 @@
   "componentName": "bcErrorWrapper",
   "params": {
     "dataTestId": "some-error-component",
-    "errorMessage": "some error",
+    "errorMessages": ["some error", "some second message"],
     "innerComponent": "<table><thead><th>column A</th><th>column B</th></thead><tbody><td>Data A</td><td>Data B</td></tbody></table>"
   }
 }

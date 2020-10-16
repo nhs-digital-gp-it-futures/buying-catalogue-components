@@ -2,11 +2,13 @@
 {% macro bcErrorWrapper(params) %}
   <div id="{{ params.id }}" data-test-id="{{ params.dataTestId }}" class="{{ param.classes }}">
 
-    {% if params.errorMessage %}
+    {% if params.errorMessages %}
     <div class=" nhsuk-u-margin-top-0 nhsuk-form-group nhsuk-form-group--error">
-      <span data-test-id="{{ params.dataTestId }}-error" class="nhsuk-error-message">
-        {{ params.errorMessage }}
-      </span>
+        {% for errorMessage in params.errorMessages %}
+        <span data-test-id="{{ params.dataTestId }}-error" class="nhsuk-error-message">
+            {{ errorMessage }}
+        </span>
+        {% endfor %}
       {{- params.innerComponent | safe | trim }}
     </div>
     {% else %}

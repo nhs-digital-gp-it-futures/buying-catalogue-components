@@ -1,0 +1,18 @@
+{
+  "componentName": "textFieldWithUnit",
+  "params": {
+    "question": {
+      "id": "question-id",
+      "mainAdvice": "Some main advice",
+      "unit": "per patient per year",
+      "data":"The data goes here",
+      "error": {
+        "message": "The error message"
+      }
+    },
+    "formGroup": {
+      "classes": "nhsuk-u-margin-bottom-2"
+    },
+    "classes": "nhsuk-u-width-one-half"
+  }
+}

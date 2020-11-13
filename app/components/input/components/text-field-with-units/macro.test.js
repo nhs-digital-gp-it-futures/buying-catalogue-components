@@ -7,14 +7,19 @@ const setup = {
   },
 };
 
+const id = 'fieldId';
+const mainAdvice = 'Some really important main advice';
+const data = 'Some populated data';
+const message = 'Some error message';
+const classes = 'some-other-class';
+
 describe('textFieldWith Unit', () => {
   it('should render the main advice', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
-          id: 'fieldId',
-          mainAdvice: 'Some really important main advice',
-          additionalAdvice: 'Some not so important additional advice',
+          id,
+          mainAdvice,
         },
       },
     };
@@ -22,7 +27,7 @@ describe('textFieldWith Unit', () => {
     harness.request(context, ($) => {
       const question = $('div[data-test-id="question-fieldId"]');
       console.log(question.html());
-      expect(question.find('label.nhsuk-label').text().trim()).toEqual('Some really important main advice');
+      expect(question.find('label.nhsuk-label').text().trim()).toEqual(mainAdvice);
     });
   }));
 
@@ -30,9 +35,8 @@ describe('textFieldWith Unit', () => {
     const context = {
       params: {
         question: {
-          id: 'fieldId',
-          mainAdvice: 'Some really important main advice',
-          additionalAdvice: 'Some not so important additional advice',
+          id,
+          mainAdvice,
         },
       },
     };
@@ -47,17 +51,16 @@ describe('textFieldWith Unit', () => {
     const context = {
       params: {
         question: {
-          id: 'fieldId',
-          mainAdvice: 'Some really important main advice',
-          additionalAdvice: 'Some not so important additional advice',
-          data: 'Some populated data',
+          id,
+          mainAdvice,
+          data,
         },
       },
     };
 
     harness.request(context, ($) => {
       const question = $('div[data-test-id="question-fieldId"]');
-      expect(question.find('div[data-test-id="question-fieldId"] input').val()).toEqual('Some populated data');
+      expect(question.find('div[data-test-id="question-fieldId"] input').val()).toEqual(data);
     });
   }));
 
@@ -65,12 +68,11 @@ describe('textFieldWith Unit', () => {
     const context = {
       params: {
         question: {
-          id: 'fieldId',
-          mainAdvice: 'Some really important main advice',
-          additionalAdvice: 'Some not so important additional advice',
-          data: 'Some populated data',
+          id,
+          mainAdvice,
+          data,
           error: {
-            message: 'Some error message',
+            message,
           },
         },
       },
@@ -81,7 +83,7 @@ describe('textFieldWith Unit', () => {
       const inputError = question.find('div[data-test-id="text-field-input-error"] .nhsuk-error-message');
 
       expect(inputError.length).toEqual(1);
-      expect(inputError.text().trim()).toEqual('Error: Some error message');
+      expect(inputError.text().trim()).toEqual(`Error: ${message}`);
     });
   }));
 
@@ -89,10 +91,9 @@ describe('textFieldWith Unit', () => {
     const context = {
       params: {
         question: {
-          id: 'fieldId',
-          mainAdvice: 'main advice for question',
+          id,
+          mainAdvice,
         },
-        isMultiQuestion: true,
       },
     };
 
@@ -105,35 +106,20 @@ describe('textFieldWith Unit', () => {
     });
   }));
 
-  it('should not render any additional advice if not provided', componentTester(setup, (harness) => {
-    const context = {
-      params: {
-        question: {
-          id: 'fieldId',
-          mainAdvice: 'main advice for question',
-        },
-      },
-    };
-
-    harness.request(context, ($) => {
-      expect($('div[data-test-id="text-field-input"] .nhsuk-hint').length).toEqual(0);
-    });
-  }));
-
   it('should render any additional classes provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         question: {
-          id: 'fieldId',
+          id,
         },
-        classes: 'some-other-class',
+        classes,
       },
     };
 
     harness.request(context, ($) => {
       const textFieldInput = $('div[data-test-id="text-field-input"] input');
 
-      expect(textFieldInput.hasClass('some-other-class')).toEqual(true);
+      expect(textFieldInput.hasClass(classes)).toEqual(true);
     });
   }));
 });

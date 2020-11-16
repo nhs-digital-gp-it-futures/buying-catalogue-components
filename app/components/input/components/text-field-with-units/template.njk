@@ -1,0 +1,33 @@
+{% from "components/error-message/macro.njk" import errorMessage -%}
+{% from "components/label/macro.njk" import label %}
+
+{#- a record of other elements that we need to associate with the input using
+   aria-describedby – for example hints or error messages -#}
+{% set describedBy = "" %}
+<div data-test-id="question-{{ params.question.id }}">
+    <div data-test-id="text-field-input{%- if params.question.error %}-error{% endif %}">
+        <div class="nhsuk-form-group
+        {%- if params.question.error %} nhsuk-form-group--error{% endif %}
+        {%- if params.formGroup.classes %} {{ params.formGroup.classes }}{% endif %}">
+        {{ label({
+            text: params.question.mainAdvice,
+            classes: "nhsuk-u-font-size-19 nhsuk-u-font-weight-bold nhsuk-u-margin-bottom-2",
+            for: params.question.id
+        }) | indent(2) | trim -}}
+        {%- if params.question.error %}
+        {%- set errorId = params.question.id + '-error' %}
+        {%- set describedBy = describedBy + ' ' + errorId if describedBy else errorId %}
+        {{ errorMessage({
+            id: errorId,
+            text: params.question.error.message
+        }) | indent(2) | trim -}}
+        {% endif %}
+        <span>
+        <input class="nhsuk-input
+        {%- if params.classes %} {{ params.classes }}{% endif %}
+        {%- if params.question.error %} nhsuk-input--error{% endif %}" id="{{ params.question.id }}" name="{{ params.question.name }}" type="text"
+        {%- if params.question.data %} value="{{ params.question.data}}"{% endif %}>
+        {{params.question.unit}}</span>
+        </div>
+    </div>
+</div>

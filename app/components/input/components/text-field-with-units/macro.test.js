@@ -26,7 +26,6 @@ describe('textFieldWith Unit', () => {
 
     harness.request(context, ($) => {
       const question = $('div[data-test-id="question-fieldId"]');
-      console.log(question.html());
       expect(question.find('label.nhsuk-label').text().trim()).toEqual(mainAdvice);
     });
   }));

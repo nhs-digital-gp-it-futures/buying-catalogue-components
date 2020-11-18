@@ -25,7 +25,7 @@
         <span>
         <input class="nhsuk-input
         {%- if params.classes %} {{ params.classes }}{% endif %}
-        {%- if params.question.error %} nhsuk-input--error{% endif %}" id="{{ params.question.id }}" name="{{ params.question.name }}" type="text"
+        {%- if params.question.error %} nhsuk-input--error{% endif %}" id="{{ params.question.id }}" name="{{ params.question.id }}" type="text"
         {%- if params.question.data %} value="{{ params.question.data}}"{% endif %}>
         {{params.question.unit}}</span>
         </div>

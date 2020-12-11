@@ -1,7 +1,7 @@
 .nhsuk-warning-callout {
-@include panel-with-label($color_nhsuk-pale-yellow, $nhsuk-text-color, $color_nhsuk-yellow);
+    @include panel-with-label($color_nhsuk-pale-yellow, $nhsuk-text-color, $color_nhsuk-yellow);
 }
 
 .nhsuk-warning-callout__label {
-@include heading-label($color_nhsuk-yellow, $nhsuk-text-color);
+    @include heading-label($color_nhsuk-yellow, $nhsuk-text-color);
 }

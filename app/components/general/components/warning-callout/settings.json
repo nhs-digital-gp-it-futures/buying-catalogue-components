@@ -1,0 +1,7 @@
+{
+    "componentName": "warningCallout",
+    "params": {
+        "heading": "Important",
+        "HTML": "Testing html"
+    }
+}

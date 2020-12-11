@@ -1,0 +1,11 @@
+<div class="nhsuk-warning-callout" data-test-id="warning">
+  <h3 class="nhsuk-warning-callout__label">
+    <span role="text">
+        <span class="nhsuk-u-visually-hidden">Important: </span>
+        {{ params.heading | safe }}
+    </span>
+  </h3>
+  <div data-test-id="warning-body">
+  {{ params.HTML | safe }}
+  </div>
+</div>

@@ -34,5 +34,4 @@ describe('warning callout', () => {
       expect($('div[data-test-id="warning-body"]').text().trim()).toEqual(mockContext.params.HTML);
     });
   }));
-
 });

@@ -41,6 +41,20 @@ describe('viewSolution component', () => {
     });
   }));
 
+  it('should render the warning-callout section when provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        sections: {
+          warningCallout: {},
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="warning"]').length).toEqual(1);
+    });
+  }));
+
   it('should render the features section when provided', componentTester(setup, (harness) => {
     const context = {
       params: {

@@ -9,6 +9,10 @@
       "lastUpdated": "1996-03-15T10:00:00"
     },
     "sections": {
+      "warningCallout": {
+        "heading": "Solution in remediation",
+        "HTML": "This Catalogue Solution is in remediation while the supplier works to meet compliance with required standards.<br><br>It can still be ordered while the work is carried out, however if this situation is not remedied within an agreed timeframe the Solution will be suspended from the Buying Catalogue. "
+      },
       "solution-description": {
         "answers": {
           "summary": "Some summary data",

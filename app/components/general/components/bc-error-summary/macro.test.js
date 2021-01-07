@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('bcErrorSummary', () => {
   it('should render the error summary title', componentTester(setup, (harness) => {
     const context = {

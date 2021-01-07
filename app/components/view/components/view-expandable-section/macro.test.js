@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('view-expandable-section', () => {
   it('should render title of the expandable section', componentTester(setup, (harness) => {
     const context = {

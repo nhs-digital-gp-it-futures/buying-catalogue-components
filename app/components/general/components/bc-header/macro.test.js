@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('bc-header', () => {
   it('should render the betaBanner component if showBetaBanner is set', componentTester(setup, (harness) => {
     const context = {

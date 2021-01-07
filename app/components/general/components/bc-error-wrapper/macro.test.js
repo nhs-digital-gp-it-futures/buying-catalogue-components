@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('bc-error-wrapper', () => {
   it('should wrap the provided innerComponent as an error is an errorMessage is provided', componentTester(setup, (harness) => {
     const context = {

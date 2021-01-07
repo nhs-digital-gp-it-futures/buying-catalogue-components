@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('beta-banner', () => {
   it('should render the betaBanner tag', componentTester(setup, (harness) => {
     const context = {};

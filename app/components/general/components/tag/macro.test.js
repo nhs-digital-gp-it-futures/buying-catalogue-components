@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('tag', () => {
   it('should render the tag with the correct data-test-id', componentTester(setup, (harness) => {
     const context = {

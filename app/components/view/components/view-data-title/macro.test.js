@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('view-data-title', () => {
   it('should render the title', componentTester(setup, (harness) => {
     const context = {

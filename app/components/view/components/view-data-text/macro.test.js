@@ -7,7 +7,6 @@ const setup = {
   },
 };
 
-
 describe('view-data-text', () => {
   it('should render the data when provided', componentTester(setup, (harness) => {
     const context = {

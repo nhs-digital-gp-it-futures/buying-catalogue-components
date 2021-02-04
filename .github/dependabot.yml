@@ -4,3 +4,4 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    version_requirement_updates: increase

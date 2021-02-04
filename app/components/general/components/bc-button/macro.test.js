@@ -111,4 +111,31 @@ describe('bcButton', () => {
       expect($('div[data-test-id="some-button-identifier"] button').hasClass('nhsuk-button--disabled')).toEqual(true);
     });
   }));
+
+  it('should render a span with a href if the link is disabled', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'some-button-identifier',
+        href: '/some-href',
+        disabled: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="some-button-identifier"] span').attr('href')).toEqual('/some-href');
+    });
+  }));
+
+  it('should render a div if that element is supplied', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'some-button-identifier',
+        element: 'div',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('div[data-test-id="some-button-identifier"] div').length).toEqual(1);
+    });
+  }));
 });

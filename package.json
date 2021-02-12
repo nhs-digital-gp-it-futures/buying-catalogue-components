@@ -42,7 +42,7 @@
     "sass-mq": "^5.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.13",
+    "@babel/core": "^7.12.16",
     "@babel/node": "^7.12.16",
     "@babel/preset-env": "^7.12.13",
     "@babel/register": "^7.12.13",

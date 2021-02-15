@@ -38,7 +38,7 @@ describe('textarea', () => {
 
     harness.request(context, ($) => {
       const question = $('div[data-test-id="question-fieldId"]');
-      expect(question.find('span.nhsuk-hint').text().trim()).toEqual('Some not so important additional advice');
+      expect(question.find('div.nhsuk-hint').text().trim()).toEqual('Some not so important additional advice');
     });
   }));
 

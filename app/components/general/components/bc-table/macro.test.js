@@ -610,6 +610,50 @@ describe('table', () => {
       });
     }));
 
+    it('should render the cell with hidden input if only data property is provided with orderItemId',
+      componentTester(setup, (harness) => {
+        const data = 'some text';
+        const dataTestId = 'text-cell';
+        const classes = 'some-text-classes';
+        const dataOrderItemId = 'orderItemId-9384';
+        const context = {
+          params: {
+            data: [
+              [{
+                data, dataTestId, classes, dataOrderItemId,
+              }],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const orderItemItInput = $('[id="orderItemId"]');
+
+          expect(orderItemItInput.val().trim()).toEqual(dataOrderItemId);
+          expect(orderItemItInput.attr('type')).toEqual('hidden');
+        });
+      }));
+
+    it('should render the cell without hidden input if only data property is provided without orderItemId',
+      componentTester(setup, (harness) => {
+        const data = 'some text';
+        const dataTestId = 'text-cell';
+        const classes = 'some-text-classes';
+        const context = {
+          params: {
+            data: [
+              [{ data, dataTestId, classes }],
+            ],
+          },
+        };
+
+        harness.request(context, ($) => {
+          const orderItemItInput = $('[id="orderItemId"]');
+
+          expect(orderItemItInput.length).toEqual(0);
+        });
+      }));
+
     it('should render an expandable section to a cell if provided', componentTester(setup, (harness) => {
       const title = 'ExpandableSection title';
       const dataTestId = 'some-expandableSection-id';

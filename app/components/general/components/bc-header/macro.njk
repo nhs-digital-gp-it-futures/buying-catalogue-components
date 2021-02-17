@@ -1,15 +1,10 @@
-{% from 'components/panel/macro.njk' import panel %}
 {% from './components/nhs-digital-svg.njk' import nhsDigitalSvg %}
 {% from './components/beta-banner.njk' import betaBanner %}
 
 {% macro bcHeader(params) %}
   {% if params.showBetaBanner %}
     <span data-test-id="beta-banner">
-      {{ panel({
-        "colour": "grey",
-        "HTML": betaBanner({ termsHref: params.termsHref }),
-        "classes": "nhsuk-u-margin-top-0 nhsuk-u-margin-bottom-0 nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-3 nhsuk-u-padding-left-0 nhsuk-width-container"
-      }) }}
+      {{ betaBanner({ termsHref: params.termsHref }) }}
     </span>
   {% endif %}
 

@@ -1,8 +1,7 @@
 {% from 'components/footer/macro.njk' import footer %}
-{% from 'components/panel/macro.njk' import panel %}
 
 {% macro bcFooter(params) %}
-  <div data-test-id="footer">
+  <div data-test-id="footer" class="bc-bg--grey-4">
     <div data-test-id="footer-component">
       {{ footer({
         list: "nhsuk-footer__list--three-columns",
@@ -12,15 +11,10 @@
     </div>
 
     {% if params.showLegalPanel %}
-      <div data-test-id="legal-panel" class="bc-t-bg--grey-4 nhsuk-u-padding-bottom-3">
-        {{ panel({
-          HTML: "<div>
-              <span class='nhsuk-u-margin-right-2'>Legal</span>
-              <span class='nhsuk-u-margin-right-2'><a href='https://digital.nhs.uk/about-nhs-digital/privacy-and-cookies'>Privacy and Cookies</a></span>
-              <span class='nhsuk-u-margin-right-2'><a href='/document/terms-of-use.pdf'>Terms and Conditions</a></span>
-            </div>",
-          classes: "nhsuk-width-container nhsuk-u-padding-0 nhsuk-u-margin-top-0 nhsuk-u-margin-bottom-0 bc-t-bg--grey-4"
-        })}}
+      <div data-test-id="legal-panel" class="nhsuk-u-padding-bottom-3 nhsuk-width-container">
+        <span class='nhsuk-u-margin-right-2'>Legal</span>
+        <span class='nhsuk-u-margin-right-2'><a href='https://digital.nhs.uk/about-nhs-digital/privacy-and-cookies'>Privacy and Cookies</a></span>
+        <span class='nhsuk-u-margin-right-2'><a href='/document/terms-of-use.pdf'>Terms and Conditions</a></span>
       </div>
     {% endif %}
   </div>

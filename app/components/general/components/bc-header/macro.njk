@@ -3,9 +3,9 @@
 
 {% macro bcHeader(params) %}
   {% if params.showBetaBanner %}
-    <span data-test-id="beta-banner">
+    <div data-test-id="beta-banner">
       {{ betaBanner({ termsHref: params.termsHref }) }}
-    </span>
+    </div>
   {% endif %}
 
   <header data-test-id="{{ params.dataTestId }}" class="bc-c-header nhsuk-header nhsuk-header--organisation nhsuk-header--white {{ params.classes }}" role="banner">

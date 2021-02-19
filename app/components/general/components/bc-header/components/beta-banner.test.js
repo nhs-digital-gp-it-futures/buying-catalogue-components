@@ -12,9 +12,9 @@ describe('beta-banner', () => {
     const context = {};
 
     harness.request(context, ($) => {
-      expect($('div[data-test-id="beta-tag"]').length).toEqual(1);
-      expect($('div[data-test-id="beta-tag"]').text().trim()).toEqual('BETA');
-      expect($('div[data-test-id="beta-tag"]').hasClass('bc-c-tag-beta')).toBeTruthy();
+      expect($('[data-test-id="beta-tag"]').length).toEqual(1);
+      expect($('[data-test-id="beta-tag"]').text().trim()).toEqual('BETA');
+      expect($('[data-test-id="beta-tag"]').hasClass('bc-c-tag-beta')).toBeTruthy();
     });
   }));
 

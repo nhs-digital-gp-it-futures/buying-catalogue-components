@@ -16,9 +16,9 @@ describe('bc-header', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('span[data-test-id="beta-banner"]').length).toEqual(1);
-      expect($('div[data-test-id="beta-tag"]').length).toEqual(1);
-      expect($('div[data-test-id="beta-banner-text"]').length).toEqual(1);
+      expect($('[data-test-id="beta-banner"]').length).toEqual(1);
+      expect($('[data-test-id="beta-tag"]').length).toEqual(1);
+      expect($('[data-test-id="beta-banner-text"]').length).toEqual(1);
     });
   }));
 
@@ -26,9 +26,9 @@ describe('bc-header', () => {
     const context = {};
 
     harness.request(context, ($) => {
-      expect($('span[data-test-id="beta-banner"]').length).toEqual(0);
-      expect($('div[data-test-id="beta-tag"]').length).toEqual(0);
-      expect($('div[data-test-id="beta-banner-text"]').length).toEqual(0);
+      expect($('[data-test-id="beta-banner"]').length).toEqual(0);
+      expect($('[data-test-id="beta-tag"]').length).toEqual(0);
+      expect($('[data-test-id="beta-banner-text"]').length).toEqual(0);
     });
   }));
 

@@ -1,109 +1,157 @@
 {% from 'components/view/components/view-section-table-row/macro.njk' import viewSectionTableRow %}
 {% from 'components/view/components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
 {% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view/components/view-summary-list/nhsuk-macro.njk' import summaryList %}
 
 {% macro viewNativeMobile(params) %}
-  <dl data-test-id="view-section-table-native-mobile" class="nhsuk-summary-list">
-    {{ viewSectionTableRow({
-      questionId: 'operating-systems',
-      questionTitle: 'Supported operating systems',
-      innerComponent: viewDataBulletlist({
-        dataTestId: 'view-question-data-bulletlist',
-        data: params.section.sections['native-mobile-operating-systems'].answers['operating-systems']
-      })
+  <div data-test-id="view-section-dl-native-mobile" class="nhsuk-summary-list">
+    {{ summaryList({
+      rows: [
+        {
+          key: {
+            text: 'Supported operating systems'
+          },
+          value: {
+            html: viewDataBulletlist({
+              dataTestId: 'view-question-data-bulletlist',
+              data: params.section.sections['native-mobile-operating-systems'].answers['operating-systems']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Description of supported operating systems'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-operating-systems-description',
+              data: params.section.sections['native-mobile-operating-systems'].answers['operating-systems-description']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Mobile first approach'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-mobile-first-design',
+              data: params.section.sections['native-mobile-first'].answers['mobile-first-design']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Minimum connection speed'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-minimum-connection-speed',
+              data: params.section.sections['native-mobile-connection-details'].answers['minimum-connection-speed']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Connection types supported'
+          },
+          value: {
+            html: viewDataBulletlist({
+              dataTestId: 'view-question-data-bulletlist',
+              data: params.section.sections['native-mobile-connection-details'].answers['connection-types']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Connection requirements'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-connection-requirements-description',
+              data: params.section.sections['native-mobile-connection-details'].answers['connection-requirements-description']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Memory size'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-minimum-memory-requirement',
+              data: params.section.sections['native-mobile-memory-and-storage'].answers['minimum-memory-requirement']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Storage space'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-storage-requirements-description',
+              data: params.section.sections['native-mobile-memory-and-storage'].answers['storage-requirements-description']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Third-party components'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-third-party-components',
+              data: params.section.sections['native-mobile-third-party'].answers['third-party-components']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Device capabilities'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-device-capabilities',
+              data: params.section.sections['native-mobile-third-party'].answers['device-capabilities']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Hardware requirements'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-hardware-requirements',
+              data: params.section.sections['native-mobile-hardware-requirements'].answers['hardware-requirements']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Additional information'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-additional-information',
+              data: params.section.sections['native-mobile-additional-information'].answers['additional-information']
+            })
+          },
+          actions: {}
+        }
+      ]
     }) }}
-    {{ viewSectionTableRow({
-      questionId: 'operating-systems-description',
-      questionTitle: 'Description of supported operating systems',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-operating-systems-description',
-        data: params.section.sections['native-mobile-operating-systems'].answers['operating-systems-description']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'mobile-first-design',
-      questionTitle: 'Mobile first approach',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-mobile-first-design',
-        data: params.section.sections['native-mobile-first'].answers['mobile-first-design']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'minimum-connection-speed',
-      questionTitle: 'Minimum connection speed',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-minimum-connection-speed',
-        data: params.section.sections['native-mobile-connection-details'].answers['minimum-connection-speed']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'connection-types',
-      questionTitle: 'Connection types supported',
-      innerComponent: viewDataBulletlist({
-        dataTestId: 'view-question-data-bulletlist',
-        data: params.section.sections['native-mobile-connection-details'].answers['connection-types']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'connection-requirements-description',
-      questionTitle: 'Connection requirements',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-connection-requirements-description',
-        data: params.section.sections['native-mobile-connection-details'].answers['connection-requirements-description']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'minimum-memory-requirement',
-      questionTitle: 'Memory size',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-minimum-memory-requirement',
-        data: params.section.sections['native-mobile-memory-and-storage'].answers['minimum-memory-requirement']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'storage-requirements-description',
-      questionTitle: 'Storage space',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-storage-requirements-description',
-        data: params.section.sections['native-mobile-memory-and-storage'].answers['storage-requirements-description']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'third-party-components',
-      questionTitle: 'Third-party components',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-third-party-components',
-        data: params.section.sections['native-mobile-third-party'].answers['third-party-components']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'device-capabilities',
-      questionTitle: 'Device capabilities',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-device-capabilities',
-        data: params.section.sections['native-mobile-third-party'].answers['device-capabilities']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'hardware-requirements',
-      questionTitle: 'Hardware requirements',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-hardware-requirements',
-        data: params.section.sections['native-mobile-hardware-requirements'].answers['hardware-requirements']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'additional-information',
-      questionTitle: 'Additional information',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-additional-information',
-        data: params.section.sections['native-mobile-additional-information'].answers['additional-information']
-      })
-    }) }}
-  </dl>
+  </div>
 {% endmacro %}

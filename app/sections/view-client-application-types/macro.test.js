@@ -44,7 +44,7 @@ describe('view-client-application-types', () => {
 
       harness.request(context, ($) => {
         const browserBasedExpandableSection = $('[data-test-id="view-section-browser-based"]');
-        const browserBasedSection = browserBasedExpandableSection.find('[data-test-id="view-section-table-browser-based"]');
+        const browserBasedSection = browserBasedExpandableSection.find('[data-test-id="view-section-dl-browser-based"]');
 
         expect(browserBasedExpandableSection.length).toEqual(1);
         expect(browserBasedSection.length).toEqual(1);
@@ -64,7 +64,7 @@ describe('view-client-application-types', () => {
 
       harness.request(context, ($) => {
         const nativeMobileExpandableSection = $('[data-test-id="view-section-native-mobile"]');
-        const nativeMobileSection = nativeMobileExpandableSection.find('[data-test-id="view-section-table-native-mobile"]');
+        const nativeMobileSection = nativeMobileExpandableSection.find('[data-test-id="view-section-dl-native-mobile"]');
 
         expect(nativeMobileExpandableSection.length).toEqual(1);
         expect(nativeMobileSection.length).toEqual(1);
@@ -84,7 +84,7 @@ describe('view-client-application-types', () => {
 
       harness.request(context, ($) => {
         const nativeDesktopExpandableSection = $('[data-test-id="view-section-native-desktop"]');
-        const nativeDesktopSection = nativeDesktopExpandableSection.find('[data-test-id="view-section-table-native-desktop"]');
+        const nativeDesktopSection = nativeDesktopExpandableSection.find('[data-test-id="view-section-dl-native-desktop"]');
 
         expect(nativeDesktopExpandableSection.length).toEqual(1);
         expect(nativeDesktopSection.length).toEqual(1);

@@ -24,18 +24,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const operatingSystemsQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-operating-systems"]');
-      const operatingSystemsInnerComponent = operatingSystemsQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-bulletlist"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(operatingSystemsQuestionRow.length).toEqual(1);
-      expect(operatingSystemsQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
-      expect(operatingSystemsInnerComponent.length).toEqual(1);
-      expect(operatingSystemsInnerComponent.text().trim()).toEqual('Apple IOS');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Supported operating systems');
+      expect(questionRow.find('dd').text().trim()).toEqual('Apple IOS');
     });
   }));
 
@@ -55,18 +51,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const operatingSystemsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-operating-systems-description"]');
-      const operatingSystemsDescriptionInnerComponent = operatingSystemsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-operating-systems-description"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
-      expect(operatingSystemsDescriptionQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Description of supported operating systems');
-      expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
-      expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Android 4.1 and above, IOS 10.6 and above.');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Description of supported operating systems');
+      expect(questionRow.find('dd').text().trim()).toEqual('Android 4.1 and above, IOS 10.6 and above.');
     });
   }));
 
@@ -86,18 +78,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const mobileFirstDesignQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-mobile-first-design"]');
-      const mobileFirstDesignInnerComponent = mobileFirstDesignQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-mobile-first-design"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(mobileFirstDesignQuestionRow.length).toEqual(1);
-      expect(mobileFirstDesignQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile first approach');
-      expect(mobileFirstDesignInnerComponent.length).toEqual(1);
-      expect(mobileFirstDesignInnerComponent.text().trim()).toEqual('Yes');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Mobile first approach');
+      expect(questionRow.find('dd').text().trim()).toEqual('Yes');
     });
   }));
 
@@ -117,18 +105,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const minimumConnectionSpeedQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-minimum-connection-speed"]');
-      const minimumConnectionSpeedInnerComponent = minimumConnectionSpeedQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-minimum-connection-speed"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(minimumConnectionSpeedQuestionRow.length).toEqual(1);
-      expect(minimumConnectionSpeedQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
-      expect(minimumConnectionSpeedInnerComponent.length).toEqual(1);
-      expect(minimumConnectionSpeedInnerComponent.text().trim()).toEqual('1Mbps');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Minimum connection speed');
+      expect(questionRow.find('dd').text().trim()).toEqual('1Mbps');
     });
   }));
 
@@ -148,18 +132,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const connectionTypesQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-connection-types"]');
-      const connectionTypesInnerComponent = connectionTypesQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-bulletlist"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(connectionTypesQuestionRow.length).toEqual(1);
-      expect(connectionTypesQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Connection types supported');
-      expect(connectionTypesInnerComponent.length).toEqual(1);
-      expect(connectionTypesInnerComponent.text().trim()).toEqual('GPRS');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Connection types supported');
+      expect(questionRow.find('dd').text().trim()).toEqual('GPRS');
     });
   }));
 
@@ -179,18 +159,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const connectionReqsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-connection-requirements-description"]');
-      const connectionReqsDescriptionInnerComponent = connectionReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-connection-requirements-description"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(connectionReqsDescriptionQuestionRow.length).toEqual(1);
-      expect(connectionReqsDescriptionQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Connection requirements');
-      expect(connectionReqsDescriptionInnerComponent.length).toEqual(1);
-      expect(connectionReqsDescriptionInnerComponent.text().trim()).toEqual('Average data usage will vary depending on application activity.');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Connection requirements');
+      expect(questionRow.find('dd').text().trim()).toEqual('Average data usage will vary depending on application activity.');
     });
   }));
 
@@ -210,18 +186,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const minimumMemoryRequirementQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-minimum-memory-requirement"]');
-      const minimumMemoryRequirementInnerComponent = minimumMemoryRequirementQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-minimum-memory-requirement"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
-      expect(minimumMemoryRequirementQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Memory size');
-      expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
-      expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Memory size');
+      expect(questionRow.find('dd').text().trim()).toEqual('4GB');
     });
   }));
 
@@ -241,18 +213,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const storageReqsDescriptionQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
-      const storageReqsDescriptionInnerComponent = storageReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
-      expect(storageReqsDescriptionQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Storage space');
-      expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
-      expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Storage space');
+      expect(questionRow.find('dd').text().trim()).toEqual('You will need at least 4GB of free space on each device the application is installed. It is advised to use an external SD card for additional storage.');
     });
   }));
 
@@ -272,18 +240,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const thirdPartyComponentsQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-third-party-components"]');
-      const thirdPartyComponentsInnerComponent = thirdPartyComponentsQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-third-party-components"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(thirdPartyComponentsQuestionRow.length).toEqual(1);
-      expect(thirdPartyComponentsQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third-party components');
-      expect(thirdPartyComponentsInnerComponent.length).toEqual(1);
-      expect(thirdPartyComponentsInnerComponent.text().trim()).toEqual('The application supports and requires an authenticator on each device the application is installed. You will need a software-based authenticator that implements a two-step verification service.');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Third-party components');
+      expect(questionRow.find('dd').text().trim()).toEqual('The application supports and requires an authenticator on each device the application is installed. You will need a software-based authenticator that implements a two-step verification service.');
     });
   }));
 
@@ -303,18 +267,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const deviceCapabilitiesQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-device-capabilities"]');
-      const deviceCapabilitiesInnerComponent = deviceCapabilitiesQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-device-capabilities"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(deviceCapabilitiesQuestionRow.length).toEqual(1);
-      expect(deviceCapabilitiesQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities');
-      expect(deviceCapabilitiesInnerComponent.length).toEqual(1);
-      expect(deviceCapabilitiesInnerComponent.text().trim()).toEqual('In order to use our file hosting services, the application will require permission to access device storage.');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Device capabilities');
+      expect(questionRow.find('dd').text().trim()).toEqual('In order to use our file hosting services, the application will require permission to access device storage.');
     });
   }));
 
@@ -334,18 +294,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const hardwareRequirementsQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements"]');
-      const hardwareRequirementsInnerComponent = hardwareRequirementsQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-hardware-requirements"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(hardwareRequirementsQuestionRow.length).toEqual(1);
-      expect(hardwareRequirementsQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
-      expect(hardwareRequirementsInnerComponent.length).toEqual(1);
-      expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('To fully utilise our print functionality within the application, you will need a WiFi or Bluetooth connected printer to connect and print documents straight from the device.');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Hardware requirements');
+      expect(questionRow.find('dd').text().trim()).toEqual('To fully utilise our print functionality within the application, you will need a WiFi or Bluetooth connected printer to connect and print documents straight from the device.');
     });
   }));
 
@@ -365,18 +321,14 @@ describe('view-native-mobile', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeMobileSectionTable = $('[data-test-id="view-section-table-native-mobile"]');
-      const additionalInformationQuestionRow = nativeMobileSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
-      const additionalInformationInnerComponent = additionalInformationQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-additional-information"]');
+      const nativeMobileSectionElement = $('[data-test-id="view-section-dl-native-mobile"]');
+      const questionRow = nativeMobileSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeMobileSectionTable.length).toEqual(1);
-      expect(additionalInformationQuestionRow.length).toEqual(1);
-      expect(additionalInformationQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
-      expect(additionalInformationInnerComponent.length).toEqual(1);
-      expect(additionalInformationInnerComponent.text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
+      expect(nativeMobileSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Additional information');
+      expect(questionRow.find('dd').text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
     });
   }));
 });

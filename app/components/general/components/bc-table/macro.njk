@@ -7,7 +7,11 @@
 
 {% macro bcTable(params) %}
   <table data-test-id="table" class="{{ param.classes }}" style="page-break-inside:auto">
-
+    {% if params.caption %}
+      <caption>
+        {{ params.caption }}
+      </caption>
+    {% endif %}
     {% if params.columnInfo %}
       <thead data-test-id="table-headings" style="display:table-header-group;">
         {% for column in params.columnInfo %}

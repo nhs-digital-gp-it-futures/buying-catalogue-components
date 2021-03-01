@@ -20,11 +20,15 @@ describe('table', () => {
   it('should render a table with a caption if one is provided', componentTester(setup, (harness) => {
     const context = {
       params: {
-        caption: 'Test caption',
+        caption: {
+          text: 'Test caption',
+          classes: 'testClass',
+        },
       },
     };
 
     harness.request(context, ($) => {
+      expect($('[data-test-id="table"] caption').hasClass('testClass')).toEqual(true);
       expect($('[data-test-id="table"] caption').html().trim()).toEqual('Test caption');
     });
   }));

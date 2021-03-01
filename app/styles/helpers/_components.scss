@@ -7,3 +7,7 @@ caption {
   padding-bottom: nhsuk-spacing(3);
   text-align: left;
 }
+
+.summary-footer tr:first-child td {
+  border-top: .8px solid $color_nhsuk-grey-4;
+}

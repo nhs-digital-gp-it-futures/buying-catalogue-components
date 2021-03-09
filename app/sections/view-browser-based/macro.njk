@@ -1,83 +1,121 @@
 {% from 'components/view/components/view-section-table-row/macro.njk' import viewSectionTableRow %}
 {% from 'components/view/components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
 {% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view/components/view-summary-list/nhsuk-macro.njk' import summaryList %}
 
 {% macro viewBrowserBased(params) %}
-  <div data-test-id="view-section-table-browser-based" class="nhsuk-summary-list">
-    {{ viewSectionTableRow({
-      questionId: 'supported-browsers',
-      questionTitle: 'Supported browser types',
-      innerComponent: viewDataBulletlist({
-        dataTestId: 'view-question-data-bulletlist',
-        data: params.section.sections['browser-browsers-supported'].answers['supported-browsers']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'mobile-responsive',
-      questionTitle: 'Mobile responsive',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-mobile-responsive',
-        data: params.section.sections['browser-browsers-supported'].answers['mobile-responsive']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'mobile-first-design',
-      questionTitle: 'Mobile first approach',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-mobile-first-design',
-        data: params.section.sections['browser-mobile-first'].answers['mobile-first-design']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'plugins-required',
-      questionTitle: 'Plug-ins or extensions required',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-plugins-required',
-        data: params.section.sections['browser-plug-ins-or-extensions'].answers['plugins-required']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'plugins-detail',
-      questionTitle: 'Additional information about plug-ins or extensions',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-plugins-detail',
-        data: params.section.sections['browser-plug-ins-or-extensions'].answers['plugins-detail']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'minimum-connection-speed',
-      questionTitle: 'Minimum connection speed',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-minimum-connection-speed',
-        data: params.section.sections['browser-connectivity-and-resolution'].answers['minimum-connection-speed']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'minimum-desktop-resolution',
-      questionTitle: 'Screen resolution and aspect ratio',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-minimum-desktop-resolution',
-        data: params.section.sections['browser-connectivity-and-resolution'].answers['minimum-desktop-resolution']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'hardware-requirements-description',
-      questionTitle: 'Hardware requirements',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-hardware-requirements-description',
-        data: params.section.sections['browser-hardware-requirements'].answers['hardware-requirements-description']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'additional-information',
-      questionTitle: 'Additional information',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-additional-information',
-        data: params.section.sections['browser-additional-information'].answers['additional-information']
-      })
+  <div data-test-id="view-section-dl-browser-based" class="nhsuk-summary-list">
+    {{ summaryList({
+      rows: [
+        {
+          key: {
+            text: 'Supported browser types'
+          },
+          value: {
+            html: viewDataBulletlist({
+              dataTestId: 'view-question-data-bulletlist',
+              data: params.section.sections['browser-browsers-supported'].answers['supported-browsers']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Mobile responsive'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-mobile-responsive',
+              data: params.section.sections['browser-browsers-supported'].answers['mobile-responsive']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Mobile first approach'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-mobile-first-design',
+              data: params.section.sections['browser-mobile-first'].answers['mobile-first-design']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Plug-ins or extensions required'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-plugins-required',
+              data: params.section.sections['browser-plug-ins-or-extensions'].answers['plugins-required']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Additional information about plug-ins or extensions'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-plugins-detail',
+              data: params.section.sections['browser-plug-ins-or-extensions'].answers['plugins-detail']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Minimum connection speed'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-minimum-connection-speed',
+              data: params.section.sections['browser-connectivity-and-resolution'].answers['minimum-connection-speed']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Screen resolution and aspect ratio'
+          },
+          value: {
+            html:  viewDataText({
+              dataTestId: 'view-question-data-text-minimum-desktop-resolution',
+              data: params.section.sections['browser-connectivity-and-resolution'].answers['minimum-desktop-resolution']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Hardware requirements'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-hardware-requirements-description',
+              data: params.section.sections['browser-hardware-requirements'].answers['hardware-requirements-description']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Additional information'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-additional-information',
+              data: params.section.sections['browser-additional-information'].answers['additional-information']
+            })
+          },
+          actions: {}
+        }
+      ]
     }) }}
   </div>
 {% endmacro %}

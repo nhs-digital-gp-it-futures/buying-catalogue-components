@@ -1,94 +1,133 @@
 {% from 'components/view/components/view-section-table-row/macro.njk' import viewSectionTableRow %}
 {% from 'components/view/components/view-data-bulletlist/macro.njk' import viewDataBulletlist %}
 {% from 'components/view/components/view-data-text/macro.njk' import viewDataText %}
+{% from 'components/view/components/view-summary-list/nhsuk-macro.njk' import summaryList %}
 
 {% macro viewNativeDesktop(params) %}
-  <dl data-test-id="view-section-table-native-desktop" class="nhsuk-summary-list">
-    {{ viewSectionTableRow({
-      questionId: 'operating-systems-description',
-      questionTitle: 'Supported operating systems',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-operating-systems-description',
-        data: params.section.sections['native-desktop-operating-systems'].answers['operating-systems-description']
-      })
+  <div data-test-id="view-section-dl-native-desktop" class="nhsuk-summary-list">
+    {{ summaryList({
+      rows: [
+        {
+          key: {
+            text: 'Supported operating systems'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-operating-systems-description',
+              data: params.section.sections['native-desktop-operating-systems'].answers['operating-systems-description']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Minimum connection speed'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-minimum-connection-speed',
+              data: params.section.sections['native-desktop-connection-details'].answers['minimum-connection-speed']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Memory size'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-minimum-memory-requirement',
+              data: params.section.sections['native-desktop-memory-and-storage'].answers['minimum-memory-requirement']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Storage space'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-storage-requirements-description',
+              data: params.section.sections['native-desktop-memory-and-storage'].answers['storage-requirements-description']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Processing power'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-minimum-cpu',
+              data: params.section.sections['native-desktop-memory-and-storage'].answers['minimum-cpu']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Screen resolution and aspect ratio'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-recommended-resolution',
+              data: params.section.sections['native-desktop-memory-and-storage'].answers['recommended-resolution']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Third-party components'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-third-party-components',
+              data: params.section.sections['native-desktop-third-party'].answers['third-party-components']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Device capabilities'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-device-capabilities',
+              data: params.section.sections['native-desktop-third-party'].answers['device-capabilities']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Hardware requirements'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-hardware-requirements',
+              data: params.section.sections['native-desktop-hardware-requirements'].answers['hardware-requirements']
+            })
+          },
+          actions: {}
+        },
+        {
+          key: {
+            text: 'Additional information'
+          },
+          value: {
+            html: viewDataText({
+              dataTestId: 'view-question-data-text-additional-information',
+              data: params.section.sections['native-desktop-additional-information'].answers['additional-information']
+            })
+          },
+          actions: {}
+        }
+      ]
     }) }}
-    {{ viewSectionTableRow({
-      questionId: 'minimum-connection-speed',
-      questionTitle: 'Minimum connection speed',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-minimum-connection-speed',
-        data: params.section.sections['native-desktop-connection-details'].answers['minimum-connection-speed']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'minimum-memory-requirement',
-      questionTitle: 'Memory size',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-minimum-memory-requirement',
-        data: params.section.sections['native-desktop-memory-and-storage'].answers['minimum-memory-requirement']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'storage-requirements-description',
-      questionTitle: 'Storage space',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-storage-requirements-description',
-        data: params.section.sections['native-desktop-memory-and-storage'].answers['storage-requirements-description']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'minimum-cpu',
-      questionTitle: 'Processing power',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-minimum-cpu',
-        data: params.section.sections['native-desktop-memory-and-storage'].answers['minimum-cpu']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'recommended-resolution',
-      questionTitle: 'Screen resolution and aspect ratio',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-recommended-resolution',
-        data: params.section.sections['native-desktop-memory-and-storage'].answers['recommended-resolution']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'third-party-components',
-      questionTitle: 'Third-party components',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-third-party-components',
-        data: params.section.sections['native-desktop-third-party'].answers['third-party-components']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'device-capabilities',
-      questionTitle: 'Device capabilities',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-device-capabilities',
-        data: params.section.sections['native-desktop-third-party'].answers['device-capabilities']
-      })
-    }) }}
-    {{ viewSectionTableRow({
-      questionId: 'hardware-requirements',
-      questionTitle: 'Hardware requirements',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-hardware-requirements',
-        data: params.section.sections['native-desktop-hardware-requirements'].answers['hardware-requirements']
-      })
-    }) }}
-
-    {{ viewSectionTableRow({
-      questionId: 'additional-information',
-      questionTitle: 'Additional information',
-      layout: 'vertical',
-      innerComponent: viewDataText({
-        dataTestId: 'view-question-data-text-additional-information',
-        data: params.section.sections['native-desktop-additional-information'].answers['additional-information']
-      })
-    }) }}
-  </dl>
+  </div>
 {% endmacro %}

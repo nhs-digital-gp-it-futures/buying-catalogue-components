@@ -13,6 +13,23 @@ describe('table', () => {
 
     harness.request(context, ($) => {
       expect($('[data-test-id="table"]').length).toEqual(1);
+      expect($('[data-test-id="table"] caption').length).toEqual(0);
+    });
+  }));
+
+  it('should render a table with a caption if one is provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        caption: {
+          text: 'Test caption',
+          classes: 'testClass',
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="table"] caption').hasClass('testClass')).toEqual(true);
+      expect($('[data-test-id="table"] caption').html().trim()).toEqual('Test caption');
     });
   }));
 

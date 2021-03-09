@@ -7,7 +7,11 @@
 
 {% macro bcTable(params) %}
   <table data-test-id="table" class="{{ param.classes }}" style="page-break-inside:auto">
-
+    {% if params.caption %}
+      <caption class="{{ params.caption.classes }}">
+        {{ params.caption.text }}
+      </caption>
+    {% endif %}
     {% if params.columnInfo %}
       <thead data-test-id="table-headings" style="display:table-header-group;">
         {% for column in params.columnInfo %}
@@ -88,5 +92,21 @@
       </tr>
     {% endfor %}
     </tbody>
+    {% if params.footerColumnData %}
+      <tfoot class="summary-footer">
+        {% for row in params.footerColumnData %}
+          <tr data-test-id="table-row-{{ loop.index0 }}">
+              {% for dataPoint in row %}
+                {% set borderBottom = "none" if (dataPoint.hideSeperator) else "solid" %}
+                <td colspan="{{params.footerColumnInfo[loop.index0].width}}" class="nhsuk-u-padding-bottom-0" style="border-bottom-style: {{ borderBottom  }}" data-test-id="column-footer-{{ loop.index0 }}">
+                  <div class="{{ dataPoint.classes }}" data-test-id="{{ dataPoint.dataTestId }}">
+                    {{ dataPoint.data }}
+                  </div>
+                </td>
+              {% endfor %}
+          </tr>
+        {% endfor %}
+      </tfoot>
+    {% endif %}
   </table>
 {% endmacro %}

@@ -24,18 +24,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-operating-systems-description"]');
-      const operatingSystemsDescriptionInnerComponent = operatingSystemsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-operating-systems-description"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
+      expect(nativeDesktopSectionElement.length).toEqual(1);
       expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
       expect(operatingSystemsDescriptionQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported operating systems');
-      expect(operatingSystemsDescriptionInnerComponent.length).toEqual(1);
-      expect(operatingSystemsDescriptionInnerComponent.text().trim()).toEqual('Windows 7 and above.');
+        .find('dt').text().trim()).toEqual('Supported operating systems');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('Windows 7 and above.');
     });
   }));
 
@@ -55,18 +53,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const minimumConnectionSpeedQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-connection-speed"]');
-      const minimumConnectionSpeedInnerComponent = minimumConnectionSpeedQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-minimum-connection-speed"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(minimumConnectionSpeedQuestionRow.length).toEqual(1);
-      expect(minimumConnectionSpeedQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
-      expect(minimumConnectionSpeedInnerComponent.length).toEqual(1);
-      expect(minimumConnectionSpeedInnerComponent.text().trim()).toEqual('2Mbps');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Minimum connection speed');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('2Mbps');
     });
   }));
 
@@ -86,18 +82,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const minimumMemoryRequirementQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-memory-requirement"]');
-      const minimumMemoryRequirementInnerComponent = minimumMemoryRequirementQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-minimum-memory-requirement"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(minimumMemoryRequirementQuestionRow.length).toEqual(1);
-      expect(minimumMemoryRequirementQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Memory size');
-      expect(minimumMemoryRequirementInnerComponent.length).toEqual(1);
-      expect(minimumMemoryRequirementInnerComponent.text().trim()).toEqual('4GB');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Memory size');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('4GB');
     });
   }));
 
@@ -117,18 +111,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const storageReqsDescriptionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-storage-requirements-description"]');
-      const storageReqsDescriptionInnerComponent = storageReqsDescriptionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-storage-requirements-description"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(storageReqsDescriptionQuestionRow.length).toEqual(1);
-      expect(storageReqsDescriptionQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Storage space');
-      expect(storageReqsDescriptionInnerComponent.length).toEqual(1);
-      expect(storageReqsDescriptionInnerComponent.text().trim()).toEqual('You will need at least 2.5GB of free space on each device the application is installed.');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Storage space');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('You will need at least 2.5GB of free space on each device the application is installed.');
     });
   }));
 
@@ -148,18 +140,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const minimumCPUQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-minimum-cpu"]');
-      const minimumCPUInnerComponent = minimumCPUQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-minimum-cpu"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(minimumCPUQuestionRow.length).toEqual(1);
-      expect(minimumCPUQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Processing power');
-      expect(minimumCPUInnerComponent.length).toEqual(1);
-      expect(minimumCPUInnerComponent.text().trim()).toEqual('Intel Core i5-4460 (3.4GHz) Quad-core or Better.');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Processing power');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('Intel Core i5-4460 (3.4GHz) Quad-core or Better.');
     });
   }));
 
@@ -179,18 +169,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const recommendedResolutionQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-recommended-resolution"]');
-      const recommendedResolutionInnerComponent = recommendedResolutionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-recommended-resolution"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(recommendedResolutionQuestionRow.length).toEqual(1);
-      expect(recommendedResolutionQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Screen resolution and aspect ratio');
-      expect(recommendedResolutionInnerComponent.length).toEqual(1);
-      expect(recommendedResolutionInnerComponent.text().trim()).toEqual('16:9 - 1920 x 1080');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Screen resolution and aspect ratio');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('16:9 - 1920 x 1080');
     });
   }));
 
@@ -210,18 +198,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const thirdPartyComponentsQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-third-party-components"]');
-      const thirdPartyComponentsInnerComponent = thirdPartyComponentsQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-third-party-components"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(thirdPartyComponentsQuestionRow.length).toEqual(1);
-      expect(thirdPartyComponentsQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Third-party components');
-      expect(thirdPartyComponentsInnerComponent.length).toEqual(1);
-      expect(thirdPartyComponentsInnerComponent.text().trim()).toEqual('To fully utilise the letter template functionality, you will need a fully licensed version of Microsoft Word 2013 or higher.');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Third-party components');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('To fully utilise the letter template functionality, you will need a fully licensed version of Microsoft Word 2013 or higher.');
     });
   }));
 
@@ -241,18 +227,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const deviceCapabilitiesQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-device-capabilities"]');
-      const deviceCapabilitiesInnerComponent = deviceCapabilitiesQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-device-capabilities"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(deviceCapabilitiesQuestionRow.length).toEqual(1);
-      expect(deviceCapabilitiesQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Device capabilities');
-      expect(deviceCapabilitiesInnerComponent.length).toEqual(1);
-      expect(deviceCapabilitiesInnerComponent.text().trim()).toEqual('In order to use our branded wireless Dictaphone, the device will require Bluetooth.');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Device capabilities');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('In order to use our branded wireless Dictaphone, the device will require Bluetooth.');
     });
   }));
 
@@ -272,18 +256,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const hardwareRequirementsQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements"]');
-      const hardwareRequirementsInnerComponent = hardwareRequirementsQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-hardware-requirements"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(hardwareRequirementsQuestionRow.length).toEqual(1);
-      expect(hardwareRequirementsQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
-      expect(hardwareRequirementsInnerComponent.length).toEqual(1);
-      expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('To fully utilise the transcribing functionality within the application, you will need to purchase our branded wireless Dictaphone.');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Hardware requirements');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('To fully utilise the transcribing functionality within the application, you will need to purchase our branded wireless Dictaphone.');
     });
   }));
 
@@ -303,18 +285,16 @@ describe('view-native-desktop', () => {
     };
 
     harness.request(context, ($) => {
-      const nativeDesktopSectionTable = $('[data-test-id="view-section-table-native-desktop"]');
-      const additionalInformationQuestionRow = nativeDesktopSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
-      const additionalInformationInnerComponent = additionalInformationQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-additional-information"]');
+      const nativeDesktopSectionElement = $('[data-test-id="view-section-dl-native-desktop"]');
+      const operatingSystemsDescriptionQuestionRow = nativeDesktopSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(nativeDesktopSectionTable.length).toEqual(1);
-      expect(additionalInformationQuestionRow.length).toEqual(1);
-      expect(additionalInformationQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
-      expect(additionalInformationInnerComponent.length).toEqual(1);
-      expect(additionalInformationInnerComponent.text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
+      expect(nativeDesktopSectionElement.length).toEqual(1);
+      expect(operatingSystemsDescriptionQuestionRow.length).toEqual(1);
+
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dt').text().trim()).toEqual('Additional information');
+      expect(operatingSystemsDescriptionQuestionRow
+        .find('dd').text().trim()).toEqual('It is possible that it may install on other platforms or versions not listed in this section. However, support is limited to systems that meet the minimum requirements.');
     });
   }));
 });

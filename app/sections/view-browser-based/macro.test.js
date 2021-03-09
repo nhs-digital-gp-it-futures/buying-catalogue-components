@@ -24,18 +24,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const supportedBrowserQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-supported-browsers"]');
-      const supportedBrowserInnerComponent = supportedBrowserQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-bulletlist"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(supportedBrowserQuestionRow.length).toEqual(1);
-      expect(supportedBrowserQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Supported browser types');
-      expect(supportedBrowserInnerComponent.length).toEqual(1);
-      expect(supportedBrowserInnerComponent.text().trim()).toEqual('chrome');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Supported browser types');
+      expect(questionRow.find('dd').text().trim()).toEqual('chrome');
     });
   }));
 
@@ -55,18 +51,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const mobileResponsiveQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-mobile-responsive"]');
-      const mobileResponsiveInnerComponent = mobileResponsiveQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-mobile-responsive"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(mobileResponsiveQuestionRow.length).toEqual(1);
-      expect(mobileResponsiveQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile responsive');
-      expect(mobileResponsiveInnerComponent.length).toEqual(1);
-      expect(mobileResponsiveInnerComponent.text().trim()).toEqual('yes');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Mobile responsive');
+      expect(questionRow.find('dd').text().trim()).toEqual('yes');
     });
   }));
 
@@ -86,18 +78,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const mobileFirstDesignQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-mobile-first-design"]');
-      const mobileFirstDesignInnerComponent = mobileFirstDesignQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-mobile-first-design"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(mobileFirstDesignQuestionRow.length).toEqual(1);
-      expect(mobileFirstDesignQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Mobile first approach');
-      expect(mobileFirstDesignInnerComponent.length).toEqual(1);
-      expect(mobileFirstDesignInnerComponent.text().trim()).toEqual('yes');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Mobile first approach');
+      expect(questionRow.find('dd').text().trim()).toEqual('yes');
     });
   }));
 
@@ -117,18 +105,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const pluginsRequiredQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-plugins-required"]');
-      const pluginsRequiredInnerComponent = pluginsRequiredQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-plugins-required"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(pluginsRequiredQuestionRow.length).toEqual(1);
-      expect(pluginsRequiredQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Plug-ins or extensions required');
-      expect(pluginsRequiredInnerComponent.length).toEqual(1);
-      expect(pluginsRequiredInnerComponent.text().trim()).toEqual('yes');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Plug-ins or extensions required');
+      expect(questionRow.find('dd').text().trim()).toEqual('yes');
     });
   }));
 
@@ -148,18 +132,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const pluginsDetailQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-plugins-detail"]');
-      const pluginsDetailInnerComponent = pluginsDetailQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-plugins-detail"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(pluginsDetailQuestionRow.length).toEqual(1);
-      expect(pluginsDetailQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information about plug-ins or extensions');
-      expect(pluginsDetailInnerComponent.length).toEqual(1);
-      expect(pluginsDetailInnerComponent.text().trim()).toEqual('Some plugin detail');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Additional information about plug-ins or extensions');
+      expect(questionRow.find('dd').text().trim()).toEqual('Some plugin detail');
     });
   }));
 
@@ -179,18 +159,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const minimumConnectionQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-minimum-connection-speed"]');
-      const minimumConnectionQuestionInnerComponent = minimumConnectionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-minimum-connection-speed"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(minimumConnectionQuestionRow.length).toEqual(1);
-      expect(minimumConnectionQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Minimum connection speed');
-      expect(minimumConnectionQuestionInnerComponent.length).toEqual(1);
-      expect(minimumConnectionQuestionInnerComponent.text().trim()).toEqual('1Mbps');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Minimum connection speed');
+      expect(questionRow.find('dd').text().trim()).toEqual('1Mbps');
     });
   }));
 
@@ -210,18 +186,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const minimumResolutionQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-minimum-desktop-resolution"]');
-      const minimumResolutionQuestionInnerComponent = minimumResolutionQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-minimum-desktop-resolution"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(minimumResolutionQuestionRow.length).toEqual(1);
-      expect(minimumResolutionQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Screen resolution and aspect ratio');
-      expect(minimumResolutionQuestionInnerComponent.length).toEqual(1);
-      expect(minimumResolutionQuestionInnerComponent.text().trim()).toEqual('4:3 800 x 600');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Screen resolution and aspect ratio');
+      expect(questionRow.find('dd').text().trim()).toEqual('4:3 800 x 600');
     });
   }));
 
@@ -241,18 +213,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const hardwareRequirementsQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-hardware-requirements-description"]');
-      const hardwareRequirementsInnerComponent = hardwareRequirementsQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-hardware-requirements-description"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(hardwareRequirementsQuestionRow.length).toEqual(1);
-      expect(hardwareRequirementsQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Hardware requirements');
-      expect(hardwareRequirementsInnerComponent.length).toEqual(1);
-      expect(hardwareRequirementsInnerComponent.text().trim()).toEqual('Some hardware requirement description');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Hardware requirements');
+      expect(questionRow.find('dd').text().trim()).toEqual('Some hardware requirement description');
     });
   }));
 
@@ -272,18 +240,14 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const additionalInformationQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-additional-information"]');
-      const additionalInformationInnerComponent = additionalInformationQuestionRow
-        .find('div[data-test-id="view-section-table-row-component"]')
-        .find('[data-test-id="view-question-data-text-additional-information"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row:nth-child(1)');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(additionalInformationQuestionRow.length).toEqual(1);
-      expect(additionalInformationQuestionRow
-        .find('h4[data-test-id="view-section-table-row-title"]').text().trim()).toEqual('Additional information');
-      expect(additionalInformationInnerComponent.length).toEqual(1);
-      expect(additionalInformationInnerComponent.text().trim()).toEqual('Some additional information');
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(1);
+
+      expect(questionRow.find('dt').text().trim()).toEqual('Additional information');
+      expect(questionRow.find('dd').text().trim()).toEqual('Some additional information');
     });
   }));
 
@@ -304,17 +268,11 @@ describe('view-browser-based', () => {
     };
 
     harness.request(context, ($) => {
-      const browserBasedSectionTable = $('[data-test-id="view-section-table-browser-based"]');
-      const supportedBrowserQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-supported-browsers"]');
-      const mobileResponsiveQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-mobile-responsive"]');
-      const pluginsRequiredQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-plugins-required"]');
-      const pluginsDetailQuestionRow = browserBasedSectionTable.find('[data-test-id="view-section-table-row-plugins-detail"]');
+      const browserBasedSectionElement = $('[data-test-id="view-section-dl-browser-based"]');
+      const questionRow = browserBasedSectionElement.find('div.nhsuk-summary-list__row');
 
-      expect(browserBasedSectionTable.length).toEqual(1);
-      expect(supportedBrowserQuestionRow.length).toEqual(0);
-      expect(mobileResponsiveQuestionRow.length).toEqual(0);
-      expect(pluginsRequiredQuestionRow.length).toEqual(1);
-      expect(pluginsDetailQuestionRow.length).toEqual(1);
+      expect(browserBasedSectionElement.length).toEqual(1);
+      expect(questionRow.length).toEqual(2);
     });
   }));
 });

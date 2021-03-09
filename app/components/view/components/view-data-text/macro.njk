@@ -1,5 +1,8 @@
 {% macro viewDataText(params) %}
   {% if params.data %}
+    {% if params.dataOrderItemId %}
+      <input type="hidden" name="orderItemId" id="orderItemId" value="{{ params.dataOrderItemId }}"/>
+    {% endif %}
     <div data-test-id="{{ params.dataTestId }}" class="bc-c-data-text {{ params.classes }}">{{ params.data }}</div>
   {% endif %}
 {% endmacro %}

@@ -77,7 +77,8 @@
               {{ viewDataText({
                 dataTestId: dataPoint.dataTestId,
                 classes: dataPoint.classes,
-                data: dataPoint.data
+                data: dataPoint.data,
+                dataOrderItemId: dataPoint.dataOrderItemId if dataPoint.dataOrderItemId
               }) }}
             {% endif %}
 

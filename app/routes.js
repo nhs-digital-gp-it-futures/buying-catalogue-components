@@ -8,6 +8,12 @@ router.get('/', async (req, res) => {
   res.render('index', {});
 });
 
+router.get('/holding', async (req, res) => {
+  res.render('views/holding', {
+    title: 'Buying Catalogue',
+  });
+});
+
 router.get('/:templateType', async (req, res) => {
   const { templateType } = req.params;
   res.render(`componentLibraryViewer/${templateType}`);

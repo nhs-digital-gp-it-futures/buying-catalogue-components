@@ -6,7 +6,11 @@
     <div class=" nhsuk-u-margin-top-0 nhsuk-form-group nhsuk-form-group--error">
         {% for errorMessage in params.errorMessages %}
         <span data-test-id="{{ params.dataTestId }}-error" class="nhsuk-error-message">
+          {% if errorMessage.text %}
+            {{ errorMessage.text }}
+          {% else %}
             {{ errorMessage }}
+          {% endif %}
         </span>
         {% endfor %}
       {{- params.innerComponent | safe | trim }}

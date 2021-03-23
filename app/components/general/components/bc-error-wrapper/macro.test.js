@@ -8,11 +8,28 @@ const setup = {
 };
 
 describe('bc-error-wrapper', () => {
-  it('should wrap the provided innerComponent as an error is an errorMessage is provided', componentTester(setup, (harness) => {
+  it('should wrap the provided innerComponent as an error if an errorMessage is provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         dataTestId: 'some-component',
         errorMessages: ['some error message'],
+        innerComponent: '<span data-test-id="inner-component">the inner component</span>',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="some-component"]').length).toEqual(1);
+      expect($('[data-test-id="some-component-error"]').length).toEqual(1);
+      expect($('[data-test-id="some-component-error"]').text().trim()).toEqual('some error message');
+      expect($('[data-test-id="inner-component"]').length).toEqual(1);
+    });
+  }));
+
+  it('should wrap the provided innerComponent as an error if an errorMessage.text is provided', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dataTestId: 'some-component',
+        errorMessages: [{ text: 'some error message' }],
         innerComponent: '<span data-test-id="inner-component">the inner component</span>',
       },
     };

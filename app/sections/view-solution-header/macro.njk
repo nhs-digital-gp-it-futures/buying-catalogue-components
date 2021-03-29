@@ -23,6 +23,12 @@
       {% if params.lastUpdated %}
         <div data-test-id="view-solution-page-last-updated" class="bc-t-font-color--grey-1">Solution information last updated: {{ params.lastUpdated | dateTime('D MMMM YYYY') }}</div>
       {% endif %}
+
+      {% if params.frameworks %}
+        <div data-test-id="view-solution-page-frameworks" class="bc-t-font-color--grey-1 bc-c-data-text">
+          Framework(s): {% for item in params.frameworks %}{{ item.shortName }}{% if params.frameworks | length > loop.index %}, {% endif %}{% endfor %}
+        </div>
+      {% endif %}
     </div>
   {% endif %}
 {% endmacro %}

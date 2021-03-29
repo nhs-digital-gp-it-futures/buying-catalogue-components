@@ -34,7 +34,7 @@
   <body class="bcc-body">
     <a class="nhsuk-skip-link" href="#maincontent">Skip to main content</a>
 
-    {% include 'views/includes/header.njk' %}
+    {% block header %}{% endblock %}
 
     {% block outerBody %}{% endblock %}
 
@@ -44,5 +44,6 @@
       </main>
     </div>
 
+    {% block footer %}{% endblock %}
   </body>
 </html>

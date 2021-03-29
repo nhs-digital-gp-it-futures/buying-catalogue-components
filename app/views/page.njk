@@ -1,0 +1,10 @@
+{% from 'components/general/components/bc-header/macro.njk' import bcHeader %}
+{% from 'components/general/components/bc-footer/macro.njk' import bcFooter %}
+{% extends './includes/layout.njk' %}
+
+{% block header %}
+  {{ bcHeader({
+      classes: "nhsuk-header__container"
+    })
+  }}
+{% endblock %}

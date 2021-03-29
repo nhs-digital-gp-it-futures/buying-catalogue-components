@@ -21,11 +21,11 @@
         <p data-test-id="view-solution-page-solution-id" class="nhsuk-u-font-size-24">Solution ID: {{ params.id }}</p>
       {% endif %}
       {% if params.lastUpdated %}
-        <div data-test-id="view-solution-page-last-updated" class="bc-t-font-color--grey-1">Solution information last updated: {{ params.lastUpdated | dateTime('D MMMM YYYY') }}</div>
+        <div data-test-id="view-solution-page-last-updated" class="bc-t-font-color--grey-1 nhsuk-u-margin-bottom-4">Solution information last updated: {{ params.lastUpdated | dateTime('D MMMM YYYY') }}</div>
       {% endif %}
 
       {% if params.frameworks %}
-        <div data-test-id="view-solution-page-frameworks" class="bc-t-font-color--grey-1 bc-c-data-text">
+        <div data-test-id="view-solution-page-frameworks" class="bc-t-font-color--grey-1">
           Framework(s): {% for item in params.frameworks %}{{ item.shortName }}{% if params.frameworks | length > loop.index %}, {% endif %}{% endfor %}
         </div>
       {% endif %}

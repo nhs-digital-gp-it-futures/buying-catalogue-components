@@ -1,0 +1,49 @@
+{% from 'components/general/components/bc-header/macro.njk' import bcHeader %}
+{% from 'components/general/components/bc-footer/macro.njk' import bcFooter %}
+{% extends './includes/layout.njk' %}
+
+{% block header %}
+  {{ bcHeader({
+      classes: "nhsuk-header__container",
+      showBetaBanner: true,
+      termsHref: "https://forms.office.com/Pages/ResponsePage.aspx?id=Hwf2UP67GkCIA2c3SOYp4nDHKEWnXcFHiqdJhf0fCJtUNDNFRUFZVFU5RkRQTEpWU0RQVlVXMUpRQi4u",
+      logoLink: {
+        href: "https://buyingcatalogue.digital.nhs.uk/",
+        ariaLabel: "Buying Catalogue Homepage"
+      }
+    })
+  }}
+{% endblock %}
+
+{% block body %}
+  <h1>The Buying Catalogue is currently unavailable</h1>
+  <p>Please contact NHS Digital's Exeter Helpdesk at <a href="mailto:exeter.helpdesk@nhs.net?subject=Buying Catalogue">exeter.helpdesk@nhs.net</a> or call 0300 303 4034.</p>
+{% endblock %}
+
+{% block footer %}
+  {{ bcFooter({
+    "footerLinks": [
+      {
+        "label": "Buyer's Guide",
+        "URL": "https://buyingcatalogue.digital.nhs.uk/guide"
+      },
+      {
+        "label": "NHS Digital Helpdesk",
+        "URL": "https://buyingcatalogue.digital.nhs.uk/guide#contact-us"
+      },
+      {
+        "label": "NHS Digital",
+        "URL": "https://digital.nhs.uk/"
+      },
+      {
+        "label": "About GP IT Futures",
+        "URL": "https://digital.nhs.uk/services/future-gp-it-systems-and-services"
+      },
+      {
+        "label": "Capabilities and Standards Model",
+        "URL": "https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview"
+      }
+    ],
+    "showLegalPanel": true
+  })}}
+{% endblock %}

@@ -4,7 +4,15 @@ A library of components specifically for Buying Catalogue
 
 ## Run
 
+`npm run build`
 `npm run start`
+
+## Holding page
+
+1. Edit file `app/views/holding.njk`
+2. Run project, click link from root or navigate to `/holding`
+3. Use a tool to save the page offline such as the `Save Page WE` chrome extension
+    - Remove references to `savepage` including JS, meta and icon tags pointing to relative URLs
 
 ## To locally link this library
 

@@ -14,6 +14,12 @@ const context = {
     supplierName: 'Aperture Science',
     isFoundation: true,
     lastUpdated: '1996-03-15T10:00:00',
+    frameworks: [
+      {
+        id: 'one',
+        shortName: 'short-name-one',
+      },
+    ],
   },
 };
 
@@ -109,6 +115,25 @@ describe('view-solution-header', () => {
   it('should not render the component if no data provided', componentTester(setup, (harness) => {
     harness.request({}, ($) => {
       expect($('[data-test-id="view-solution-header"]').length).toEqual(0);
+    });
+  }));
+
+  it('should render the framework provided', componentTester(setup, (harness) => {
+    harness.request(context, ($) => {
+      expect($('[data-test-id="view-solution-page-frameworks"]').text().trim()).toEqual('Framework(s): short-name-one');
+    });
+  }));
+
+  it('should render multiple frameworks if provided', componentTester(setup, (harness) => {
+    const updatedContext = context;
+    updatedContext.params.frameworks.push(
+      {
+        id: 'two',
+        shortName: 'short-name-two',
+      },
+    );
+    harness.request(updatedContext, ($) => {
+      expect($('[data-test-id="view-solution-page-frameworks"]').text().trim()).toEqual('Framework(s): short-name-one, short-name-two');
     });
   }));
 });

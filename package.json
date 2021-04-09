@@ -49,7 +49,7 @@
     "babel-loader": "^8.2.2",
     "body-parser": "^1.19.0",
     "browser-sync": "^2.26.14",
-    "cheerio": "^1.0.0-rc.5",
+    "cheerio": "^1.0.0-rc.6",
     "compression": "^1.7.4",
     "concurrently": "^6.0.1",
     "eslint": "^7.23.0",

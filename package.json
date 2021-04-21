@@ -45,7 +45,7 @@
     "@babel/core": "^7.13.15",
     "@babel/node": "^7.13.13",
     "@babel/preset-env": "^7.13.15",
-    "@babel/register": "^7.13.14",
+    "@babel/register": "^7.13.16",
     "babel-loader": "^8.2.2",
     "body-parser": "^1.19.0",
     "browser-sync": "^2.26.14",

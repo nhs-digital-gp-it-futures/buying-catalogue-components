@@ -14,5 +14,8 @@
       <h2 class="nhsuk-heading-2 nhsuk-u-margin-top-5" data-test-id="stackTrace-heading">Stack Trace</h2>
       <p data-test-id="error-stackTrace">{{ params.error.stackTrace | safe }}</p>
     {% endif %}
+    {% if params.error.data %}
+      <pre>{{ params.error.data }}</pre>
+    {% endif %}
   </div>
 {% endmacro %}

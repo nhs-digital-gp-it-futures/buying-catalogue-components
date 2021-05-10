@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 const fs = require('fs');
+const sanitize = require('sanitize-filename');
 
 const determineIsLast = ({ index, value }) => index + 1 === Object.keys(value).length;
 
@@ -131,7 +132,7 @@ const generateBlock = (params, blockType) => (
 
 const getSettings = ({ name, templateType, componentType }) => {
   const settingsString = fs.readFileSync(
-    `app/${templateType}s/${componentType ? `${componentType}/components/` : ''}${name}/settings.json`,
+    `app/${templateType}s/${componentType ? `${sanitize(componentType)}/components/` : ''}${sanitize(name)}/settings.json`,
     'utf-8',
   );
   return JSON.parse(settingsString);
@@ -142,13 +143,13 @@ const writeTemplate = ({
 }) => {
   const directory = 'app/templates';
   const templateDirectory = `${directory}/${templateType}s`;
-  const componentDirectory = `${templateDirectory}${componentType ? `/${componentType}` : ''}`;
+  const componentDirectory = `${templateDirectory}${componentType ? `/${sanitize(componentType)}` : ''}`;
   const componentsFolder = `${componentDirectory}${componentType ? '/components' : ''}`;
   if (!fs.existsSync(directory)) fs.mkdirSync(directory);
   if (!fs.existsSync(templateDirectory)) fs.mkdirSync(templateDirectory);
   if (!fs.existsSync(componentDirectory)) fs.mkdirSync(componentDirectory);
   if (!fs.existsSync(componentsFolder)) fs.mkdirSync(componentsFolder);
-  fs.writeFileSync(`${componentType ? componentsFolder : componentDirectory}/${name}-template.njk`, template);
+  fs.writeFileSync(`${componentType ? componentsFolder : componentDirectory}/${sanitize(name)}-template.njk`, template);
 };
 
 const generateEditorBlock = ({

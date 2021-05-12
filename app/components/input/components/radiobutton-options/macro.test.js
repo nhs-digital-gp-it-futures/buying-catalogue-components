@@ -186,4 +186,36 @@ describe('radiobuttonOptions', () => {
       expect($('div[data-test-id="radiobutton-options"] .nhsuk-hint').length).toEqual(0);
     });
   }));
+
+  it('should render the legend with main advice', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        question: {
+          id: 'fieldId',
+          mainAdvice: 'main advice for question',
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const mainAdviceLabel = $('div[data-test-id="radiobutton-options"] legend');
+      expect(mainAdviceLabel.text().trim()).toEqual('main advice for question');
+    });
+  }));
+
+  it('should render the legend HTML main advice', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        question: {
+          id: 'fieldId',
+          mainAdviceHtml: '<h1>main advice for question</h1>',
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const mainAdviceLabel = $('div[data-test-id="radiobutton-options"] legend h1');
+      expect(mainAdviceLabel.text().trim()).toEqual('main advice for question');
+    });
+  }));
 });

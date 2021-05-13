@@ -1,7 +1,11 @@
 {% from './components/nhs-digital-svg.njk' import nhsDigitalSvg %}
 {% from './components/beta-banner.njk' import betaBanner %}
+{% from './components/cookie-banner.njk' import cookieBanner %}
 
 {% macro bcHeader(params) %}
+
+  {{ cookieBanner( { href: params.cookieBanner.href } ) }}
+
   {% if params.showBetaBanner %}
     <div data-test-id="beta-banner">
       {{ betaBanner({ termsHref: params.termsHref }) }}

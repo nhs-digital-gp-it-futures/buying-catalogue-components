@@ -4,7 +4,9 @@
 
 {% macro bcHeader(params) %}
 
-  {{ cookieBanner( { href: params.cookieBanner.href } ) }}
+  {% if params.cookiePrivacy.showBanner %}
+    {{ cookieBanner( { href: params.cookiePrivacy.href } ) }}
+  {% endif %}
 
   {% if params.showBetaBanner %}
     <div data-test-id="beta-banner">

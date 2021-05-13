@@ -10,8 +10,8 @@
     },
     "showBetaBanner": true,
     "termsHref": "terms/href",
-    "cookieBanner": {
-      "show": true,
+    "cookiePrivacy": {
+      "showBanner": true,
       "href": "/cookies-and-privacy-policy"
     }
   }

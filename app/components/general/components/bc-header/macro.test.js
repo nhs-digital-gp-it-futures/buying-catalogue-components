@@ -110,4 +110,26 @@ describe('bc-header', () => {
       expect($('header[data-test-id="qa-identifier-header"] a').attr('aria-label')).toEqual('Buying Catalogue Homepage');
     });
   }));
+
+  it('should render the cookieBanner component if cookieBanner is set', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        cookiePrivacy: {
+          showBanner: true,
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="cookie-banner"]').length).toEqual(1);
+    });
+  }));
+
+  it('should not render the cookieBanner component if cookieBanner is not set', componentTester(setup, (harness) => {
+    const context = {};
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="cookie-banner"]').length).toEqual(0);
+    });
+  }));
 });

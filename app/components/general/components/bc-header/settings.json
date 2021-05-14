@@ -9,6 +9,11 @@
       "ariaLabel": "Buying Catalogue Homepage"
     },
     "showBetaBanner": true,
-    "termsHref": "terms/href"
+    "termsHref": "terms/href",
+    "cookiePrivacy": {
+      "showBanner": true,
+      "href": "/cookies-and-privacy-policy",
+      "dismissHref": "/dismiss-cookie-banner"
+    }
   }
 }

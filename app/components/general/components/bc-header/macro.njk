@@ -5,7 +5,7 @@
 {% macro bcHeader(params) %}
 
   {% if params.cookiePrivacy.showBanner %}
-    {{ cookieBanner( { href: params.cookiePrivacy.href } ) }}
+    {{ cookieBanner( params.cookiePrivacy ) }}
   {% endif %}
 
   {% if params.showBetaBanner %}

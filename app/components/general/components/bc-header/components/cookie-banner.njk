@@ -9,10 +9,13 @@
       <p class="hsuk-body">We've put small files called cookies on your device to make the Buying Catalogue website work.</p>
       <p class="hsuk-body">You can read more about our <a href="{{ params.href }}">cookies and privacy policy</a>.</p>
 
-      {{ button({
-        "text": "Dismiss",
-        "classes": "nhsuk-button--primary"
-      }) }}
+      <div data-test-id="cookie-dismiss">
+        {{ button({
+          text: "Dismiss",
+          classes: "nhsuk-button--primary",
+          href: params.dismissHref
+        }) }}
+      </div>
     </div>
 
   </section>

@@ -27,4 +27,16 @@ describe('cookie-banner', () => {
       expect($('[data-test-id="cookie-banner"] a').attr('href')).toEqual(context.params.href);
     });
   }));
+
+  it('should render the dismiss button with correct parameters', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        dismissHref: '/dismiss-cookie',
+      },
+    };
+
+    harness.request(context, ($) => {
+      expect($('[data-test-id="cookie-dismiss"] a').attr('href')).toEqual(context.params.dismissHref);
+    });
+  }));
 });

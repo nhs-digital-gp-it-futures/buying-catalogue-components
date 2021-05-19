@@ -1,21 +1,29 @@
 {% from 'components/footer/macro.njk' import footer %}
 
 {% macro bcFooter(params) %}
-  <div data-test-id="footer" class="bc-bg--grey-4">
-    <div data-test-id="footer-component">
-      {{ footer({
-        list: "nhsuk-footer__list--three-columns",
-        links: params.footerLinks,
-        copyright: "" 
-      })}}
+  <footer role="contentinfo" data-test-id="footer" class="bc-bg--grey-4">
+    <div class="nhsuk-footer
+      {%- if params.classes %} {{ params.classes }}{% endif %}" id="nhsuk-footer"
+      {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+      <div class="nhsuk-width-container">
+        {%- if params.footerLinks %}
+        <h2 class="nhsuk-u-visually-hidden">Support links</h2>
+        <ul class="nhsuk-footer__list">
+          {%- for item in params.footerLinks %}
+          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="{{ item.URL }}">{{ item.label }}</a></li>
+          {%- endfor %}
+        </ul>
+        {% endif %}
+        <p class="nhsuk-footer__copyright">{% if params.copyright %}{{ params.copyright | safe }}{% else %}&copy; Crown copyright{% endif %}</p>
+      </div>
     </div>
 
     {% if params.showLegalPanel %}
       <ul data-test-id="legal-panel" class="bc-lh-r bc-body-r bc-list-none nhsuk-u-padding-0 nhsuk-u-padding-bottom-3 nhsuk-width-container">
         <li class='bc-u-display-inline nhsuk-u-margin-0 nhsuk-u-margin-right-2'>Legal</li>
-        <li class='bc-u-display-inline nhsuk-u-margin-0 nhsuk-u-margin-right-2'><a href='https://digital.nhs.uk/about-nhs-digital/privacy-and-cookies'>Privacy and Cookies</a></li>
+        <li class='bc-u-display-inline nhsuk-u-margin-0 nhsuk-u-margin-right-2'><a href='/privacy-policy'>Privacy policy and cookies</a></li>
         <li class='bc-u-display-inline nhsuk-u-margin-0 nhsuk-u-margin-right-2'><a href='https://buyingcatalogue.digital.nhs.uk/document/terms-of-use.pdf'>Terms and Conditions</a></li>
       </ul>
     {% endif %}
-  </div>
+  </footer>
 {% endmacro %}

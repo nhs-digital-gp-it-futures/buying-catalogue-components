@@ -8,7 +8,7 @@ const setup = {
 };
 
 describe('bc-error-page', () => {
-  it('should render the error backLink', componentTester(setup, (harness) => {
+  it('should render the error backLink if in params', componentTester(setup, (harness) => {
     const context = {
       params: {
         backLink: {
@@ -23,6 +23,17 @@ describe('bc-error-page', () => {
       expect(backLink.length).toEqual(1);
       expect(backLink.text().trim()).toEqual(context.params.backLink.text);
       expect(backLink.attr('href')).toEqual(context.params.backLink.href);
+    });
+  }));
+
+  it('should not render the error backLink if not in params', componentTester(setup, (harness) => {
+    const context = {
+      params: { },
+    };
+
+    harness.request(context, ($) => {
+      const backLink = $('[data-test-id="error-back-link"] a');
+      expect(backLink.length).toEqual(0);
     });
   }));
 

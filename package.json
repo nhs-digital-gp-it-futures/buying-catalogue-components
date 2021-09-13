@@ -1,6 +1,6 @@
 {
   "name": "buying-catalogue-components",
-  "version": "5.0.9",
+  "version": "5.0.10",
   "description": "Nodejs express app for Buying Catalogue components",
   "main": "./app/server.js",
   "scripts": {
@@ -34,7 +34,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "buying-catalogue-library": "^1.5.7",
+    "buying-catalogue-library": "^1.5.8",
     "govuk-frontend": "^3.13.1",
     "nhsuk-frontend": "5.1.0",
     "nunjucks": "^3.2.3",
@@ -45,7 +45,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/node": "^7.15.4",
-    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-env": "^7.15.6",
     "@babel/register": "^7.15.3",
     "babel-loader": "^8.2.2",
     "body-parser": "^1.19.0",
@@ -58,14 +58,14 @@
     "eslint-plugin-import": "^2.24.2",
     "express": "^4.17.1",
     "husky": "^7.0.2",
-    "jest": "^27.1.1",
+    "jest": "^27.2.0",
     "node-sass": "^6.0.1",
     "path": "^0.12.7",
     "pinst": "^2.1.6",
     "sass-lint": "^1.13.1",
     "supertest": "^6.1.6",
     "testcafe": "^1.16.0",
-    "webpack": "^5.52.0",
+    "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0"
   },
   "jest": {

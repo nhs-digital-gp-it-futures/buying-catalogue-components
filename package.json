@@ -1,6 +1,6 @@
 {
   "name": "buying-catalogue-components",
-  "version": "5.0.13",
+  "version": "5.0.14",
   "description": "Nodejs express app for Buying Catalogue components",
   "main": "./app/server.js",
   "scripts": {
@@ -34,7 +34,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "buying-catalogue-library": "^1.5.9",
+    "buying-catalogue-library": "^1.5.10",
     "govuk-frontend": "^3.13.1",
     "nhsuk-frontend": "5.1.0",
     "nunjucks": "^3.2.3",

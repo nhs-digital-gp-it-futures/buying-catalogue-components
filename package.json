@@ -52,7 +52,7 @@
     "browser-sync": "^2.27.5",
     "cheerio": "^1.0.0-rc.10",
     "compression": "^1.7.4",
-    "concurrently": "^6.2.1",
+    "concurrently": "^6.2.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",

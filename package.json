@@ -35,7 +35,7 @@
   "license": "MIT",
   "dependencies": {
     "buying-catalogue-library": "^1.5.11",
-    "govuk-frontend": "^3.13.1",
+    "govuk-frontend": "^3.14.0",
     "nhsuk-frontend": "5.1.0",
     "nunjucks": "^3.2.3",
     "nunjucks-date-filter": "^0.1.1",

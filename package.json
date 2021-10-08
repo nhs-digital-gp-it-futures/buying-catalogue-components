@@ -65,7 +65,7 @@
     "sass-lint": "^1.13.1",
     "supertest": "^6.1.6",
     "testcafe": "^1.16.0",
-    "webpack": "^5.53.0",
+    "webpack": "^5.58.1",
     "webpack-cli": "^4.8.0"
   },
   "jest": {

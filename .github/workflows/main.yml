@@ -18,7 +18,9 @@ jobs:
         registry-url: https://registry.npmjs.org/
 
     - name: Install latest npm
-      run: npm install npm@latest
+      run: |
+        sudo npm i -g npm@latest
+        npm i npm@latest
 
     - name: Running npm install
       run: npm install

@@ -34,7 +34,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "buying-catalogue-library": "^1.5.12",
+    "buying-catalogue-library": "^1.5.13",
     "govuk-frontend": "^3.14.0",
     "nhsuk-frontend": "^5.2.0",
     "nunjucks": "^3.2.3",

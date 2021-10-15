@@ -34,7 +34,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "buying-catalogue-library": "^1.5.12",
+    "buying-catalogue-library": "^1.5.13",
     "govuk-frontend": "^3.14.0",
     "nhsuk-frontend": "^5.2.0",
     "nunjucks": "^3.2.3",
@@ -53,7 +53,7 @@
     "cheerio": "^1.0.0-rc.10",
     "compression": "^1.7.4",
     "concurrently": "^6.3.0",
-    "eslint": "^8.0.0",
+    "eslint": "^8.0.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.25.2",
     "express": "^4.17.1",
